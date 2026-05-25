@@ -1,0 +1,108 @@
+extends: spectral:oas
+rules:
+  conekta-server-base-url:
+    description: Conekta API must declare https://api.conekta.io as a server.
+    message: "Server URL must be https://api.conekta.io"
+    given: "$.servers[*].url"
+    severity: error
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://api\\.conekta\\.io$"
+
+  conekta-operation-id-pascal-case:
+    description: Conekta operationIds use PascalCase (e.g., GetCharge, CreateOrder).
+    message: "operationId '{{value}}' should use PascalCase"
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    severity: warn
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]+$"
+
+  conekta-operation-id-required:
+    description: All Conekta operations must define an operationId.
+    message: "Operation at {{path}} is missing operationId"
+    given: "$.paths[*][get,post,put,patch,delete]"
+    severity: error
+    then:
+      field: operationId
+      function: truthy
+
+  conekta-tags-required:
+    description: All Conekta operations must include at least one tag.
+    message: "Operation must include at least one tag"
+    given: "$.paths[*][get,post,put,patch,delete]"
+    severity: warn
+    then:
+      field: tags
+      function: truthy
+
+  conekta-bearer-auth-defined:
+    description: Conekta API must declare bearer authentication.
+    message: "Must define bearerAuth security scheme"
+    given: "$.components.securitySchemes.bearerAuth"
+    severity: error
+    then:
+      function: truthy
+
+  conekta-accept-language-required:
+    description: All Conekta operations must accept the Accept-Language header (es / en).
+    message: "Operation '{{path}}' should declare the Accept-Language header parameter"
+    given: "$.paths[*][get,post,put,patch,delete].parameters[?(@.in == 'header' && @.name == 'Accept-Language')]"
+    severity: warn
+    then:
+      function: truthy
+
+  conekta-vendor-accept-header:
+    description: Conekta uses an explicit Accept media type with version (application/vnd.conekta-v2.2.0+json).
+    message: "Response media type should be application/vnd.conekta-v2.2.0+json"
+    given: "$.paths[*][get,post,put,patch,delete].responses['200'].content"
+    severity: info
+    then:
+      field: "application/vnd.conekta-v2.2.0+json"
+      function: truthy
+
+  conekta-error-responses:
+    description: Each Conekta operation should document at least one 4xx error response.
+    message: "Operation '{{path}}' should declare a 4xx error response"
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    severity: warn
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["400"]
+            - required: ["401"]
+            - required: ["402"]
+            - required: ["404"]
+            - required: ["422"]
+
+  conekta-snake-case-fields:
+    description: Conekta JSON fields use snake_case.
+    message: "Field name '{{property}}' should use snake_case"
+    given: "$.components.schemas..properties.*~"
+    severity: info
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+
+  conekta-pagination-params:
+    description: Conekta list endpoints accept limit, next, previous, and search query params.
+    message: "List operation '{{path}}' should accept limit/next/previous query params"
+    given: "$.paths[*].get.parameters[?(@.in == 'query' && @.name == 'limit')]"
+    severity: info
+    then:
+      function: truthy
+
+  conekta-summary-title-case:
+    description: Operation summaries should use Title Case.
+    message: "Summary '{{value}}' should use Title Case"
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    severity: hint
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9 ,'/&\\-]+$"

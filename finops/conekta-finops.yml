@@ -1,0 +1,105 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Conekta
+providerId: conekta
+created: '2026-05-24'
+modified: '2026-05-24'
+reconciled: true
+tags:
+  - FinOps
+  - Cost Management
+  - FOCUS
+  - Payments
+  - Mexico
+description: 'FOCUS-aligned FinOps for Conekta: pay-per-successful-charge take rates billed in MXN.
+  No setup or monthly platform fees; cost is driven entirely by payment method mix (cards, OXXO cash,
+  SPEI, BNPL, MSI).'
+sources:
+  - https://www.conekta.com/precios
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Grupo Conektame, S.A. de C.V.
+serviceCategory: Payments
+billingModel:
+  pricingCategory: Take Rate
+  billingFrequency: Continuous Settlement
+  billingCurrency: MXN
+  chargeCategories:
+    - Usage
+    - Adjustment
+    - Refund
+    - Tax
+focusColumns:
+  ServiceName: Conekta
+  ServiceCategory: Payments
+  ProviderName: Conekta
+  PublisherName: Grupo Conektame, S.A. de C.V.
+  InvoiceIssuerName: Grupo Conektame, S.A. de C.V.
+  BillingCurrency: MXN
+meters:
+  - name: card_transactions
+    unit: transaction
+    aggregation: sum
+    dimensions:
+      - card_brand
+      - card_type
+      - currency
+      - country
+  - name: oxxo_transactions
+    unit: transaction
+    aggregation: sum
+    dimensions:
+      - currency
+  - name: spei_transactions
+    unit: transaction
+    aggregation: sum
+    dimensions:
+      - currency
+  - name: bnpl_transactions
+    unit: transaction
+    aggregation: sum
+    dimensions:
+      - provider
+  - name: msi_transactions
+    unit: transaction
+    aggregation: sum
+    dimensions:
+      - issuer
+      - months
+  - name: transaction_volume_mxn
+    unit: MXN
+    aggregation: sum
+    dimensions:
+      - payment_method
+      - currency
+  - name: refunds
+    unit: transaction
+    aggregation: sum
+    dimensions:
+      - payment_method
+allocationKeys:
+  - key: company_id
+    description: Multi-entity / marketplace allocation via the Companies API and X-Child-Company-Id
+      header.
+  - key: order_metadata
+    description: Use order/charge metadata fields to tag transactions for cost allocation across
+      products, channels, or business units.
+  - key: payment_method
+    description: Card vs OXXO vs SPEI vs BNPL is the strongest cost driver — track method mix to model
+      take rate.
+policies:
+  - name: Method-mix optimization
+    description: OXXO at 2.6% + $3 and SPEI at flat $12.50 can be cheaper than cards (3.4% + $3) for
+      mid-to-high ticket sizes. Model per-bucket cost when designing checkout.
+  - name: BNPL margin awareness
+    description: BNPL adds 4–6% on top of base rates; reserve for high-ticket items where conversion
+      uplift exceeds the surcharge.
+  - name: MSI risk
+    description: Meses Sin Intereses surcharges scale with the number of months and can reach 26.5%;
+      cap MSI offers to maintain unit economics.
+position: Consuming

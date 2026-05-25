@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Conekta Payout Orders API
+  description: Move funds out of the Conekta merchant balance via Payout Orders and Transfers. Used for
+    marketplace payouts and disbursements to bank accounts.
+  tags:
+  - Conekta
+  - Payments
+  - Payouts
+  - Transfers
+  - Marketplace
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    CONEKTA_API_KEY: CONEKTA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: payout-orders
+    baseUri: https://api.conekta.io
+    description: Conekta Payout Orders and Transfers business capability — move funds out of the
+      merchant balance.
+    resources:
+    - name: payoutOrders
+      path: /payout_orders
+      operations:
+      - name: listPayoutOrders
+        method: GET
+        description: List payout orders.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+      - name: createPayoutOrder
+        method: POST
+        description: Create a payout order that disburses funds to a customer or merchant.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: payoutOrder
+      path: /payout_orders/{id}
+      operations:
+      - name: getPayoutOrder
+        method: GET
+        description: Retrieve a payout order by id.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: transfers
+      path: /transfers
+      operations:
+      - name: listTransfers
+        method: GET
+        description: List balance transfers.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+    - name: balance
+      path: /balance
+      operations:
+      - name: getBalance
+        method: GET
+        description: Retrieve current available, pending, and retained balance.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    authentication:
+      type: bearer
+      token: '{{env.CONEKTA_API_KEY}}'
+    defaultHeaders:
+      Accept-Language: es
+      Accept: application/vnd.conekta-v2.2.0+json

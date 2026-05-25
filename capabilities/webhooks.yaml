@@ -1,0 +1,128 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Conekta Webhooks API
+  description: Configure webhook endpoints and webhook signing keys for asynchronous event delivery.
+  tags:
+  - Conekta
+  - Payments
+  - Webhooks
+  - Events
+  created: '2026-05-24'
+  modified: '2026-05-24'
+binds:
+- namespace: env
+  keys:
+    CONEKTA_API_KEY: CONEKTA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: webhooks
+    baseUri: https://api.conekta.io
+    description: Conekta Webhooks business capability — manage endpoints, signing keys, and delivery
+      events.
+    resources:
+    - name: webhooks
+      path: /webhooks
+      operations:
+      - name: listWebhooks
+        method: GET
+        description: List all configured webhook endpoints.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+      - name: createWebhook
+        method: POST
+        description: Create a new webhook endpoint.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+    - name: webhook
+      path: /webhooks/{id}
+      operations:
+      - name: updateWebhook
+        method: PUT
+        description: Update a webhook endpoint (URL, subscribed events, status).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: deleteWebhook
+        method: DELETE
+        description: Delete a webhook endpoint.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: webhookKeys
+      path: /webhook_keys
+      operations:
+      - name: listWebhookKeys
+        method: GET
+        description: List webhook signing keys used to verify event authenticity.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+      - name: createWebhookKey
+        method: POST
+        description: Create a new webhook signing key.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: false
+    - name: events
+      path: /events
+      operations:
+      - name: listEvents
+        method: GET
+        description: List events that have occurred on the account; useful for recovering missed
+          webhook deliveries.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.CONEKTA_API_KEY}}'
+    defaultHeaders:
+      Accept-Language: es
+      Accept: application/vnd.conekta-v2.2.0+json

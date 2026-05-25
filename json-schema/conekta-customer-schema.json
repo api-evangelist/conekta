@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/conekta/main/json-schema/conekta-customer-schema.json",
+  "title": "Conekta Customer",
+  "description": "A Conekta customer profile. Holds payment sources, shipping contacts, and subscription state for recurring billing.",
+  "type": "object",
+  "required": ["name", "email"],
+  "properties": {
+    "id": { "type": "string", "description": "Conekta-assigned customer identifier (cus_...)." },
+    "object": { "type": "string", "const": "customer" },
+    "livemode": { "type": "boolean" },
+    "name": { "type": "string" },
+    "email": { "type": "string", "format": "email" },
+    "phone": { "type": "string" },
+    "corporate": { "type": "boolean" },
+    "plan_id": { "type": "string" },
+    "default_payment_source_id": { "type": "string" },
+    "default_shipping_contact_id": { "type": "string" },
+    "antifraud_info": {
+      "type": "object",
+      "properties": {
+        "account_created_at": { "type": "integer" },
+        "first_paid_at": { "type": "integer" }
+      }
+    },
+    "payment_sources": {
+      "type": "object",
+      "properties": {
+        "object": { "type": "string" },
+        "has_more": { "type": "boolean" },
+        "total": { "type": "integer" },
+        "data": {
+          "type": "array",
+          "items": { "type": "object" }
+        }
+      }
+    },
+    "shipping_contacts": {
+      "type": "object",
+      "properties": {
+        "object": { "type": "string" },
+        "has_more": { "type": "boolean" },
+        "total": { "type": "integer" },
+        "data": {
+          "type": "array",
+          "items": { "type": "object" }
+        }
+      }
+    },
+    "subscription": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "status": { "type": "string", "enum": ["in_trial", "active", "past_due", "paused", "canceled"] },
+        "plan_id": { "type": "string" },
+        "billing_cycle_start": { "type": "integer" },
+        "billing_cycle_end": { "type": "integer" }
+      }
+    },
+    "metadata": { "type": "object", "additionalProperties": true },
+    "created_at": { "type": "integer" }
+  }
+}

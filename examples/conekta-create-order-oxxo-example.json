@@ -1,0 +1,59 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.conekta.io/orders",
+    "headers": {
+      "Authorization": "Bearer key_xxx",
+      "Accept": "application/vnd.conekta-v2.2.0+json",
+      "Accept-Language": "es",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "currency": "MXN",
+      "customer_info": {
+        "name": "Maria Hernandez",
+        "email": "maria@example.mx",
+        "phone": "+525511111111"
+      },
+      "line_items": [
+        {
+          "name": "Curso en línea",
+          "unit_price": 50000,
+          "quantity": 1
+        }
+      ],
+      "charges": [
+        {
+          "payment_method": {
+            "type": "oxxo_cash",
+            "expires_at": 1769990400
+          }
+        }
+      ]
+    }
+  },
+  "response": {
+    "id": "ord_2u...",
+    "object": "order",
+    "amount": 50000,
+    "currency": "MXN",
+    "payment_status": "pending_payment",
+    "charges": {
+      "object": "list",
+      "data": [
+        {
+          "id": "65b...",
+          "object": "charge",
+          "amount": 50000,
+          "status": "pending_payment",
+          "payment_method": {
+            "type": "oxxo",
+            "reference": "93000123456789",
+            "service_name": "OxxoPay",
+            "expires_at": 1769990400
+          }
+        }
+      ]
+    }
+  }
+}

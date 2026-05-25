@@ -1,0 +1,63 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.conekta.io/orders",
+    "headers": {
+      "Authorization": "Bearer key_xxx",
+      "Accept": "application/vnd.conekta-v2.2.0+json",
+      "Accept-Language": "es",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "currency": "MXN",
+      "customer_info": {
+        "name": "Juan Perez",
+        "email": "juan.perez@example.mx",
+        "phone": "+525555555555"
+      },
+      "line_items": [
+        {
+          "name": "Tlayuda Oaxaqueña",
+          "unit_price": 18000,
+          "quantity": 2
+        }
+      ],
+      "charges": [
+        {
+          "payment_method": {
+            "type": "card",
+            "token_id": "tok_test_visa_4242"
+          }
+        }
+      ]
+    }
+  },
+  "response": {
+    "id": "ord_2t9...",
+    "object": "order",
+    "amount": 36000,
+    "currency": "MXN",
+    "payment_status": "paid",
+    "livemode": false,
+    "charges": {
+      "object": "list",
+      "data": [
+        {
+          "id": "65a...",
+          "object": "charge",
+          "amount": 36000,
+          "currency": "MXN",
+          "status": "paid",
+          "payment_method": {
+            "type": "card",
+            "last4": "4242",
+            "brand": "visa",
+            "country": "MX",
+            "exp_month": "12",
+            "exp_year": "2030"
+          }
+        }
+      ]
+    }
+  }
+}

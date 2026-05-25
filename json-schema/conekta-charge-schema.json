@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/conekta/main/json-schema/conekta-charge-schema.json",
+  "title": "Conekta Charge",
+  "description": "A single payment attempt against an order using one payment method (card, OXXO cash, SPEI bank transfer, or BNPL).",
+  "type": "object",
+  "required": ["payment_method", "amount"],
+  "properties": {
+    "id": { "type": "string", "description": "Conekta-assigned charge identifier." },
+    "object": { "type": "string", "const": "charge" },
+    "livemode": { "type": "boolean" },
+    "order_id": { "type": "string" },
+    "amount": { "type": "integer", "description": "Amount in the smallest currency unit." },
+    "currency": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["pending_payment", "paid", "declined", "refunded", "partially_refunded", "expired", "canceled"]
+    },
+    "failure_code": { "type": "string", "description": "Conekta failure code when status is declined." },
+    "failure_message": { "type": "string" },
+    "reference_id": { "type": "string", "description": "OXXO or SPEI reference number where applicable." },
+    "payment_method": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["card", "cash", "spei", "bnpl", "default"]
+        },
+        "name": { "type": "string" },
+        "last4": { "type": "string", "description": "Last four digits for card payments." },
+        "brand": { "type": "string", "description": "Card brand (visa, mastercard, amex)." },
+        "bin": { "type": "string" },
+        "exp_month": { "type": "string" },
+        "exp_year": { "type": "string" },
+        "issuer": { "type": "string" },
+        "country": { "type": "string" },
+        "expires_at": { "type": "integer" },
+        "reference": { "type": "string", "description": "Cash voucher or SPEI CLABE reference." },
+        "service_name": { "type": "string", "description": "e.g., OxxoPay, SpeiPay." },
+        "store": { "type": "string" }
+      }
+    },
+    "refunds": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "amount": { "type": "integer" },
+          "reason": { "type": "string" },
+          "created_at": { "type": "integer" }
+        }
+      }
+    },
+    "created_at": { "type": "integer" },
+    "paid_at": { "type": "integer" }
+  }
+}

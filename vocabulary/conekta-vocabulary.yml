@@ -1,0 +1,191 @@
+name: Conekta
+description: >-
+  Vocabulary of key terms, concepts, objects, and operations used across the Conekta payments platform
+  for the Mexican market. Covers cards, OXXO cash, SPEI transfers, BNPL, subscriptions, antifraud,
+  payouts, and webhooks.
+version: "1.0"
+created: "2026-05-24"
+modified: "2026-05-24"
+tags:
+  - Commerce
+  - Payments
+  - Financial Services
+  - Fintech
+  - Mexico
+  - Latin America
+
+terms:
+  - term: Order
+    definition: >-
+      Top-level transaction object. Groups line items, charges, customer info, shipping, taxes, and
+      discounts. Each commercial transaction is represented as one Order.
+    category: Core Object
+    tags: [Orders, Core]
+
+  - term: Charge
+    definition: >-
+      A single payment attempt against an Order using one payment method (card, cash, SPEI, or BNPL).
+      One Order can have multiple charges (e.g., partial captures or method switching).
+    category: Core Object
+    tags: [Charges, Payments]
+
+  - term: Customer
+    definition: >-
+      A persistent customer profile with stored payment sources, shipping contacts, and subscription
+      state. Required for recurring billing.
+    category: Core Object
+    tags: [Customers]
+
+  - term: Payment Source
+    definition: >-
+      A tokenized payment instrument (typically a card) attached to a customer. Created by the
+      Checkout Tokenizer, mobile SDK, or by passing a token id.
+    category: Core Object
+    tags: [Payments, Tokens]
+
+  - term: Token
+    definition: >-
+      Short-lived, single-use representation of a payment instrument generated client-side to keep
+      raw card data out of the merchant's servers and PCI scope.
+    category: Core Object
+    tags: [Tokens, PCI]
+
+  - term: OXXO
+    definition: >-
+      Mexican convenience store chain that operates Conekta's cash payment network. The merchant
+      generates an OXXO reference; the customer pays in person at any OXXO store; Conekta notifies
+      the merchant via webhook.
+    category: Payment Method
+    tags: [Cash, OXXO, Mexico]
+
+  - term: SPEI
+    definition: >-
+      Sistema de Pagos Electrónicos Interbancarios — Mexico's real-time interbank transfer system
+      operated by Banco de México. Conekta exposes SPEI as a payment method via per-order CLABE
+      references.
+    category: Payment Method
+    tags: [Transfers, SPEI, Mexico, Banxico]
+
+  - term: CLABE
+    definition: >-
+      Clave Bancaria Estandarizada — the 18-digit Mexican standardized bank account number used as
+      the destination for SPEI transfers.
+    category: Concept
+    tags: [SPEI, Banking, Mexico]
+
+  - term: MSI (Meses Sin Intereses)
+    definition: >-
+      Interest-free monthly installment plans offered by Mexican card issuers. The cardholder pays
+      a fixed amount per month with no interest; the issuer absorbs the cost in exchange for a higher
+      merchant discount rate.
+    category: Payment Method
+    tags: [Cards, Installments, Mexico]
+
+  - term: BNPL (Buy Now Pay Later)
+    definition: >-
+      Pay-in-installments option provided by partnered BNPL providers. Adds a 4–6% surcharge on top
+      of base rates.
+    category: Payment Method
+    tags: [BNPL, Installments]
+
+  - term: Plan
+    definition: >-
+      Recurring billing definition with amount, currency, billing interval, and optional trial.
+    category: Core Object
+    tags: [Subscriptions, Billing]
+
+  - term: Subscription
+    definition: >-
+      An agreement between a Customer and a Plan that produces recurring charges.
+    category: Core Object
+    tags: [Subscriptions, Billing]
+
+  - term: Payment Link (Checkout)
+    definition: >-
+      A shareable hosted checkout URL that presents Conekta's prebuilt payment form with the
+      merchant's allowed methods. Supports email delivery and configurable expiration.
+    category: Integration Surface
+    tags: [Checkout, Payment Links]
+
+  - term: Webhook
+    definition: >-
+      HTTP callback delivered by Conekta to a merchant URL when an event (charge.paid,
+      order.canceled, subscription.created, etc.) occurs. Signed with a per-merchant signing key
+      and retried with exponential backoff for ~48 hours on non-2xx responses.
+    category: Integration Surface
+    tags: [Webhooks, Events]
+
+  - term: Webhook Key
+    definition: >-
+      Per-merchant signing key pair used to authenticate webhook payloads. Verify the
+      Conekta-Signature header on incoming webhook requests.
+    category: Concept
+    tags: [Webhooks, Security]
+
+  - term: Event
+    definition: >-
+      Audit record of something that happened on the account. The events endpoint lets merchants
+      replay missed webhook deliveries.
+    category: Core Object
+    tags: [Events, Webhooks]
+
+  - term: Antifraud Whitelist / Blacklist
+    definition: >-
+      Merchant-managed rules that respectively bypass or automatically reject transactions matching
+      attributes such as card BIN, email, phone, or IP.
+    category: Risk
+    tags: [Antifraud, Risk]
+
+  - term: Payout Order
+    definition: >-
+      Outbound disbursement from the merchant's Conekta balance to a recipient. Used by marketplaces
+      and partial-refund flows.
+    category: Core Object
+    tags: [Payouts, Marketplace]
+
+  - term: Transfer
+    definition: >-
+      Movement of funds between Conekta-internal accounts (e.g., balance settlements).
+    category: Core Object
+    tags: [Transfers, Balance]
+
+  - term: Balance
+    definition: >-
+      Snapshot of available, pending, and retained funds in the merchant's Conekta account.
+    category: Core Object
+    tags: [Balance]
+
+  - term: Company
+    definition: >-
+      Conekta tenant / merchant entity. Multi-entity merchants (marketplaces) can attach child
+      companies and route requests with X-Child-Company-Id.
+    category: Core Object
+    tags: [Companies, Marketplace]
+
+  - term: API Key
+    definition: >-
+      Bearer token used to authenticate API requests. Conekta supports separate keys for live and
+      test modes plus restricted-scope keys.
+    category: Concept
+    tags: [Authentication, Security]
+
+  - term: 3D Secure 2
+    definition: >-
+      Card-not-present authentication protocol that shifts chargeback liability from the merchant
+      to the issuer when invoked. Required for many Mexican card transactions.
+    category: Concept
+    tags: [Cards, Security, Authentication]
+
+  - term: PCI-DSS Level 1
+    definition: >-
+      The highest tier of Payment Card Industry Data Security Standard certification. Conekta is
+      certified at Level 1, allowing merchants to integrate without handling raw card data.
+    category: Concept
+    tags: [Compliance, Cards, PCI]
+
+  - term: Accept-Language Header
+    definition: >-
+      Required request header (es or en) that selects the language of error messages and human-
+      readable fields returned by the Conekta API.
+    category: Concept
+    tags: [Localization, Headers]

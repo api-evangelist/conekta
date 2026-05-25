@@ -1,0 +1,54 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Conekta
+providerId: conekta
+created: '2026-05-24'
+modified: '2026-05-24'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Payments
+  - Mexico
+description: Conekta does not publish explicit per-second or per-minute rate limits in its developer
+  documentation. The platform implements internal throttling and antifraud rules per merchant. High-volume
+  merchants should coordinate with the Conekta integrations team and rely on idempotent webhook retries
+  rather than client-side burst loops.
+sources:
+  - https://developers.conekta.com/docs/códigos-de-error-http
+  - https://developers.conekta.com/docs/errores-2
+  - https://developers.conekta.com/docs/reintentos-de-notificación
+headers:
+  requestId: X-Request-Id
+responseCodes:
+  throttled: 429
+  serverBusy: 503
+limits:
+  - name: Per-merchant API request rate
+    scope: account
+    metric: requests_per_minute
+    limit: undisclosed
+    timeFrame: minute
+    description: Conekta enforces internal per-account throttling. Limits are not publicly documented;
+      contact Conekta support for high-volume integrations.
+  - name: Webhook delivery retries
+    scope: webhook
+    metric: retries
+    limit: 18
+    timeFrame: 48h
+    description: Conekta retries undelivered webhook notifications with exponential backoff over
+      approximately 48 hours before giving up. Use the events endpoint to recover missed events.
+policies:
+  - name: Idempotency
+    description: Pass a unique idempotency key on retryable POST requests to safely retry failures
+      without duplicate charges.
+  - name: Antifraud-driven throttling
+    description: Antifraud rules (whitelists, blacklists, velocity) may block individual charges. These are
+      not rate limits in the traditional sense but can manifest as repeated 402/422 responses.
+  - name: Webhook retries
+    description: Endpoints must respond with 2xx within the timeout to acknowledge delivery. Repeated
+      non-2xx responses trigger retries on an exponential schedule.
+  - name: Localization header
+    description: Every request must include Accept-Language (es or en). Missing the header causes 400
+      errors that may look like throttling but are validation failures.
+position: Consuming

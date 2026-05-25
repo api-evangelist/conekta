@@ -1,0 +1,99 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "conekta": "https://conekta.com/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Order": {
+      "@id": "conekta:Order",
+      "@context": {
+        "id": { "@id": "conekta:orderId", "@type": "xsd:string" },
+        "currency": { "@id": "schema:priceCurrency", "@type": "xsd:string" },
+        "amount": { "@id": "schema:price", "@type": "xsd:integer" },
+        "payment_status": { "@id": "conekta:paymentStatus", "@type": "xsd:string" },
+        "line_items": { "@id": "conekta:lineItems" },
+        "charges": { "@id": "conekta:charges" },
+        "customer_info": { "@id": "schema:customer" },
+        "shipping_contact": { "@id": "schema:shippingDestination" },
+        "tax_lines": { "@id": "conekta:taxLines" },
+        "discount_lines": { "@id": "conekta:discountLines" },
+        "metadata": { "@id": "conekta:metadata" },
+        "created_at": { "@id": "schema:dateCreated", "@type": "xsd:integer" },
+        "livemode": { "@id": "conekta:livemode", "@type": "xsd:boolean" }
+      }
+    },
+    "Charge": {
+      "@id": "conekta:Charge",
+      "@context": {
+        "id": { "@id": "conekta:chargeId", "@type": "xsd:string" },
+        "amount": { "@id": "schema:price", "@type": "xsd:integer" },
+        "currency": { "@id": "schema:priceCurrency", "@type": "xsd:string" },
+        "status": { "@id": "conekta:status", "@type": "xsd:string" },
+        "payment_method": { "@id": "schema:paymentMethod" },
+        "order_id": { "@id": "conekta:orderId", "@type": "xsd:string" },
+        "reference_id": { "@id": "conekta:referenceId", "@type": "xsd:string" },
+        "failure_code": { "@id": "conekta:failureCode", "@type": "xsd:string" },
+        "failure_message": { "@id": "conekta:failureMessage", "@type": "xsd:string" },
+        "created_at": { "@id": "schema:dateCreated", "@type": "xsd:integer" },
+        "paid_at": { "@id": "schema:datePaid", "@type": "xsd:integer" }
+      }
+    },
+    "Customer": {
+      "@id": "conekta:Customer",
+      "@context": {
+        "id": { "@id": "conekta:customerId", "@type": "xsd:string" },
+        "name": { "@id": "schema:name", "@type": "xsd:string" },
+        "email": { "@id": "schema:email", "@type": "xsd:string" },
+        "phone": { "@id": "schema:telephone", "@type": "xsd:string" },
+        "corporate": { "@id": "conekta:corporate", "@type": "xsd:boolean" },
+        "payment_sources": { "@id": "schema:paymentMethod" },
+        "shipping_contacts": { "@id": "schema:shippingDestination" },
+        "subscription": { "@id": "conekta:subscription" },
+        "created_at": { "@id": "schema:dateCreated", "@type": "xsd:integer" }
+      }
+    },
+    "Plan": {
+      "@id": "conekta:Plan",
+      "@context": {
+        "id": { "@id": "conekta:planId", "@type": "xsd:string" },
+        "name": { "@id": "schema:name", "@type": "xsd:string" },
+        "amount": { "@id": "schema:price", "@type": "xsd:integer" },
+        "currency": { "@id": "schema:priceCurrency", "@type": "xsd:string" },
+        "interval": { "@id": "conekta:billingInterval", "@type": "xsd:string" },
+        "frequency": { "@id": "conekta:billingFrequency", "@type": "xsd:integer" },
+        "trial_period_days": { "@id": "conekta:trialPeriodDays", "@type": "xsd:integer" }
+      }
+    },
+    "Subscription": {
+      "@id": "conekta:Subscription",
+      "@context": {
+        "id": { "@id": "conekta:subscriptionId", "@type": "xsd:string" },
+        "plan_id": { "@id": "conekta:planId", "@type": "xsd:string" },
+        "status": { "@id": "conekta:status", "@type": "xsd:string" },
+        "billing_cycle_start": { "@id": "conekta:billingCycleStart", "@type": "xsd:integer" },
+        "billing_cycle_end": { "@id": "conekta:billingCycleEnd", "@type": "xsd:integer" }
+      }
+    },
+    "PaymentLink": {
+      "@id": "conekta:PaymentLink",
+      "@context": {
+        "id": { "@id": "conekta:paymentLinkId", "@type": "xsd:string" },
+        "name": { "@id": "schema:name", "@type": "xsd:string" },
+        "url": { "@id": "schema:url", "@type": "schema:URL" },
+        "type": { "@id": "conekta:checkoutType", "@type": "xsd:string" },
+        "allowed_payment_methods": { "@id": "conekta:allowedPaymentMethods" },
+        "expires_at": { "@id": "conekta:expiresAt", "@type": "xsd:integer" }
+      }
+    },
+    "WebhookEvent": {
+      "@id": "conekta:WebhookEvent",
+      "@context": {
+        "id": { "@id": "conekta:eventId", "@type": "xsd:string" },
+        "type": { "@id": "conekta:eventType", "@type": "xsd:string" },
+        "data": { "@id": "conekta:eventData" },
+        "created_at": { "@id": "schema:dateCreated", "@type": "xsd:integer" },
+        "livemode": { "@id": "conekta:livemode", "@type": "xsd:boolean" }
+      }
+    }
+  }
+}

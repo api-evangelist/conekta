@@ -1,0 +1,148 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Conekta
+providerId: conekta
+created: '2026-05-24'
+modified: '2026-05-24'
+reconciled: true
+tags:
+  - Payments
+  - Mexico
+  - Cards
+  - Cash
+  - OXXO
+  - SPEI
+  - BNPL
+description: Conekta uses pay-per-successful-charge pricing in MXN. There are no setup or monthly fees;
+  rates are method-specific (cards, OXXO cash, SPEI transfer, BNPL). All quoted amounts exclude IVA (16%
+  Mexican VAT).
+sources:
+  - https://www.conekta.com/precios
+plans:
+  - id: conekta-cards-standard
+    name: Tarjetas — Estándar (Cards)
+    type: usage-based
+    description: Standard rate for Visa, Mastercard, and American Express debit and credit card
+      transactions processed through the Conekta API or Checkout Component.
+    entries:
+      - label: Card transaction (per charge)
+        name: tx_card
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: MX
+        unit: 1
+        price: 3.4% + $3.00 MXN
+        userMultiplied: false
+        description: Plus IVA. Applies to domestic Visa, Mastercard, and Amex.
+    elements:
+      - name: PCI-DSS Level 1 tokenization
+      - name: 3D Secure 2 authentication
+      - name: Checkout Component or Direct API
+      - name: Antifraud whitelists and blacklists
+      - name: Webhook delivery and retries
+  - id: conekta-oxxo-cash
+    name: Conekta Efectivo (OXXO)
+    type: usage-based
+    description: OXXO cash voucher payments — the merchant generates a reference and the customer pays at
+      any OXXO point of sale.
+    entries:
+      - label: OXXO cash voucher (per charge)
+        name: tx_oxxo
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: MX
+        unit: 1
+        price: 2.6% + $3.00 MXN
+        userMultiplied: false
+        description: Plus IVA. Minimum commission $5.40 MXN + IVA.
+      - label: Point-of-sale surcharge
+        name: tx_oxxo_pos
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: MX
+        unit: 1
+        price: $7-$10 MXN
+        userMultiplied: false
+        description: Charged by OXXO at the point of sale; varies by store.
+    elements:
+      - name: Reference number with configurable expiration
+      - name: Voucher delivered via API and email
+      - name: Webhook notification on successful payment
+  - id: conekta-spei-transfer
+    name: SPEI (Bank Transfer)
+    type: usage-based
+    description: SPEI interbank transfer payments via CLABE references — settle near real time during
+      Banxico operating hours.
+    entries:
+      - label: SPEI transfer (per charge)
+        name: tx_spei
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: MX
+        unit: 1
+        price: $12.50 MXN
+        userMultiplied: false
+        description: Plus IVA. Flat fee per transfer regardless of amount.
+    elements:
+      - name: CLABE reference number per order
+      - name: Settlement during Banxico hours
+      - name: Webhook on funds received
+  - id: conekta-bnpl
+    name: Pago en plazos (BNPL)
+    type: usage-based
+    description: Buy Now Pay Later installment plans through partnered providers.
+    entries:
+      - label: BNPL provider A
+        name: tx_bnpl_a
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: MX
+        unit: 1
+        price: 4%
+        userMultiplied: false
+        description: Plus IVA.
+      - label: BNPL provider B
+        name: tx_bnpl_b
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: MX
+        unit: 1
+        price: 6%
+        userMultiplied: false
+        description: Plus IVA.
+    elements:
+      - name: Customer-facing installment plan
+      - name: Risk and underwriting handled by BNPL provider
+  - id: conekta-msi
+    name: Meses Sin Intereses (MSI)
+    type: usage-based
+    description: Interest-free monthly installments on credit cards through participating issuers.
+    entries:
+      - label: MSI surcharge
+        name: tx_msi
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: MX
+        unit: 1
+        price: 3.5% — 26.5%
+        userMultiplied: false
+        description: Plus IVA. Rate depends on issuer and number of months (3, 6, 9, 12, 18 MSI).
+    elements:
+      - name: Card issuer absorbs interest
+      - name: Merchant pays a higher per-transaction rate
+position: Consuming

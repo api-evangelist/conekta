@@ -1,0 +1,59 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.conekta.io/orders",
+    "headers": {
+      "Authorization": "Bearer key_xxx",
+      "Accept": "application/vnd.conekta-v2.2.0+json",
+      "Accept-Language": "es",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "currency": "MXN",
+      "customer_info": {
+        "name": "Carlos Lopez",
+        "email": "carlos@example.mx",
+        "phone": "+525522222222"
+      },
+      "line_items": [
+        {
+          "name": "Suscripción mensual",
+          "unit_price": 29900,
+          "quantity": 1
+        }
+      ],
+      "charges": [
+        {
+          "payment_method": {
+            "type": "spei",
+            "expires_at": 1769990400
+          }
+        }
+      ]
+    }
+  },
+  "response": {
+    "id": "ord_2v...",
+    "object": "order",
+    "amount": 29900,
+    "currency": "MXN",
+    "payment_status": "pending_payment",
+    "charges": {
+      "object": "list",
+      "data": [
+        {
+          "id": "65c...",
+          "object": "charge",
+          "amount": 29900,
+          "status": "pending_payment",
+          "payment_method": {
+            "type": "spei",
+            "reference": "646180111234567894",
+            "service_name": "SpeiPay",
+            "expires_at": 1769990400
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.conekta.io/webhooks",
+    "headers": {
+      "Authorization": "Bearer key_xxx",
+      "Accept": "application/vnd.conekta-v2.2.0+json",
+      "Accept-Language": "es",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "url": "https://example.com/conekta/webhook",
+      "synchronous": false,
+      "production_enabled": true,
+      "subscribed_events": [
+        "charge.paid",
+        "charge.refunded",
+        "order.paid",
+        "order.canceled",
+        "order.expired",
+        "subscription.created",
+        "subscription.paused",
+        "subscription.canceled",
+        "payout.created"
+      ]
+    }
+  },
+  "response": {
+    "id": "wh_2w...",
+    "object": "webhook_endpoint",
+    "url": "https://example.com/conekta/webhook",
+    "production_enabled": true,
+    "synchronous": false,
+    "status": "enabled",
+    "subscribed_events": [
+      "charge.paid",
+      "charge.refunded",
+      "order.paid",
+      "order.canceled",
+      "order.expired",
+      "subscription.created",
+      "subscription.paused",
+      "subscription.canceled",
+      "payout.created"
+    ],
+    "deleted": false
+  }
+}
