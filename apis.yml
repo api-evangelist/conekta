@@ -1,228 +1,218 @@
 aid: conekta
 url: https://raw.githubusercontent.com/api-evangelist/conekta/refs/heads/main/apis.yml
 apis:
-- aid: conekta:conekta-api
-  name: Conekta API
-  tags:
+  - aid: conekta:conekta-api
+    name: Conekta API
+    tags:
+      - Payments
+      - Cards
+      - Cash
+      - OXXO
+      - SPEI
+      - Mexico
+      - Latin America
+      - Subscriptions
+      - Antifraud
+      - Webhooks
+    humanURL: https://developers.conekta.com/reference
+    baseURL: https://api.conekta.io
+    properties:
+      - url: https://developers.conekta.com/reference
+        type: Documentation
+      - url: https://developers.conekta.com/docs/welcome
+        type: Documentation
+      - url: https://developers.conekta.com/reference/autenticación
+        type: Authentication
+      - url: openapi/conekta-api-openapi.yml
+        type: OpenAPI
+      - url: json-schema/conekta-order-schema.json
+        type: JSONSchema
+      - url: json-schema/conekta-charge-schema.json
+        type: JSONSchema
+      - url: json-schema/conekta-customer-schema.json
+        type: JSONSchema
+      - url: json-ld/conekta-context.jsonld
+        type: JSONLD
+      - url: rules/conekta-rules.yml
+        type: Spectral
+    description: >-
+      Conekta's REST API for accepting online payments in Mexico — credit and debit cards (Visa, Mastercard, Amex), OXXO
+      cash vouchers, SPEI bank transfers, Apple Pay, Google Pay, and Buy Now Pay Later. The 2.2.0 API covers Orders,
+      Charges, Customers, Plans, Subscriptions, Payment Links, Webhooks, Tokens, Payment Methods, Antifraud
+      whitelists/blacklists, Payout Orders, Transfers, Balances, Events, and Logs, secured with bearer auth and an
+      Accept-Language header for localized Spanish-language responses.
+name: Conekta
+tags:
   - Payments
+  - Payment Processing
   - Cards
   - Cash
   - OXXO
   - SPEI
   - Mexico
   - Latin America
+  - LATAM
+  - Fintech
   - Subscriptions
   - Antifraud
-  - Webhooks
-  humanURL: https://developers.conekta.com/reference
-  baseURL: https://api.conekta.io
-  properties:
-  - url: https://developers.conekta.com/reference
-    type: Documentation
-  - url: https://developers.conekta.com/docs/welcome
-    type: Documentation
-  - url: https://developers.conekta.com/reference/autenticación
-    type: Authentication
-  - url: openapi/conekta-api-openapi.yml
-    type: OpenAPI
-  - url: json-schema/conekta-order-schema.json
-    type: JSONSchema
-  - url: json-schema/conekta-charge-schema.json
-    type: JSONSchema
-  - url: json-schema/conekta-customer-schema.json
-    type: JSONSchema
-  - url: json-ld/conekta-context.jsonld
-    type: JSONLD
-  - url: rules/conekta-rules.yml
-    type: Spectral
-  - type: NaftikoCapability
-    url: capabilities/orders.yaml
-  - type: NaftikoCapability
-    url: capabilities/charges.yaml
-  - type: NaftikoCapability
-    url: capabilities/customers.yaml
-  - type: NaftikoCapability
-    url: capabilities/subscriptions.yaml
-  - type: NaftikoCapability
-    url: capabilities/webhooks.yaml
-  - type: NaftikoCapability
-    url: capabilities/antifraud.yaml
-  - type: NaftikoCapability
-    url: capabilities/payment-links.yaml
-  - type: NaftikoCapability
-    url: capabilities/payout-orders.yaml
-  description: Conekta's REST API for accepting online payments in Mexico — credit and debit cards (Visa,
-    Mastercard, Amex), OXXO cash vouchers, SPEI bank transfers, Apple Pay, Google Pay, and Buy Now Pay Later.
-    The 2.2.0 API covers Orders, Charges, Customers, Plans, Subscriptions, Payment Links, Webhooks, Tokens,
-    Payment Methods, Antifraud whitelists/blacklists, Payout Orders, Transfers, Balances, Events, and Logs,
-    secured with bearer auth and an Accept-Language header for localized Spanish-language responses.
-name: Conekta
-tags:
-- Payments
-- Payment Processing
-- Cards
-- Cash
-- OXXO
-- SPEI
-- Mexico
-- Latin America
-- LATAM
-- Fintech
-- Subscriptions
-- Antifraud
-- Checkout
-- BNPL
-- 3D Secure
+  - Checkout
+  - BNPL
+  - 3D Secure
 kind: contract
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
-- type: Portal
-  url: https://www.conekta.com
-- type: Documentation
-  url: https://developers.conekta.com
-- url: https://developers.conekta.com/docs/welcome
-  name: Welcome to Conekta Developers
-  type: GettingStarted
-- url: https://developers.conekta.com/docs/inicio-rápido-pagos-únicos-con-component
-  name: Inicio rápido (Quickstart)
-  type: GettingStarted
-- url: https://developers.conekta.com/reference
-  name: API Reference
-  type: Documentation
-- url: https://developers.conekta.com/reference/autenticación
-  name: Autenticación
-  type: Authentication
-- url: https://developers.conekta.com/reference/errores
-  name: Errores
-  type: Errors
-- url: https://developers.conekta.com/docs/códigos-de-error-http
-  name: HTTP Error Codes
-  type: Errors
-- url: https://developers.conekta.com/docs/eventos-conekta
-  name: Eventos (Events)
-  type: Documentation
-- url: https://developers.conekta.com/docs/configurar-un-webhook
-  name: Configure a Webhook
-  type: Documentation
-- url: https://developers.conekta.com/docs/autenticación-webhooks
-  name: Verify Webhook Signatures
-  type: Documentation
-- url: https://developers.conekta.com/docs/reintentos-de-notificación
-  name: Webhook Retries
-  type: Documentation
-- url: https://developers.conekta.com/changelog/versión-220
-  name: Changelog 2.2.0
-  type: ChangeLog
-- url: https://developers.conekta.com/changelog/version-21
-  name: Changelog 2.1
-  type: ChangeLog
-- url: https://github.com/conekta
-  name: Conekta on GitHub
-  type: GitHubOrganization
-- url: https://github.com/conekta/openapi
-  name: Official OpenAPI Specification
-  type: OpenAPI
-- url: https://github.com/conekta/mcp-server
-  name: Conekta MCP Server
-  type: Tool
-- url: https://github.com/conekta/conekta-php
-  name: PHP SDK
-  type: SDK
-- url: https://github.com/conekta/conekta-node
-  name: Node.js SDK
-  type: SDK
-- url: https://github.com/conekta/conekta-python
-  name: Python SDK
-  type: SDK
-- url: https://github.com/conekta/conekta-ruby
-  name: Ruby SDK
-  type: SDK
-- url: https://github.com/conekta/conekta-.net
-  name: .NET SDK
-  type: SDK
-- url: https://github.com/conekta/conekta-java
-  name: Java SDK
-  type: SDK
-- url: https://github.com/conekta/conekta-elements
-  name: Conekta Elements (Kotlin Multiplatform)
-  type: SDK
-- url: https://github.com/conekta/conekta-elements-react-native
-  name: Conekta Elements (React Native)
-  type: SDK
-- url: https://github.com/conekta/component-flutter
-  name: Conekta Component (Flutter)
-  type: SDK
-- url: https://developers.conekta.com/android
-  name: Android SDK
-  type: SDK
-- url: https://developers.conekta.com/ios-skd
-  name: iOS SDK
-  type: SDK
-- url: https://developers.conekta.com/checkout-tokenizer-sdk
-  name: Checkout Tokenizer SDK
-  type: SDK
-- url: https://developers.conekta.com/xamarin
-  name: Xamarin SDK
-  type: SDK
-- url: https://github.com/conekta/ct-woocommerce-plugin
-  name: WooCommerce Plugin
-  type: Plugins
-- url: https://github.com/conekta/customer-magento-plugin
-  name: Magento Plugin
-  type: Plugins
-- url: https://panel.conekta.com
-  name: Conekta Panel
-  type: SignUp
-- url: https://www.conekta.com/precios
-  name: Precios (Pricing)
-  type: Pricing
-- url: plans/conekta-plans-pricing.yml
-  type: Plans
-- url: rate-limits/conekta-rate-limits.yml
-  type: RateLimits
-- url: finops/conekta-finops.yml
-  type: FinOps
-- type: Features
-  data:
-  - Card payments — Visa, Mastercard, American Express (debit and credit, domestic and international)
-  - OXXO cash payment vouchers with reference numbers expiring on a configurable date
-  - SPEI bank transfer payments via CLABE references
-  - Apple Pay and Google Pay support through Checkout Component and Tokenizer
-  - Buy Now Pay Later (Pago en plazos) and Meses Sin Intereses (MSI) installment plans
-  - Subscriptions API with Plans, trial periods, and a customer portal
-  - Payment Links — shareable hosted checkout URLs
-  - Antifraud — managed whitelist and blacklist rules per merchant
-  - 3D Secure 2 authentication for card-present-not-present transactions
-  - Webhooks for asynchronous order, charge, subscription, and payout events with signature verification and configurable retries
-  - Payout Orders and Transfers APIs for moving funds out of the Conekta balance
-  - Balances API for inspecting available, retained, and pending funds
-  - Companies API for multi-entity / marketplace structures with X-Child-Company-Id header
-  - PCI-DSS Level 1 certified tokenization via Checkout Tokenizer and mobile SDKs
-  - Official OpenAPI 3.1 specification published under MIT license at github.com/conekta/openapi
-  - Bearer token authentication with mandatory Accept-Language header (es / en) for localized responses
-  - Spanish-language API documentation and error messages aligned with Mexico (CNBV-regulated) market
-  - Official SDKs for PHP, Node.js, Python, Ruby, .NET, Java, plus Android, iOS, Flutter, and React Native components
-  - Pre-built integrations for Shopify, VTEX, Magento, WooCommerce, PrestaShop, and Tiendanube
-  - MCP server for AI agent integration
-  sources:
-  - https://developers.conekta.com
-  - https://github.com/conekta/openapi
-  - https://www.conekta.com/precios
-  updated: '2026-05-24'
+  - type: Portal
+    url: https://www.conekta.com
+  - type: Documentation
+    url: https://developers.conekta.com
+  - url: https://developers.conekta.com/docs/welcome
+    name: Welcome to Conekta Developers
+    type: GettingStarted
+  - url: https://developers.conekta.com/docs/inicio-rápido-pagos-únicos-con-component
+    name: Inicio rápido (Quickstart)
+    type: GettingStarted
+  - url: https://developers.conekta.com/reference
+    name: API Reference
+    type: Documentation
+  - url: https://developers.conekta.com/reference/autenticación
+    name: Autenticación
+    type: Authentication
+  - url: https://developers.conekta.com/reference/errores
+    name: Errores
+    type: Errors
+  - url: https://developers.conekta.com/docs/códigos-de-error-http
+    name: HTTP Error Codes
+    type: Errors
+  - url: https://developers.conekta.com/docs/eventos-conekta
+    name: Eventos (Events)
+    type: Documentation
+  - url: https://developers.conekta.com/docs/configurar-un-webhook
+    name: Configure a Webhook
+    type: Documentation
+  - url: https://developers.conekta.com/docs/autenticación-webhooks
+    name: Verify Webhook Signatures
+    type: Documentation
+  - url: https://developers.conekta.com/docs/reintentos-de-notificación
+    name: Webhook Retries
+    type: Documentation
+  - url: https://developers.conekta.com/changelog/versión-220
+    name: Changelog 2.2.0
+    type: ChangeLog
+  - url: https://developers.conekta.com/changelog/version-21
+    name: Changelog 2.1
+    type: ChangeLog
+  - url: https://github.com/conekta
+    name: Conekta on GitHub
+    type: GitHubOrganization
+  - url: https://github.com/conekta/openapi
+    name: Official OpenAPI Specification
+    type: OpenAPI
+  - url: https://github.com/conekta/mcp-server
+    name: Conekta MCP Server
+    type: Tool
+  - url: https://github.com/conekta/conekta-php
+    name: PHP SDK
+    type: SDK
+  - url: https://github.com/conekta/conekta-node
+    name: Node.js SDK
+    type: SDK
+  - url: https://github.com/conekta/conekta-python
+    name: Python SDK
+    type: SDK
+  - url: https://github.com/conekta/conekta-ruby
+    name: Ruby SDK
+    type: SDK
+  - url: https://github.com/conekta/conekta-.net
+    name: .NET SDK
+    type: SDK
+  - url: https://github.com/conekta/conekta-java
+    name: Java SDK
+    type: SDK
+  - url: https://github.com/conekta/conekta-elements
+    name: Conekta Elements (Kotlin Multiplatform)
+    type: SDK
+  - url: https://github.com/conekta/conekta-elements-react-native
+    name: Conekta Elements (React Native)
+    type: SDK
+  - url: https://github.com/conekta/component-flutter
+    name: Conekta Component (Flutter)
+    type: SDK
+  - url: https://developers.conekta.com/android
+    name: Android SDK
+    type: SDK
+  - url: https://developers.conekta.com/ios-skd
+    name: iOS SDK
+    type: SDK
+  - url: https://developers.conekta.com/checkout-tokenizer-sdk
+    name: Checkout Tokenizer SDK
+    type: SDK
+  - url: https://developers.conekta.com/xamarin
+    name: Xamarin SDK
+    type: SDK
+  - url: https://github.com/conekta/ct-woocommerce-plugin
+    name: WooCommerce Plugin
+    type: Plugins
+  - url: https://github.com/conekta/customer-magento-plugin
+    name: Magento Plugin
+    type: Plugins
+  - url: https://panel.conekta.com
+    name: Conekta Panel
+    type: SignUp
+  - url: https://www.conekta.com/precios
+    name: Precios (Pricing)
+    type: Pricing
+  - url: plans/conekta-plans-pricing.yml
+    type: Plans
+  - url: rate-limits/conekta-rate-limits.yml
+    type: RateLimits
+  - url: finops/conekta-finops.yml
+    type: FinOps
+  - type: Features
+    data:
+      - Card payments — Visa, Mastercard, American Express (debit and credit, domestic and international)
+      - OXXO cash payment vouchers with reference numbers expiring on a configurable date
+      - SPEI bank transfer payments via CLABE references
+      - Apple Pay and Google Pay support through Checkout Component and Tokenizer
+      - Buy Now Pay Later (Pago en plazos) and Meses Sin Intereses (MSI) installment plans
+      - Subscriptions API with Plans, trial periods, and a customer portal
+      - Payment Links — shareable hosted checkout URLs
+      - Antifraud — managed whitelist and blacklist rules per merchant
+      - 3D Secure 2 authentication for card-present-not-present transactions
+      - >-
+        Webhooks for asynchronous order, charge, subscription, and payout events with signature verification and
+        configurable retries
+      - Payout Orders and Transfers APIs for moving funds out of the Conekta balance
+      - Balances API for inspecting available, retained, and pending funds
+      - Companies API for multi-entity / marketplace structures with X-Child-Company-Id header
+      - PCI-DSS Level 1 certified tokenization via Checkout Tokenizer and mobile SDKs
+      - Official OpenAPI 3.1 specification published under MIT license at github.com/conekta/openapi
+      - Bearer token authentication with mandatory Accept-Language header (es / en) for localized responses
+      - Spanish-language API documentation and error messages aligned with Mexico (CNBV-regulated) market
+      - >-
+        Official SDKs for PHP, Node.js, Python, Ruby, .NET, Java, plus Android, iOS, Flutter, and React Native
+        components
+      - Pre-built integrations for Shopify, VTEX, Magento, WooCommerce, PrestaShop, and Tiendanube
+      - MCP server for AI agent integration
+    sources:
+      - https://developers.conekta.com
+      - https://github.com/conekta/openapi
+      - https://www.conekta.com/precios
+    updated: '2026-05-24'
 created: '2026-05-24T00:00:00.000Z'
 modified: '2026-05-24'
 position: Consuming
-description: Conekta is a Mexico-based payment processor that lets businesses accept credit and debit cards,
-  OXXO cash vouchers, SPEI bank transfers, Apple Pay, Google Pay, and Buy Now Pay Later through a single
-  PCI-DSS Level 1 certified API. The platform serves the Mexican market with Spanish-language documentation,
-  CNBV-aligned compliance, and full Orders, Charges, Customers, Subscriptions, Payment Links, Antifraud,
-  Webhooks, Payouts, and Balances resources. Conekta publishes its OpenAPI 3.1 specification publicly under
-  MIT license, ships official SDKs for PHP, Node.js, Python, Ruby, .NET, and Java, and offers mobile
-  components for Android, iOS, Flutter, and React Native plus plugins for major e-commerce platforms.
+description: >-
+  Conekta is a Mexico-based payment processor that lets businesses accept credit and debit cards, OXXO cash vouchers,
+  SPEI bank transfers, Apple Pay, Google Pay, and Buy Now Pay Later through a single PCI-DSS Level 1 certified API. The
+  platform serves the Mexican market with Spanish-language documentation, CNBV-aligned compliance, and full Orders,
+  Charges, Customers, Subscriptions, Payment Links, Antifraud, Webhooks, Payouts, and Balances resources. Conekta
+  publishes its OpenAPI 3.1 specification publicly under MIT license, ships official SDKs for PHP, Node.js, Python,
+  Ruby, .NET, and Java, and offers mobile components for Android, iOS, Flutter, and React Native plus plugins for major
+  e-commerce platforms.
 maintainers:
-- FN: Kin Lane
-  email: info@apievangelist.com
-  X: apievangelist
-  url: https://apievangelist.com
+  - FN: Kin Lane
+    email: info@apievangelist.com
+    X: apievangelist
+    url: https://apievangelist.com
 specificationVersion: '0.16'
