@@ -80,10 +80,10 @@ common:
     type: Authentication
   - url: https://developers.conekta.com/reference/errores
     name: Errores
-    type: Errors
+    type: ErrorCodes
   - url: https://developers.conekta.com/docs/códigos-de-error-http
     name: HTTP Error Codes
-    type: Errors
+    type: ErrorCodes
   - url: https://developers.conekta.com/docs/eventos-conekta
     name: Eventos (Events)
     type: Documentation
@@ -110,46 +110,46 @@ common:
     type: OpenAPI
   - url: https://github.com/conekta/mcp-server
     name: Conekta MCP Server
-    type: Tool
+    type: Tools
   - url: https://github.com/conekta/conekta-php
     name: PHP SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/conekta/conekta-node
     name: Node.js SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/conekta/conekta-python
     name: Python SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/conekta/conekta-ruby
     name: Ruby SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/conekta/conekta-.net
     name: .NET SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/conekta/conekta-java
     name: Java SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/conekta/conekta-elements
     name: Conekta Elements (Kotlin Multiplatform)
-    type: SDK
+    type: SDKs
   - url: https://github.com/conekta/conekta-elements-react-native
     name: Conekta Elements (React Native)
-    type: SDK
+    type: SDKs
   - url: https://github.com/conekta/component-flutter
     name: Conekta Component (Flutter)
-    type: SDK
+    type: SDKs
   - url: https://developers.conekta.com/android
     name: Android SDK
-    type: SDK
+    type: SDKs
   - url: https://developers.conekta.com/ios-skd
     name: iOS SDK
-    type: SDK
+    type: SDKs
   - url: https://developers.conekta.com/checkout-tokenizer-sdk
     name: Checkout Tokenizer SDK
-    type: SDK
+    type: SDKs
   - url: https://developers.conekta.com/xamarin
     name: Xamarin SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/conekta/ct-woocommerce-plugin
     name: WooCommerce Plugin
     type: Plugins
@@ -158,7 +158,7 @@ common:
     type: Plugins
   - url: https://panel.conekta.com
     name: Conekta Panel
-    type: SignUp
+    type: Signup
   - url: https://www.conekta.com/precios
     name: Precios (Pricing)
     type: Pricing
