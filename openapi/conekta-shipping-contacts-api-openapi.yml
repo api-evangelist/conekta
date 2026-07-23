@@ -1,0 +1,579 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: engineering@conekta.com
+    name: Engineering Conekta
+    url: https://github.com/conekta/openapi/issues
+  description: Conekta sdk
+  license:
+    name: MIT-LICENSE
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Conekta Antifraud Shipping Contacts API
+  version: 2.2.0
+servers:
+- description: Conekta main server
+  url: https://api.conekta.io
+security:
+- bearerAuth: []
+tags:
+- name: Shipping Contacts
+paths:
+  /customers/{id}/shipping_contacts:
+    post:
+      description: Create a shipping contacts for a customer.
+      operationId: CreateCustomerShippingContacts
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/customer_shipping_contacts_request'
+        description: requested field for customer shippings contacts
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/customer_shipping_contacts_response'
+          description: successful operation
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Create a shipping contacts
+      tags:
+      - Shipping Contacts
+  /customers/{id}/shipping_contacts/{shipping_contacts_id}:
+    delete:
+      description: Delete shipping contact that corresponds to a customer ID.
+      operationId: DeleteCustomerShippingContacts
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: identifier
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: shipping_contacts_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/customer_shipping_contacts_response'
+          description: successful operation
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Delete shipping contacts
+      tags:
+      - Shipping Contacts
+    put:
+      description: Update shipping contact that corresponds to a customer ID.
+      operationId: UpdateCustomerShippingContacts
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: identifier
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: shipping_contacts_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/customer_update_shipping_contacts_request'
+        description: requested field for customer update shippings contacts
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/customer_shipping_contacts_response'
+          description: successful operation
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Update shipping contacts
+      tags:
+      - Shipping Contacts
+components:
+  schemas:
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    customer_update_shipping_contacts_request:
+      description: '[Shipping](https://developers.conekta.com/v2.2.0/reference/createcustomershippingcontacts)
+
+        details, required in case of sending a shipping. If we do not receive a shipping_contact on the order, the default shipping_contact of the customer will be used.'
+      properties:
+        phone:
+          description: Phone contact
+          example: '+525511223344'
+          type: string
+        receiver:
+          description: Name of the person who will receive the order
+          example: Marvin Fuller
+          type: string
+        between_streets:
+          description: The street names between which the order will be delivered.
+          example: Ackerman Crescent
+          type: string
+        address:
+          $ref: '#/components/schemas/customer_shipping_contacts_request_address'
+        parent_id:
+          type: string
+        default:
+          type: boolean
+          nullable: true
+        deleted:
+          type: boolean
+          nullable: true
+      title: customer_update_shipping_contacts_request
+    customer_shipping_contacts_response:
+      description: Contains the detail of the shipping addresses that the client has active or has used in Conekta
+      properties:
+        phone:
+          example: '+525511223344'
+          type: string
+        receiver:
+          example: Marvin Fuller
+          type: string
+        between_streets:
+          example: Ackerman Crescent
+          type: string
+          nullable: true
+        address:
+          $ref: '#/components/schemas/customer_shipping_contacts_address'
+        parent_id:
+          type: string
+        default:
+          example: false
+          type: boolean
+        id:
+          example: adr_1234567890
+          type: string
+        created_at:
+          example: 1675715413
+          format: int64
+          type: integer
+        metadata:
+          additionalProperties: true
+          description: Metadata associated with the shipping contact
+          maxProperties: 100
+          type: object
+        object:
+          example: shipping_contact
+          type: string
+        deleted:
+          example: false
+          type: boolean
+      title: customer_shipping_contacts_response
+    customer_shipping_contacts_address:
+      properties:
+        object:
+          example: shipping_address
+          type: string
+        street1:
+          example: Nuevo Leon 254
+          type: string
+        street2:
+          example: Departamento 404
+          type: string
+        postal_code:
+          example: '06100'
+          type: string
+        city:
+          example: Ciudad de Mexico
+          type: string
+        state:
+          example: Ciudad de Mexico
+          type: string
+        country:
+          example: MX
+          type: string
+        residential:
+          example: true
+          type: boolean
+          nullable: true
+      title: customer_shipping_contacts_address
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    customer_shipping_contacts_request_address:
+      description: Address of the person who will receive the order
+      properties:
+        street1:
+          example: Nuevo Leon 254
+          type: string
+        street2:
+          example: Departamento 404
+          type: string
+        postal_code:
+          example: '06100'
+          type: string
+        city:
+          example: Ciudad de Mexico
+          type: string
+        state:
+          example: Ciudad de Mexico
+          type: string
+        country:
+          description: this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+          example: MX
+          type: string
+        residential:
+          example: true
+          type: boolean
+          nullable: true
+    customer_shipping_contacts_request:
+      description: '[Shipping](https://developers.conekta.com/v2.2.0/reference/createcustomershippingcontacts)
+
+        details, required in case of sending a shipping. If we do not receive a shipping_contact on the order, the default shipping_contact of the customer will be used.'
+      properties:
+        phone:
+          description: Phone contact
+          example: '+525511223344'
+          type: string
+        receiver:
+          description: Name of the person who will receive the order
+          example: Marvin Fuller
+          type: string
+        between_streets:
+          description: The street names between which the order will be delivered.
+          example: Ackerman Crescent
+          type: string
+        address:
+          $ref: '#/components/schemas/customer_shipping_contacts_request_address'
+        parent_id:
+          type: string
+        default:
+          type: boolean
+          nullable: true
+        deleted:
+          type: boolean
+          nullable: true
+        metadata:
+          additionalProperties: true
+          description: Metadata associated with the shipping contact
+          maxProperties: 100
+          type: object
+      required:
+      - address
+      title: customer_shipping_contacts_request
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

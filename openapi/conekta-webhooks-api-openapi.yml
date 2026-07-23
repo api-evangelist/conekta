@@ -1,0 +1,838 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: engineering@conekta.com
+    name: Engineering Conekta
+    url: https://github.com/conekta/openapi/issues
+  description: Conekta sdk
+  license:
+    name: MIT-LICENSE
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Conekta Antifraud Webhooks API
+  version: 2.2.0
+servers:
+- description: Conekta main server
+  url: https://api.conekta.io
+security:
+- bearerAuth: []
+tags:
+- name: Webhooks
+paths:
+  /webhooks:
+    get:
+      description: Consume the list of webhooks you have, each environment supports 10 webhooks (For production and testing)
+      operationId: getWebhooks
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The numbers of items to return, the maximum value is 250
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          format: int32
+          maximum: 250
+          minimum: 1
+          type: integer
+        style: form
+      - description: General order search, e.g. by mail, reference etc.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: url for webhook filter
+        explode: true
+        in: query
+        name: url
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: next page
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: previous page
+        explode: true
+        in: query
+        name: previous
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/get_webhooks_response'
+          description: successful
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get List of Webhooks
+      tags:
+      - Webhooks
+    post:
+      description: 'What we do at Conekta translates into events. For example, an event of interest to us occurs at the time a payment is successfully processed. At that moment we will be interested in doing several things: Send an email to the buyer, generate an invoice, start the process of shipping the product, etc.'
+      operationId: createWebhook
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhook_request'
+        description: requested field for webhook
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/webhook_response'
+          description: successful operation
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Create Webhook
+      tags:
+      - Webhooks
+  /webhooks/{id}:
+    delete:
+      operationId: deleteWebhook
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/webhook_response'
+          description: successful
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Delete Webhook
+      tags:
+      - Webhooks
+    get:
+      operationId: getWebhook
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/webhook_response'
+          description: successful
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get Webhook
+      tags:
+      - Webhooks
+    put:
+      description: updates an existing webhook
+      operationId: updateWebhook
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_webhook'
+        description: requested fields in order to update a webhook
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/webhook_response'
+          description: successful operation
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Update Webhook
+      tags:
+      - Webhooks
+  /webhooks/{id}/test:
+    post:
+      description: Send a webhook.ping event
+      operationId: testWebhook
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/webhook_response'
+          description: successful
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Test Webhook
+      tags:
+      - Webhooks
+components:
+  schemas:
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    webhook_request:
+      description: a webhook
+      properties:
+        url:
+          description: Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
+          example: https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8
+          format: url
+          pattern: ^(?!.*(localhost|127\.0\.0\.1)).*$
+          type: string
+        subscribed_events:
+          description: events that will be sent to the webhook
+          example: customer.created
+          items:
+            type: string
+          type: array
+      required:
+      - url
+      title: webhook_request
+    update_webhook:
+      description: an updated webhook
+      properties:
+        url:
+          description: Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
+          example: https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8
+          format: url
+          pattern: ^(?!.*(localhost|127\.0\.0\.1)).*$
+          type: string
+        subscribed_events:
+          description: events that will be sent to the webhook
+          example: customer.created
+          items:
+            type: string
+          type: array
+        active:
+          description: whether the webhook is active or not
+          example: true
+          type: boolean
+      title: update_webhook
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    get_webhooks_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/webhook_response'
+            type: array
+      title: get_webhooks_response
+    webhook_response:
+      description: webhooks model
+      properties:
+        id:
+          description: id of the webhook
+          example: 6307a60c41de27127515a575
+          type: string
+        description:
+          description: A name or brief explanation of what this webhook is used for
+          example: Server payments processor
+          type: string
+        livemode:
+          description: Indicates if the webhook is in production
+          example: true
+          type: boolean
+        active:
+          description: Indicates if the webhook is actived or not
+          example: true
+          type: boolean
+        object:
+          description: Object name, value is 'webhook'
+          example: event
+          type: string
+        status:
+          description: Indicates if the webhook is ready to receive events or failing
+          example: listening
+          type: string
+        subscribed_events:
+          description: lists the events that will be sent to the webhook
+          example:
+          - charge.created
+          - charge.paid
+          - charge.under_fraud_review
+          - charge.fraudulent
+          - charge.refunded
+          - charge.preauthorized
+          - charge.declined
+          - charge.canceled
+          - charge.reversed
+          - charge.pending_confirmation
+          items:
+            type: string
+          type: array
+        url:
+          description: url or endpoint of the webhook
+          example: https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval
+          type: string
+      title: webhook_response
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

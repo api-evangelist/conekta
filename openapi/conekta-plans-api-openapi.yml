@@ -1,0 +1,938 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: engineering@conekta.com
+    name: Engineering Conekta
+    url: https://github.com/conekta/openapi/issues
+  description: Conekta sdk
+  license:
+    name: MIT-LICENSE
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Conekta Antifraud Plans API
+  version: 2.2.0
+servers:
+- description: Conekta main server
+  url: https://api.conekta.io
+security:
+- bearerAuth: []
+tags:
+- name: Plans
+paths:
+  /plans:
+    get:
+      operationId: getPlans
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The numbers of items to return, the maximum value is 250
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          format: int32
+          maximum: 250
+          minimum: 1
+          type: integer
+        style: form
+      - description: General order search, e.g. by mail, reference etc.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: next page
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: previous page
+        explode: true
+        in: query
+        name: previous
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/get_plans_response'
+          description: successful
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get A List of Plans
+      tags:
+      - Plans
+    post:
+      description: Create a new plan for an existing order
+      operationId: createPlan
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/plan_request'
+        description: requested field for plan
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/plan_response'
+          description: successful
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Create Plan
+      tags:
+      - Plans
+  /plans/{id}:
+    delete:
+      operationId: deletePlan
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/plan_response'
+          description: successful
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Delete Plan
+      tags:
+      - Plans
+    get:
+      operationId: getPlan
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/plan_response'
+          description: successful
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get Plan
+      tags:
+      - Plans
+    put:
+      operationId: updatePlan
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_plan'
+        description: requested field for plan
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/plan_response'
+          description: successful
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Update Plan
+      tags:
+      - Plans
+components:
+  schemas:
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    plan_response:
+      description: plans model
+      properties:
+        amount:
+          example: 10000
+          type: integer
+        created_at:
+          example: 1666900846
+          format: int64
+          type: integer
+        currency:
+          example: MXN
+          maxLength: 3
+          type: string
+        expiry_count:
+          example: 12
+          type: integer
+          nullable: true
+        frequency:
+          example: 1
+          type: integer
+        id:
+          example: gold-plan
+          type: string
+        interval:
+          example: month
+          type: string
+        livemode:
+          example: true
+          type: boolean
+        name:
+          example: Extra Plan3
+          type: string
+        object:
+          example: plan
+          type: string
+        trial_period_days:
+          example: 0
+          type: integer
+          nullable: true
+        max_retries:
+          example: 3
+          type: integer
+        retry_delay_hours:
+          example: 48
+          type: integer
+      title: plan_response
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    update_plan:
+      description: a plan
+      properties:
+        amount:
+          description: The amount in cents that will be charged on the interval specified.
+          example: 10000
+          minimum: 1
+          type: integer
+        currency:
+          description: ISO 4217 for currencies, for the Mexican peso it is MXN/USD
+          example: MXN
+          maxLength: 3
+          type: string
+        expiry_count:
+          description: Number of repetitions of the frequency NUMBER OF CHARGES TO BE MADE, considering the interval and frequency, this evolves over time, but is subject to the expiration count.
+          example: 12
+          type: integer
+        name:
+          description: The name of the plan.
+          example: Extra Plan3
+          type: string
+      title: update_plan
+    get_plans_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/plan_response'
+            type: array
+      title: get_plans_response
+    plan_request:
+      description: a plan
+      properties:
+        amount:
+          description: The amount in cents that will be charged on the interval specified.
+          example: 10000
+          minimum: 1
+          type: integer
+        currency:
+          description: ISO 4217 for currencies, for the Mexican peso it is MXN/USD
+          example: MXN
+          maxLength: 3
+          type: string
+        expiry_count:
+          description: Number of repetitions of the frequency NUMBER OF CHARGES TO BE MADE, considering the interval and frequency, this evolves over time, but is subject to the expiration count.
+          example: 12
+          type: integer
+        frequency:
+          description: Frequency of the charge, which together with the interval, can be every 3 weeks, every 4 months, every 2 years, every 5 fortnights
+          example: 1
+          minimum: 1
+          type: integer
+        id:
+          description: internal reference id
+          example: plan_24234
+          type: string
+        interval:
+          description: The interval of time between each charge.
+          enum:
+          - week
+          - half_month
+          - month
+          - year
+          type: string
+          nullable: false
+        name:
+          description: The name of the plan.
+          example: Extra Plan3
+          type: string
+        trial_period_days:
+          description: The number of days the customer will have a free trial.
+          example: 0
+          type: integer
+        max_retries:
+          description: (optional) Specifies the maximum number of retry attempts for a subscription payment before it is canceled.
+          example: 3
+          minimum: 3
+          type: integer
+        retry_delay_hours:
+          description: (optional)  Defines the number of hours between subscription payment retry attempts.
+          example: 50
+          minimum: 48
+          type: integer
+      required:
+      - amount
+      - frequency
+      - interval
+      - name
+      title: plan_request
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

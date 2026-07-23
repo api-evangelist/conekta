@@ -1,0 +1,1511 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: engineering@conekta.com
+    name: Engineering Conekta
+    url: https://github.com/conekta/openapi/issues
+  description: Conekta sdk
+  license:
+    name: MIT-LICENSE
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Conekta Antifraud Charges API
+  version: 2.2.0
+servers:
+- description: Conekta main server
+  url: https://api.conekta.io
+security:
+- bearerAuth: []
+tags:
+- name: Charges
+paths:
+  /charges:
+    get:
+      operationId: getCharges
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The numbers of items to return, the maximum value is 250
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          format: int32
+          maximum: 250
+          minimum: 1
+          type: integer
+        style: form
+      - description: General order search, e.g. by mail, reference etc.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: next page
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: previous page
+        explode: true
+        in: query
+        name: previous
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/get_charges_response'
+          description: successful
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: The "custom_field" parameter is not allowed
+                  message: El parametro "custom_field" no está permitido
+                  code: conekta.errors.parameter_validation.whitelist
+                object: error
+                type: parameter_validation_error
+                log_id: 6462aa7c90fef20001633546
+              schema:
+                $ref: '#/components/schemas/error'
+          description: whitelist validation error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get A List of Charges
+      tags:
+      - Charges
+  /charges/{id}:
+    put:
+      operationId: updateCharge
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/charge_update_request'
+        description: requested field for update a charge
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/charge_response'
+          description: successful
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: The "custom_field" parameter is not allowed
+                  message: El parametro "custom_field" no está permitido
+                  code: conekta.errors.parameter_validation.whitelist
+                object: error
+                type: parameter_validation_error
+                log_id: 6462aa7c90fef20001633546
+              schema:
+                $ref: '#/components/schemas/error'
+          description: whitelist validation error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Update a charge
+      tags:
+      - Charges
+  /orders/{id}/charges:
+    post:
+      description: Create charge for an existing orden
+      operationId: ordersCreateCharge
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              bnpl:
+                value:
+                  payment_method:
+                    can_not_expire: true
+                    cancel_url: https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel
+                    failure_url: https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure
+                    product_type: aplazo_bnpl
+                    success_url: https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success
+                    type: bnpl
+              cash:
+                value:
+                  payment_method:
+                    type: cash
+              pay_by_bank:
+                value:
+                  payment_method:
+                    expires_at: 1680397724
+                    product_type: bbva_pay_by_bank
+                    type: pay_by_bank
+            schema:
+              $ref: '#/components/schemas/charge_request'
+        description: requested field for a charge
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/charge_order_response'
+          description: successful
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '428':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: The order cannot be modified because it has already a charge which is pending payment.
+                  message: The order cannot be modified because it has already a charge which is pending payment.
+                  code: conekta.errors.precondition_required.combo.order.cannot_be_updated_because_has_charge
+                log_id: 641b6e233cd9a50001515039
+                object: error
+                type: precondition_required_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Precondition Required
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Create charge
+      tags:
+      - Charges
+  /orders/{id}/add_charges:
+    post:
+      description: Create charges for an existing orden
+      operationId: ordersCreateCharges
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              bnpl:
+                value:
+                  payment_method:
+                    can_not_expire: true
+                    cancel_url: https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel
+                    failure_url: https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure
+                    product_type: aplazo_bnpl
+                    success_url: https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success
+                    type: bnpl
+              cash:
+                value:
+                  payment_method:
+                    type: cash
+              pay_by_bank:
+                value:
+                  payment_method:
+                    expires_at: 1680397724
+                    product_type: bbva_pay_by_bank
+                    type: pay_by_bank
+            schema:
+              $ref: '#/components/schemas/charge_request'
+        description: requested field for a charge
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/charges_order_response'
+          description: successful
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '428':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: The order cannot be modified because it has already a charge which is pending payment.
+                  message: The order cannot be modified because it has already a charge which is pending payment.
+                  code: conekta.errors.precondition_required.combo.order.cannot_be_updated_because_has_charge
+                log_id: 641b6e233cd9a50001515039
+                object: error
+                type: precondition_required_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Precondition Required
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Create charges
+      tags:
+      - Charges
+components:
+  schemas:
+    payment_method_general_request:
+      description: 'Payment method used in the charge. Go to the [payment methods](https://developers.conekta.com/reference/m%C3%A9todos-de-pago) section for more details
+
+        '
+      properties:
+        expires_at:
+          description: Method expiration date as unix timestamp
+          example: 1677196303
+          format: int64
+          type: integer
+        monthly_installments:
+          description: How many months without interest to apply, it can be 3, 6, 9, 12 or 18
+          format: int8
+          type: integer
+        type:
+          description: Type of payment method
+          example: card
+          type: string
+        token_id:
+          example: tok_2897348234
+          type: string
+        payment_source_id:
+          example: src_2tLkkyfMPh6v7pFry
+          type: string
+        cvc:
+          description: Optional, It is a value that allows identifying the security code of the card. Only for PCI merchants
+          example: '123'
+          type: string
+        contract_id:
+          description: Optional id sent to indicate the bank contract for recurrent card charges.
+          example: S781317595
+          type: string
+        customer_ip_address:
+          description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+          example: 0.0.0.0
+          type: string
+      required:
+      - type
+      title: payment_method_general_request
+    payment_method_bnpl_request:
+      allOf:
+      - description: Contains details of the payment methods that the customer has active or has used in Conekta
+        properties:
+          type:
+            description: Type of payment method
+            example: card | cash | spei | bnpl | pay_by_bank
+            type: string
+        required:
+        - type
+        title: customer_payment_method_request
+      - properties:
+          cancel_url:
+            description: URL to redirect the customer after a canceled payment
+            example: https://example.com/cancel
+            type: string
+          can_not_expire:
+            description: Indicates if the payment method can not expire
+            example: true
+            type: boolean
+          failure_url:
+            description: URL to redirect the customer after a failed payment
+            example: https://example.com/failure
+            type: string
+          product_type:
+            description: Product type of the payment method, use for the payment method to know the product type
+            enum:
+            - aplazo_bnpl
+            - azteca_bnpl
+            - coppel_bnpl
+            - creditea_bnpl
+            example: aplazo_bnpl
+            type: string
+          success_url:
+            description: URL to redirect the customer after a successful payment
+            example: https://example.com/success
+            type: string
+          type:
+            description: Type of the payment method
+            example: bnpl
+            type: string
+        required:
+        - can_not_expire
+        - cancel_url
+        - failure_url
+        - product_type
+        - success_url
+        - type
+      title: payment_method_bnpl_request
+    payment_method_pbb_request:
+      allOf:
+      - description: Contains details of the payment methods that the customer has active or has used in Conekta
+        properties:
+          type:
+            description: Type of payment method
+            example: card | cash | spei | bnpl | pay_by_bank
+            type: string
+        required:
+        - type
+        title: customer_payment_method_request
+      - properties:
+          expires_at:
+            description: Expiration date of the payment method, in Unix timestamp format
+            example: 1680397724
+            format: int64
+            minimum: 0
+            type: integer
+          product_type:
+            description: Product type of the payment method, use for the payment method to know the product type
+            enum:
+            - bbva_pay_by_bank
+            example: bbva_pay_by_bank
+            type: string
+          type:
+            description: Type of the payment method
+            example: pay_by_bank
+            type: string
+        required:
+        - product_type
+        - type
+      title: payment_method_pbb_request
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    charge_request:
+      description: The charges to be made
+      properties:
+        amount:
+          description: Amount to be charged in cents
+          example: 40000
+          format: int64
+          type: integer
+        payment_method:
+          $ref: '#/components/schemas/charge_request_payment_method'
+        reference_id:
+          description: Custom reference to add to the charge
+          type: string
+      required:
+      - payment_method
+      title: charge_request
+    charge_response_channel:
+      properties:
+        segment:
+          example: Checkout
+          type: string
+        checkout_request_id:
+          example: 6fca054a-8519-4c43-971e-cea35cc519bb
+          type: string
+        checkout_request_type:
+          example: HostedPayment
+          type: string
+        id:
+          example: channel_2tNDzhA4Akmzj11AU
+          type: string
+    chargeback_file_response:
+      description: A file associated with a chargeback (e.g. evidence document)
+      properties:
+        id:
+          example: chbkf_2zPxWFUnGNLySoums
+          type: string
+        file_name:
+          example: 20251221500000000000201.pdf
+          type: string
+        url:
+          nullable: true
+          type: string
+        created_at:
+          example: 1768846800
+          format: int64
+          type: integer
+      title: chargeback_file_response
+    payment_method_card_request:
+      allOf:
+      - description: Contains details of the payment methods that the customer has active or has used in Conekta
+        properties:
+          type:
+            description: Type of payment method
+            example: card | cash | spei | bnpl | pay_by_bank
+            type: string
+        required:
+        - type
+        title: customer_payment_method_request
+      - properties:
+          cvc:
+            description: Card security code
+            example: '198'
+            maxLength: 4
+            minLength: 3
+            type: string
+          exp_month:
+            description: Card expiration month
+            example: '12'
+            maxLength: 2
+            minLength: 2
+            type: string
+          exp_year:
+            description: Card expiration year
+            example: '2025'
+            maxLength: 4
+            minLength: 4
+            type: string
+          name:
+            description: Cardholder name
+            example: John Doe
+            type: string
+          number:
+            description: Card number
+            example: '4242424242424242'
+            type: string
+          customer_ip_address:
+            description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+            example: 0.0.0.0
+            type: string
+        required:
+        - cvc
+        - exp_month
+        - exp_year
+        - name
+        - number
+      title: payment_method_card_request
+    payment_method_cash:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for cash responses
+        properties:
+          agreement:
+            description: Agreement ID
+            example: agreement_2tN73UdUSNrYRPD9r
+            type: string
+          auth_code:
+            example: 542563
+            type: integer
+            nullable: true
+          cashier_id:
+            example: OINM01010
+            type: string
+            nullable: true
+          reference:
+            example: '93000262276908'
+            type: string
+          barcode_url:
+            example: https://barcodes.conekta.com/644ebf80f2243197aad6cd8810375b905b613dbe.png
+            type: string
+          expires_at:
+            example: 0
+            format: int64
+            type: integer
+          product_type:
+            description: Product type, e.g. bbva_cash_in, cash_in, pespay_cash_in, etc.
+            example: bbva_cash_in
+            type: string
+          service_name:
+            example: store
+            type: string
+          store:
+            example: 10MON50EDI
+            type: string
+            nullable: true
+          store_name:
+            example: wallmart
+            type: string
+          customer_ip_address:
+            example: 0.0.0.0
+            type: string
+        title: charge_data_payment_method_cash_response
+      title: payment_method_cash
+      x-discriminator-value: cash_payment
+    charge_update_request:
+      description: requested field for update a charge
+      properties:
+        reference_id:
+          description: custom reference id
+          example: '278482642'
+          type: string
+      title: charge_update_request
+    payment_method_pbb_payment:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for pbb payment responses
+        properties:
+          deep_link:
+            description: Deep link for the payment, use for mobile apps/flows
+            example: https://mgm.bbva.mx/WA3b/pbb?AGREEMENT=002484374&AMOUNT=1&CONCEPT=PagoDirecto&CURRENCY=MXN&REFERENCE=22277523174328893295
+            type: string
+          expires_at:
+            description: Expiration date of the charge
+            example: 1683053729
+            format: int64
+            minimum: 0
+            type: integer
+          product_type:
+            description: Product type of the charge
+            type: string
+          redirect_url:
+            description: URL to redirect the customer to complete the payment
+            example: https://example.com/redirect
+            type: string
+          reference:
+            description: Reference for the payment
+            example: '22277523174328893295'
+            type: string
+        required:
+        - deep_link
+        - expires_at
+        - product_type
+        - redirect_url
+        - reference
+        title: charge_data_payment_method_pbb_payment_response
+      title: payment_method_pbb_payment
+      x-discriminator-value: pay_by_bank_payment
+    charge_order_response_payment_method:
+      discriminator:
+        mapping:
+          cash_payment: payment_method_cash
+          card_payment: payment_method_card
+          bank_transfer_payment: payment_method_bank_transfer
+          bnpl_payment: payment_method_bnpl_payment
+          pay_by_bank_payment: payment_method_pbb_payment
+        propertyName: object
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_cash'
+      - $ref: '#/components/schemas/payment_method_card'
+      - $ref: '#/components/schemas/payment_method_bank_transfer'
+      - $ref: '#/components/schemas/payment_method_bnpl_payment'
+      - $ref: '#/components/schemas/payment_method_pbb_payment'
+      title: charge_order_response_payment_method
+      propertyName: object
+    charge_response_refunds_data:
+      properties:
+        amount:
+          example: -15000
+          format: int64
+          type: integer
+        auth_code:
+          example: '867372'
+          type: string
+        created_at:
+          example: 1678226878
+          format: int64
+          type: integer
+        expires_at:
+          description: refund expiration date
+          example: 1678226878
+          format: int64
+          type: integer
+        id:
+          example: 6407b5bee1329a000175ba11
+          type: string
+        object:
+          example: refund
+          type: string
+        status:
+          description: refund status
+          example: pending
+          type: string
+      required:
+      - amount
+      - created_at
+      - id
+      - object
+      title: charge_response_refunds_data
+    charge_response_payment_method:
+      discriminator:
+        mapping:
+          cash_payment: payment_method_cash
+          card_payment: payment_method_card
+          bank_transfer_payment: payment_method_bank_transfer
+          bnpl_payment: payment_method_bnpl_payment
+          pay_by_bank_payment: payment_method_pbb_payment
+        propertyName: object
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_cash'
+      - $ref: '#/components/schemas/payment_method_card'
+      - $ref: '#/components/schemas/payment_method_bank_transfer'
+      - $ref: '#/components/schemas/payment_method_bnpl_payment'
+      - $ref: '#/components/schemas/payment_method_pbb_payment'
+      title: charge_response_payment_method
+      propertyName: object
+    charge_response:
+      properties:
+        amount:
+          example: 4321
+          type: integer
+        channel:
+          $ref: '#/components/schemas/charge_response_channel'
+        created_at:
+          example: 1676386026
+          format: int64
+          type: integer
+        currency:
+          example: MXN
+          type: string
+        customer_id:
+          type: string
+        description:
+          example: Payment from order
+          type: string
+        device_fingerprint:
+          example: 6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba
+          type: string
+        failure_code:
+          example: suspected_fraud
+          type: string
+        failure_message:
+          example: Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.
+          type: string
+        id:
+          description: Charge ID
+          example: 63efa757cf65380001aec040
+          type: string
+        livemode:
+          description: Whether the charge was made in live mode or not
+          example: false
+          type: boolean
+        object:
+          example: charge
+          type: string
+        order_id:
+          description: Order ID
+          example: ord_2tN73UdUSNrYRPD9r
+          type: string
+        paid_at:
+          description: charge Payment date
+          example: 1676390742
+          format: int64
+          nullable: true
+          type: integer
+        payment_method:
+          $ref: '#/components/schemas/charge_response_payment_method'
+        reference_id:
+          description: Reference ID of the charge
+          example: ref_2tN73UdUSNrYRPD9r
+          type: string
+          nullable: true
+        refunds:
+          $ref: '#/components/schemas/charge_response_refunds'
+        chargeback:
+          $ref: '#/components/schemas/chargeback_response'
+        status:
+          description: Charge status
+          example: pending_payment
+          type: string
+      required:
+      - amount
+      - created_at
+      - currency
+      - id
+      - livemode
+      - object
+      - order_id
+      - status
+      title: charge_response
+    charge_response_refunds:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            description: refunds
+            items:
+              $ref: '#/components/schemas/charge_response_refunds_data'
+            type: array
+      title: charge_response_refunds
+      nullable: true
+    payment_method_bank_transfer:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for bank transfer responses
+        properties:
+          bank:
+            example: STP
+            type: string
+          clabe:
+            example: '646180111805034237'
+            type: string
+          description:
+            type: string
+            nullable: true
+          executed_at:
+            type: string
+            nullable: true
+          expires_at:
+            example: 1683053729
+            format: int64
+            type: integer
+          issuing_account_bank:
+            type: string
+            nullable: true
+          issuing_account_number:
+            type: string
+            nullable: true
+          issuing_account_holder_name:
+            type: string
+            nullable: true
+          issuing_account_tax_id:
+            type: string
+            nullable: true
+          payment_attempts:
+            items: {}
+            type: array
+          receiving_account_holder_name:
+            type: string
+            nullable: true
+          receiving_account_number:
+            example: '646180111805034237'
+            type: string
+          receiving_account_bank:
+            example: STP
+            type: string
+          receiving_account_tax_id:
+            type: string
+            nullable: true
+          reference_number:
+            type: string
+            nullable: true
+          tracking_code:
+            type: string
+            nullable: true
+          customer_ip_address:
+            example: 0.0.0.0
+            type: string
+        title: charge_data_payment_method_bank_transfer_response
+      title: payment_method_bank_transfer
+      x-discriminator-value: bank_transfer_payment
+    charge_request_payment_method:
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_pbb_request'
+      - $ref: '#/components/schemas/payment_method_bnpl_request'
+      - $ref: '#/components/schemas/payment_method_card_request'
+      - $ref: '#/components/schemas/payment_method_general_request'
+      title: charge_request_payment_method
+    charge_order_response:
+      properties:
+        amount:
+          example: 4321
+          type: integer
+        channel:
+          $ref: '#/components/schemas/charge_response_channel'
+        created_at:
+          example: 1676386026
+          format: int64
+          type: integer
+        currency:
+          example: MXN
+          type: string
+        customer_id:
+          type: string
+        description:
+          example: Payment from order
+          type: string
+        device_fingerprint:
+          example: 6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba
+          type: string
+          nullable: true
+        failure_code:
+          example: suspected_fraud
+          type: string
+        failure_message:
+          example: Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.
+          type: string
+        id:
+          example: 63efa757cf65380001aec040
+          type: string
+        livemode:
+          example: true
+          type: boolean
+        monthly_installments:
+          type: integer
+          nullable: true
+        object:
+          type: string
+        order_id:
+          example: ord_2tN73UdUSNrYRPD9r
+          type: string
+        paid_at:
+          example: 1676390742
+          type: integer
+          nullable: true
+        payment_method:
+          $ref: '#/components/schemas/charge_order_response_payment_method'
+        reference_id:
+          description: Reference ID of the charge
+          example: ref_2tN73UdUSNrYRPD9r
+          type: string
+          nullable: true
+        refunds:
+          items: {}
+          type: array
+        status:
+          example: pending_payment
+          type: string
+      title: charge_order_response
+    chargeback_response:
+      description: Chargeback object
+      nullable: true
+      properties:
+        id:
+          example: chbk_2zPxWFUnGNLySoumn
+          type: string
+        status:
+          enum:
+          - won
+          - lost
+          - action_required
+          - pending_review
+          - under_review
+          - covered
+          - rt
+          - rt_sent
+          - represented
+          example: lost
+          type: string
+        reason:
+          enum:
+          - unrecognized
+          - unauthorized
+          - unauthorized_by_client
+          - unrecognized_like_fraud
+          - insufficient_evidence
+          - illegible_evidence
+          - general
+          - late_evidence
+          - incorrect_exchange
+          - fraudulent_business
+          - billing
+          - twice_transaction
+          - transaction_not_refunded
+          - bank_doc_request
+          - unrecognized_purchase
+          - subscription_canceled
+          - copy_of_purchase
+          - differents_amounts
+          - subscription_not_requested
+          - damaged_products
+          - show_documents
+          - duplicate
+          - fraudulent
+          - service_canceled
+          - product_unacceptable
+          - product_not_received
+          - incorrect_amount
+          - chip_liabiliaty_shift
+          - credit_not_processed
+          example: unrecognized
+          type: string
+        note:
+          nullable: true
+          type: string
+        followup_status:
+          enum:
+          - customer_uncontacted
+          - customer_contacted
+          - customer_unreachable
+          nullable: true
+          type: string
+        response_from_client:
+          nullable: true
+          type: string
+        files:
+          items:
+            $ref: '#/components/schemas/chargeback_file_response'
+          type: array
+        object:
+          example: chargeback
+          type: string
+        charge_id:
+          example: 6966a06c044243000156c24d
+          type: string
+        created_at:
+          example: 1768846800
+          format: int64
+          type: integer
+        evidence_due_by:
+          example: 1769126399
+          format: int64
+          type: integer
+      title: chargeback_response
+    payment_method_card:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for card responses
+        properties:
+          account_type:
+            description: Account type of the card
+            example: Credit
+            type: string
+          auth_code:
+            example: '867372'
+            type: string
+          brand:
+            description: Brand of the card
+            example: visa
+            type: string
+          contract_id:
+            description: Id sent for recurrent charges.
+            example: S781317595
+            type: string
+          country:
+            description: Country of the card
+            example: MX
+            type: string
+          exp_month:
+            description: Expiration month of the card
+            example: '02'
+            type: string
+          exp_year:
+            description: Expiration year of the card
+            example: '2026'
+            type: string
+          fraud_indicators:
+            items: {}
+            type: array
+          issuer:
+            description: Issuer of the card
+            example: BANAMEX
+            type: string
+          last4:
+            description: Last 4 digits of the card
+            example: '4242'
+            type: string
+          name:
+            description: Name of the cardholder
+            example: Fulanito Perez
+            type: string
+          customer_ip_address:
+            description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+            example: 0.0.0.0
+            type: string
+        title: charge_data_payment_method_card_response
+      title: payment_method_card
+      x-discriminator-value: card_payment
+    payment_method_bnpl_payment:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for bnpl payment responses
+        properties:
+          object:
+            enum:
+            - bnpl_payment
+            type: string
+          cancel_url:
+            description: URL to redirect the customer after a canceled payment
+            example: https://example.com/cancel
+            type: string
+          expires_at:
+            description: Expiration date of the charge
+            example: 1683053729
+            format: int64
+            type: integer
+          failure_url:
+            description: URL to redirect the customer after a failed payment
+            example: https://example.com/failure
+            type: string
+          product_type:
+            description: Product type of the charge
+            type: string
+          redirect_url:
+            description: URL to redirect the customer to complete the payment
+            example: https://example.com/redirect
+            type: string
+          success_url:
+            description: URL to redirect the customer after a successful payment
+            example: https://example.com/success
+            type: string
+        required:
+        - expires_at
+        - product_type
+        title: charge_data_payment_method_bnpl_payment_response
+      title: payment_method_bnpl_payment
+      x-discriminator-value: bnpl_payment
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    charges_order_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/charge_response'
+            type: array
+      description: The charges associated with the order
+      title: charges_order_response
+    get_charges_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/charge_response'
+            type: array
+      title: get_charges_response
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

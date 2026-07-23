@@ -1,0 +1,366 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: engineering@conekta.com
+    name: Engineering Conekta
+    url: https://github.com/conekta/openapi/issues
+  description: Conekta sdk
+  license:
+    name: MIT-LICENSE
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Conekta Antifraud Tokens API
+  version: 2.2.0
+servers:
+- description: Conekta main server
+  url: https://api.conekta.io
+security:
+- bearerAuth: []
+tags:
+- name: Tokens
+paths:
+  /tokens:
+    post:
+      description: 'Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account
+
+        '
+      operationId: createToken
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/token_request'
+        description: requested field for token
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/token_response'
+          description: successful operation
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Create Token
+      tags:
+      - Tokens
+components:
+  schemas:
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    token_response_checkout:
+      deprecated: true
+      properties:
+        allowed_payment_methods:
+          items:
+            example: card
+            type: string
+          type: array
+        can_not_expire:
+          description: Indicates if the checkout can not expire.
+          example: false
+          type: boolean
+        emails_sent:
+          example: 0
+          type: integer
+        exclude_card_networks:
+          items:
+            example: visa
+            type: string
+          title: token_response_exclude_card_networks
+          type: array
+        expires_at:
+          description: Date and time when the checkout expires.
+          example: 1675715413
+          format: int64
+          type: integer
+        failure_url:
+          description: URL to redirect the customer to if the payment process fails.
+          example: https://example.com/failure
+          type: string
+        force_3ds_flow:
+          description: Indicates if the checkout forces the 3DS flow.
+          example: false
+          type: boolean
+        id:
+          example: 524f9d2f-8c2e-4e64-a33d-6006711a91bd
+          type: string
+        livemode:
+          example: true
+          type: boolean
+        metadata:
+          additionalProperties: true
+          example:
+            key: value
+          type: object
+        monthly_installments_enabled:
+          description: Indicates if the checkout allows monthly installments.
+          example: false
+          type: boolean
+        monthly_installments_options:
+          description: List of monthly installments options.
+          items:
+            example: 3
+            type: integer
+          type: array
+        name:
+          example: tok-2toNoPZpJgRU4PvgZ
+          type: string
+        needs_shipping_contact:
+          example: false
+          type: boolean
+        object:
+          description: Indicates the type of object, in this case checkout.
+          example: checkout
+          type: string
+        on_demand_enabled:
+          description: Indicates if the checkout allows on demand payments.
+          example: false
+          type: boolean
+        paid_payments_count:
+          description: Number of payments that have been paid.
+          example: 0
+          type: integer
+        recurrent:
+          description: Indicates if the checkout is recurrent.
+          example: false
+          type: boolean
+        sms_sent:
+          example: 0
+          type: integer
+        starts_at:
+          description: Date and time when the checkout starts.
+          example: 1675715413
+          format: int64
+          type: integer
+        status:
+          description: Status of the checkout.
+          example: Issued
+          type: string
+        success_url:
+          description: URL to redirect the customer to after the payment process is completed.
+          example: https://example.com/success
+          type: string
+        type:
+          description: Type of checkout.
+          example: Integration
+          type: string
+      nullable: true
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    token_response:
+      description: token response
+      properties:
+        checkout:
+          $ref: '#/components/schemas/token_response_checkout'
+        id:
+          description: Unique identifier for the token generated by Conekta.
+          example: cus_2tHJfJ79KyUwpxTik
+          type: string
+        livemode:
+          description: Indicates whether the token is in live mode or test mode.
+          example: true
+          type: boolean
+        object:
+          description: Indicates the type of object, in this case token
+          example: token
+          type: string
+        used:
+          description: Indicates if the token has been used
+          example: false
+          type: boolean
+      required:
+      - id
+      - livemode
+      - object
+      - used
+      title: token_response
+    token_request_checkout:
+      deprecated: true
+      properties:
+        returns_control_on:
+          description: It is a value that allows identifying the returns control on.
+          example: Token
+          type: string
+      nullable: true
+    token_request_card:
+      properties:
+        cvc:
+          description: It is a value that allows identifying the security code of the card.
+          example: '123'
+          maxLength: 4
+          type: string
+          x-encripted: true
+        device_fingerprint:
+          description: It is a value that allows identifying the device fingerprint.
+          example: zptcxk4p6w1ijwz85snf1l3bqe5g09ie
+          type: string
+        exp_month:
+          description: It is a value that allows identifying the expiration month of the card.
+          example: '12'
+          maxLength: 2
+          type: string
+          x-encripted: true
+        exp_year:
+          description: It is a value that allows identifying the expiration year of the card.
+          example: '26'
+          maxLength: 2
+          type: string
+          x-encripted: true
+        name:
+          description: It is a value that allows identifying the name of the cardholder.
+          example: Miguel
+          type: string
+          x-encripted: true
+        number:
+          description: It is a value that allows identifying the number of the card.
+          example: '4242424242424242'
+          type: string
+          x-encripted: true
+      required:
+      - cvc
+      - exp_month
+      - exp_year
+      - name
+      - number
+      nullable: true
+    token_request:
+      description: a token
+      properties:
+        card:
+          $ref: '#/components/schemas/token_request_card'
+        checkout:
+          $ref: '#/components/schemas/token_request_checkout'
+      title: token request
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

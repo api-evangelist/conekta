@@ -1,0 +1,488 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: engineering@conekta.com
+    name: Engineering Conekta
+    url: https://github.com/conekta/openapi/issues
+  description: Conekta sdk
+  license:
+    name: MIT-LICENSE
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Conekta Antifraud Subscriptions - Customer Portal API
+  version: 2.2.0
+servers:
+- description: Conekta main server
+  url: https://api.conekta.io
+security:
+- bearerAuth: []
+tags:
+- description: Customer portal endpoints for subscriptions
+  name: Subscriptions - Customer Portal
+paths:
+  /subscriptions/{subscription_id}/customer_portal:
+    get:
+      description: Retrieves the customer portal for a subscription
+      operationId: getCustomerPortal
+      parameters:
+      - description: Identifier of the subscription resource
+        explode: false
+        in: path
+        name: subscription_id
+        required: true
+        schema:
+          example: sub_2tGzG1GxtDAZHEGPH
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/customer_portal_response'
+          description: Customer portal retrieved successfully
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+      security:
+      - bearerAuth: []
+      summary: Get customer portal
+      tags:
+      - Subscriptions - Customer Portal
+    post:
+      description: Creates a customer portal for a subscription. If a portal already exists, returns the existing one.
+      operationId: createCustomerPortal
+      parameters:
+      - description: Identifier of the subscription resource
+        explode: false
+        in: path
+        name: subscription_id
+        required: true
+        schema:
+          example: sub_2tGzG1GxtDAZHEGPH
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        '201':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/customer_portal_response'
+          description: Customer portal created successfully
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+      security:
+      - bearerAuth: []
+      summary: Create customer portal
+      tags:
+      - Subscriptions - Customer Portal
+components:
+  schemas:
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    subscription_details_card:
+      properties:
+        id:
+          example: src_2yw5zPrVahTy7xy7P
+          type: string
+        created_at:
+          example: 1761745218
+          format: int64
+          type: integer
+        active:
+          example: true
+          type: boolean
+        object:
+          example: card
+          type: string
+        exp_month:
+          example: '05'
+          type: string
+        exp_year:
+          example: '26'
+          type: string
+        brand:
+          example: mastercard
+          type: string
+        last4:
+          example: '1005'
+          type: string
+        name:
+          example: test
+          type: string
+        payment_source_status:
+          example: active
+          type: string
+        customer_id:
+          example: cus_2yDzKtEAD3khH8Sga
+          type: string
+        customer_custom_reference:
+          type: string
+          nullable: true
+    customer_details:
+      description: Customer details for customer portal
+      properties:
+        id:
+          example: cus_2yDzKtEAD3khH8Sga
+          type: string
+        object:
+          example: customer
+          type: string
+        name:
+          example: mao
+          type: string
+        email:
+          example: maoarroya@gmail.com
+          format: email
+          type: string
+      title: customer_details
+    subscription_details_plan:
+      properties:
+        id:
+          example: VG5
+          type: string
+        object:
+          example: plan
+          type: string
+        name:
+          example: CLARO
+          type: string
+        amount:
+          example: 30000
+          format: int32
+          type: integer
+        currency:
+          example: USD
+          type: string
+        interval:
+          example: month
+          type: string
+        frequency:
+          example: 1
+          format: int32
+          type: integer
+        trial_period_days:
+          format: int32
+          type: integer
+          nullable: true
+        expiry_count:
+          example: 1
+          format: int32
+          type: integer
+        created_at:
+          example: 1742087277
+          format: int64
+          type: integer
+    subscription_details:
+      description: Subscription details for customer portal
+      properties:
+        card:
+          $ref: '#/components/schemas/subscription_details_card'
+        plan:
+          $ref: '#/components/schemas/subscription_details_plan'
+        id:
+          example: sub_2yYsQuYtXAbP1fdYu
+          type: string
+        object:
+          example: subscription
+          type: string
+        status:
+          example: canceled
+          type: string
+        plan_id:
+          example: VG5
+          type: string
+        customer_id:
+          example: cus_2yDzKtEAD3khH8Sga
+          type: string
+        next_billing_cycle:
+          example: 1876833632
+          format: int64
+          type: integer
+          nullable: true
+        created_at:
+          example: 1755873642
+          format: int64
+          type: integer
+        updated_at:
+          example: 1761745218
+          format: int64
+          type: integer
+      title: subscription_details
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    customer_portal_response:
+      description: Customer portal model
+      properties:
+        slug:
+          description: Unique slug identifier for the portal
+          example: agIvD4QSBl4Nunq4TmuozMw2ThtyVC
+          type: string
+        subscription_id:
+          description: Associated subscription ID
+          example: sub_2yYsQuYtXAbP1fdYu
+          type: string
+        customer_id:
+          description: Associated customer ID
+          example: cus_2yDzKtEAD3khH8Sga
+          type: string
+        livemode:
+          description: Whether this is a live or test mode portal
+          example: false
+          type: boolean
+        subscription:
+          $ref: '#/components/schemas/subscription_details'
+        customer:
+          $ref: '#/components/schemas/customer_details'
+        id:
+          description: Customer portal ID
+          example: scp_2ym7QbU9dTh7Froti
+          type: string
+        company_id:
+          description: Associated company ID
+          example: 63dad459920de10001d177b3
+          type: string
+        object:
+          example: customer_portal
+          type: string
+        created_at:
+          description: Unix timestamp of creation
+          example: 1759108828
+          format: int64
+          type: integer
+        updated_at:
+          description: Unix timestamp of last update
+          example: 1759108828
+          format: int64
+          type: integer
+        portal_url:
+          description: URL to access the customer portal
+          example: https://pay.stg.conekta.io/subscription/management/agIvD4QSBl4Nunq4TmuozMw2ThtyVC
+          format: uri
+          type: string
+      title: customer_portal_response
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

@@ -1,0 +1,986 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: engineering@conekta.com
+    name: Engineering Conekta
+    url: https://github.com/conekta/openapi/issues
+  description: Conekta sdk
+  license:
+    name: MIT-LICENSE
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Conekta Antifraud Payment Methods API
+  version: 2.2.0
+servers:
+- description: Conekta main server
+  url: https://api.conekta.io
+security:
+- bearerAuth: []
+tags:
+- name: Payment Methods
+paths:
+  /customers/{id}/payment_sources:
+    get:
+      description: Get a list of Payment Methods
+      operationId: GetCustomerPaymentMethods
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The numbers of items to return, the maximum value is 250
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          format: int32
+          maximum: 250
+          minimum: 1
+          type: integer
+        style: form
+      - description: next page
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: previous page
+        explode: true
+        in: query
+        name: previous
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: General order search, e.g. by mail, reference etc.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              examples:
+                cash:
+                  summary: Cash
+                  value:
+                    next_page_url: null,
+                    previous_page_url: null,
+                    has_more: false,
+                    object: list,
+                    data:
+                    - id: off_ref_2xayPUpcxeTrotDHr
+                      object: payment_source
+                      provider: Cash
+                      store_names:
+                      - 7 Eleven
+                      - Farmacias del Ahorro
+                      - CIRCLE K
+                      - Tiendas Extra
+                      - Farmacia Benavides
+                      - Soriana
+                      - WALDO'S
+                      - ELECZION
+                      - Super Kiosko
+                      - Farmacias Bazar
+                      - Wolworth
+                      - Del Sol
+                      - Yepas
+                      - Farmacias De Dios
+                      - Farmacias Nosarco
+                      - Farmacias Santa Cruz
+                      - Farmacentro
+                      - Farmacias GyM
+                      - Farmacias San Francisco de Asis
+                      - Farmacias Union
+                      - Farmacias Zapotlan
+                      - Farmatodo
+                      - Al Super
+                      - BBVA ATM
+                      type: cash_recurrent
+                      reference: 10001189383263801812_caca
+                      barcode: 10001189383263801812
+                      barcode_url: https://barcode.conekta.com/cash/cashin/10001189383263801812.png
+                      expires_at: 0
+                      created_at: 1741100921
+                      parent_id: cus_2xayPFXsb4LBZ2GUL
+                      agreements:
+                      - provider: bbva_cash_in
+                        agreement: 2409526
+                card:
+                  summary: Card
+                  value:
+                    has_more: false
+                    object: list
+                    data:
+                    - id: src_2tbd5Bg327RL9oyas
+                      object: payment_source
+                      type: card
+                      created_at: 1679958561
+                      last4: '0526'
+                      bin: '41898989'
+                      card_type: debit
+                      exp_month: '01'
+                      exp_year: '25'
+                      brand: visa
+                      issuer: santander
+                      name: random name
+                      parent_id: cus_2tUkvasdas1s4ihjs
+                      default: false
+                      payment_source_status: active
+                      visible_on_checkout: false
+              schema:
+                $ref: '#/components/schemas/get_payment_method_response'
+          description: successful operation
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get Payment Methods
+      tags:
+      - Payment Methods
+    post:
+      description: Create a payment method for a customer.
+      operationId: CreateCustomerPaymentMethods
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              card:
+                value:
+                  type: card
+                  token_id: tok_test_visa_4242
+              cash:
+                value:
+                  type: spei_recurrent
+                  expires_at: 1553273553
+            schema:
+              $ref: '#/components/schemas/CreateCustomerPaymentMethods_request'
+        description: requested field for customer payment methods
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/create_customer_payment_methods_response'
+          description: successful operation
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Create Payment Method
+      tags:
+      - Payment Methods
+  /customers/{id}/payment_sources/{payment_method_id}:
+    delete:
+      description: Delete an existing payment method
+      operationId: DeleteCustomerPaymentMethods
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Identifier of the payment method
+        example: src_2tQ974hSHcsdeSZHG
+        explode: false
+        in: path
+        name: payment_method_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/update_customer_payment_methods_response'
+          description: successful operation
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Delete Payment Method
+      tags:
+      - Payment Methods
+    put:
+      description: Gets a payment Method that corresponds to a customer ID.
+      operationId: UpdateCustomerPaymentMethods
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Identifier of the payment method
+        example: src_2tQ974hSHcsdeSZHG
+        explode: false
+        in: path
+        name: payment_method_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_payment_methods_card'
+        description: requested field for customer payment methods
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/update_customer_payment_methods_response'
+          description: successful operation
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Update Payment Method
+      tags:
+      - Payment Methods
+components:
+  schemas:
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    payment_method_card_response:
+      allOf:
+      - properties:
+          type:
+            type: string
+          id:
+            example: src_2s8K1B3PBKDontpi9
+            type: string
+          object:
+            example: payment_source
+            type: string
+          created_at:
+            example: 1675715413
+            format: int64
+            type: integer
+          parent_id:
+            example: cus_2s8K1B3PBKDontpi8
+            type: string
+        required:
+        - created_at
+        - id
+        - object
+        - type
+      - description: use for card responses
+        properties:
+          last4:
+            example: '6410'
+            type: string
+          bin:
+            example: '40276657'
+            type: string
+          card_type:
+            example: debit
+            type: string
+          exp_month:
+            example: '10'
+            type: string
+          exp_year:
+            example: '25'
+            type: string
+          brand:
+            example: visa
+            type: string
+          issuer:
+            description: Name of the institution that issued the card
+            example: santander
+            type: string
+          name:
+            example: Fulano Perez"
+            type: string
+          default:
+            type: boolean
+          visible_on_checkout:
+            type: boolean
+          payment_source_status:
+            example: active
+            type: string
+      title: payment_method_card_response
+    payment_method_cash_recurrent_response:
+      allOf:
+      - allOf:
+        - properties:
+            type:
+              type: string
+            id:
+              example: src_2s8K1B3PBKDontpi9
+              type: string
+            object:
+              example: payment_source
+              type: string
+            created_at:
+              example: 1675715413
+              format: int64
+              type: integer
+            parent_id:
+              example: cus_2s8K1B3PBKDontpi8
+              type: string
+          required:
+          - created_at
+          - id
+          - object
+          - type
+        - description: use for cash responses
+          properties:
+            agreements:
+              items:
+                $ref: '#/components/schemas/cash_agreements_response'
+              type: array
+            reference:
+              example: '93000262276908'
+              type: string
+            barcode:
+              example: '93000262276908'
+              type: string
+            barcode_url:
+              description: URL to the barcode image, reference is the same as barcode
+              example: https://barcodes.conekta.com/644ebf80f2243197aad6cd8810375b905b613dbe.png
+              type: string
+            expires_at:
+              example: 1742483424
+              format: int64
+              type: integer
+            provider:
+              example: Cash
+              type: string
+        title: payment_method_cash_response
+        x-discriminator-value: cash
+      description: Alias of cash response used when type=cash_recurrent
+      title: payment_method_cash_recurrent_response
+      x-discriminator-value: cash_recurrent
+    payment_method_cash_response:
+      allOf:
+      - properties:
+          type:
+            type: string
+          id:
+            example: src_2s8K1B3PBKDontpi9
+            type: string
+          object:
+            example: payment_source
+            type: string
+          created_at:
+            example: 1675715413
+            format: int64
+            type: integer
+          parent_id:
+            example: cus_2s8K1B3PBKDontpi8
+            type: string
+        required:
+        - created_at
+        - id
+        - object
+        - type
+      - description: use for cash responses
+        properties:
+          agreements:
+            items:
+              $ref: '#/components/schemas/cash_agreements_response'
+            type: array
+          reference:
+            example: '93000262276908'
+            type: string
+          barcode:
+            example: '93000262276908'
+            type: string
+          barcode_url:
+            description: URL to the barcode image, reference is the same as barcode
+            example: https://barcodes.conekta.com/644ebf80f2243197aad6cd8810375b905b613dbe.png
+            type: string
+          expires_at:
+            example: 1742483424
+            format: int64
+            type: integer
+          provider:
+            example: Cash
+            type: string
+      title: payment_method_cash_response
+      x-discriminator-value: cash
+    CreateCustomerPaymentMethods_request:
+      description: Contains details of the payment methods that the customer has active or has used in Conekta
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_token_request'
+      - $ref: '#/components/schemas/payment_method_cash_request'
+      - $ref: '#/components/schemas/payment_method_spei_request'
+    update_payment_methods_card:
+      properties:
+        name:
+          description: The name of the payment method holder
+          example: Payment recurrent
+          type: string
+        expires_at:
+          description: The expiration date of the payment method in Unix timestamp format
+          example: 1760457350
+          format: int64
+          minimum: 1
+          type: integer
+      title: update_payment_methods_card
+    payment_method_token_request:
+      allOf:
+      - description: Contains details of the payment methods that the customer has active or has used in Conekta
+        properties:
+          type:
+            description: Type of payment method
+            example: card | cash | spei | bnpl | pay_by_bank
+            type: string
+        required:
+        - type
+        title: customer_payment_method_request
+      - properties:
+          token_id:
+            description: Token id that will be used to create a "card" type payment method. See the (subscriptions)[https://developers.conekta.com/v2.2.0/reference/createsubscription] tutorial for more information on how to tokenize cards.
+            example: tok_32hj4g234as
+            type: string
+        required:
+        - token_id
+      title: payment_method_token_request
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    payment_method_cash_request:
+      allOf:
+      - description: Contains details of the payment methods that the customer has active or has used in Conekta
+        properties:
+          type:
+            description: Type of payment method
+            example: card | cash | spei | bnpl | pay_by_bank
+            type: string
+        required:
+        - type
+        title: customer_payment_method_request
+      - properties:
+          expires_at:
+            example: 1553273553
+            format: int64
+            type: integer
+      title: payment_method_cash_request
+    cash_agreements_response:
+      properties:
+        agreement:
+          description: Agreement number, you can use this number to pay in the store/bbva
+          example: '2409526'
+          type: string
+        provider:
+          description: Provider name, you can use this to know where to pay
+          example: bbva_cash_in
+          type: string
+      title: cash_agreements_response
+    create_customer_payment_methods_response:
+      discriminator:
+        mapping:
+          cash: payment_method_cash_response
+          card: payment_method_card_response
+          cash_recurrent: payment_method_cash_recurrent_response
+          spei_recurrent: payment_method_spei_recurrent_response
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_cash_response'
+      - $ref: '#/components/schemas/payment_method_cash_recurrent_response'
+      - $ref: '#/components/schemas/payment_method_card_response'
+      - $ref: '#/components/schemas/payment_method_spei_recurrent_response'
+      title: create_customer_payment_methods_response
+    payment_method_spei_request:
+      allOf:
+      - description: Contains details of the payment methods that the customer has active or has used in Conekta
+        properties:
+          type:
+            description: Type of payment method
+            example: card | cash | spei | bnpl | pay_by_bank
+            type: string
+        required:
+        - type
+        title: customer_payment_method_request
+      - properties:
+          expires_at:
+            example: 1553273553
+            format: int64
+            type: integer
+      title: payment_method_spei_request
+    get_customer_payment_method_data_response:
+      discriminator:
+        mapping:
+          cash: payment_method_cash_response
+          card: payment_method_card_response
+          cash_recurrent: payment_method_cash_recurrent_response
+          spei_recurrent: payment_method_spei_recurrent_response
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_cash_recurrent_response'
+      - $ref: '#/components/schemas/payment_method_cash_response'
+      - $ref: '#/components/schemas/payment_method_card_response'
+      - $ref: '#/components/schemas/payment_method_spei_recurrent_response'
+      title: get_customer_payment_method_data_response
+    payment_method_spei_recurrent_response:
+      allOf:
+      - properties:
+          type:
+            type: string
+          id:
+            example: src_2s8K1B3PBKDontpi9
+            type: string
+          object:
+            example: payment_source
+            type: string
+          created_at:
+            example: 1675715413
+            format: int64
+            type: integer
+          parent_id:
+            example: cus_2s8K1B3PBKDontpi8
+            type: string
+        required:
+        - created_at
+        - id
+        - object
+        - type
+      - description: use for spei responses
+        properties:
+          bank:
+            description: Bank name for the SPEI payment method
+            example: STP
+            type: string
+          reference:
+            example: '93000262276908'
+            type: string
+          expires_at:
+            example: none
+            type: string
+      title: payment_method_spei_recurrent_response
+      x-discriminator-value: spei_recurrent
+    get_payment_method_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/get_customer_payment_method_data_response'
+            type: array
+      title: get_payment_method_response
+    update_customer_payment_methods_response:
+      discriminator:
+        mapping:
+          cash: payment_method_cash_response
+          card: payment_method_card_response
+          cash_recurrent: payment_method_cash_recurrent_response
+          spei_recurrent: payment_method_spei_recurrent_response
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_cash_response'
+      - $ref: '#/components/schemas/payment_method_cash_recurrent_response'
+      - $ref: '#/components/schemas/payment_method_card_response'
+      - $ref: '#/components/schemas/payment_method_spei_recurrent_response'
+      title: update_customer_payment_methods_response
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

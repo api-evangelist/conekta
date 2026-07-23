@@ -1,0 +1,719 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: engineering@conekta.com
+    name: Engineering Conekta
+    url: https://github.com/conekta/openapi/issues
+  description: Conekta sdk
+  license:
+    name: MIT-LICENSE
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Conekta Antifraud Payout Orders API
+  version: 2.2.0
+servers:
+- description: Conekta main server
+  url: https://api.conekta.io
+security:
+- bearerAuth: []
+tags:
+- name: Payout Orders
+paths:
+  /payout_orders:
+    get:
+      description: Get Payout order details in the form of a list
+      operationId: getPayoutOrders
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: The numbers of items to return, the maximum value is 250
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          format: int32
+          maximum: 250
+          minimum: 1
+          type: integer
+        style: form
+      - description: General order search, e.g. by mail, reference etc.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: next page
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: previous page
+        explode: true
+        in: query
+        name: previous
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/payout_orders_response'
+          description: successful operation
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get a list of Payout Orders
+      tags:
+      - Payout Orders
+    post:
+      description: Create a new payout order.
+      operationId: createPayoutOrder
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/payout_order_request'
+        description: requested field for payout order
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/payout_order_response'
+          description: successful operation
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '402':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The card could not be processed.
+                  code: conekta.errors.processing.tokenization.used
+                  debug_message: The token has already been used.
+                log_id: 641b6d073cd9a50001515007
+                object: error
+                type: processing_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: payment required error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Create payout order
+      tags:
+      - Payout Orders
+  /payout_orders/{id}:
+    get:
+      description: Gets a payout Order resource that corresponds to a payout order ID.
+      operationId: getPayoutOrderById
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/payout_order_response'
+          description: successful operation
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get Payout Order
+      tags:
+      - Payout Orders
+  /payout_orders/{id}/cancel:
+    put:
+      description: Cancel a payout Order resource that corresponds to a payout order ID.
+      operationId: cancelPayoutOrderById
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/payout_order_response'
+          description: successful operation
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Cancel Payout Order
+      tags:
+      - Payout Orders
+components:
+  schemas:
+    payout_order_payouts_item:
+      properties:
+        amount:
+          description: The amount of the payout.
+          example: 3000
+          type: integer
+        currency:
+          description: The currency in which the payout is made.
+          example: MXN
+          type: string
+        expires_at:
+          description: The expiration date of the payout.
+          example: 1677626837
+          format: int64
+          type: integer
+        id:
+          description: The id of the payout.
+          example: payout_2vZwsRAhhGp2dFDJx
+          type: string
+        livemode:
+          description: The live mode of the payout.
+          example: true
+          type: boolean
+        object:
+          description: The object of the payout.
+          example: payout
+          type: string
+        payout_order_id:
+          description: The id of the payout order.
+          example: f2654d66-d740-457a-9a8c-f96b5196f44e
+          type: string
+        status:
+          description: The status of the payout.
+          example: open
+          type: string
+      required:
+      - amount
+      - currency
+      - id
+      - livemode
+      - object
+      title: payout_order_payouts_item
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    payout_method:
+      description: The payout method of the payout order.
+      properties:
+        type:
+          description: The type of the payout method.
+          example: cashout
+          type: string
+      required:
+      - type
+      title: payout_method
+    payout:
+      description: The payout information of the payout order.
+      properties:
+        payout_method:
+          $ref: '#/components/schemas/payout_method'
+      required:
+      - payout_method
+      title: payout
+    payout_order_request:
+      description: a payout order
+      properties:
+        allowed_payout_methods:
+          description: The payout methods that are allowed for the payout order.
+          example:
+          - cashout
+          items:
+            type: string
+          type: array
+        amount:
+          description: The amount of the payout order.
+          example: 100
+          format: int64
+          type: integer
+        currency:
+          default: MXN
+          description: The currency in which the payout order is made.
+          example: MXN
+          type: string
+        customer_info:
+          $ref: '#/components/schemas/payout_order_request_customer_info'
+        expires_at:
+          description: The expiration time of the payout order in Unix timestamp.
+          example: 1700000000
+          format: int64
+          type: integer
+        metadata:
+          additionalProperties: true
+          description: The metadata of the payout order.
+          example:
+            custom_client_id: '12345'
+          maxProperties: 100
+          type: object
+        payout:
+          $ref: '#/components/schemas/payout'
+        reason:
+          description: The reason for the payout order.
+          example: Payout order for the customer
+          type: string
+      required:
+      - allowed_payout_methods
+      - amount
+      - currency
+      - customer_info
+      - expires_at
+      - payout
+      - reason
+      title: payout_order_request
+    payout_order_response:
+      description: payout order model response
+      properties:
+        allowed_payout_methods:
+          description: The payout methods that are allowed for the payout order.
+          example:
+          - cashout
+          items:
+            type: string
+          minItems: 1
+          type: array
+        amount:
+          description: The amount of the payout order.
+          example: 100
+          format: int64
+          type: integer
+        created_at:
+          description: The creation date of the payout order.
+          example: 1677626837
+          format: int64
+          type: integer
+        currency:
+          default: MXN
+          description: The currency in which the payout order is made.
+          example: MXN
+          type: string
+        customer_info:
+          $ref: '#/components/schemas/payout_order_response_customer_info'
+        expires_at:
+          description: The expiration date of the payout order.
+          example: 1677626837
+          format: int64
+          type: integer
+        id:
+          description: The id of the payout order.
+          example: f2654d66-d740-457a-9a8c-f96b5196f44e
+          type: string
+        livemode:
+          description: The live mode of the payout order.
+          example: true
+          type: boolean
+        object:
+          description: The object of the payout order.
+          example: payout_order
+          type: string
+        metadata:
+          additionalProperties: true
+          description: The metadata of the payout order.
+          example:
+            custom_client_id: '12345'
+          maxProperties: 100
+          type: object
+        payouts:
+          description: The payout information of the payout order.
+          items:
+            $ref: '#/components/schemas/payout_order_payouts_item'
+          title: payout_order_payouts
+          type: array
+        reason:
+          description: The reason for the payout order.
+          example: Payout order for the customer
+          type: string
+        status:
+          description: The status of the payout order.
+          example: open
+          type: string
+        updated_at:
+          description: The update date of the payout order.
+          example: 1677626837
+          format: int64
+          type: integer
+      required:
+      - allowed_payout_methods
+      - amount
+      - created_at
+      - currency
+      - customer_info
+      - expires_at
+      - id
+      - livemode
+      - object
+      - payouts
+      - reason
+      - status
+      - updated_at
+      title: payout_order_response
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    payout_order_response_customer_info:
+      allOf:
+      - properties:
+          id:
+            description: The id of the customer.
+            example: cus_23874283647
+            type: string
+        required:
+        - id
+      - properties:
+          customer_custom_reference:
+            description: Custom reference
+            example: custom_reference
+            type: string
+            nullable: true
+          name:
+            example: DevTest
+            type: string
+          email:
+            example: test@conekta.com
+            format: email
+            type: string
+          phone:
+            example: '5522997233'
+            type: string
+          corporate:
+            default: false
+            type: boolean
+          object:
+            example: customer_info
+            type: string
+        title: order_customer_info_response
+      description: The customer information of the payout order.
+    payout_order_request_customer_info:
+      allOf:
+      - properties:
+          customer_id:
+            example: cus_23874283647
+            type: string
+        required:
+        - customer_id
+        title: customer_info_customer_id
+      description: The customer information to whom the payout order is made.
+    payout_orders_response:
+      allOf:
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/payout_order_response'
+            title: payout_orders_data_response
+            type: array
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      title: payout_orders_response
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

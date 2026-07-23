@@ -1,0 +1,549 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: engineering@conekta.com
+    name: Engineering Conekta
+    url: https://github.com/conekta/openapi/issues
+  description: Conekta sdk
+  license:
+    name: MIT-LICENSE
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Conekta Antifraud Logs API
+  version: 2.2.0
+servers:
+- description: Conekta main server
+  url: https://api.conekta.io
+security:
+- bearerAuth: []
+tags:
+- name: Logs
+paths:
+  /logs:
+    get:
+      description: Get log details in the form of a list
+      operationId: getLogs
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The numbers of items to return, the maximum value is 250
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          format: int32
+          maximum: 250
+          minimum: 1
+          type: integer
+        style: form
+      - description: General order search, e.g. by mail, reference etc.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: next page
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: previous page
+        explode: true
+        in: query
+        name: previous
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/logs_response_for_request'
+          description: successful
+          headers:
+            Date:
+              description: The date and time that the response was sent
+              explode: false
+              schema:
+                example: Fri, 03 Feb 2023 16:57:48 GMT
+                type: string
+              style: simple
+            Content-Type:
+              description: The format of the response body
+              explode: false
+              schema:
+                example: application/json; charset=utf-8
+                type: string
+              style: simple
+            Content-Length:
+              description: The length of the response body in bytes
+              explode: false
+              schema:
+                example: '2737'
+                type: string
+              style: simple
+            Connection:
+              description: The type of connection used to transfer the response
+              explode: false
+              schema:
+                example: keep-alive
+                type: string
+              style: simple
+            Conekta-Media-Type:
+              explode: false
+              schema:
+                example: conekta-v2.2.0; format=application/json
+                type: string
+              style: simple
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get List Of Logs
+      tags:
+      - Logs
+  /logs/{id}:
+    get:
+      description: Get the details of a specific log
+      operationId: getLogById
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/log_response_for_request'
+          description: successful
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get Log
+      tags:
+      - Logs
+components:
+  schemas:
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    logs_response_data:
+      properties:
+        created_at:
+          example: 1661445644
+          format: int64
+          type: integer
+        id:
+          example: 6307a60c41de27127515a575
+          type: string
+        ip_address:
+          example: 54.235.131.48
+          format: ipv4
+          type: string
+        livemode:
+          example: true
+          type: boolean
+        loggable_id:
+          example: ord_87632467832
+          type: string
+          nullable: true
+        loggable_type:
+          example: order
+          type: string
+          nullable: true
+        method:
+          example: POST
+          type: string
+        oauth_token_id:
+          type: string
+          nullable: true
+        query_string:
+          additionalProperties: true
+          example:
+            amount: 3000
+            payable: true
+          type: object
+        related:
+          example: FilterResource
+          type: string
+        request_body:
+          example:
+            filters:
+              amount:
+                amount_from: 0
+                amount_to: 0
+              created_at:
+                date_from: 1653627600
+                date_to: 1661489999
+              filterName: Payments
+              sort_by: created_at
+              sort_direction: desc
+              status: []
+              type: []
+            id: 78e65162-0f37-4942-847c-9bf7081d54c2
+            page: '0'
+            report_type: charges
+            testMode: false
+          type: object
+        request_headers:
+          additionalProperties:
+            type: string
+          example:
+            Accept: application/vnd.conekta-v2.2.0+json
+            Accept-Encoding: gzip, deflate, br
+            Accept-Language: es-419, es; q=0.9, en; q=0.8
+            Activitypermission: orders:read
+            Apiversion: 2.2.0
+        response_body:
+          type: object
+        response_headers:
+          additionalProperties:
+            type: string
+          example:
+            Access-Control-Allow-Headers: Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, X-Prototype-Version, Authorization, Accept, Date, Version, X-Forwarded-For, Host, Connection, X-Forwarded-Proto, X-Forwarded-Port, X-Amzn-Trace-Id, Accept-Encoding, Accept-Language, Referer, Origin, Activitypermission, Apiversion, Entityid, Livemode, Sec-Ch-Ua, Sec-Ch-Ua-Mobile, Sec-Ch-Ua-Platform, Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site, X-Datadog-Parent-Id, X-Datadog-Sampling-Priority, X-Datadog-Trace-Id, X-Forwarded-Host, X-Forwarded-Server, X-Real-Ip
+            Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS
+            Access-Control-Allow-Origin: '*'
+            Access-Control-Max-Age: '1728000'
+            Conekta-Media-Type: conekta-v2.2.0; format=application/json
+            Content-Type: application/json; charset=utf-8
+            Referrer-Policy: strict-origin-when-cross-origin
+            Strict-Transport-Security: max-age=31536000; includeSubDomains
+            X-Content-Type-Options: nosniff
+            X-Download-Options: noopen
+            X-Frame-Options: SAMEORIGIN
+            X-Permitted-Cross-Domain-Policies: none
+            X-XSS-Protection: 1; mode=block
+        searchable_tags:
+          example:
+          - 6307a60c41de27127515a575
+          - 6307a60c41de27127515a571
+          items:
+            type: string
+          type: array
+        status:
+          example: 200
+          type: string
+        updated_at:
+          example: 2022-08-25 16:40:44.887000+00:00
+          type: string
+        url:
+          example: /filter_resource
+          type: string
+        user_account_id:
+          example: 5a0b7001edbb6e1725b0b2c6
+          type: string
+        version:
+          example: 2.2.0
+          type: string
+      title: logs_response_data
+    log_response_for_request:
+      description: log model
+      properties:
+        created_at:
+          example: 1661445644
+          format: int64
+          type: integer
+        id:
+          example: 6307a60c41de27127515a575
+          type: string
+        ip_address:
+          example: 54.235.131.48
+          format: ipv4
+          type: string
+        livemode:
+          example: true
+          type: boolean
+        loggable_id:
+          example: ord_87632467832
+          type: string
+          nullable: true
+        loggable_type:
+          example: order
+          type: string
+          nullable: true
+        method:
+          example: POST
+          type: string
+        oauth_token_id:
+          type: string
+          nullable: true
+        query_string:
+          additionalProperties: true
+          example:
+            amount: 3000
+            payable: true
+          type: object
+        related:
+          example: FilterResource
+          type: string
+        request_body:
+          example:
+            filters:
+              amount:
+                amount_from: 0
+                amount_to: 0
+              created_at:
+                date_from: 1653627600
+                date_to: 1661489999
+              filterName: Payments
+              sort_by: created_at
+              sort_direction: desc
+              status: []
+              type: []
+            id: 78e65162-0f37-4942-847c-9bf7081d54c2
+            page: '0'
+            report_type: charges
+            testMode: false
+          type: object
+        request_headers:
+          additionalProperties:
+            type: string
+          example:
+            Accept: application/vnd.conekta-v2.2.0+json
+            Accept-Encoding: gzip, deflate, br
+            Accept-Language: es-419, es; q=0.9, en; q=0.8
+            Activitypermission: orders:read
+            Apiversion: 2.2.0
+        response_body:
+          type: object
+        response_headers:
+          additionalProperties:
+            type: string
+          example:
+            Access-Control-Allow-Headers: Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, X-Prototype-Version, Authorization, Accept, Date, Version, X-Forwarded-For, Host, Connection, X-Forwarded-Proto, X-Forwarded-Port, X-Amzn-Trace-Id, Accept-Encoding, Accept-Language, Referer, Origin, Activitypermission, Apiversion, Entityid, Livemode, Sec-Ch-Ua, Sec-Ch-Ua-Mobile, Sec-Ch-Ua-Platform, Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site, X-Datadog-Parent-Id, X-Datadog-Sampling-Priority, X-Datadog-Trace-Id, X-Forwarded-Host, X-Forwarded-Server, X-Real-Ip
+            Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS
+            Access-Control-Allow-Origin: '*'
+            Access-Control-Max-Age: '1728000'
+            Conekta-Media-Type: conekta-v2.2.0; format=application/json
+            Content-Type: application/json; charset=utf-8
+            Referrer-Policy: strict-origin-when-cross-origin
+            Strict-Transport-Security: max-age=31536000; includeSubDomains
+            X-Content-Type-Options: nosniff
+            X-Download-Options: noopen
+            X-Frame-Options: SAMEORIGIN
+            X-Permitted-Cross-Domain-Policies: none
+            X-XSS-Protection: 1; mode=block
+        searchable_tags:
+          example:
+          - 6307a60c41de27127515a575
+          - 6307a60c41de27127515a571
+          items:
+            type: string
+          type: array
+        status:
+          example: 200
+          type: string
+        updated_at:
+          example: 2022-08-25 16:40:44.887000+00:00
+          type: string
+        url:
+          example: /filter_resource
+          type: string
+        user_account_id:
+          example: 5a0b7001edbb6e1725b0b2c6
+          type: string
+        version:
+          example: 2.2.0
+          type: string
+      required:
+      - created_at
+      - id
+      - livemode
+      title: log_response_for_request
+    logs_response_for_request:
+      description: logs model
+      properties:
+        has_more:
+          description: True, if there are more pages.
+          readOnly: true
+          type: boolean
+        object:
+          description: The object type
+          readOnly: true
+          type: string
+        next_page_url:
+          description: URL of the next page.
+          type: string
+          nullable: true
+        previous_page_url:
+          description: Url of the previous page.
+          type: string
+          nullable: true
+        data:
+          description: set to page results.
+          items:
+            $ref: '#/components/schemas/logs_response_data'
+          type: array
+          nullable: true
+      title: logs_response_for_request
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http

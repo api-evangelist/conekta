@@ -1,0 +1,3970 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: engineering@conekta.com
+    name: Engineering Conekta
+    url: https://github.com/conekta/openapi/issues
+  description: Conekta sdk
+  license:
+    name: MIT-LICENSE
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Conekta Antifraud Orders API
+  version: 2.2.0
+servers:
+- description: Conekta main server
+  url: https://api.conekta.io
+security:
+- bearerAuth: []
+tags:
+- name: Orders
+paths:
+  /orders:
+    get:
+      description: Get order details in the form of a list
+      operationId: getOrders
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: The numbers of items to return, the maximum value is 250
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          format: int32
+          maximum: 250
+          minimum: 1
+          type: integer
+        style: form
+      - description: General order search, e.g. by mail, reference etc.
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: next page
+        explode: true
+        in: query
+        name: next
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: previous page
+        explode: true
+        in: query
+        name: previous
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Filters by order status
+        explode: true
+        in: query
+        name: payment_status
+        required: false
+        schema:
+          example: paid
+          type: string
+        style: form
+      - description: Filters by last payment info status
+        explode: true
+        in: query
+        name: last_payment_info.status
+        required: false
+        schema:
+          example: pending_payment
+          type: string
+        style: form
+      - description: created equal to
+        explode: true
+        in: query
+        name: created_at
+        required: false
+        schema:
+          example: 1612137600
+          format: int64
+          type: integer
+        style: form
+      - description: created at greater than or equal to
+        explode: true
+        in: query
+        name: created_at.gte
+        required: false
+        schema:
+          example: 1612137600
+          format: int64
+          type: integer
+        style: form
+      - description: created at less than or equal to
+        explode: true
+        in: query
+        name: created_at.lte
+        required: false
+        schema:
+          example: 1612137600
+          format: int64
+          type: integer
+        style: form
+      - description: updated at greater than or equal to
+        explode: true
+        in: query
+        name: updated_at.gte
+        required: false
+        schema:
+          example: 1612137600
+          format: int64
+          type: integer
+        style: form
+      - description: updated at less than or equal to
+        explode: true
+        in: query
+        name: updated_at.lte
+        required: false
+        schema:
+          example: 1612137600
+          format: int64
+          type: integer
+        style: form
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/get_orders_response'
+          description: successful operation
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get a list of Orders
+      tags:
+      - Orders
+    post:
+      description: Create a new order.
+      operationId: createOrder
+      parameters:
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              order_with_charges:
+                summary: Create an order with charges
+                value:
+                  charges:
+                  - amount: 40000
+                    expires_at: 1677196303
+                    monthly_installments: 0
+                    payment_method:
+                      type: card
+                      token_id: tok_2897348234
+                      payment_source_id: src_2tLkkyfMPh6v7pFry
+                      customer_ip_address: 0.0.0.0
+                    reference_id: string
+                  currency: MXN
+                  customer_info:
+                    name: DevTest
+                    email: test@conekta.com
+                    phone: '5522997233'
+                    corporate: false
+                    object: customer_info
+                  fiscal_entity:
+                    tax_id: '1234567890'
+                    name: Conekta Inc
+                    email: test@gmail.com
+                    phone: '525511223344'
+                    metadata:
+                      test: true
+                      company_id: '123'
+                    address:
+                      street1: Nuevo Leon 254
+                      street2: Departamento 404
+                      postal_code: '06100'
+                      city: Ciudad de Mexico
+                      state: Ciudad de Mexico
+                      country: MX
+                      external_number: '123'
+                  discount_lines:
+                  - amount: 500
+                    code: '123'
+                    type: loyalty
+                  line_items:
+                  - antifraud_info:
+                      additionalProp1: {}
+                      additionalProp2: {}
+                      additionalProp3: {}
+                    description: string
+                    sku: string
+                    name: Box of Cohiba S1s
+                    unit_price: 20000
+                    quantity: 1
+                    tags:
+                    - string
+                    brand: string
+                    metadata:
+                      additionalProp1: string
+                      additionalProp2: string
+                      additionalProp3: string
+                  metadata:
+                    test: true
+                    company_id: '123'
+                  pre_authorize: false
+                  shipping_contact:
+                    phone: '525511223344'
+                    receiver: Marvin Fuller
+                    between_streets: Ackerman Crescent
+                    metadata:
+                      test: true
+                      company_id: '123'
+                    address:
+                      street1: Nuevo Leon 254
+                      street2: Departamento 404
+                      postal_code: '06100'
+                      city: Ciudad de Mexico
+                      state: Ciudad de Mexico
+                      country: MX
+                      residential: true
+                    parent_id: string
+                    default: true
+                    deleted: true
+                  shipping_lines:
+                  - amount: 100
+                    carrier: FEDEX
+                    tracking_number: TRACK123
+                    method: TRAING
+                    metadata:
+                      key: value
+                  tax_lines:
+                  - amount: 100
+                    description: testing
+                    metadata:
+                      additionalProp1: {}
+                      additionalProp2: {}
+                      additionalProp3: {}
+              order_with_bnpl_charges:
+                summary: Create an order with a bnpl charge
+                value:
+                  channel:
+                    checkout_request_id: fdcb06d6-c9e1-44ee-921f-17723b63852f
+                    checkout_request_name: Test creditea
+                    checkout_request_type: PaymentLink
+                  charges:
+                  - payment_method:
+                      can_not_expire: true
+                      cancel_url: https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel
+                      failure_url: https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure
+                      product_type: aplazo_bnpl
+                      success_url: https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success
+                      type: bnpl
+                  currency: MXN
+                  customer_info:
+                    customer_id: cus_2xZfwfjXxX9tZhVey
+                  line_items:
+                  - name: Test creditea
+                    quantity: 1
+                    unit_price: 300000
+              order_with_pbb_charges:
+                summary: Create an order with a pay by bank charge
+                value:
+                  charges:
+                  - payment_method:
+                      product_type: bbva_pay_by_bank
+                      type: pay_by_bank
+                  currency: MXN
+                  customer_info:
+                    customer_id: cus_2xZfwfjXxX9tZhVey
+                  line_items:
+                  - name: Test pay by bank
+                    quantity: 1
+                    unit_price: 300000
+              order_with_checkout:
+                summary: Create an order with checkout
+                value:
+                  checkout:
+                    allowed_payment_methods:
+                    - cash
+                    - card
+                    - bank_transfer
+                    - bnpl
+                    - pay_by_bank
+                    expires_at: 0
+                    failure_url: string
+                    monthly_installments_enabled: false
+                    monthly_installments_options:
+                    - 0
+                    name: string
+                    on_demand_enabled: true
+                    success_url: string
+                    type: Integration
+                  currency: MXN
+                  customer_info:
+                    name: DevTest
+                    email: test@conekta.com
+                    phone: '5522997233'
+                    corporate: false
+                    object: customer_info
+                  discount_lines:
+                  - amount: 500
+                    code: '123'
+                    type: loyalty
+                  line_items:
+                  - antifraud_info:
+                      additionalProp1: {}
+                      additionalProp2: {}
+                      additionalProp3: {}
+                    description: string
+                    sku: string
+                    name: Box of Cohiba S1s
+                    unit_price: 20000
+                    quantity: 1
+                    tags:
+                    - string
+                    brand: string
+                    metadata:
+                      additionalProp1: string
+                      additionalProp2: string
+                      additionalProp3: string
+                  metadata:
+                    additionalProp1: string
+                    additionalProp2: string
+                    additionalProp3: string
+                  pre_authorize: false
+                  shipping_contact:
+                    phone: '525511223344'
+                    receiver: Marvin Fuller
+                    between_streets: Ackerman Crescent
+                    address:
+                      street1: Nuevo Leon 254
+                      street2: Departamento 404
+                      postal_code: '06100'
+                      city: Ciudad de Mexico
+                      state: Ciudad de Mexico
+                      country: MX
+                      residential: true
+                    parent_id: string
+                    default: true
+                    deleted: true
+                  shipping_lines:
+                  - amount: 100
+                    carrier: FEDEX
+                    tracking_number: TRACK123
+                    method: TRAING
+                    metadata:
+                      key: value
+                  tax_lines:
+                  - amount: 100
+                    description: testing
+                    metadata:
+                      additionalProp1: {}
+                      additionalProp2: {}
+                      additionalProp3: {}
+              order_with_subscription:
+                summary: Create an order with subscription plans
+                value:
+                  checkout:
+                    allowed_payment_methods:
+                    - card
+                    plan_ids:
+                    - nuevo-plan
+                    expires_at: 1746015865
+                    failure_url: string
+                    monthly_installments_enabled: false
+                    name: Embebido Prueba
+                    on_demand_enabled: true
+                    success_url: string
+                    type: Integration
+                    max_failed_retries: 3
+                    is_redirect_on_failure: true
+                  currency: MXN
+                  customer_info:
+                    name: Prueba
+                    email: prueba@prueba.com
+                    phone: '+5218181818181'
+                    corporate: false
+                    object: customer_info
+                  shipping_lines:
+                  - amount: 0
+                    metadata:
+                      key: value
+              split_payment_with_2_card_charges:
+                summary: Create an order with 2 card charges
+                value:
+                  charges:
+                  - amount: 40000
+                    payment_method:
+                      type: card
+                      token_id: tok_2897348234
+                  - amount: 40000
+                    payment_method:
+                      type: card
+                      token_id: tok_2897348235
+                  currency: MXN
+                  customer_info:
+                    name: DevTest
+                    email: test@conekta.com
+                    phone: '5522997233'
+                    corporate: false
+                  line_items:
+                    description: string
+                    sku: string
+                    name: Box of Cohiba S1s
+                    unit_price: 40000
+                    quantity: 2
+                    brand: string
+              split_payment_with_3_cash_charges:
+                summary: Create an order with 3 cash charges
+                value:
+                  charges:
+                  - amount: 10000
+                    payment_method:
+                      type: cash
+                  - amount: 10000
+                    payment_method:
+                      type: cash
+                  - amount: 10000
+                    payment_method:
+                      type: cash
+                  currency: MXN
+                  customer_info:
+                    name: DevTest
+                    email: test@conekta.com
+                    phone: '5522997233'
+                    corporate: false
+                  line_items:
+                    description: string
+                    sku: string
+                    name: Box of Cohiba S1s
+                    unit_price: 10000
+                    quantity: 3
+                    brand: string
+              split_payment_with_cash_card_charges:
+                summary: Create an order with 3 cash and 2 card charges
+                value:
+                  charges:
+                  - amount: 10000
+                    payment_method:
+                      type: card
+                      token_id: tok_2897348234
+                  - amount: 10000
+                    payment_method:
+                      type: card
+                      token_id: tok_2897348235
+                  - amount: 10000
+                    payment_method:
+                      type: cash
+                  - amount: 10000
+                    payment_method:
+                      type: cash
+                  - amount: 10000
+                    payment_method:
+                      type: cash
+                  currency: MXN
+                  customer_info:
+                    name: DevTest
+                    email: test@conekta.com
+                    phone: '5522997233'
+                    corporate: false
+                  line_items:
+                    description: string
+                    sku: string
+                    name: Box of Cohiba S1s
+                    unit_price: 50000
+                    quantity: 1
+                    brand: string
+            schema:
+              $ref: '#/components/schemas/order_request'
+        description: requested field for order
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              examples:
+                cash:
+                  value:
+                    livemode: true
+                    amount: 1560
+                    currency: MXN
+                    payment_status: pending_payment
+                    amount_refunded: 0
+                    split_payment: false
+                    customer_info:
+                      email: franco.longhi@conekta.com
+                      phone: 539-933-3810
+                      name: franco golden
+                      object: customer_info
+                    object: order
+                    id: ord_2xayxSvfWzQ2TLz7r
+                    metadata: {}
+                    is_refundable: false
+                    created_at: 1741103510
+                    updated_at: 1741103510
+                    line_items:
+                      object: list
+                      has_more: false
+                      total: 1
+                      data:
+                      - name: APOYO URGENTE REFERENCIA
+                        unit_price: 1560
+                        quantity: 1
+                        sku: COL094
+                        brand: CHEDRAUI
+                        object: line_item
+                        id: line_item_2xayxSvfWzQ2TLz7p
+                        parent_id: ord_2xayxSvfWzQ2TLz7r
+                        metadata: {}
+                        antifraud_info: {}
+                    charges:
+                      object: list
+                      has_more: false
+                      total: 1
+                      data:
+                      - id: 67c72196e777ac0001f2140c
+                        livemode: true
+                        created_at: 1741103510
+                        currency: MXN
+                        payment_method:
+                          service_name: Cash
+                          barcode_url: https://barcodes.conekta.com/cash/cashin/datalogic/10001140326893401915.png
+                          object: cash_payment
+                          type: cash
+                          expires_at: 1743724800
+                          store_names:
+                          - 7 Eleven
+                          - Farmacias del Ahorro
+                          - CIRCLE K
+                          - Tiendas Extra
+                          - Farmacia Benavides
+                          - Soriana
+                          - WALDO'S
+                          - ELECZION
+                          - Super Kiosko
+                          - Farmacias Bazar
+                          - Wolworth
+                          - Del Sol
+                          - Yepas
+                          - Farmacias De Dios
+                          - Farmacias Nosarco
+                          - Farmacias Santa Cruz
+                          - Farmacentro
+                          - Farmacias GyM
+                          - Farmacias San Francisco de Asis
+                          - Farmacias Union
+                          - Farmacias Zapotlan
+                          - Farmatodo
+                          - Al Super
+                          reference: 10001140326893401915
+                          product_type: cash_in
+                        object: charge
+                        description: Payment from order
+                        is_refundable: false
+                        status: pending_payment
+                        amount: 1560
+                        customer_id: ''
+                        order_id: ord_2xayxSvfWzQ2TLz7r
+                multiples_cash_charges:
+                  value:
+                    livemode: true
+                    amount: 156000
+                    currency: MXN
+                    payment_status: pending_payment
+                    amount_refunded: 0
+                    split_payment: false
+                    customer_info:
+                      email: franco.longhi@conekta.com
+                      phone: 884-712-6894
+                      name: franco golden
+                      object: customer_info
+                    object: order
+                    id: ord_2xazGvtKYTjxTUZU3
+                    metadata: {}
+                    is_refundable: false
+                    created_at: 1741104962
+                    updated_at: 1741104963
+                    line_items:
+                      object: list
+                      has_more: false
+                      total: 1
+                      data:
+                      - name: APOYO URGENTE REFERENCIA
+                        unit_price: 156000
+                        quantity: 1
+                        sku: COL094
+                        brand: CHEDRAUI
+                        object: line_item
+                        id: line_item_2xazGvtKYTjxTUZU1
+                        parent_id: ord_2xazGvtKYTjxTUZU3
+                        metadata: {}
+                        antifraud_info: {}
+                    charges:
+                      object: list
+                      has_more: false
+                      total: 2
+                      data:
+                      - id: 67c72742e777ac0001f21463
+                        livemode: true
+                        created_at: 1741104962
+                        currency: MXN
+                        payment_method:
+                          service_name: Cash
+                          barcode_url: https://barcodes.conekta.com/cash/cashin/bbva/10830309851141878231.png
+                          agreement: '2409992'
+                          object: cash_payment
+                          type: cash
+                          expires_at: 1743724800
+                          store_names:
+                          - BBVA ATM
+                          reference: 10830309851141878231
+                          product_type: bbva_cash_in
+                        object: charge
+                        description: Payment from order
+                        is_refundable: false
+                        status: pending_payment
+                        amount: 156000
+                        customer_id: ''
+                        order_id: ord_2xazGvtKYTjxTUZU3
+                      - id: 67c72742e777ac0001f2145b
+                        livemode: true
+                        created_at: 1741104962
+                        currency: MXN
+                        payment_method:
+                          service_name: Cash
+                          barcode_url: https://barcodes.conekta.com/cash/cashin/datalogic/10001244873740402013.png
+                          object: cash_payment
+                          type: cash
+                          expires_at: 1743724800
+                          store_names:
+                          - 7 Eleven
+                          - Farmacias del Ahorro
+                          - CIRCLE K
+                          - Tiendas Extra
+                          - Farmacia Benavides
+                          - Soriana
+                          - WALDO'S
+                          - ELECZION
+                          - Super Kiosko
+                          - Farmacias Bazar
+                          - Wolworth
+                          - Del Sol
+                          - Yepas
+                          - Farmacias De Dios
+                          - Farmacias Nosarco
+                          - Farmacias Santa Cruz
+                          - Farmacentro
+                          - Farmacias GyM
+                          - Farmacias San Francisco de Asis
+                          - Farmacias Union
+                          - Farmacias Zapotlan
+                          - Farmatodo
+                          - Al Super
+                          reference: 10001244873740402013
+                          product_type: cash_in
+                        object: charge
+                        description: Payment from order
+                        is_refundable: false
+                        status: pending_payment
+                        amount: 156000
+                        customer_id: ''
+                        order_id: ord_2xazGvtKYTjxTUZU3
+                card:
+                  value:
+                    id: 63dab7d00558720001bb3c7d
+                    livemode: true,
+                    created_at: 1675278289,
+                    currency: MXN
+                    failure_code: suspected_fraud
+                    failure_message: Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.
+                    device_fingerprint: 6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba
+                    payment_method:
+                      name: Fulanito Perez
+                      exp_month: 2
+                      exp_year: 30
+                      object: card_payment
+                      type: credit
+                      last4: 4242
+                      brand: visa
+                      issuer: BANAMEX
+                      account_type: Credit
+                      country: MX
+                      fraud_indicators:
+                      - description: El usuario está utilizando una tarjeta de crédito o débito de prueba en modo producción.
+                    object: charge
+                    description: Payment from order
+                    status: declined
+                    amount: 20001,
+                    fee: 116,
+                    order_id: ord_2tHuwPhgSwq6Gt7Rg
+                bnpl:
+                  value:
+                    amount: 300000
+                    amount_refunded: 0
+                    channel:
+                      checkout_request_id: fdcb06d6-c9e1-44ee-921f-17723b63852f
+                      checkout_request_type: PaymentLink
+                      id: channel_2xaegxs5s69VP4pWw
+                      segment: Checkout
+                    charges:
+                      data:
+                      - amount: 300000
+                        channel:
+                          checkout_request_id: fdcb06d6-c9e1-44ee-921f-17723b63852f
+                          checkout_request_type: PaymentLink
+                          id: channel_2xaegxs5s69VP4pXA
+                          segment: Checkout
+                        created_at: 1741015718
+                        currency: MXN
+                        customer_id: ''
+                        description: Payment from order
+                        id: 67c5caa665f9b400015dec40
+                        is_refundable: false
+                        livemode: true
+                        object: charge
+                        order_id: ord_2xaegxs5s69VP4pWy
+                        payment_method:
+                          cancel_url: https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel?order_id=ord_2xaegxs5s69VP4pWy&charge_id=67c5caa665f9b400015dec40
+                          expires_at: 1743694118
+                          failure_url: https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure?order_id=ord_2xaegxs5s69VP4pWy&charge_id=67c5caa665f9b400015dec40
+                          object: bnpl_payment
+                          product_type: aplazo_bnpl
+                          redirect_url: https://pay.playground.com/na/hpp/payments/20sJ2LZ
+                          success_url: https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success?order_id=ord_2xaegxs5s69VP4pWy&charge_id=67c5caa665f9b400015dec40
+                          type: bnpl
+                        status: pending_payment
+                      has_more: false
+                      object: list
+                      total: 1
+                    created_at: 1741015718
+                    currency: MXN
+                    customer_info:
+                      corporate: false
+                      customer_id: cus_2xZfwfjXxX9tZhVey
+                      email: alexis.ruiz@google.com
+                      name: Pedro Ruiz
+                      object: customer_info
+                      phone: '+5215555555555'
+                    id: ord_2xaegxs5s69VP4pWy
+                    is_refundable: false
+                    line_items:
+                      data:
+                      - antifraud_info: {}
+                        id: line_item_2xaegxs5s69VP4pWv
+                        metadata: {}
+                        name: Test creditea
+                        object: line_item
+                        parent_id: ord_2xaegxs5s69VP4pWy
+                        quantity: 1
+                        unit_price: 300000
+                      has_more: false
+                      object: list
+                      total: 1
+                    livemode: true
+                    metadata: {}
+                    object: order
+                    payment_status: pending_payment
+                    split_payment: false
+                    updated_at: 1741015718
+                pay_by_bank:
+                  value:
+                    amount: 300000
+                    amount_refunded: 0
+                    charges:
+                      data:
+                      - amount: 300000
+                        channel:
+                          checkout_request_id: fdcb06d6-c9e1-44ee-921f-17723b63852f
+                          checkout_request_type: PaymentLink
+                          id: channel_2xaegxs5s69VP4pXA
+                          segment: Checkout
+                        created_at: 1741015718
+                        currency: MXN
+                        customer_id: ''
+                        description: Payment from order
+                        id: 67c5caa665f9b400015dec40
+                        is_refundable: false
+                        livemode: true
+                        object: charge
+                        order_id: ord_2xaegxs5s69VP4pWy
+                        payment_method:
+                          expires_at: 1743694118
+                          object: pay_by_bank_payment
+                          product_type: bbva_pay_by_bank
+                          redirect_url: https://pay.playground.com/na/hpp/payments/20sJ2LZ
+                          deep_link: https://mgm.bbva.mx/WA3b/pbb?AGREEMENT=002484374&AMOUNT=1&CONCEPT=PagoDirecto&CURRENCY=MXN&REFERENCE=22277523174328893295
+                          type: pay_by_bank
+                          reference: '22277523174328893295'
+                        status: pending_payment
+                      has_more: false
+                      object: list
+                      total: 1
+                    created_at: 1741015718
+                    currency: MXN
+                    customer_info:
+                      corporate: false
+                      customer_id: cus_2xZfwfjXxX9tZhVey
+                      email: alexis.ruiz@google.com
+                      name: Pedro Ruiz
+                      object: customer_info
+                      phone: '+5215555555555'
+                    id: ord_2xaegxs5s69VP4pWy
+                    is_refundable: false
+                    line_items:
+                      data:
+                      - antifraud_info: {}
+                        id: line_item_2xaegxs5s69VP4pWv
+                        metadata: {}
+                        name: Test pay by bank
+                        object: line_item
+                        parent_id: ord_2xaegxs5s69VP4pWy
+                        quantity: 1
+                        unit_price: 300000
+                      has_more: false
+                      object: list
+                      total: 1
+                    livemode: true
+                    metadata: {}
+                    object: order
+                    payment_status: pending_payment
+                    split_payment: false
+                    updated_at: 1741015718
+                checkout:
+                  value:
+                    amount: 12000
+                    amount_refunded: 0
+                    checkout:
+                      allowed_payment_methods:
+                      - card
+                      - bnpl
+                      - cash
+                      - pay_by_bank
+                      - bank_transfer
+                      - apple
+                      can_not_expire: false
+                      emails_sent: 0
+                      exclude_card_networks: []
+                      expires_at: 1772171999
+                      failure_url: https://natalie.net
+                      force_3ds_flow: false
+                      id: 1263626c-53ae-4829-b092-2e7393f2d1b7
+                      is_redirect_on_failure: true
+                      livemode: true
+                      metadata: {}
+                      monthly_installments_enabled: false
+                      monthly_installments_options: []
+                      name: Pago de Servicio
+                      needs_shipping_contact: false
+                      object: checkout
+                      paid_payments_count: 0
+                      recurrent: false
+                      slug: 1263626c53ae4829b0922e7393f2d1b7
+                      sms_sent: 0
+                      starts_at: 1771912800
+                      status: Issued
+                      success_url: https://giovanna.info
+                      type: HostedPayment
+                      url: https://pay.conekta.com/checkout/1263626c53ae4829b0922e7393f2d1b7
+                    channel:
+                      checkout_request_id: 1263626c-53ae-4829-b092-2e7393f2d1b7
+                      checkout_request_type: HostedPayment
+                      id: channel_2zbhetCd6CmpJeFsY
+                      segment: Checkout
+                    created_at: 1771950546
+                    currency: MXN
+                    customer_info:
+                      email: xono.bernie@conekta.com
+                      name: Juan Rosas
+                      object: customer_info
+                      phone: '5531431590'
+                    id: ord_2zbhesToa1DAgNbP6
+                    is_refundable: false
+                    line_items:
+                      data:
+                      - antifraud_info: {}
+                        brand: addidas
+                        id: line_item_2zbhesToa1DAgNbP3
+                        metadata: {}
+                        name: Aretes Tres Círculos Numerales
+                        object: line_item
+                        parent_id: ord_2zbhesToa1DAgNbP6
+                        quantity: 1
+                        sku: COL094
+                        unit_price: 10000
+                      has_more: false
+                      object: list
+                      total: 1
+                    livemode: true
+                    metadata: {}
+                    object: order
+                    tax_lines:
+                      data:
+                      - amount: 2000
+                        description: test
+                        id: tax_lin_2zbhesToa1DAgNbP4
+                        object: tax_line
+                        parent_id: ord_2zbhesToa1DAgNbP6
+                      has_more: false
+                      object: list
+                      total: 1
+                    updated_at: 1771950546
+              schema:
+                $ref: '#/components/schemas/order_response'
+          description: successful operation
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '402':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The card could not be processed.
+                  code: conekta.errors.processing.tokenization.used
+                  debug_message: The token has already been used.
+                log_id: 641b6d073cd9a50001515007
+                object: error
+                type: processing_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: payment required error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Create order
+      tags:
+      - Orders
+  /orders/{id}:
+    get:
+      description: Info for a specific order
+      operationId: getOrderById
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/order_response'
+          description: successful
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Get Order
+      tags:
+      - Orders
+    put:
+      description: Update an existing Order.
+      operationId: updateOrder
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/order_update'
+        description: requested field for an order
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/order_response'
+          description: successful
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Update Order
+      tags:
+      - Orders
+  /orders/{id}/cancel:
+    post:
+      description: Cancel an order that has been previously created.
+      operationId: CancelOrder
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/order_response'
+          description: successful
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '402':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The card could not be processed.
+                  code: conekta.errors.processing.tokenization.used
+                  debug_message: The token has already been used.
+                log_id: 641b6d073cd9a50001515007
+                object: error
+                type: processing_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: payment required error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '428':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: The order cannot be modified because it has already a charge which is pending payment.
+                  message: The order cannot be modified because it has already a charge which is pending payment.
+                  code: conekta.errors.precondition_required.combo.order.cannot_be_updated_because_has_charge
+                log_id: 641b6e233cd9a50001515039
+                object: error
+                type: precondition_required_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Precondition Required
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Cancel Order
+      tags:
+      - Orders
+  /orders/{id}/capture:
+    post:
+      description: Processes an order that has been previously authorized.
+      operationId: ordersCreateCapture
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/order_capture_request'
+        description: requested fields for capture order
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/order_response'
+          description: successful
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '428':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: The order cannot be modified because it has already a charge which is pending payment.
+                  message: The order cannot be modified because it has already a charge which is pending payment.
+                  code: conekta.errors.precondition_required.combo.order.cannot_be_updated_because_has_charge
+                log_id: 641b6e233cd9a50001515039
+                object: error
+                type: precondition_required_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Precondition Required
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Capture Order
+      tags:
+      - Orders
+  /orders/{id}/refunds:
+    post:
+      description: A refunded order describes the items, amount, and reason an order is being refunded.
+      operationId: orderRefund
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/orderRefund_request'
+        description: requested field for a refund
+        required: true
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/order_response'
+          description: successful
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '402':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The card could not be processed.
+                  code: conekta.errors.processing.tokenization.used
+                  debug_message: The token has already been used.
+                log_id: 641b6d073cd9a50001515007
+                object: error
+                type: processing_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: payment required error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Refund Order
+      tags:
+      - Orders
+  /orders/{id}/refunds/{refund_id}:
+    delete:
+      description: A refunded order describes the items, amount, and reason an order is being refunded.
+      operationId: orderCancelRefund
+      parameters:
+      - description: Identifier of the resource
+        example: 6307a60c41de27127515a575
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: refund identifier
+        example: 6407b5bee1329a000175ba11
+        explode: false
+        in: path
+        name: refund_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Use for knowing which language to use
+        examples:
+          es:
+            summary: for spanish request/response
+            value: es
+          en:
+            summary: for english request/response
+            value: en
+        explode: false
+        in: header
+        name: Accept-Language
+        required: false
+        schema:
+          default: es
+          enum:
+          - es
+          - en
+          type: string
+        style: simple
+      - description: In the case of a holding company, the company id of the child company to which will process the request.
+        example: 6441b6376b60c3a638da80af
+        explode: false
+        in: header
+        name: X-Child-Company-Id
+        required: false
+        schema:
+          type: string
+        style: simple
+      responses:
+        '200':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              schema:
+                $ref: '#/components/schemas/order_response'
+          description: successful
+        '401':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: Please include your access key in your request.
+                  code: conekta.errors.authentication.missing_key
+                log_id: 507f1f77bcf86cd799439011
+                object: error
+                type: authentication_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: authentication error
+        '402':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The card could not be processed.
+                  code: conekta.errors.processing.tokenization.used
+                  debug_message: The token has already been used.
+                log_id: 641b6d073cd9a50001515007
+                object: error
+                type: processing_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: payment required error
+        '404':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The resource was not found.
+                  code: conekta.errors.resource_not_found.entity
+                  debug_message: The object Webhook "641b1d5662d7e00001eaa46b" could not be found.
+                log_id: 641b6c253cd9a50001514fae
+                object: error
+                type: resource_not_found_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: not found entity
+        '422':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - message: The token does not exist.
+                  param: payment_method.token_id
+                  code: conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token
+                  debug_message: The token does not exist.
+                log_id: 641b6d813cd9a50001515017
+                object: error
+                type: parameter_validation_error
+              schema:
+                $ref: '#/components/schemas/error'
+          description: parameter validation error
+        '500':
+          content:
+            application/vnd.conekta-v2.2.0+json:
+              example:
+                details:
+                - debug_message: There was a runtime error and Conekta engineers have been notified.
+                  message: There was a runtime error and Conekta engineers have been notified.
+                  code: conekta.errors.api.system.general_failure
+                object: error
+                type: api_error
+                log_id: 641b6f2b3cd9a50001515098
+              schema:
+                $ref: '#/components/schemas/error'
+          description: internal server error
+      security:
+      - bearerAuth: []
+      summary: Cancel Refund
+      tags:
+      - Orders
+components:
+  schemas:
+    shipping_request:
+      properties:
+        amount:
+          description: Shipping amount in cents
+          example: 100
+          format: int64
+          minimum: 0
+          type: integer
+        carrier:
+          description: Carrier name for the shipment
+          example: FEDEX
+          type: string
+        tracking_number:
+          description: Tracking number can be used to track the shipment
+          example: TRACK123
+          type: string
+        method:
+          description: Method of shipment
+          example: Same day
+          type: string
+        metadata:
+          additionalProperties: true
+          description: Hash where the user can send additional information for each 'shipping'.
+          example:
+            key: value
+          maxProperties: 100
+          type: object
+      required:
+      - amount
+      title: shipping_request
+    order_next_action_response:
+      description: contains the following attributes that will guide to continue the flow
+      properties:
+        redirect_to_url:
+          $ref: '#/components/schemas/order_next_action_response_redirect_to_url'
+        type:
+          description: Indicates the type of action to be taken
+          example: redirect_to_url
+          type: string
+      title: order_next_action_response
+    payment_method_general_request:
+      description: 'Payment method used in the charge. Go to the [payment methods](https://developers.conekta.com/reference/m%C3%A9todos-de-pago) section for more details
+
+        '
+      properties:
+        expires_at:
+          description: Method expiration date as unix timestamp
+          example: 1677196303
+          format: int64
+          type: integer
+        monthly_installments:
+          description: How many months without interest to apply, it can be 3, 6, 9, 12 or 18
+          format: int8
+          type: integer
+        type:
+          description: Type of payment method
+          example: card
+          type: string
+        token_id:
+          example: tok_2897348234
+          type: string
+        payment_source_id:
+          example: src_2tLkkyfMPh6v7pFry
+          type: string
+        cvc:
+          description: Optional, It is a value that allows identifying the security code of the card. Only for PCI merchants
+          example: '123'
+          type: string
+        contract_id:
+          description: Optional id sent to indicate the bank contract for recurrent card charges.
+          example: S781317595
+          type: string
+        customer_ip_address:
+          description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+          example: 0.0.0.0
+          type: string
+      required:
+      - type
+      title: payment_method_general_request
+    payment_method_bnpl_request:
+      allOf:
+      - description: Contains details of the payment methods that the customer has active or has used in Conekta
+        properties:
+          type:
+            description: Type of payment method
+            example: card | cash | spei | bnpl | pay_by_bank
+            type: string
+        required:
+        - type
+        title: customer_payment_method_request
+      - properties:
+          cancel_url:
+            description: URL to redirect the customer after a canceled payment
+            example: https://example.com/cancel
+            type: string
+          can_not_expire:
+            description: Indicates if the payment method can not expire
+            example: true
+            type: boolean
+          failure_url:
+            description: URL to redirect the customer after a failed payment
+            example: https://example.com/failure
+            type: string
+          product_type:
+            description: Product type of the payment method, use for the payment method to know the product type
+            enum:
+            - aplazo_bnpl
+            - azteca_bnpl
+            - coppel_bnpl
+            - creditea_bnpl
+            example: aplazo_bnpl
+            type: string
+          success_url:
+            description: URL to redirect the customer after a successful payment
+            example: https://example.com/success
+            type: string
+          type:
+            description: Type of the payment method
+            example: bnpl
+            type: string
+        required:
+        - can_not_expire
+        - cancel_url
+        - failure_url
+        - product_type
+        - success_url
+        - type
+      title: payment_method_bnpl_request
+    customer_shipping_contacts_request_address:
+      description: Address of the person who will receive the order
+      properties:
+        street1:
+          example: Nuevo Leon 254
+          type: string
+        street2:
+          example: Departamento 404
+          type: string
+        postal_code:
+          example: '06100'
+          type: string
+        city:
+          example: Ciudad de Mexico
+          type: string
+        state:
+          example: Ciudad de Mexico
+          type: string
+        country:
+          description: this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+          example: MX
+          type: string
+        residential:
+          example: true
+          type: boolean
+          nullable: true
+    get_orders_response:
+      allOf:
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/order_response'
+            type: array
+        required:
+        - data
+        title: orders_response
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      title: get_orders_response
+    fiscal_entity_address:
+      description: Address of the fiscal entity
+      properties:
+        street1:
+          description: Street name and number
+          example: Nuevo Leon 254
+          type: string
+        street2:
+          description: Street name and number
+          example: Departamento 404
+          type: string
+          nullable: true
+        postal_code:
+          description: Postal code
+          example: '06100'
+          type: string
+        city:
+          description: City
+          example: Ciudad de Mexico
+          type: string
+        state:
+          description: State
+          example: Ciudad de Mexico
+          type: string
+        country:
+          description: this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+          example: MX
+          type: string
+        external_number:
+          description: External number
+          example: '123'
+          type: string
+      required:
+      - city
+      - country
+      - external_number
+      - postal_code
+      - street1
+      title: fiscal_entity_address
+    payment_method_pbb_request:
+      allOf:
+      - description: Contains details of the payment methods that the customer has active or has used in Conekta
+        properties:
+          type:
+            description: Type of payment method
+            example: card | cash | spei | bnpl | pay_by_bank
+            type: string
+        required:
+        - type
+        title: customer_payment_method_request
+      - properties:
+          expires_at:
+            description: Expiration date of the payment method, in Unix timestamp format
+            example: 1680397724
+            format: int64
+            minimum: 0
+            type: integer
+          product_type:
+            description: Product type of the payment method, use for the payment method to know the product type
+            enum:
+            - bbva_pay_by_bank
+            example: bbva_pay_by_bank
+            type: string
+          type:
+            description: Type of the payment method
+            example: pay_by_bank
+            type: string
+        required:
+        - product_type
+        - type
+      title: payment_method_pbb_request
+    discount_lines_data_response:
+      allOf:
+      - allOf:
+        - description: List of discounts that apply to the order.
+          properties:
+            amount:
+              description: The amount to be deducted from the total sum of all payments, in cents.
+              example: 500
+              format: int64
+              minimum: 0
+              type: integer
+            code:
+              description: Discount code.
+              example: '123'
+              type: string
+            type:
+              description: It can be 'loyalty', 'campaign', 'coupon' o 'sign'
+              example: loyalty
+              type: string
+          required:
+          - amount
+          - code
+          - type
+          title: order_discount_lines_request
+          name: order_discount_lines_request
+        - properties:
+            id:
+              description: The discount line id
+              example: dis_lin_2tQQ58HPgPw7StE8z
+              type: string
+            object:
+              description: The object name
+              example: discount_line
+              type: string
+            parent_id:
+              description: The order id
+              example: ord_2tPAmKCEJqh8RE6nY
+              type: string
+          required:
+          - id
+          - object
+          - parent_id
+        title: discount_lines_response
+      title: discount_lines_data_response
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    charge_request:
+      description: The charges to be made
+      properties:
+        amount:
+          description: Amount to be charged in cents
+          example: 40000
+          format: int64
+          type: integer
+        payment_method:
+          $ref: '#/components/schemas/charge_request_payment_method'
+        reference_id:
+          description: Custom reference to add to the charge
+          type: string
+      required:
+      - payment_method
+      title: charge_request
+    shipping_lines_data_response:
+      allOf:
+      - allOf:
+        - properties:
+            amount:
+              description: Shipping amount in cents
+              example: 100
+              format: int64
+              minimum: 0
+              type: integer
+            carrier:
+              description: Carrier name for the shipment
+              example: FEDEX
+              type: string
+            tracking_number:
+              description: Tracking number can be used to track the shipment
+              example: TRACK123
+              type: string
+            method:
+              description: Method of shipment
+              example: Same day
+              type: string
+            metadata:
+              additionalProperties: true
+              description: Hash where the user can send additional information for each 'shipping'.
+              example:
+                key: value
+              maxProperties: 100
+              type: object
+          required:
+          - amount
+          title: shipping_request
+        - properties:
+            id:
+              type: string
+            object:
+              type: string
+            parent_id:
+              type: string
+        title: shipping_order_response
+      title: shipping_lines_data_response
+    charge_response_channel:
+      properties:
+        segment:
+          example: Checkout
+          type: string
+        checkout_request_id:
+          example: 6fca054a-8519-4c43-971e-cea35cc519bb
+          type: string
+        checkout_request_type:
+          example: HostedPayment
+          type: string
+        id:
+          example: channel_2tNDzhA4Akmzj11AU
+          type: string
+    order_shipping_lines_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/shipping_lines_data_response'
+            type: array
+      description: List of shipping costs applied to the order
+      title: order_shipping_lines_response
+      nullable: true
+    customer_info_customer_id:
+      properties:
+        customer_id:
+          example: cus_23874283647
+          type: string
+      required:
+      - customer_id
+      title: customer_info_customer_id
+    chargeback_file_response:
+      description: A file associated with a chargeback (e.g. evidence document)
+      properties:
+        id:
+          example: chbkf_2zPxWFUnGNLySoums
+          type: string
+        file_name:
+          example: 20251221500000000000201.pdf
+          type: string
+        url:
+          nullable: true
+          type: string
+        created_at:
+          example: 1768846800
+          format: int64
+          type: integer
+      title: chargeback_file_response
+    order_next_action_response_redirect_to_url:
+      description: contains the following attributes that will guide to continue the flow
+      properties:
+        url:
+          description: pay.conekta.com/{id} Indicates the url of the Conekta component to authenticate the flow through 3DS2.
+          example: https://pay.conekta.com/6fca054a85194c43971ecea35cc519bb
+          format: uri
+          type: string
+        return_url:
+          description: Indicates the url to which the 3DS2 flow returns at the end, when the integration is redirected.
+          example: https://my-website.com"
+          format: uri
+          type: string
+    order_discount_lines_request:
+      description: List of discounts that apply to the order.
+      properties:
+        amount:
+          description: The amount to be deducted from the total sum of all payments, in cents.
+          example: 500
+          format: int64
+          minimum: 0
+          type: integer
+        code:
+          description: Discount code.
+          example: '123'
+          type: string
+        type:
+          description: It can be 'loyalty', 'campaign', 'coupon' o 'sign'
+          example: loyalty
+          type: string
+      required:
+      - amount
+      - code
+      - type
+      title: order_discount_lines_request
+      name: order_discount_lines_request
+    customer_shipping_contacts_address:
+      properties:
+        object:
+          example: shipping_address
+          type: string
+        street1:
+          example: Nuevo Leon 254
+          type: string
+        street2:
+          example: Departamento 404
+          type: string
+        postal_code:
+          example: '06100'
+          type: string
+        city:
+          example: Ciudad de Mexico
+          type: string
+        state:
+          example: Ciudad de Mexico
+          type: string
+        country:
+          example: MX
+          type: string
+        residential:
+          example: true
+          type: boolean
+          nullable: true
+      title: customer_shipping_contacts_address
+    payment_method_cash:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for cash responses
+        properties:
+          agreement:
+            description: Agreement ID
+            example: agreement_2tN73UdUSNrYRPD9r
+            type: string
+          auth_code:
+            example: 542563
+            type: integer
+            nullable: true
+          cashier_id:
+            example: OINM01010
+            type: string
+            nullable: true
+          reference:
+            example: '93000262276908'
+            type: string
+          barcode_url:
+            example: https://barcodes.conekta.com/644ebf80f2243197aad6cd8810375b905b613dbe.png
+            type: string
+          expires_at:
+            example: 0
+            format: int64
+            type: integer
+          product_type:
+            description: Product type, e.g. bbva_cash_in, cash_in, pespay_cash_in, etc.
+            example: bbva_cash_in
+            type: string
+          service_name:
+            example: store
+            type: string
+          store:
+            example: 10MON50EDI
+            type: string
+            nullable: true
+          store_name:
+            example: wallmart
+            type: string
+          customer_ip_address:
+            example: 0.0.0.0
+            type: string
+        title: charge_data_payment_method_cash_response
+      title: payment_method_cash
+      x-discriminator-value: cash_payment
+    payment_method_card_request:
+      allOf:
+      - description: Contains details of the payment methods that the customer has active or has used in Conekta
+        properties:
+          type:
+            description: Type of payment method
+            example: card | cash | spei | bnpl | pay_by_bank
+            type: string
+        required:
+        - type
+        title: customer_payment_method_request
+      - properties:
+          cvc:
+            description: Card security code
+            example: '198'
+            maxLength: 4
+            minLength: 3
+            type: string
+          exp_month:
+            description: Card expiration month
+            example: '12'
+            maxLength: 2
+            minLength: 2
+            type: string
+          exp_year:
+            description: Card expiration year
+            example: '2025'
+            maxLength: 4
+            minLength: 4
+            type: string
+          name:
+            description: Cardholder name
+            example: John Doe
+            type: string
+          number:
+            description: Card number
+            example: '4242424242424242'
+            type: string
+          customer_ip_address:
+            description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+            example: 0.0.0.0
+            type: string
+        required:
+        - cvc
+        - exp_month
+        - exp_year
+        - name
+        - number
+      title: payment_method_card_request
+    order_update_customer_info:
+      oneOf:
+      - $ref: '#/components/schemas/customer_info'
+      - $ref: '#/components/schemas/customer_info_customer_id'
+    order_fiscal_entity_request:
+      description: Fiscal entity of the order, Currently it is a purely informative field
+      properties:
+        address:
+          $ref: '#/components/schemas/fiscal_entity_address'
+        email:
+          description: Email of the fiscal entity
+          example: test@gmail.com
+          type: string
+        metadata:
+          additionalProperties: true
+          description: Metadata associated with the fiscal entity
+          maxProperties: 100
+          type: object
+        name:
+          description: Name of the fiscal entity
+          example: Conekta Inc
+          type: string
+          nullable: true
+        phone:
+          description: Phone of the fiscal entity
+          example: '+525511223344'
+          type: string
+        tax_id:
+          description: Tax ID of the fiscal entity
+          example: AAA010101AAA
+          type: string
+          nullable: true
+      required:
+      - address
+      title: order_fiscal_entity_request
+    order_checkout_request:
+      description: '[Checkout](https://developers.conekta.com/v2.2.0/reference/payment-link) details
+
+        '
+      properties:
+        allowed_payment_methods:
+          description: Are the payment methods available for this link. For subscriptions, only 'card' is allowed due to the recurring nature of the payments.
+          example:
+          - cash
+          - card
+          - bank_transfer
+          - bnpl
+          - pay_by_bank
+          items:
+            enum:
+            - cash
+            - card
+            - bank_transfer
+            - bnpl
+            - pay_by_bank
+            type: string
+          type: array
+        exclude_card_networks:
+          description: List of card networks to exclude from the checkout. This field is only applicable for card payments.
+          example:
+          - visa
+          - amex
+          items:
+            enum:
+            - visa
+            - mastercard
+            - amex
+            type: string
+          title: checkout_request_exclude_card_networks
+          type: array
+        plan_ids:
+          description: List of plan IDs that will be available for subscription. This field is required for subscription payments.
+          example:
+          - plan_123
+          - plan_456
+          items:
+            type: string
+          type: array
+        expires_at:
+          description: "It is the time when the link will expire. \nIt is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date.\n"
+          format: int64
+          minimum: 1
+          type: integer
+        failure_url:
+          description: Redirection url back to the site in case of failed payment, applies only to HostedPayment.
+          example: https://www.mysite.com/failure
+          format: uri
+          type: string
+        monthly_installments_enabled:
+          example: false
+          type: boolean
+        monthly_installments_options:
+          example:
+          - 3
+          - 6
+          - 12
+          items:
+            format: int8
+            type: integer
+          type: array
+        max_failed_retries:
+          description: Number of retries allowed before the checkout is marked as failed
+          example: 3
+          format: int8
+          type: integer
+        name:
+          description: Reason for payment
+          type: string
+        on_demand_enabled:
+          example: true
+          type: boolean
+        redirection_time:
+          description: number of seconds to wait before redirecting to the success_url
+          example: 10
+          format: int8
+          type: integer
+        success_url:
+          description: Redirection url back to the site in case of successful payment, applies only to HostedPayment
+          example: https://www.mysite.com/success
+          format: uri
+          type: string
+        type:
+          description: Required. This field represents the type of checkout, which determines the user experience during the payment process. 'HostedPayment' will redirect the customer to a Conekta-hosted page to complete the payment, while 'Integration' allows the payment process to be handled entirely on your site using Conekta's APIs and SDKs.
+          enum:
+          - Integration
+          - HostedPayment
+          type: string
+      required:
+      - allowed_payment_methods
+      title: order_checkout_request
+    order_response_customer_info:
+      allOf:
+      - properties:
+          object:
+            example: customer_info
+            type: string
+      - properties:
+          customer_custom_reference:
+            description: Custom reference
+            example: custom_reference
+            type: string
+            nullable: true
+          name:
+            example: DevTest
+            type: string
+          email:
+            example: test@conekta.com
+            format: email
+            type: string
+          phone:
+            example: '5522997233'
+            type: string
+          corporate:
+            default: false
+            type: boolean
+          object:
+            example: customer_info
+            type: string
+        title: order_customer_info_response
+      - properties:
+          customer_id:
+            example: cus_23874283647
+            type: string
+        title: customer_info_response
+    customer_shipping_contacts_request:
+      description: '[Shipping](https://developers.conekta.com/v2.2.0/reference/createcustomershippingcontacts)
+
+        details, required in case of sending a shipping. If we do not receive a shipping_contact on the order, the default shipping_contact of the customer will be used.'
+      properties:
+        phone:
+          description: Phone contact
+          example: '+525511223344'
+          type: string
+        receiver:
+          description: Name of the person who will receive the order
+          example: Marvin Fuller
+          type: string
+        between_streets:
+          description: The street names between which the order will be delivered.
+          example: Ackerman Crescent
+          type: string
+        address:
+          $ref: '#/components/schemas/customer_shipping_contacts_request_address'
+        parent_id:
+          type: string
+        default:
+          type: boolean
+          nullable: true
+        deleted:
+          type: boolean
+          nullable: true
+        metadata:
+          additionalProperties: true
+          description: Metadata associated with the shipping contact
+          maxProperties: 100
+          type: object
+      required:
+      - address
+      title: customer_shipping_contacts_request
+    payment_method_pbb_payment:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for pbb payment responses
+        properties:
+          deep_link:
+            description: Deep link for the payment, use for mobile apps/flows
+            example: https://mgm.bbva.mx/WA3b/pbb?AGREEMENT=002484374&AMOUNT=1&CONCEPT=PagoDirecto&CURRENCY=MXN&REFERENCE=22277523174328893295
+            type: string
+          expires_at:
+            description: Expiration date of the charge
+            example: 1683053729
+            format: int64
+            minimum: 0
+            type: integer
+          product_type:
+            description: Product type of the charge
+            type: string
+          redirect_url:
+            description: URL to redirect the customer to complete the payment
+            example: https://example.com/redirect
+            type: string
+          reference:
+            description: Reference for the payment
+            example: '22277523174328893295'
+            type: string
+        required:
+        - deep_link
+        - expires_at
+        - product_type
+        - redirect_url
+        - reference
+        title: charge_data_payment_method_pbb_payment_response
+      title: payment_method_pbb_payment
+      x-discriminator-value: pay_by_bank_payment
+    order_update_fiscal_entity_request:
+      description: Fiscal entity of the order, Currently it is a purely informative field
+      properties:
+        address:
+          $ref: '#/components/schemas/fiscal_entity_address'
+        email:
+          description: Email of the fiscal entity
+          example: test@gmail.com
+          type: string
+        name:
+          description: Name of the fiscal entity
+          example: Conekta Inc
+          type: string
+          nullable: true
+        metadata:
+          additionalProperties: true
+          description: Metadata associated with the fiscal entity
+          maxProperties: 100
+          type: object
+        phone:
+          description: Phone of the fiscal entity
+          example: '+525511223344'
+          type: string
+        tax_id:
+          description: Tax ID of the fiscal entity
+          example: AAA010101AAA
+          type: string
+          nullable: true
+      required:
+      - address
+      title: order_update_fiscal_entity_request
+    order_response_checkout:
+      properties:
+        allowed_payment_methods:
+          description: Are the payment methods available for this link
+          example:
+          - cash
+          - card
+          - bank_transfer
+          - bnpl
+          - pay_by_bank
+          items:
+            type: string
+          type: array
+        can_not_expire:
+          example: false
+          type: boolean
+        emails_sent:
+          example: 0
+          type: integer
+        exclude_card_networks:
+          example:
+          - visa
+          - amex
+          items:
+            enum:
+            - visa
+            - mastercard
+            - amex
+            type: string
+          title: order_response_exclude_card_networks
+          type: array
+        expires_at:
+          example: 1676613599
+          format: int64
+          type: integer
+        failure_url:
+          example: http://187.216.228.66:2222/SysVentasPagos/Acceso.aspx
+          type: string
+        force_3ds_flow:
+          example: false
+          type: boolean
+        id:
+          example: 6fca054a-8519-4c43-971e-cea35cc519bb
+          type: string
+        is_redirect_on_failure:
+          example: false
+          type: boolean
+        livemode:
+          example: false
+          type: boolean
+        max_failed_retries:
+          description: Number of retries allowed before the checkout is marked as failed
+          example: 3
+          format: int8
+          type: integer
+          nullable: true
+        metadata:
+          additionalProperties: true
+          maxProperties: 100
+          type: object
+        monthly_installments_enabled:
+          example: false
+          type: boolean
+        monthly_installments_options:
+          items:
+            format: int8
+            type: integer
+          type: array
+        name:
+          example: ord-2tNDzhA4Akmzj11AS
+          type: string
+        needs_shipping_contact:
+          example: false
+          type: boolean
+        object:
+          example: checkout
+          type: string
+        on_demand_enabled:
+          example: true
+          type: boolean
+          nullable: true
+        paid_payments_count:
+          example: 0
+          type: integer
+        recurrent:
+          example: false
+          type: boolean
+        redirection_time:
+          description: number of seconds to wait before redirecting to the success_url
+          example: 2
+          format: int8
+          type: integer
+          nullable: true
+        slug:
+          example: 6fca054a85194c43971ecea35cc519bb
+          type: string
+        sms_sent:
+          example: 0
+          type: integer
+        success_url:
+          description: Redirection url back to the site in case of successful payment, applies only to HostedPayment
+          example: http://187.216.228.66:2222/SysVentasPagos/Acceso.aspx
+          type: string
+        starts_at:
+          example: 1676354400
+          type: integer
+        status:
+          example: Issued
+          type: string
+        type:
+          description: This field represents the type of checkout, which determines the user experience during the payment process. 'HostedPayment' will redirect the customer to a Conekta-hosted page to complete the payment, while 'Integration' allows the payment process to be handled entirely on your site using Conekta's APIs and SDKs.
+          example: HostedPayment
+          type: string
+        url:
+          description: Indicate the url of the Conekta component to complete the payment. For HostedPayment, this will be a Conekta-hosted page
+          example: https://pay.conekta.io/checkout/6fca054a85194c43971ecea35cc519bb
+          type: string
+      required:
+      - allowed_payment_methods
+      - id
+      - name
+      - object
+      - type
+    tax_lines_data_response:
+      allOf:
+      - allOf:
+        - description: create new taxes for an existing order
+          properties:
+            amount:
+              description: The amount to be collected for tax in cents
+              example: 100
+              format: int64
+              minimum: 0
+              type: integer
+            description:
+              description: description or tax's name
+              example: testing
+              minLength: 2
+              type: string
+            metadata:
+              additionalProperties: true
+              example:
+                key: value
+              maxProperties: 100
+              type: object
+          required:
+          - amount
+          - description
+          title: order_tax_request
+        - properties:
+            id:
+              example: tax_lin_2tQ8dC5mg1UADmVPo
+              type: string
+            object:
+              example: tax_line
+              type: string
+            parent_id:
+              example: ord_2tPAmKCEJqh8RE6nY
+              type: string
+        description: create new taxes for an existing order response
+        required:
+        - id
+        title: order_tax_response
+      title: tax_lines_data_response
+    order_request_customer_info:
+      description: Customer information
+      oneOf:
+      - $ref: '#/components/schemas/customer_info'
+      - $ref: '#/components/schemas/customer_info_customer_id'
+    order_discount_lines_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/discount_lines_data_response'
+            type: array
+      description: List of discounts that are applied to the order
+      title: order_discount_lines_response
+      nullable: true
+    charge_response_refunds_data:
+      properties:
+        amount:
+          example: -15000
+          format: int64
+          type: integer
+        auth_code:
+          example: '867372'
+          type: string
+        created_at:
+          example: 1678226878
+          format: int64
+          type: integer
+        expires_at:
+          description: refund expiration date
+          example: 1678226878
+          format: int64
+          type: integer
+        id:
+          example: 6407b5bee1329a000175ba11
+          type: string
+        object:
+          example: refund
+          type: string
+        status:
+          description: refund status
+          example: pending
+          type: string
+      required:
+      - amount
+      - created_at
+      - id
+      - object
+      title: charge_response_refunds_data
+    order_tax_request:
+      description: create new taxes for an existing order
+      properties:
+        amount:
+          description: The amount to be collected for tax in cents
+          example: 100
+          format: int64
+          minimum: 0
+          type: integer
+        description:
+          description: description or tax's name
+          example: testing
+          minLength: 2
+          type: string
+        metadata:
+          additionalProperties: true
+          example:
+            key: value
+          maxProperties: 100
+          type: object
+      required:
+      - amount
+      - description
+      title: order_tax_request
+    orderRefund_request:
+      properties:
+        amount:
+          description: Amount to be refunded in cents
+          example: 500
+          type: integer
+        expires_at:
+          example: 1553273553
+          format: int64
+          type: integer
+        reason:
+          description: Reason for the refund
+          example: suspected_fraud
+          type: string
+      required:
+      - amount
+      - reason
+    charge_response_payment_method:
+      discriminator:
+        mapping:
+          cash_payment: payment_method_cash
+          card_payment: payment_method_card
+          bank_transfer_payment: payment_method_bank_transfer
+          bnpl_payment: payment_method_bnpl_payment
+          pay_by_bank_payment: payment_method_pbb_payment
+        propertyName: object
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_cash'
+      - $ref: '#/components/schemas/payment_method_card'
+      - $ref: '#/components/schemas/payment_method_bank_transfer'
+      - $ref: '#/components/schemas/payment_method_bnpl_payment'
+      - $ref: '#/components/schemas/payment_method_pbb_payment'
+      title: charge_response_payment_method
+      propertyName: object
+    order_response:
+      description: order response
+      properties:
+        amount:
+          description: The total amount to be collected in cents
+          example: 21605
+          type: integer
+        amount_refunded:
+          description: The total amount refunded in cents
+          example: 0
+          type: integer
+        channel:
+          $ref: '#/components/schemas/order_channel_response'
+        charges:
+          $ref: '#/components/schemas/order_charges_response'
+        checkout:
+          $ref: '#/components/schemas/order_response_checkout'
+        created_at:
+          description: The time at which the object was created in seconds since the Unix epoch
+          example: 1676328434
+          format: int64
+          type: integer
+        currency:
+          description: The three-letter ISO 4217 currency code. The currency of the order.
+          example: MXN
+          type: string
+        customer_info:
+          $ref: '#/components/schemas/order_response_customer_info'
+        discount_lines:
+          $ref: '#/components/schemas/order_discount_lines_response'
+        tax_lines:
+          $ref: '#/components/schemas/order_tax_lines_response'
+        shipping_lines:
+          $ref: '#/components/schemas/order_shipping_lines_response'
+        fiscal_entity:
+          $ref: '#/components/schemas/order_fiscal_entity_response'
+        id:
+          example: ord_2tMtQQpDvfnNjiuFG
+          type: string
+        is_refundable:
+          example: false
+          type: boolean
+        line_items:
+          $ref: '#/components/schemas/order_response_products'
+        livemode:
+          description: Whether the object exists in live mode or test mode
+          example: false
+          type: boolean
+        metadata:
+          additionalProperties: true
+          description: Set of key-value pairs that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
+          maxProperties: 100
+          type: object
+        next_action:
+          $ref: '#/components/schemas/order_next_action_response'
+        object:
+          description: String representing the object’s type. Objects of the same type share the same value.
+          example: order
+          type: string
+        payment_status:
+          description: The payment status of the order.
+          example: paid
+          type: string
+        processing_mode:
+          description: Indicates the processing mode for the order, either ecommerce, recurrent or validation.
+          example: ecommerce
+          type: string
+        shipping_contact:
+          $ref: '#/components/schemas/order_response_shipping_contact'
+        updated_at:
+          description: The time at which the object was last updated in seconds since the Unix epoch
+          example: 1676328434
+          format: int64
+          type: integer
+      title: order_response
+    product:
+      properties:
+        antifraud_info:
+          additionalProperties: true
+          example:
+            key: value
+          type: object
+        brand:
+          description: The brand of the item.
+          example: Cohiba
+          type: string
+        description:
+          description: Short description of the item
+          example: Imported From Mex.
+          maxLength: 250
+          type: string
+        metadata:
+          additionalProperties: true
+          default: {}
+          description: It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
+          example:
+            key: value
+          maxProperties: 100
+          type: object
+        name:
+          description: The name of the item. It will be displayed in the order.
+          example: Box of Cohiba S1s
+          type: string
+        quantity:
+          description: The quantity of the item in the order.
+          example: 1
+          format: int32
+          minimum: 1
+          type: integer
+        sku:
+          description: The stock keeping unit for the item. It is used to identify the item in the order.
+          example: XYZ12345
+          type: string
+        tags:
+          description: List of tags for the item. It is used to identify the item in the order.
+          example:
+          - food
+          - mexican food
+          items:
+            type: string
+          type: array
+        unit_price:
+          description: The price of the item in cents.
+          example: 20000
+          format: int32
+          minimum: 0
+          type: integer
+      required:
+      - name
+      - quantity
+      - unit_price
+      title: product
+    order_tax_lines_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/tax_lines_data_response'
+            type: array
+      description: List of taxes that are applied to the order
+      title: order_tax_lines_response
+      nullable: true
+    order_channel_response:
+      properties:
+        segment:
+          example: Checkout
+          type: string
+        checkout_request_id:
+          example: 6fca054a-8519-4c43-971e-cea35cc519bb
+          type: string
+        checkout_request_type:
+          example: HostedPayment
+          type: string
+        id:
+          example: channel_2tNDzhA4Akmzj11AU
+          type: string
+      title: order_channel_response
+    charge_response_refunds:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            description: refunds
+            items:
+              $ref: '#/components/schemas/charge_response_refunds_data'
+            type: array
+      title: charge_response_refunds
+      nullable: true
+    order_fiscal_entity_address_response:
+      allOf:
+      - description: Address of the fiscal entity
+        properties:
+          street1:
+            description: Street name and number
+            example: Nuevo Leon 254
+            type: string
+          street2:
+            description: Street name and number
+            example: Departamento 404
+            type: string
+            nullable: true
+          postal_code:
+            description: Postal code
+            example: '06100'
+            type: string
+          city:
+            description: City
+            example: Ciudad de Mexico
+            type: string
+          state:
+            description: State
+            example: Ciudad de Mexico
+            type: string
+          country:
+            description: this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+            example: MX
+            type: string
+          external_number:
+            description: External number
+            example: '123'
+            type: string
+        required:
+        - city
+        - country
+        - external_number
+        - postal_code
+        - street1
+        title: fiscal_entity_address
+      - properties:
+          object:
+            example: fiscal_entity_address
+            type: string
+      description: Address of the fiscal entity
+      title: order_fiscal_entity_address_response
+    payment_method_bank_transfer:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for bank transfer responses
+        properties:
+          bank:
+            example: STP
+            type: string
+          clabe:
+            example: '646180111805034237'
+            type: string
+          description:
+            type: string
+            nullable: true
+          executed_at:
+            type: string
+            nullable: true
+          expires_at:
+            example: 1683053729
+            format: int64
+            type: integer
+          issuing_account_bank:
+            type: string
+            nullable: true
+          issuing_account_number:
+            type: string
+            nullable: true
+          issuing_account_holder_name:
+            type: string
+            nullable: true
+          issuing_account_tax_id:
+            type: string
+            nullable: true
+          payment_attempts:
+            items: {}
+            type: array
+          receiving_account_holder_name:
+            type: string
+            nullable: true
+          receiving_account_number:
+            example: '646180111805034237'
+            type: string
+          receiving_account_bank:
+            example: STP
+            type: string
+          receiving_account_tax_id:
+            type: string
+            nullable: true
+          reference_number:
+            type: string
+            nullable: true
+          tracking_code:
+            type: string
+            nullable: true
+          customer_ip_address:
+            example: 0.0.0.0
+            type: string
+        title: charge_data_payment_method_bank_transfer_response
+      title: payment_method_bank_transfer
+      x-discriminator-value: bank_transfer_payment
+    order_charges_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/charges_data_response'
+            type: array
+      description: The charges associated with the order
+      title: order_charges_response
+    order_response_shipping_contact:
+      allOf:
+      - properties:
+          created_at:
+            format: int64
+            type: integer
+          id:
+            type: string
+          object:
+            type: string
+      - description: Contains the detail of the shipping addresses that the client has active or has used in Conekta
+        properties:
+          phone:
+            example: '+525511223344'
+            type: string
+          receiver:
+            example: Marvin Fuller
+            type: string
+          between_streets:
+            example: Ackerman Crescent
+            type: string
+            nullable: true
+          address:
+            $ref: '#/components/schemas/customer_shipping_contacts_address'
+          parent_id:
+            type: string
+          default:
+            example: false
+            type: boolean
+          id:
+            example: adr_1234567890
+            type: string
+          created_at:
+            example: 1675715413
+            format: int64
+            type: integer
+          metadata:
+            additionalProperties: true
+            description: Metadata associated with the shipping contact
+            maxProperties: 100
+            type: object
+          object:
+            example: shipping_contact
+            type: string
+          deleted:
+            example: false
+            type: boolean
+        title: customer_shipping_contacts_response
+    charge_request_payment_method:
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_pbb_request'
+      - $ref: '#/components/schemas/payment_method_bnpl_request'
+      - $ref: '#/components/schemas/payment_method_card_request'
+      - $ref: '#/components/schemas/payment_method_general_request'
+      title: charge_request_payment_method
+    order_request:
+      description: a order
+      properties:
+        charges:
+          description: List of [charges](https://developers.conekta.com/v2.2.0/reference/orderscreatecharge) that are applied to the order
+          items:
+            $ref: '#/components/schemas/charge_request'
+          type: array
+        checkout:
+          $ref: '#/components/schemas/order_checkout_request'
+        currency:
+          description: Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
+          example: MXN
+          maxLength: 3
+          type: string
+        customer_info:
+          $ref: '#/components/schemas/order_request_customer_info'
+        discount_lines:
+          description: List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
+          items:
+            $ref: '#/components/schemas/order_discount_lines_request'
+          type: array
+        fiscal_entity:
+          $ref: '#/components/schemas/order_fiscal_entity_request'
+        line_items:
+          description: List of [products](https://developers.conekta.com/v2.2.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
+          items:
+            $ref: '#/components/schemas/product'
+          type: array
+        metadata:
+          additionalProperties: true
+          description: Metadata associated with the order
+          maxProperties: 100
+          type: object
+        needs_shipping_contact:
+          description: Allows you to fill out the shipping information at checkout
+          example: false
+          type: boolean
+        pre_authorize:
+          description: Indicates whether the order charges must be preauthorized
+          type: boolean
+        processing_mode:
+          description: Indicates the processing mode for the order, either ecommerce, recurrent or validation.
+          example: ecommerce
+          type: string
+        return_url:
+          description: Indicates the redirection callback upon completion of the 3DS2 flow. Do not use this parameter if your order has a checkout parameter
+          example: https://my-website.com
+          format: uri
+          type: string
+        shipping_contact:
+          $ref: '#/components/schemas/customer_shipping_contacts_request'
+        shipping_lines:
+          description: List of [shipping costs](https://developers.conekta.com/v2.2.0/reference/orderscreateshipping). If the online store offers digital products.
+          items:
+            $ref: '#/components/schemas/shipping_request'
+          type: array
+        tax_lines:
+          description: List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
+          items:
+            $ref: '#/components/schemas/order_tax_request'
+          type: array
+        three_ds_mode:
+          description: Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
+          type: string
+          nullable: true
+      required:
+      - currency
+      - customer_info
+      - line_items
+      title: order_request
+    chargeback_response:
+      description: Chargeback object
+      nullable: true
+      properties:
+        id:
+          example: chbk_2zPxWFUnGNLySoumn
+          type: string
+        status:
+          enum:
+          - won
+          - lost
+          - action_required
+          - pending_review
+          - under_review
+          - covered
+          - rt
+          - rt_sent
+          - represented
+          example: lost
+          type: string
+        reason:
+          enum:
+          - unrecognized
+          - unauthorized
+          - unauthorized_by_client
+          - unrecognized_like_fraud
+          - insufficient_evidence
+          - illegible_evidence
+          - general
+          - late_evidence
+          - incorrect_exchange
+          - fraudulent_business
+          - billing
+          - twice_transaction
+          - transaction_not_refunded
+          - bank_doc_request
+          - unrecognized_purchase
+          - subscription_canceled
+          - copy_of_purchase
+          - differents_amounts
+          - subscription_not_requested
+          - damaged_products
+          - show_documents
+          - duplicate
+          - fraudulent
+          - service_canceled
+          - product_unacceptable
+          - product_not_received
+          - incorrect_amount
+          - chip_liabiliaty_shift
+          - credit_not_processed
+          example: unrecognized
+          type: string
+        note:
+          nullable: true
+          type: string
+        followup_status:
+          enum:
+          - customer_uncontacted
+          - customer_contacted
+          - customer_unreachable
+          nullable: true
+          type: string
+        response_from_client:
+          nullable: true
+          type: string
+        files:
+          items:
+            $ref: '#/components/schemas/chargeback_file_response'
+          type: array
+        object:
+          example: chargeback
+          type: string
+        charge_id:
+          example: 6966a06c044243000156c24d
+          type: string
+        created_at:
+          example: 1768846800
+          format: int64
+          type: integer
+        evidence_due_by:
+          example: 1769126399
+          format: int64
+          type: integer
+      title: chargeback_response
+    order_capture_request:
+      properties:
+        amount:
+          description: Amount to capture
+          example: 500
+          format: int64
+          minimum: 1
+          type: integer
+          nullable: false
+      required:
+      - amount
+      title: order_capture_request
+    payment_method_card:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for card responses
+        properties:
+          account_type:
+            description: Account type of the card
+            example: Credit
+            type: string
+          auth_code:
+            example: '867372'
+            type: string
+          brand:
+            description: Brand of the card
+            example: visa
+            type: string
+          contract_id:
+            description: Id sent for recurrent charges.
+            example: S781317595
+            type: string
+          country:
+            description: Country of the card
+            example: MX
+            type: string
+          exp_month:
+            description: Expiration month of the card
+            example: '02'
+            type: string
+          exp_year:
+            description: Expiration year of the card
+            example: '2026'
+            type: string
+          fraud_indicators:
+            items: {}
+            type: array
+          issuer:
+            description: Issuer of the card
+            example: BANAMEX
+            type: string
+          last4:
+            description: Last 4 digits of the card
+            example: '4242'
+            type: string
+          name:
+            description: Name of the cardholder
+            example: Fulanito Perez
+            type: string
+          customer_ip_address:
+            description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+            example: 0.0.0.0
+            type: string
+        title: charge_data_payment_method_card_response
+      title: payment_method_card
+      x-discriminator-value: card_payment
+    charges_data_response:
+      allOf:
+      - properties:
+          amount:
+            example: 4321
+            type: integer
+          channel:
+            $ref: '#/components/schemas/charge_response_channel'
+          created_at:
+            example: 1676386026
+            format: int64
+            type: integer
+          currency:
+            example: MXN
+            type: string
+          customer_id:
+            type: string
+          description:
+            example: Payment from order
+            type: string
+          device_fingerprint:
+            example: 6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba
+            type: string
+          failure_code:
+            example: suspected_fraud
+            type: string
+          failure_message:
+            example: Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.
+            type: string
+          id:
+            description: Charge ID
+            example: 63efa757cf65380001aec040
+            type: string
+          livemode:
+            description: Whether the charge was made in live mode or not
+            example: false
+            type: boolean
+          object:
+            example: charge
+            type: string
+          order_id:
+            description: Order ID
+            example: ord_2tN73UdUSNrYRPD9r
+            type: string
+          paid_at:
+            description: charge Payment date
+            example: 1676390742
+            format: int64
+            nullable: true
+            type: integer
+          payment_method:
+            $ref: '#/components/schemas/charge_response_payment_method'
+          reference_id:
+            description: Reference ID of the charge
+            example: ref_2tN73UdUSNrYRPD9r
+            type: string
+            nullable: true
+          refunds:
+            $ref: '#/components/schemas/charge_response_refunds'
+          chargeback:
+            $ref: '#/components/schemas/chargeback_response'
+          status:
+            description: Charge status
+            example: pending_payment
+            type: string
+        required:
+        - amount
+        - created_at
+        - currency
+        - id
+        - livemode
+        - object
+        - order_id
+        - status
+        title: charge_response
+      title: charges_data_response
+    payment_method_bnpl_payment:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for bnpl payment responses
+        properties:
+          object:
+            enum:
+            - bnpl_payment
+            type: string
+          cancel_url:
+            description: URL to redirect the customer after a canceled payment
+            example: https://example.com/cancel
+            type: string
+          expires_at:
+            description: Expiration date of the charge
+            example: 1683053729
+            format: int64
+            type: integer
+          failure_url:
+            description: URL to redirect the customer after a failed payment
+            example: https://example.com/failure
+            type: string
+          product_type:
+            description: Product type of the charge
+            type: string
+          redirect_url:
+            description: URL to redirect the customer to complete the payment
+            example: https://example.com/redirect
+            type: string
+          success_url:
+            description: URL to redirect the customer after a successful payment
+            example: https://example.com/success
+            type: string
+        required:
+        - expires_at
+        - product_type
+        title: charge_data_payment_method_bnpl_payment_response
+      title: payment_method_bnpl_payment
+      x-discriminator-value: bnpl_payment
+    order_update:
+      description: a order
+      properties:
+        charges:
+          items:
+            $ref: '#/components/schemas/charge_request'
+          type: array
+        checkout:
+          $ref: '#/components/schemas/order_checkout_request'
+        currency:
+          description: Currency with which the payment will be made. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
+          example: MXN
+          maxLength: 3
+          type: string
+        customer_info:
+          $ref: '#/components/schemas/order_update_customer_info'
+        discount_lines:
+          description: List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
+          items:
+            $ref: '#/components/schemas/order_discount_lines_request'
+          type: array
+        fiscal_entity:
+          $ref: '#/components/schemas/order_update_fiscal_entity_request'
+        line_items:
+          description: List of [products](https://developers.conekta.com/v2.2.0/reference/orderscreateproduct) that are sold in the order. You must have at least one product.
+          items:
+            $ref: '#/components/schemas/product'
+          type: array
+        metadata:
+          additionalProperties:
+            type: string
+        pre_authorize:
+          description: Indicates whether the order charges must be preauthorized
+          type: boolean
+        shipping_contact:
+          $ref: '#/components/schemas/customer_shipping_contacts_request'
+        shipping_lines:
+          description: List of [shipping costs](https://developers.conekta.com/v2.2.0/reference/orderscreateshipping). If the online store offers digital products.
+          items:
+            $ref: '#/components/schemas/shipping_request'
+          type: array
+        tax_lines:
+          items:
+            $ref: '#/components/schemas/order_tax_request'
+          type: array
+      title: order_update
+    customer_info:
+      properties:
+        name:
+          example: DevTest
+          type: string
+        email:
+          example: test@conekta.com
+          format: email
+          type: string
+        phone:
+          example: '5522997233'
+          type: string
+        corporate:
+          type: boolean
+        object:
+          example: customer_info
+          type: string
+      required:
+      - email
+      - name
+      - phone
+      title: customer_info
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    order_fiscal_entity_response:
+      description: Fiscal entity of the order, Currently it is a purely informative field
+      properties:
+        address:
+          $ref: '#/components/schemas/order_fiscal_entity_address_response'
+        email:
+          description: Email of the fiscal entity
+          example: test@gmail.com
+          type: string
+          nullable: true
+        metadata:
+          additionalProperties: true
+          description: Metadata associated with the fiscal entity
+          maxProperties: 100
+          type: object
+        name:
+          description: Name of the fiscal entity
+          example: Conekta Inc
+          type: string
+          nullable: true
+        tax_id:
+          description: Tax ID of the fiscal entity
+          example: '324234234'
+          type: string
+          nullable: true
+        id:
+          description: ID of the fiscal entity
+          example: fis_ent_2tN85VYaSMyDvjB3M
+          type: string
+        created_at:
+          description: The time at which the object was created in seconds since the Unix epoch
+          example: 1676328434
+          format: int64
+          type: integer
+        object:
+          example: fiscal_entity
+          type: string
+        phone:
+          description: Phone of the fiscal entity
+          example: '+525511223344'
+          type: string
+          nullable: true
+      required:
+      - address
+      - created_at
+      - id
+      - object
+      title: order_fiscal_entity_response
+      nullable: true
+    product_data_response:
+      allOf:
+      - properties:
+          antifraud_info:
+            additionalProperties: true
+            example:
+              key: value
+            type: object
+          brand:
+            description: The brand of the item.
+            example: Cohiba
+            type: string
+          description:
+            description: Short description of the item
+            example: Imported From Mex.
+            maxLength: 250
+            type: string
+          metadata:
+            additionalProperties: true
+            default: {}
+            description: It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
+            example:
+              key: value
+            maxProperties: 100
+            type: object
+          name:
+            description: The name of the item. It will be displayed in the order.
+            example: Box of Cohiba S1s
+            type: string
+          quantity:
+            description: The quantity of the item in the order.
+            example: 1
+            format: int32
+            minimum: 1
+            type: integer
+          sku:
+            description: The stock keeping unit for the item. It is used to identify the item in the order.
+            example: XYZ12345
+            type: string
+          tags:
+            description: List of tags for the item. It is used to identify the item in the order.
+            example:
+            - food
+            - mexican food
+            items:
+              type: string
+            type: array
+          unit_price:
+            description: The price of the item in cents.
+            example: 20000
+            format: int32
+            minimum: 0
+            type: integer
+        required:
+        - name
+        - quantity
+        - unit_price
+        title: product
+      - properties:
+          id:
+            type: string
+          object:
+            type: string
+          parent_id:
+            type: string
+      title: product_data_response
+    order_response_products:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/product_data_response'
+            type: array
+      title: order_response_products
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
