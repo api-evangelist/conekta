@@ -1,46 +1,656 @@
 aid: conekta
 url: https://raw.githubusercontent.com/api-evangelist/conekta/refs/heads/main/apis.yml
 apis:
-  - aid: conekta:conekta-api
-    name: Conekta API
-    tags:
-      - Payments
-      - Cards
-      - Cash
-      - OXXO
-      - SPEI
-      - Mexico
-      - Latin America
-      - Subscriptions
-      - Antifraud
-      - Webhooks
-    humanURL: https://developers.conekta.com/reference
-    baseURL: https://api.conekta.io
-    properties:
-      - url: https://developers.conekta.com/reference
-        type: Documentation
-      - url: https://developers.conekta.com/docs/welcome
-        type: Documentation
-      - url: https://developers.conekta.com/reference/autenticación
-        type: Authentication
-      - url: openapi/conekta-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/conekta-order-schema.json
-        type: JSONSchema
-      - url: json-schema/conekta-charge-schema.json
-        type: JSONSchema
-      - url: json-schema/conekta-customer-schema.json
-        type: JSONSchema
-      - url: json-ld/conekta-context.jsonld
-        type: JSONLD
-      - url: rules/conekta-rules.yml
-        type: Spectral
-    description: >-
-      Conekta's REST API for accepting online payments in Mexico — credit and debit cards (Visa, Mastercard, Amex), OXXO
-      cash vouchers, SPEI bank transfers, Apple Pay, Google Pay, and Buy Now Pay Later. The 2.2.0 API covers Orders,
-      Charges, Customers, Plans, Subscriptions, Payment Links, Webhooks, Tokens, Payment Methods, Antifraud
-      whitelists/blacklists, Payout Orders, Transfers, Balances, Events, and Logs, secured with bearer auth and an
-      Accept-Language header for localized Spanish-language responses.
+- aid: conekta:conekta-antifraud-api
+  name: Conekta Antifraud API
+  description: The Antifraud API from Conekta — 4 operation(s) for antifraud.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Antifraud
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-antifraud-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-api-keys-api
+  name: Conekta Api Keys API
+  description: The Api Keys API from Conekta — 2 operation(s) for api keys.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Api Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-balances-api
+  name: Conekta Balances API
+  description: The Balances API from Conekta — 1 operation(s) for balances.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Balances
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-balances-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-charges-api
+  name: Conekta Charges API
+  description: The Charges API from Conekta — 4 operation(s) for charges.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Charges
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-charges-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-companies-api
+  name: Conekta Companies API
+  description: The Companies API from Conekta — 5 operation(s) for companies.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-companies-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-customers-api
+  name: Conekta Customers API
+  description: The Customers API from Conekta — 4 operation(s) for customers.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-customers-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-discounts-api
+  name: Conekta Discounts API
+  description: The Discounts API from Conekta — 2 operation(s) for discounts.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Discounts
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-discounts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-events-api
+  name: Conekta Events API
+  description: The Events API from Conekta — 3 operation(s) for events.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-events-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-logs-api
+  name: Conekta Logs API
+  description: The Logs API from Conekta — 2 operation(s) for logs.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-logs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-orders-api
+  name: Conekta Orders API
+  description: The Orders API from Conekta — 6 operation(s) for orders.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-payment-link-api
+  name: Conekta Payment Link API
+  description: The Payment Link API from Conekta — 5 operation(s) for payment link.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Payment Link
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-payment-link-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-payment-methods-api
+  name: Conekta Payment Methods API
+  description: The Payment Methods API from Conekta — 2 operation(s) for payment methods.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Payment Methods
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-payment-methods-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-payout-orders-api
+  name: Conekta Payout Orders API
+  description: The Payout Orders API from Conekta — 3 operation(s) for payout orders.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Payout Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-payout-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-plans-api
+  name: Conekta Plans API
+  description: The Plans API from Conekta — 2 operation(s) for plans.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Plans
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-plans-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-products-api
+  name: Conekta Products API
+  description: The Products API from Conekta — 2 operation(s) for products.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-products-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-shipping-contacts-api
+  name: Conekta Shipping Contacts API
+  description: The Shipping Contacts API from Conekta — 2 operation(s) for shipping contacts.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Shipping Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-shipping-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-shippings-api
+  name: Conekta Shippings API
+  description: The Shippings API from Conekta — 2 operation(s) for shippings.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Shippings
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-shippings-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-subscriptions-api
+  name: Conekta Subscriptions API
+  description: All subscription-related endpoints including creation, management, and events
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-subscriptions-customer-portal-api
+  name: Conekta Subscriptions - Customer Portal API
+  description: Customer portal endpoints for subscriptions
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Subscriptions - Customer Portal
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-subscriptions-customer-portal-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-taxes-api
+  name: Conekta Taxes API
+  description: The Taxes API from Conekta — 2 operation(s) for taxes.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Taxes
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-taxes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-tokens-api
+  name: Conekta Tokens API
+  description: The Tokens API from Conekta — 1 operation(s) for tokens.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-transactions-api
+  name: Conekta Transactions API
+  description: The Transactions API from Conekta — 2 operation(s) for transactions.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-transfers-api
+  name: Conekta Transfers API
+  description: The Transfers API from Conekta — 2 operation(s) for transfers.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Transfers
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-transfers-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-webhook-keys-api
+  name: Conekta Webhook keys API
+  description: The Webhook keys API from Conekta — 2 operation(s) for webhook keys.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Webhook keys
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-webhook-keys-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-webhooks-api
+  name: Conekta Webhooks API
+  description: The Webhooks API from Conekta — 3 operation(s) for webhooks.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
 name: Conekta
 tags:
   - Payments
@@ -59,7 +669,20 @@ tags:
   - BNPL
   - 3D Secure
 kind: contract
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/conekta.png
 access: 3rd-Party
 common:
   - type: AgenticAccess
