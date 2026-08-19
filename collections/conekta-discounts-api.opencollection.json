@@ -1,0 +1,239 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conekta Antifraud Discounts API",
+    "version": "2.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a List of Discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/orders/:id/discount_lines",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of items to return, the maximum value is 250"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General order search, e.g. by mail, reference etc."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "next page"
+              },
+              {
+                "name": "previous",
+                "value": "",
+                "type": "query",
+                "description": "previous page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get discount lines for an existing orden"
+        },
+        {
+          "info": {
+            "name": "Create Discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.conekta.io/orders/:id/discount_lines",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create discount lines for an existing orden"
+        },
+        {
+          "info": {
+            "name": "Get Discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/orders/:id/discount_lines/:discount_lines_id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              },
+              {
+                "name": "discount_lines_id",
+                "value": "dis_lin_2tQ974hSHcsdeSZHG",
+                "type": "path",
+                "description": "discount line id identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get an existing discount lines for an existing orden"
+        },
+        {
+          "info": {
+            "name": "Update Discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.conekta.io/orders/:id/discount_lines/:discount_lines_id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              },
+              {
+                "name": "discount_lines_id",
+                "value": "dis_lin_2tQ974hSHcsdeSZHG",
+                "type": "path",
+                "description": "discount line id identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing discount lines for an existing orden"
+        },
+        {
+          "info": {
+            "name": "Delete Discount",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.conekta.io/orders/:id/discount_lines/:discount_lines_id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              },
+              {
+                "name": "discount_lines_id",
+                "value": "dis_lin_2tQ974hSHcsdeSZHG",
+                "type": "path",
+                "description": "discount line id identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete an existing discount lines for an existing orden"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

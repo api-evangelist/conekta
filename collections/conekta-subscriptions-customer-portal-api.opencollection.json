@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conekta Antifraud Subscriptions - Customer Portal API",
+    "version": "2.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions - Customer Portal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get customer portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/subscriptions/:subscription_id/customer_portal",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the subscription resource"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves the customer portal for a subscription"
+        },
+        {
+          "info": {
+            "name": "Create customer portal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.conekta.io/subscriptions/:subscription_id/customer_portal",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the subscription resource"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Creates a customer portal for a subscription. If a portal already exists, returns the existing one."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

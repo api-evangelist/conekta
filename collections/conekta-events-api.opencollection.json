@@ -1,0 +1,141 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conekta Antifraud Events API",
+    "version": "2.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/events",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of items to return, the maximum value is 250"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General order search, e.g. by mail, reference etc."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "next page"
+              },
+              {
+                "name": "previous",
+                "value": "",
+                "type": "query",
+                "description": "previous page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get list of Events"
+        },
+        {
+          "info": {
+            "name": "Get Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/events/:id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns a single event"
+        },
+        {
+          "info": {
+            "name": "Resend Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.conekta.io/events/:event_id/resend",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "event_id",
+                "value": "6463d6e35a4c3e001819e760",
+                "type": "path",
+                "description": "event identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Resend event to selected webhooks"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

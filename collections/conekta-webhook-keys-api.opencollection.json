@@ -1,0 +1,195 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conekta Antifraud Webhook keys API",
+    "version": "2.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhook keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get List of Webhook Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/webhook_keys",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of items to return, the maximum value is 250"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General order search, e.g. by mail, reference etc."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "next page"
+              },
+              {
+                "name": "previous",
+                "value": "",
+                "type": "query",
+                "description": "previous page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Consume the list of webhook keys you have"
+        },
+        {
+          "info": {
+            "name": "Create Webhook Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.conekta.io/webhook_keys",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a webhook key"
+        },
+        {
+          "info": {
+            "name": "Get Webhook Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/webhook_keys/:id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Webhook Key"
+        },
+        {
+          "info": {
+            "name": "Update Webhook Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.conekta.io/webhook_keys/:id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "updates an existing webhook key"
+        },
+        {
+          "info": {
+            "name": "Delete Webhook key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.conekta.io/webhook_keys/:id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete Webhook key"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,203 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conekta Antifraud Plans API",
+    "version": "2.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get A List of Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/plans",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of items to return, the maximum value is 250"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General order search, e.g. by mail, reference etc."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "next page"
+              },
+              {
+                "name": "previous",
+                "value": "",
+                "type": "query",
+                "description": "previous page"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get A List of Plans"
+        },
+        {
+          "info": {
+            "name": "Create Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.conekta.io/plans",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new plan for an existing order"
+        },
+        {
+          "info": {
+            "name": "Get Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/plans/:id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Plan"
+        },
+        {
+          "info": {
+            "name": "Update Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.conekta.io/plans/:id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update Plan"
+        },
+        {
+          "info": {
+            "name": "Delete Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.conekta.io/plans/:id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete Plan"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

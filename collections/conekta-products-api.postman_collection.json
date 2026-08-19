@@ -1,0 +1,1340 @@
+{
+  "item": [
+    {
+      "id": "8329de8b-ef6c-41b8-b6e0-fc05e3557840",
+      "name": "Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "49d3e79f-26d0-4505-974a-8a637abc547e",
+          "name": "Create Product",
+          "request": {
+            "name": "Create Product",
+            "description": {
+              "content": "Create a new product for an existing order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":id",
+                "line_items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "disabled": false,
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"quantity\": \"<integer>\",\n  \"unit_price\": \"<integer>\",\n  \"antifraud_info\": {\n    \"key_0\": false\n  },\n  \"brand\": \"<string>\",\n  \"description\": \"<string>\",\n  \"metadata\": {},\n  \"sku\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be0dfa63-6aaa-4400-9c36-f9f19dc40986",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Box of Cohiba S1s\",\n  \"quantity\": 1,\n  \"unit_price\": 20000,\n  \"antifraud_info\": {\n    \"key\": \"value\"\n  },\n  \"brand\": \"Cohiba\",\n  \"description\": \"Imported From Mex.\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"sku\": \"XYZ12345\",\n  \"tags\": [\n    \"food\",\n    \"mexican food\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Box of Cohiba S1s\",\n  \"quantity\": 1,\n  \"unit_price\": 20000,\n  \"antifraud_info\": {\n    \"key\": \"value\"\n  },\n  \"brand\": \"Cohiba\",\n  \"description\": \"Imported From Mex.\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"sku\": \"XYZ12345\",\n  \"tags\": [\n    \"food\",\n    \"mexican food\"\n  ],\n  \"id\": \"string\",\n  \"object\": \"string\",\n  \"parent_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2b4a125-f4d6-4f53-af47-d6494e3053ef",
+              "name": "authentication error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Box of Cohiba S1s\",\n  \"quantity\": 1,\n  \"unit_price\": 20000,\n  \"antifraud_info\": {\n    \"key\": \"value\"\n  },\n  \"brand\": \"Cohiba\",\n  \"description\": \"Imported From Mex.\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"sku\": \"XYZ12345\",\n  \"tags\": [\n    \"food\",\n    \"mexican food\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "007b126c-0476-4efe-baeb-952a777f60b8",
+              "name": "not found entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Box of Cohiba S1s\",\n  \"quantity\": 1,\n  \"unit_price\": 20000,\n  \"antifraud_info\": {\n    \"key\": \"value\"\n  },\n  \"brand\": \"Cohiba\",\n  \"description\": \"Imported From Mex.\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"sku\": \"XYZ12345\",\n  \"tags\": [\n    \"food\",\n    \"mexican food\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bebf86f5-d817-4a67-b505-829001212c90",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Box of Cohiba S1s\",\n  \"quantity\": 1,\n  \"unit_price\": 20000,\n  \"antifraud_info\": {\n    \"key\": \"value\"\n  },\n  \"brand\": \"Cohiba\",\n  \"description\": \"Imported From Mex.\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"sku\": \"XYZ12345\",\n  \"tags\": [\n    \"food\",\n    \"mexican food\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e2cb173-1c42-439a-90cf-b4e99fcbdf80",
+          "name": "Delete Product",
+          "request": {
+            "name": "Delete Product",
+            "description": {
+              "content": "Delete product for an existing orden",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":id",
+                "line_items",
+                ":line_item_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "line_item_id",
+                  "description": "(Required) identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "disabled": false,
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f1dbb96d-2cd9-4327-a4f1-58b374acd851",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items",
+                    ":line_item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_item_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Box of Cohiba S1s\",\n  \"quantity\": 1,\n  \"unit_price\": 20000,\n  \"antifraud_info\": {\n    \"key\": \"value\"\n  },\n  \"brand\": \"Cohiba\",\n  \"description\": \"Imported From Mex.\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"sku\": \"XYZ12345\",\n  \"tags\": [\n    \"food\",\n    \"mexican food\"\n  ],\n  \"id\": \"string\",\n  \"object\": \"string\",\n  \"parent_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09fff805-47e0-4562-8583-8a530be1d439",
+              "name": "authentication error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items",
+                    ":line_item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_item_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e77bf7e-bd45-448c-ab7a-36691e4af79b",
+              "name": "not found entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items",
+                    ":line_item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_item_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aeab7a0e-7ae8-42dc-8333-087269ed0ba0",
+              "name": "parameter validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items",
+                    ":line_item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_item_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The token does not exist.\",\n      \"param\": \"payment_method.token_id\",\n      \"code\": \"conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token\",\n      \"debug_message\": \"The token does not exist.\"\n    }\n  ],\n  \"log_id\": \"641b6d813cd9a50001515017\",\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b0fc477-6a69-420c-90c5-403d6c628f33",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items",
+                    ":line_item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_item_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cb0fd563-0dbe-4fe1-8ba8-a4bf1d51cf64",
+          "name": "Update Product",
+          "request": {
+            "name": "Update Product",
+            "description": {
+              "content": "Update an existing product for an existing orden",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":id",
+                "line_items",
+                ":line_item_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "line_item_id",
+                  "description": "(Required) identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "disabled": false,
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"antifraud_info\": {\n    \"key_0\": \"<object>\"\n  },\n  \"description\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"<string>\",\n  \"unit_price\": \"<long>\",\n  \"quantity\": \"<integer>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"brand\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "950aea25-8040-48f4-8f91-f09abef066fd",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items",
+                    ":line_item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_item_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"antifraud_info\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\"\n  },\n  \"description\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"Box of Cohiba S1s\",\n  \"unit_price\": 20000,\n  \"quantity\": 1,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"brand\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"name\": \"Box of Cohiba S1s\",\n  \"quantity\": 1,\n  \"unit_price\": 20000,\n  \"antifraud_info\": {\n    \"key\": \"value\"\n  },\n  \"brand\": \"Cohiba\",\n  \"description\": \"Imported From Mex.\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"sku\": \"XYZ12345\",\n  \"tags\": [\n    \"food\",\n    \"mexican food\"\n  ],\n  \"id\": \"string\",\n  \"object\": \"string\",\n  \"parent_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9752d146-ceab-47de-9966-27e4ea2b1235",
+              "name": "authentication error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items",
+                    ":line_item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_item_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"antifraud_info\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\"\n  },\n  \"description\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"Box of Cohiba S1s\",\n  \"unit_price\": 20000,\n  \"quantity\": 1,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"brand\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "721281d1-b832-43f8-848b-298cc48b35d7",
+              "name": "not found entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items",
+                    ":line_item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_item_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"antifraud_info\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\"\n  },\n  \"description\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"Box of Cohiba S1s\",\n  \"unit_price\": 20000,\n  \"quantity\": 1,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"brand\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3188747-69c4-41a9-a3b4-30b29f4b7f9c",
+              "name": "parameter validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items",
+                    ":line_item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_item_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"antifraud_info\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\"\n  },\n  \"description\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"Box of Cohiba S1s\",\n  \"unit_price\": 20000,\n  \"quantity\": 1,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"brand\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The token does not exist.\",\n      \"param\": \"payment_method.token_id\",\n      \"code\": \"conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token\",\n      \"debug_message\": \"The token does not exist.\"\n    }\n  ],\n  \"log_id\": \"641b6d813cd9a50001515017\",\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b8473db-ad26-449b-bac4-c15a5650abda",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "line_items",
+                    ":line_item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line_item_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"antifraud_info\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\"\n  },\n  \"description\": \"<string>\",\n  \"sku\": \"<string>\",\n  \"name\": \"Box of Cohiba S1s\",\n  \"unit_price\": 20000,\n  \"quantity\": 1,\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"brand\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.conekta.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "209c296a-7630-4461-be0f-7f4692f4b102",
+    "name": "Conekta Antifraud Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
+      "type": "text/plain"
+    }
+  }
+}

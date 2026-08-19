@@ -1,0 +1,1630 @@
+{
+  "item": [
+    {
+      "id": "944887dd-3ae6-4991-8dac-0b8af020b920",
+      "name": "Charges",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b76f5a9-fade-4d12-85d0-3d36dd94360e",
+          "name": "Get A List of Charges",
+          "request": {
+            "name": "Get A List of Charges",
+            "description": {},
+            "url": {
+              "path": [
+                "charges"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "The numbers of items to return, the maximum value is 250"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "General order search, e.g. by mail, reference etc."
+                },
+                {
+                  "disabled": false,
+                  "key": "next",
+                  "value": "<string>",
+                  "description": "next page"
+                },
+                {
+                  "disabled": false,
+                  "key": "previous",
+                  "value": "<string>",
+                  "description": "previous page"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "disabled": false,
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a0162eef-d2a0-4819-b78d-65440af89c5e",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "previous",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The date and time that the response was sent",
+                  "key": "Date",
+                  "value": "Fri, 03 Feb 2023 16:57:48 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The length of the response body in bytes",
+                  "key": "Content-Length",
+                  "value": "2737"
+                },
+                {
+                  "disabled": false,
+                  "description": "The type of connection used to transfer the response",
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "disabled": false,
+                  "key": "Conekta-Media-Type",
+                  "value": "conekta-v2.2.0; format=application/json",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"has_more\": false,\n  \"object\": \"list\",\n  \"next_page_url\": \"https://api.conekta.io/resources?limit=10&next=chrg_1\",\n  \"previous_page_url\": \"https://api.conekta.io/resources?limit=10&previous=chrg_1\",\n  \"data\": [\n    {\n      \"amount\": 4321,\n      \"created_at\": 1676386026,\n      \"currency\": \"MXN\",\n      \"id\": \"63efa757cf65380001aec040\",\n      \"livemode\": false,\n      \"object\": \"charge\",\n      \"order_id\": \"ord_2tN73UdUSNrYRPD9r\",\n      \"status\": \"pending_payment\",\n      \"channel\": {\n        \"segment\": \"Checkout\",\n        \"checkout_request_id\": \"6fca054a-8519-4c43-971e-cea35cc519bb\",\n        \"checkout_request_type\": \"HostedPayment\",\n        \"id\": \"channel_2tNDzhA4Akmzj11AU\"\n      },\n      \"customer_id\": \"string\",\n      \"description\": \"Payment from order\",\n      \"device_fingerprint\": \"6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba\",\n      \"failure_code\": \"suspected_fraud\",\n      \"failure_message\": \"Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.\",\n      \"paid_at\": 1676390742,\n      \"payment_method\": {\n        \"object\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"agreement\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"auth_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"cashier_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"reference\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"barcode_url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"expires_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"product_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"service_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"store\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"store_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"customer_ip_address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"reference_id\": \"ref_2tN73UdUSNrYRPD9r\",\n      \"refunds\": {\n        \"has_more\": false,\n        \"object\": \"list\",\n        \"next_page_url\": \"https://api.conekta.io/resources?limit=10&next=chrg_1\",\n        \"previous_page_url\": \"https://api.conekta.io/resources?limit=10&previous=chrg_1\",\n        \"data\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"chargeback\": {\n        \"id\": \"chbk_2zPxWFUnGNLySoumn\",\n        \"status\": \"lost\",\n        \"reason\": \"unrecognized\",\n        \"note\": \"string\",\n        \"followup_status\": \"customer_unreachable\",\n        \"response_from_client\": \"string\",\n        \"files\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"file_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"file_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"object\": \"chargeback\",\n        \"charge_id\": \"6966a06c044243000156c24d\",\n        \"created_at\": 1768846800,\n        \"evidence_due_by\": 1769126399\n      }\n    },\n    {\n      \"amount\": 4321,\n      \"created_at\": 1676386026,\n      \"currency\": \"MXN\",\n      \"id\": \"63efa757cf65380001aec040\",\n      \"livemode\": false,\n      \"object\": \"charge\",\n      \"order_id\": \"ord_2tN73UdUSNrYRPD9r\",\n      \"status\": \"pending_payment\",\n      \"channel\": {\n        \"segment\": \"Checkout\",\n        \"checkout_request_id\": \"6fca054a-8519-4c43-971e-cea35cc519bb\",\n        \"checkout_request_type\": \"HostedPayment\",\n        \"id\": \"channel_2tNDzhA4Akmzj11AU\"\n      },\n      \"customer_id\": \"string\",\n      \"description\": \"Payment from order\",\n      \"device_fingerprint\": \"6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba\",\n      \"failure_code\": \"suspected_fraud\",\n      \"failure_message\": \"Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.\",\n      \"paid_at\": 1676390742,\n      \"payment_method\": {\n        \"object\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"agreement\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"auth_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"cashier_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"reference\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"barcode_url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"expires_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"product_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"service_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"store\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"store_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"customer_ip_address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"reference_id\": \"ref_2tN73UdUSNrYRPD9r\",\n      \"refunds\": {\n        \"has_more\": false,\n        \"object\": \"list\",\n        \"next_page_url\": \"https://api.conekta.io/resources?limit=10&next=chrg_1\",\n        \"previous_page_url\": \"https://api.conekta.io/resources?limit=10&previous=chrg_1\",\n        \"data\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"chargeback\": {\n        \"id\": \"chbk_2zPxWFUnGNLySoumn\",\n        \"status\": \"lost\",\n        \"reason\": \"unrecognized\",\n        \"note\": \"string\",\n        \"followup_status\": \"customer_unreachable\",\n        \"response_from_client\": \"string\",\n        \"files\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"file_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"file_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"object\": \"chargeback\",\n        \"charge_id\": \"6966a06c044243000156c24d\",\n        \"created_at\": 1768846800,\n        \"evidence_due_by\": 1769126399\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e00e5dc7-185f-4d4e-b061-1e8e84f2ec49",
+              "name": "whitelist validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "previous",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"The \\\"custom_field\\\" parameter is not allowed\",\n      \"message\": \"El parametro \\\"custom_field\\\" no está permitido\",\n      \"code\": \"conekta.errors.parameter_validation.whitelist\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\",\n  \"log_id\": \"6462aa7c90fef20001633546\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99087d9c-cf6b-43e6-86e7-9310a80ac182",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "previous",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4b98687-9992-45c1-95cb-0dadd951d51e",
+          "name": "Update a charge",
+          "request": {
+            "name": "Update a charge",
+            "description": {},
+            "url": {
+              "path": [
+                "charges",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "disabled": false,
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reference_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ee20a5ef-2d28-4463-a121-c15920ff5bb1",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference_id\": \"278482642\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The date and time that the response was sent",
+                  "key": "Date",
+                  "value": "Fri, 03 Feb 2023 16:57:48 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The length of the response body in bytes",
+                  "key": "Content-Length",
+                  "value": "2737"
+                },
+                {
+                  "disabled": false,
+                  "description": "The type of connection used to transfer the response",
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "disabled": false,
+                  "key": "Conekta-Media-Type",
+                  "value": "conekta-v2.2.0; format=application/json",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"amount\": 4321,\n  \"created_at\": 1676386026,\n  \"currency\": \"MXN\",\n  \"id\": \"63efa757cf65380001aec040\",\n  \"livemode\": false,\n  \"object\": \"charge\",\n  \"order_id\": \"ord_2tN73UdUSNrYRPD9r\",\n  \"status\": \"pending_payment\",\n  \"channel\": {\n    \"segment\": \"Checkout\",\n    \"checkout_request_id\": \"6fca054a-8519-4c43-971e-cea35cc519bb\",\n    \"checkout_request_type\": \"HostedPayment\",\n    \"id\": \"channel_2tNDzhA4Akmzj11AU\"\n  },\n  \"customer_id\": \"string\",\n  \"description\": \"Payment from order\",\n  \"device_fingerprint\": \"6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba\",\n  \"failure_code\": \"suspected_fraud\",\n  \"failure_message\": \"Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.\",\n  \"paid_at\": 1676390742,\n  \"payment_method\": {\n    \"object\": \"payment_source\",\n    \"type\": \"string\",\n    \"agreement\": \"agreement_2tN73UdUSNrYRPD9r\",\n    \"auth_code\": 542563,\n    \"cashier_id\": \"OINM01010\",\n    \"reference\": \"93000262276908\",\n    \"barcode_url\": \"https://barcodes.conekta.com/644ebf80f2243197aad6cd8810375b905b613dbe.png\",\n    \"expires_at\": 0,\n    \"product_type\": \"bbva_cash_in\",\n    \"service_name\": \"store\",\n    \"store\": \"10MON50EDI\",\n    \"store_name\": \"wallmart\",\n    \"customer_ip_address\": \"0.0.0.0\"\n  },\n  \"reference_id\": \"ref_2tN73UdUSNrYRPD9r\",\n  \"refunds\": {\n    \"has_more\": false,\n    \"object\": \"list\",\n    \"next_page_url\": \"https://api.conekta.io/resources?limit=10&next=chrg_1\",\n    \"previous_page_url\": \"https://api.conekta.io/resources?limit=10&previous=chrg_1\",\n    \"data\": [\n      {\n        \"amount\": -15000,\n        \"created_at\": 1678226878,\n        \"id\": \"6407b5bee1329a000175ba11\",\n        \"object\": \"refund\",\n        \"auth_code\": \"867372\",\n        \"expires_at\": 1678226878,\n        \"status\": \"pending\"\n      },\n      {\n        \"amount\": -15000,\n        \"created_at\": 1678226878,\n        \"id\": \"6407b5bee1329a000175ba11\",\n        \"object\": \"refund\",\n        \"auth_code\": \"867372\",\n        \"expires_at\": 1678226878,\n        \"status\": \"pending\"\n      }\n    ]\n  },\n  \"chargeback\": {\n    \"id\": \"chbk_2zPxWFUnGNLySoumn\",\n    \"status\": \"lost\",\n    \"reason\": \"unrecognized\",\n    \"note\": \"string\",\n    \"followup_status\": \"customer_contacted\",\n    \"response_from_client\": \"string\",\n    \"files\": [\n      {\n        \"id\": \"chbkf_2zPxWFUnGNLySoums\",\n        \"file_name\": \"20251221500000000000201.pdf\",\n        \"url\": \"string\",\n        \"created_at\": 1768846800\n      },\n      {\n        \"id\": \"chbkf_2zPxWFUnGNLySoums\",\n        \"file_name\": \"20251221500000000000201.pdf\",\n        \"url\": \"string\",\n        \"created_at\": 1768846800\n      }\n    ],\n    \"object\": \"chargeback\",\n    \"charge_id\": \"6966a06c044243000156c24d\",\n    \"created_at\": 1768846800,\n    \"evidence_due_by\": 1769126399\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "825ae517-0f9e-4031-9682-1285fef1aeae",
+              "name": "not found entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference_id\": \"278482642\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd7c3ed8-a124-4a2e-a201-ba985aa27a0c",
+              "name": "whitelist validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference_id\": \"278482642\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"The \\\"custom_field\\\" parameter is not allowed\",\n      \"message\": \"El parametro \\\"custom_field\\\" no está permitido\",\n      \"code\": \"conekta.errors.parameter_validation.whitelist\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\",\n  \"log_id\": \"6462aa7c90fef20001633546\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a152958-f8c3-4087-beb2-3cc517fcf962",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "charges",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference_id\": \"278482642\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f216f88d-da8d-479c-b59f-cb377fc3d9fb",
+          "name": "Create charge",
+          "request": {
+            "name": "Create charge",
+            "description": {
+              "content": "Create charge for an existing orden",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":id",
+                "charges"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "disabled": false,
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payment_method\": {\n    \"product_type\": \"<string>\",\n    \"type\": \"<string>\",\n    \"expires_at\": \"<long>\"\n  },\n  \"amount\": \"<long>\",\n  \"reference_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a5b84b0e-7cdc-43ae-aa2a-5872c0b15a58",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method\": {\n    \"can_not_expire\": true,\n    \"cancel_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel\",\n    \"failure_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure\",\n    \"product_type\": \"aplazo_bnpl\",\n    \"success_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success\",\n    \"type\": \"bnpl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"amount\": 4321,\n  \"channel\": {\n    \"segment\": \"Checkout\",\n    \"checkout_request_id\": \"6fca054a-8519-4c43-971e-cea35cc519bb\",\n    \"checkout_request_type\": \"HostedPayment\",\n    \"id\": \"channel_2tNDzhA4Akmzj11AU\"\n  },\n  \"created_at\": 1676386026,\n  \"currency\": \"MXN\",\n  \"customer_id\": \"string\",\n  \"description\": \"Payment from order\",\n  \"device_fingerprint\": \"6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba\",\n  \"failure_code\": \"suspected_fraud\",\n  \"failure_message\": \"Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.\",\n  \"id\": \"63efa757cf65380001aec040\",\n  \"livemode\": true,\n  \"monthly_installments\": 9107,\n  \"object\": \"string\",\n  \"order_id\": \"ord_2tN73UdUSNrYRPD9r\",\n  \"paid_at\": 1676390742,\n  \"payment_method\": {\n    \"object\": \"payment_source\",\n    \"type\": \"string\",\n    \"agreement\": \"agreement_2tN73UdUSNrYRPD9r\",\n    \"auth_code\": 542563,\n    \"cashier_id\": \"OINM01010\",\n    \"reference\": \"93000262276908\",\n    \"barcode_url\": \"https://barcodes.conekta.com/644ebf80f2243197aad6cd8810375b905b613dbe.png\",\n    \"expires_at\": 0,\n    \"product_type\": \"bbva_cash_in\",\n    \"service_name\": \"store\",\n    \"store\": \"10MON50EDI\",\n    \"store_name\": \"wallmart\",\n    \"customer_ip_address\": \"0.0.0.0\"\n  },\n  \"reference_id\": \"ref_2tN73UdUSNrYRPD9r\",\n  \"status\": \"pending_payment\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d181a3bf-e747-4cf0-b8ef-9c6e2eb8128e",
+              "name": "authentication error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method\": {\n    \"can_not_expire\": true,\n    \"cancel_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel\",\n    \"failure_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure\",\n    \"product_type\": \"aplazo_bnpl\",\n    \"success_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success\",\n    \"type\": \"bnpl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "12061bba-86a9-45e9-8c01-8476330ca77e",
+              "name": "not found entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method\": {\n    \"can_not_expire\": true,\n    \"cancel_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel\",\n    \"failure_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure\",\n    \"product_type\": \"aplazo_bnpl\",\n    \"success_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success\",\n    \"type\": \"bnpl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd41ce9d-8ea9-4021-9c17-d65feae3c06d",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method\": {\n    \"can_not_expire\": true,\n    \"cancel_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel\",\n    \"failure_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure\",\n    \"product_type\": \"aplazo_bnpl\",\n    \"success_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success\",\n    \"type\": \"bnpl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"The order cannot be modified because it has already a charge which is pending payment.\",\n      \"message\": \"The order cannot be modified because it has already a charge which is pending payment.\",\n      \"code\": \"conekta.errors.precondition_required.combo.order.cannot_be_updated_because_has_charge\"\n    }\n  ],\n  \"log_id\": \"641b6e233cd9a50001515039\",\n  \"object\": \"error\",\n  \"type\": \"precondition_required_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2830dc51-9ffa-4b20-a8d5-fada7a487768",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method\": {\n    \"can_not_expire\": true,\n    \"cancel_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel\",\n    \"failure_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure\",\n    \"product_type\": \"aplazo_bnpl\",\n    \"success_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success\",\n    \"type\": \"bnpl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e5b306b-9e4b-4101-be17-fef9f5cfaa66",
+          "name": "Create charges",
+          "request": {
+            "name": "Create charges",
+            "description": {
+              "content": "Create charges for an existing orden",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":id",
+                "add_charges"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "disabled": false,
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payment_method\": {\n    \"product_type\": \"<string>\",\n    \"type\": \"<string>\",\n    \"expires_at\": \"<long>\"\n  },\n  \"amount\": \"<long>\",\n  \"reference_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dfc04733-cb48-4f08-a85b-ab3b7e9d4359",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "add_charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method\": {\n    \"can_not_expire\": true,\n    \"cancel_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel\",\n    \"failure_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure\",\n    \"product_type\": \"aplazo_bnpl\",\n    \"success_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success\",\n    \"type\": \"bnpl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"has_more\": false,\n  \"object\": \"list\",\n  \"next_page_url\": \"https://api.conekta.io/resources?limit=10&next=chrg_1\",\n  \"previous_page_url\": \"https://api.conekta.io/resources?limit=10&previous=chrg_1\",\n  \"data\": [\n    {\n      \"amount\": 4321,\n      \"created_at\": 1676386026,\n      \"currency\": \"MXN\",\n      \"id\": \"63efa757cf65380001aec040\",\n      \"livemode\": false,\n      \"object\": \"charge\",\n      \"order_id\": \"ord_2tN73UdUSNrYRPD9r\",\n      \"status\": \"pending_payment\",\n      \"channel\": {\n        \"segment\": \"Checkout\",\n        \"checkout_request_id\": \"6fca054a-8519-4c43-971e-cea35cc519bb\",\n        \"checkout_request_type\": \"HostedPayment\",\n        \"id\": \"channel_2tNDzhA4Akmzj11AU\"\n      },\n      \"customer_id\": \"string\",\n      \"description\": \"Payment from order\",\n      \"device_fingerprint\": \"6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba\",\n      \"failure_code\": \"suspected_fraud\",\n      \"failure_message\": \"Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.\",\n      \"paid_at\": 1676390742,\n      \"payment_method\": {\n        \"object\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"agreement\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"auth_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"cashier_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"reference\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"barcode_url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"expires_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"product_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"service_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"store\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"store_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"customer_ip_address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"reference_id\": \"ref_2tN73UdUSNrYRPD9r\",\n      \"refunds\": {\n        \"has_more\": false,\n        \"object\": \"list\",\n        \"next_page_url\": \"https://api.conekta.io/resources?limit=10&next=chrg_1\",\n        \"previous_page_url\": \"https://api.conekta.io/resources?limit=10&previous=chrg_1\",\n        \"data\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"chargeback\": {\n        \"id\": \"chbk_2zPxWFUnGNLySoumn\",\n        \"status\": \"lost\",\n        \"reason\": \"unrecognized\",\n        \"note\": \"string\",\n        \"followup_status\": \"customer_unreachable\",\n        \"response_from_client\": \"string\",\n        \"files\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"file_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"file_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"object\": \"chargeback\",\n        \"charge_id\": \"6966a06c044243000156c24d\",\n        \"created_at\": 1768846800,\n        \"evidence_due_by\": 1769126399\n      }\n    },\n    {\n      \"amount\": 4321,\n      \"created_at\": 1676386026,\n      \"currency\": \"MXN\",\n      \"id\": \"63efa757cf65380001aec040\",\n      \"livemode\": false,\n      \"object\": \"charge\",\n      \"order_id\": \"ord_2tN73UdUSNrYRPD9r\",\n      \"status\": \"pending_payment\",\n      \"channel\": {\n        \"segment\": \"Checkout\",\n        \"checkout_request_id\": \"6fca054a-8519-4c43-971e-cea35cc519bb\",\n        \"checkout_request_type\": \"HostedPayment\",\n        \"id\": \"channel_2tNDzhA4Akmzj11AU\"\n      },\n      \"customer_id\": \"string\",\n      \"description\": \"Payment from order\",\n      \"device_fingerprint\": \"6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba\",\n      \"failure_code\": \"suspected_fraud\",\n      \"failure_message\": \"Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.\",\n      \"paid_at\": 1676390742,\n      \"payment_method\": {\n        \"object\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"agreement\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"auth_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"cashier_id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"reference\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"barcode_url\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"expires_at\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"product_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"service_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"store\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"store_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"customer_ip_address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"reference_id\": \"ref_2tN73UdUSNrYRPD9r\",\n      \"refunds\": {\n        \"has_more\": false,\n        \"object\": \"list\",\n        \"next_page_url\": \"https://api.conekta.io/resources?limit=10&next=chrg_1\",\n        \"previous_page_url\": \"https://api.conekta.io/resources?limit=10&previous=chrg_1\",\n        \"data\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"chargeback\": {\n        \"id\": \"chbk_2zPxWFUnGNLySoumn\",\n        \"status\": \"lost\",\n        \"reason\": \"unrecognized\",\n        \"note\": \"string\",\n        \"followup_status\": \"customer_unreachable\",\n        \"response_from_client\": \"string\",\n        \"files\": [\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"file_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"file_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"created_at\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"object\": \"chargeback\",\n        \"charge_id\": \"6966a06c044243000156c24d\",\n        \"created_at\": 1768846800,\n        \"evidence_due_by\": 1769126399\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c04a5b67-127e-400e-991d-a10e9b74b000",
+              "name": "authentication error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "add_charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method\": {\n    \"can_not_expire\": true,\n    \"cancel_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel\",\n    \"failure_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure\",\n    \"product_type\": \"aplazo_bnpl\",\n    \"success_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success\",\n    \"type\": \"bnpl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8dba444-4c18-4f04-ac01-b8c5478cb1d0",
+              "name": "not found entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "add_charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method\": {\n    \"can_not_expire\": true,\n    \"cancel_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel\",\n    \"failure_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure\",\n    \"product_type\": \"aplazo_bnpl\",\n    \"success_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success\",\n    \"type\": \"bnpl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bdeefc5-e349-43ef-9f52-96248b552254",
+              "name": "Precondition Required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "add_charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method\": {\n    \"can_not_expire\": true,\n    \"cancel_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel\",\n    \"failure_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure\",\n    \"product_type\": \"aplazo_bnpl\",\n    \"success_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success\",\n    \"type\": \"bnpl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"The order cannot be modified because it has already a charge which is pending payment.\",\n      \"message\": \"The order cannot be modified because it has already a charge which is pending payment.\",\n      \"code\": \"conekta.errors.precondition_required.combo.order.cannot_be_updated_because_has_charge\"\n    }\n  ],\n  \"log_id\": \"641b6e233cd9a50001515039\",\n  \"object\": \"error\",\n  \"type\": \"precondition_required_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aae158bf-6c80-4d9b-bfcc-2a31f6d97580",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "add_charges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_method\": {\n    \"can_not_expire\": true,\n    \"cancel_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/cancel\",\n    \"failure_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/failure\",\n    \"product_type\": \"aplazo_bnpl\",\n    \"success_url\": \"https://pay.conekta.io/payment-status/fdcb06d6-c9e1-44ee-921f-17723b63852f/success\",\n    \"type\": \"bnpl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.conekta.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a059e9e4-eec3-402d-a9e3-380e45647e60",
+    "name": "Conekta Antifraud Charges API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
+      "type": "text/plain"
+    }
+  }
+}

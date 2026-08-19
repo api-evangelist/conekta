@@ -1,0 +1,1340 @@
+{
+  "item": [
+    {
+      "id": "3935c8c3-29cf-4f7a-8d0e-f614269fe973",
+      "name": "Taxes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1890cdb2-2f75-440f-8a72-8c811da7c0d2",
+          "name": "Create Tax",
+          "request": {
+            "name": "Create Tax",
+            "description": {
+              "content": "Create new taxes for an existing orden",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":id",
+                "tax_lines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "disabled": false,
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 7210.178168038814,\n    \"key_1\": \"string\",\n    \"key_2\": 9344.160462946207,\n    \"key_3\": 3534.479714705163,\n    \"key_4\": \"string\",\n    \"key_5\": 2577.337921638223,\n    \"key_6\": 9632.548659859698,\n    \"key_7\": false,\n    \"key_8\": \"string\",\n    \"key_9\": 6777.446285754261,\n    \"key_10\": true,\n    \"key_11\": true,\n    \"key_12\": 6405.421621722619,\n    \"key_13\": 5272.414810804414,\n    \"key_14\": 9480,\n    \"key_15\": 6857,\n    \"key_16\": 8363.778266491743,\n    \"key_17\": 8239,\n    \"key_18\": false,\n    \"key_19\": 3394.5962978736966,\n    \"key_20\": \"string\",\n    \"key_21\": false,\n    \"key_22\": true,\n    \"key_23\": 3631,\n    \"key_24\": \"string\",\n    \"key_25\": 7070.305793736681,\n    \"key_26\": true,\n    \"key_27\": true,\n    \"key_28\": false,\n    \"key_29\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "10bc7d36-888a-4611-91f4-e9e1ada0097f",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key\": \"value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"id\": \"tax_lin_2tQ8dC5mg1UADmVPo\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"object\": \"tax_line\",\n  \"parent_id\": \"ord_2tPAmKCEJqh8RE6nY\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "340853ba-00d1-49ee-8355-c796bc6e37d0",
+              "name": "authentication error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key\": \"value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38da7e50-4e78-4a8c-9525-eb4963c6c996",
+              "name": "not found entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key\": \"value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f20a2e56-ac5c-4ded-90fa-deccfd356850",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key\": \"value\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "962ea36c-9116-408c-a63a-e43aa5f73507",
+          "name": "Delete Tax",
+          "request": {
+            "name": "Delete Tax",
+            "description": {
+              "content": "Delete taxes for an existing orden",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":id",
+                "tax_lines",
+                ":tax_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tax_id",
+                  "description": "(Required) identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "disabled": false,
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7201bfd6-36ed-4b00-82c1-956e11748df5",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines",
+                    ":tax_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tax_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"id\": \"tax_lin_2tQ8dC5mg1UADmVPo\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"object\": \"tax_line\",\n  \"parent_id\": \"ord_2tPAmKCEJqh8RE6nY\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b8817e8-4710-4117-a1e4-dca01bc979f6",
+              "name": "authentication error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines",
+                    ":tax_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tax_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a49cdd5-9068-46fb-8959-090309678009",
+              "name": "not found entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines",
+                    ":tax_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tax_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de4b5146-c332-455b-9897-ac1d23e02ead",
+              "name": "parameter validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines",
+                    ":tax_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tax_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The token does not exist.\",\n      \"param\": \"payment_method.token_id\",\n      \"code\": \"conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token\",\n      \"debug_message\": \"The token does not exist.\"\n    }\n  ],\n  \"log_id\": \"641b6d813cd9a50001515017\",\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edccaa27-e399-4475-af18-760cc81e53cc",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines",
+                    ":tax_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tax_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "655f633c-684b-48ed-8d63-3ae1eeeecf5a",
+          "name": "Update Tax",
+          "request": {
+            "name": "Update Tax",
+            "description": {
+              "content": "Update taxes for an existing orden",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orders",
+                ":id",
+                "tax_lines",
+                ":tax_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Identifier of the resource"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tax_id",
+                  "description": "(Required) identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "disabled": false,
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\",\n    \"key_3\": \"<object>\",\n    \"key_4\": \"<object>\",\n    \"key_5\": \"<object>\",\n    \"key_6\": \"<object>\",\n    \"key_7\": \"<object>\",\n    \"key_8\": \"<object>\",\n    \"key_9\": \"<object>\",\n    \"key_10\": \"<object>\",\n    \"key_11\": \"<object>\",\n    \"key_12\": \"<object>\",\n    \"key_13\": \"<object>\",\n    \"key_14\": \"<object>\",\n    \"key_15\": \"<object>\",\n    \"key_16\": \"<object>\",\n    \"key_17\": \"<object>\",\n    \"key_18\": \"<object>\",\n    \"key_19\": \"<object>\",\n    \"key_20\": \"<object>\",\n    \"key_21\": \"<object>\",\n    \"key_22\": \"<object>\",\n    \"key_23\": \"<object>\",\n    \"key_24\": \"<object>\",\n    \"key_25\": \"<object>\",\n    \"key_26\": \"<object>\",\n    \"key_27\": \"<object>\",\n    \"key_28\": \"<object>\",\n    \"key_29\": \"<object>\",\n    \"key_30\": \"<object>\",\n    \"key_31\": \"<object>\",\n    \"key_32\": \"<object>\",\n    \"key_33\": \"<object>\",\n    \"key_34\": \"<object>\",\n    \"key_35\": \"<object>\",\n    \"key_36\": \"<object>\",\n    \"key_37\": \"<object>\",\n    \"key_38\": \"<object>\",\n    \"key_39\": \"<object>\",\n    \"key_40\": \"<object>\",\n    \"key_41\": \"<object>\",\n    \"key_42\": \"<object>\",\n    \"key_43\": \"<object>\",\n    \"key_44\": \"<object>\",\n    \"key_45\": \"<object>\",\n    \"key_46\": \"<object>\",\n    \"key_47\": \"<object>\",\n    \"key_48\": \"<object>\",\n    \"key_49\": \"<object>\",\n    \"key_50\": \"<object>\",\n    \"key_51\": \"<object>\",\n    \"key_52\": \"<object>\",\n    \"key_53\": \"<object>\",\n    \"key_54\": \"<object>\",\n    \"key_55\": \"<object>\",\n    \"key_56\": \"<object>\",\n    \"key_57\": \"<object>\",\n    \"key_58\": \"<object>\",\n    \"key_59\": \"<object>\",\n    \"key_60\": \"<object>\",\n    \"key_61\": \"<object>\",\n    \"key_62\": \"<object>\",\n    \"key_63\": \"<object>\",\n    \"key_64\": \"<object>\",\n    \"key_65\": \"<object>\",\n    \"key_66\": \"<object>\",\n    \"key_67\": \"<object>\",\n    \"key_68\": \"<object>\",\n    \"key_69\": \"<object>\",\n    \"key_70\": \"<object>\",\n    \"key_71\": \"<object>\",\n    \"key_72\": \"<object>\",\n    \"key_73\": \"<object>\",\n    \"key_74\": \"<object>\",\n    \"key_75\": \"<object>\",\n    \"key_76\": \"<object>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1479ef6d-57fc-43eb-afea-777c9630c24d",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines",
+                    ":tax_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tax_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\",\n    \"key_3\": \"<object>\",\n    \"key_4\": \"<object>\",\n    \"key_5\": \"<object>\",\n    \"key_6\": \"<object>\",\n    \"key_7\": \"<object>\",\n    \"key_8\": \"<object>\",\n    \"key_9\": \"<object>\",\n    \"key_10\": \"<object>\",\n    \"key_11\": \"<object>\",\n    \"key_12\": \"<object>\",\n    \"key_13\": \"<object>\",\n    \"key_14\": \"<object>\",\n    \"key_15\": \"<object>\",\n    \"key_16\": \"<object>\",\n    \"key_17\": \"<object>\",\n    \"key_18\": \"<object>\",\n    \"key_19\": \"<object>\",\n    \"key_20\": \"<object>\",\n    \"key_21\": \"<object>\",\n    \"key_22\": \"<object>\",\n    \"key_23\": \"<object>\",\n    \"key_24\": \"<object>\",\n    \"key_25\": \"<object>\",\n    \"key_26\": \"<object>\",\n    \"key_27\": \"<object>\",\n    \"key_28\": \"<object>\",\n    \"key_29\": \"<object>\",\n    \"key_30\": \"<object>\",\n    \"key_31\": \"<object>\",\n    \"key_32\": \"<object>\",\n    \"key_33\": \"<object>\",\n    \"key_34\": \"<object>\",\n    \"key_35\": \"<object>\",\n    \"key_36\": \"<object>\",\n    \"key_37\": \"<object>\",\n    \"key_38\": \"<object>\",\n    \"key_39\": \"<object>\",\n    \"key_40\": \"<object>\",\n    \"key_41\": \"<object>\",\n    \"key_42\": \"<object>\",\n    \"key_43\": \"<object>\",\n    \"key_44\": \"<object>\",\n    \"key_45\": \"<object>\",\n    \"key_46\": \"<object>\",\n    \"key_47\": \"<object>\",\n    \"key_48\": \"<object>\",\n    \"key_49\": \"<object>\",\n    \"key_50\": \"<object>\",\n    \"key_51\": \"<object>\",\n    \"key_52\": \"<object>\",\n    \"key_53\": \"<object>\",\n    \"key_54\": \"<object>\",\n    \"key_55\": \"<object>\",\n    \"key_56\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"id\": \"tax_lin_2tQ8dC5mg1UADmVPo\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"object\": \"tax_line\",\n  \"parent_id\": \"ord_2tPAmKCEJqh8RE6nY\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "503583f7-6634-431f-ae91-bf76806389ed",
+              "name": "authentication error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines",
+                    ":tax_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tax_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\",\n    \"key_3\": \"<object>\",\n    \"key_4\": \"<object>\",\n    \"key_5\": \"<object>\",\n    \"key_6\": \"<object>\",\n    \"key_7\": \"<object>\",\n    \"key_8\": \"<object>\",\n    \"key_9\": \"<object>\",\n    \"key_10\": \"<object>\",\n    \"key_11\": \"<object>\",\n    \"key_12\": \"<object>\",\n    \"key_13\": \"<object>\",\n    \"key_14\": \"<object>\",\n    \"key_15\": \"<object>\",\n    \"key_16\": \"<object>\",\n    \"key_17\": \"<object>\",\n    \"key_18\": \"<object>\",\n    \"key_19\": \"<object>\",\n    \"key_20\": \"<object>\",\n    \"key_21\": \"<object>\",\n    \"key_22\": \"<object>\",\n    \"key_23\": \"<object>\",\n    \"key_24\": \"<object>\",\n    \"key_25\": \"<object>\",\n    \"key_26\": \"<object>\",\n    \"key_27\": \"<object>\",\n    \"key_28\": \"<object>\",\n    \"key_29\": \"<object>\",\n    \"key_30\": \"<object>\",\n    \"key_31\": \"<object>\",\n    \"key_32\": \"<object>\",\n    \"key_33\": \"<object>\",\n    \"key_34\": \"<object>\",\n    \"key_35\": \"<object>\",\n    \"key_36\": \"<object>\",\n    \"key_37\": \"<object>\",\n    \"key_38\": \"<object>\",\n    \"key_39\": \"<object>\",\n    \"key_40\": \"<object>\",\n    \"key_41\": \"<object>\",\n    \"key_42\": \"<object>\",\n    \"key_43\": \"<object>\",\n    \"key_44\": \"<object>\",\n    \"key_45\": \"<object>\",\n    \"key_46\": \"<object>\",\n    \"key_47\": \"<object>\",\n    \"key_48\": \"<object>\",\n    \"key_49\": \"<object>\",\n    \"key_50\": \"<object>\",\n    \"key_51\": \"<object>\",\n    \"key_52\": \"<object>\",\n    \"key_53\": \"<object>\",\n    \"key_54\": \"<object>\",\n    \"key_55\": \"<object>\",\n    \"key_56\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43ec4a72-77ed-432d-a301-98a3f19050cf",
+              "name": "not found entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines",
+                    ":tax_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tax_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\",\n    \"key_3\": \"<object>\",\n    \"key_4\": \"<object>\",\n    \"key_5\": \"<object>\",\n    \"key_6\": \"<object>\",\n    \"key_7\": \"<object>\",\n    \"key_8\": \"<object>\",\n    \"key_9\": \"<object>\",\n    \"key_10\": \"<object>\",\n    \"key_11\": \"<object>\",\n    \"key_12\": \"<object>\",\n    \"key_13\": \"<object>\",\n    \"key_14\": \"<object>\",\n    \"key_15\": \"<object>\",\n    \"key_16\": \"<object>\",\n    \"key_17\": \"<object>\",\n    \"key_18\": \"<object>\",\n    \"key_19\": \"<object>\",\n    \"key_20\": \"<object>\",\n    \"key_21\": \"<object>\",\n    \"key_22\": \"<object>\",\n    \"key_23\": \"<object>\",\n    \"key_24\": \"<object>\",\n    \"key_25\": \"<object>\",\n    \"key_26\": \"<object>\",\n    \"key_27\": \"<object>\",\n    \"key_28\": \"<object>\",\n    \"key_29\": \"<object>\",\n    \"key_30\": \"<object>\",\n    \"key_31\": \"<object>\",\n    \"key_32\": \"<object>\",\n    \"key_33\": \"<object>\",\n    \"key_34\": \"<object>\",\n    \"key_35\": \"<object>\",\n    \"key_36\": \"<object>\",\n    \"key_37\": \"<object>\",\n    \"key_38\": \"<object>\",\n    \"key_39\": \"<object>\",\n    \"key_40\": \"<object>\",\n    \"key_41\": \"<object>\",\n    \"key_42\": \"<object>\",\n    \"key_43\": \"<object>\",\n    \"key_44\": \"<object>\",\n    \"key_45\": \"<object>\",\n    \"key_46\": \"<object>\",\n    \"key_47\": \"<object>\",\n    \"key_48\": \"<object>\",\n    \"key_49\": \"<object>\",\n    \"key_50\": \"<object>\",\n    \"key_51\": \"<object>\",\n    \"key_52\": \"<object>\",\n    \"key_53\": \"<object>\",\n    \"key_54\": \"<object>\",\n    \"key_55\": \"<object>\",\n    \"key_56\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e83f94f-eff6-4679-9234-86acdce9b583",
+              "name": "parameter validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines",
+                    ":tax_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tax_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\",\n    \"key_3\": \"<object>\",\n    \"key_4\": \"<object>\",\n    \"key_5\": \"<object>\",\n    \"key_6\": \"<object>\",\n    \"key_7\": \"<object>\",\n    \"key_8\": \"<object>\",\n    \"key_9\": \"<object>\",\n    \"key_10\": \"<object>\",\n    \"key_11\": \"<object>\",\n    \"key_12\": \"<object>\",\n    \"key_13\": \"<object>\",\n    \"key_14\": \"<object>\",\n    \"key_15\": \"<object>\",\n    \"key_16\": \"<object>\",\n    \"key_17\": \"<object>\",\n    \"key_18\": \"<object>\",\n    \"key_19\": \"<object>\",\n    \"key_20\": \"<object>\",\n    \"key_21\": \"<object>\",\n    \"key_22\": \"<object>\",\n    \"key_23\": \"<object>\",\n    \"key_24\": \"<object>\",\n    \"key_25\": \"<object>\",\n    \"key_26\": \"<object>\",\n    \"key_27\": \"<object>\",\n    \"key_28\": \"<object>\",\n    \"key_29\": \"<object>\",\n    \"key_30\": \"<object>\",\n    \"key_31\": \"<object>\",\n    \"key_32\": \"<object>\",\n    \"key_33\": \"<object>\",\n    \"key_34\": \"<object>\",\n    \"key_35\": \"<object>\",\n    \"key_36\": \"<object>\",\n    \"key_37\": \"<object>\",\n    \"key_38\": \"<object>\",\n    \"key_39\": \"<object>\",\n    \"key_40\": \"<object>\",\n    \"key_41\": \"<object>\",\n    \"key_42\": \"<object>\",\n    \"key_43\": \"<object>\",\n    \"key_44\": \"<object>\",\n    \"key_45\": \"<object>\",\n    \"key_46\": \"<object>\",\n    \"key_47\": \"<object>\",\n    \"key_48\": \"<object>\",\n    \"key_49\": \"<object>\",\n    \"key_50\": \"<object>\",\n    \"key_51\": \"<object>\",\n    \"key_52\": \"<object>\",\n    \"key_53\": \"<object>\",\n    \"key_54\": \"<object>\",\n    \"key_55\": \"<object>\",\n    \"key_56\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The token does not exist.\",\n      \"param\": \"payment_method.token_id\",\n      \"code\": \"conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token\",\n      \"debug_message\": \"The token does not exist.\"\n    }\n  ],\n  \"log_id\": \"641b6d813cd9a50001515017\",\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cc02555-88c4-43f6-be7a-9d2afef4ef17",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orders",
+                    ":id",
+                    "tax_lines",
+                    ":tax_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Identifier of the resource"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tax_id",
+                      "description": "(Required) identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\",\n    \"key_3\": \"<object>\",\n    \"key_4\": \"<object>\",\n    \"key_5\": \"<object>\",\n    \"key_6\": \"<object>\",\n    \"key_7\": \"<object>\",\n    \"key_8\": \"<object>\",\n    \"key_9\": \"<object>\",\n    \"key_10\": \"<object>\",\n    \"key_11\": \"<object>\",\n    \"key_12\": \"<object>\",\n    \"key_13\": \"<object>\",\n    \"key_14\": \"<object>\",\n    \"key_15\": \"<object>\",\n    \"key_16\": \"<object>\",\n    \"key_17\": \"<object>\",\n    \"key_18\": \"<object>\",\n    \"key_19\": \"<object>\",\n    \"key_20\": \"<object>\",\n    \"key_21\": \"<object>\",\n    \"key_22\": \"<object>\",\n    \"key_23\": \"<object>\",\n    \"key_24\": \"<object>\",\n    \"key_25\": \"<object>\",\n    \"key_26\": \"<object>\",\n    \"key_27\": \"<object>\",\n    \"key_28\": \"<object>\",\n    \"key_29\": \"<object>\",\n    \"key_30\": \"<object>\",\n    \"key_31\": \"<object>\",\n    \"key_32\": \"<object>\",\n    \"key_33\": \"<object>\",\n    \"key_34\": \"<object>\",\n    \"key_35\": \"<object>\",\n    \"key_36\": \"<object>\",\n    \"key_37\": \"<object>\",\n    \"key_38\": \"<object>\",\n    \"key_39\": \"<object>\",\n    \"key_40\": \"<object>\",\n    \"key_41\": \"<object>\",\n    \"key_42\": \"<object>\",\n    \"key_43\": \"<object>\",\n    \"key_44\": \"<object>\",\n    \"key_45\": \"<object>\",\n    \"key_46\": \"<object>\",\n    \"key_47\": \"<object>\",\n    \"key_48\": \"<object>\",\n    \"key_49\": \"<object>\",\n    \"key_50\": \"<object>\",\n    \"key_51\": \"<object>\",\n    \"key_52\": \"<object>\",\n    \"key_53\": \"<object>\",\n    \"key_54\": \"<object>\",\n    \"key_55\": \"<object>\",\n    \"key_56\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.conekta.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dce7d869-10ab-40af-b86b-7e57c946dbc0",
+    "name": "Conekta Antifraud Taxes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
+      "type": "text/plain"
+    }
+  }
+}

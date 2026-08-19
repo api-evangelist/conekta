@@ -1,0 +1,674 @@
+{
+  "item": [
+    {
+      "id": "85f3d221-e437-4ec7-bdf5-85443520f009",
+      "name": "Subscriptions - Customer Portal",
+      "description": {
+        "content": "Customer portal endpoints for subscriptions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "726df5c0-6f82-46ec-bd66-40d94da2ecf8",
+          "name": "Get customer portal",
+          "request": {
+            "name": "Get customer portal",
+            "description": {
+              "content": "Retrieves the customer portal for a subscription",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscription_id",
+                "customer_portal"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscription_id",
+                  "description": "(Required) Identifier of the subscription resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "disabled": false,
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "208c60da-bd48-465d-9510-92d2b5cd6eca",
+              "name": "Customer portal retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id",
+                    "customer_portal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) Identifier of the subscription resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The date and time that the response was sent",
+                  "key": "Date",
+                  "value": "Fri, 03 Feb 2023 16:57:48 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The length of the response body in bytes",
+                  "key": "Content-Length",
+                  "value": "2737"
+                },
+                {
+                  "disabled": false,
+                  "description": "The type of connection used to transfer the response",
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "disabled": false,
+                  "key": "Conekta-Media-Type",
+                  "value": "conekta-v2.2.0; format=application/json",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"agIvD4QSBl4Nunq4TmuozMw2ThtyVC\",\n  \"subscription_id\": \"sub_2yYsQuYtXAbP1fdYu\",\n  \"customer_id\": \"cus_2yDzKtEAD3khH8Sga\",\n  \"livemode\": false,\n  \"subscription\": {\n    \"card\": {\n      \"id\": \"src_2yw5zPrVahTy7xy7P\",\n      \"created_at\": 1761745218,\n      \"active\": true,\n      \"object\": \"card\",\n      \"exp_month\": \"05\",\n      \"exp_year\": \"26\",\n      \"brand\": \"mastercard\",\n      \"last4\": \"1005\",\n      \"name\": \"test\",\n      \"payment_source_status\": \"active\",\n      \"customer_id\": \"cus_2yDzKtEAD3khH8Sga\",\n      \"customer_custom_reference\": \"string\"\n    },\n    \"plan\": {\n      \"id\": \"VG5\",\n      \"object\": \"plan\",\n      \"name\": \"CLARO\",\n      \"amount\": 30000,\n      \"currency\": \"USD\",\n      \"interval\": \"month\",\n      \"frequency\": 1,\n      \"trial_period_days\": 9389,\n      \"expiry_count\": 1,\n      \"created_at\": 1742087277\n    },\n    \"id\": \"sub_2yYsQuYtXAbP1fdYu\",\n    \"object\": \"subscription\",\n    \"status\": \"canceled\",\n    \"plan_id\": \"VG5\",\n    \"customer_id\": \"cus_2yDzKtEAD3khH8Sga\",\n    \"next_billing_cycle\": 1876833632,\n    \"created_at\": 1755873642,\n    \"updated_at\": 1761745218\n  },\n  \"customer\": {\n    \"id\": \"cus_2yDzKtEAD3khH8Sga\",\n    \"object\": \"customer\",\n    \"name\": \"mao\",\n    \"email\": \"maoarroya@gmail.com\"\n  },\n  \"id\": \"scp_2ym7QbU9dTh7Froti\",\n  \"company_id\": \"63dad459920de10001d177b3\",\n  \"object\": \"customer_portal\",\n  \"created_at\": 1759108828,\n  \"updated_at\": 1759108828,\n  \"portal_url\": \"https://pay.stg.conekta.io/subscription/management/agIvD4QSBl4Nunq4TmuozMw2ThtyVC\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bef41cd2-3f59-4f87-a5de-204181085fcf",
+              "name": "authentication error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id",
+                    "customer_portal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) Identifier of the subscription resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8f69506-3c57-4e2a-84cd-f2f47afab4fc",
+              "name": "not found entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id",
+                    "customer_portal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) Identifier of the subscription resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e9d2f39-345d-4c9b-b682-08d0c3113d29",
+          "name": "Create customer portal",
+          "request": {
+            "name": "Create customer portal",
+            "description": {
+              "content": "Creates a customer portal for a subscription. If a portal already exists, returns the existing one.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscriptions",
+                ":subscription_id",
+                "customer_portal"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "subscription_id",
+                  "description": "(Required) Identifier of the subscription resource"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "disabled": false,
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9c3b507c-e0a6-4436-b695-d2470d885124",
+              "name": "Customer portal created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id",
+                    "customer_portal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) Identifier of the subscription resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The date and time that the response was sent",
+                  "key": "Date",
+                  "value": "Fri, 03 Feb 2023 16:57:48 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The length of the response body in bytes",
+                  "key": "Content-Length",
+                  "value": "2737"
+                },
+                {
+                  "disabled": false,
+                  "description": "The type of connection used to transfer the response",
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "disabled": false,
+                  "key": "Conekta-Media-Type",
+                  "value": "conekta-v2.2.0; format=application/json",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"agIvD4QSBl4Nunq4TmuozMw2ThtyVC\",\n  \"subscription_id\": \"sub_2yYsQuYtXAbP1fdYu\",\n  \"customer_id\": \"cus_2yDzKtEAD3khH8Sga\",\n  \"livemode\": false,\n  \"subscription\": {\n    \"card\": {\n      \"id\": \"src_2yw5zPrVahTy7xy7P\",\n      \"created_at\": 1761745218,\n      \"active\": true,\n      \"object\": \"card\",\n      \"exp_month\": \"05\",\n      \"exp_year\": \"26\",\n      \"brand\": \"mastercard\",\n      \"last4\": \"1005\",\n      \"name\": \"test\",\n      \"payment_source_status\": \"active\",\n      \"customer_id\": \"cus_2yDzKtEAD3khH8Sga\",\n      \"customer_custom_reference\": \"string\"\n    },\n    \"plan\": {\n      \"id\": \"VG5\",\n      \"object\": \"plan\",\n      \"name\": \"CLARO\",\n      \"amount\": 30000,\n      \"currency\": \"USD\",\n      \"interval\": \"month\",\n      \"frequency\": 1,\n      \"trial_period_days\": 9389,\n      \"expiry_count\": 1,\n      \"created_at\": 1742087277\n    },\n    \"id\": \"sub_2yYsQuYtXAbP1fdYu\",\n    \"object\": \"subscription\",\n    \"status\": \"canceled\",\n    \"plan_id\": \"VG5\",\n    \"customer_id\": \"cus_2yDzKtEAD3khH8Sga\",\n    \"next_billing_cycle\": 1876833632,\n    \"created_at\": 1755873642,\n    \"updated_at\": 1761745218\n  },\n  \"customer\": {\n    \"id\": \"cus_2yDzKtEAD3khH8Sga\",\n    \"object\": \"customer\",\n    \"name\": \"mao\",\n    \"email\": \"maoarroya@gmail.com\"\n  },\n  \"id\": \"scp_2ym7QbU9dTh7Froti\",\n  \"company_id\": \"63dad459920de10001d177b3\",\n  \"object\": \"customer_portal\",\n  \"created_at\": 1759108828,\n  \"updated_at\": 1759108828,\n  \"portal_url\": \"https://pay.stg.conekta.io/subscription/management/agIvD4QSBl4Nunq4TmuozMw2ThtyVC\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "53ef2963-3487-43b3-aaec-989afa796dbe",
+              "name": "authentication error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id",
+                    "customer_portal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) Identifier of the subscription resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "773d5815-2a57-4352-99a1-f8ff3f0af6e1",
+              "name": "not found entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id",
+                    "customer_portal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) Identifier of the subscription resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9ccc775-1ecf-4cd3-8c69-3d9babe99be6",
+              "name": "parameter validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "subscriptions",
+                    ":subscription_id",
+                    "customer_portal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "subscription_id",
+                      "description": "(Required) Identifier of the subscription resource"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "6441b6376b60c3a638da80af"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The token does not exist.\",\n      \"param\": \"payment_method.token_id\",\n      \"code\": \"conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token\",\n      \"debug_message\": \"The token does not exist.\"\n    }\n  ],\n  \"log_id\": \"641b6d813cd9a50001515017\",\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.conekta.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c5785497-8a0d-40d0-9932-cc5cc5feadb2",
+    "name": "Conekta Antifraud Subscriptions - Customer Portal API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
+      "type": "text/plain"
+    }
+  }
+}

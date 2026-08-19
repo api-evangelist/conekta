@@ -1,0 +1,358 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conekta Antifraud Orders API",
+    "version": "2.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/orders",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The numbers of items to return, the maximum value is 250"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "General order search, e.g. by mail, reference etc."
+              },
+              {
+                "name": "next",
+                "value": "",
+                "type": "query",
+                "description": "next page"
+              },
+              {
+                "name": "previous",
+                "value": "",
+                "type": "query",
+                "description": "previous page"
+              },
+              {
+                "name": "payment_status",
+                "value": "",
+                "type": "query",
+                "description": "Filters by order status"
+              },
+              {
+                "name": "last_payment_info.status",
+                "value": "",
+                "type": "query",
+                "description": "Filters by last payment info status"
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "created equal to"
+              },
+              {
+                "name": "created_at.gte",
+                "value": "",
+                "type": "query",
+                "description": "created at greater than or equal to"
+              },
+              {
+                "name": "created_at.lte",
+                "value": "",
+                "type": "query",
+                "description": "created at less than or equal to"
+              },
+              {
+                "name": "updated_at.gte",
+                "value": "",
+                "type": "query",
+                "description": "updated at greater than or equal to"
+              },
+              {
+                "name": "updated_at.lte",
+                "value": "",
+                "type": "query",
+                "description": "updated at less than or equal to"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get order details in the form of a list"
+        },
+        {
+          "info": {
+            "name": "Create order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.conekta.io/orders",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create a new order."
+        },
+        {
+          "info": {
+            "name": "Get Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/orders/:id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Info for a specific order"
+        },
+        {
+          "info": {
+            "name": "Update Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.conekta.io/orders/:id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Update an existing Order."
+        },
+        {
+          "info": {
+            "name": "Cancel Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.conekta.io/orders/:id/cancel",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Cancel an order that has been previously created."
+        },
+        {
+          "info": {
+            "name": "Capture Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.conekta.io/orders/:id/capture",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Processes an order that has been previously authorized."
+        },
+        {
+          "info": {
+            "name": "Refund Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.conekta.io/orders/:id/refunds",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "A refunded order describes the items, amount, and reason an order is being refunded."
+        },
+        {
+          "info": {
+            "name": "Cancel Refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.conekta.io/orders/:id/refunds/:refund_id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              },
+              {
+                "name": "refund_id",
+                "value": "6407b5bee1329a000175ba11",
+                "type": "path",
+                "description": "refund identifier"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "A refunded order describes the items, amount, and reason an order is being refunded."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

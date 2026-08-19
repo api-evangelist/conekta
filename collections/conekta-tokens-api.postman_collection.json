@@ -1,0 +1,355 @@
+{
+  "item": [
+    {
+      "id": "5b1fe040-f410-4f86-a65b-cccf41342364",
+      "name": "Tokens",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e51b6fe-8f5f-4ba8-b6c0-02d8d104c6fd",
+          "name": "Create Token",
+          "request": {
+            "name": "Create Token",
+            "description": {
+              "content": "Generate a payment token, to associate it with a card, Endpoint could be use directly only for PCI compliance account\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"card\": {\n    \"cvc\": \"<string>\",\n    \"exp_month\": \"<string>\",\n    \"exp_year\": \"<string>\",\n    \"name\": \"<string>\",\n    \"number\": \"<string>\",\n    \"device_fingerprint\": \"<string>\"\n  },\n  \"checkout\": {\n    \"returns_control_on\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ca9180c-3804-48fc-9e1e-53a7bfbdd4ff",
+              "name": "successful operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"card\": {\n    \"cvc\": \"123\",\n    \"exp_month\": \"12\",\n    \"exp_year\": \"26\",\n    \"name\": \"Miguel\",\n    \"number\": \"4242424242424242\",\n    \"device_fingerprint\": \"zptcxk4p6w1ijwz85snf1l3bqe5g09ie\"\n  },\n  \"checkout\": {\n    \"returns_control_on\": \"Token\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The date and time that the response was sent",
+                  "key": "Date",
+                  "value": "Fri, 03 Feb 2023 16:57:48 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The length of the response body in bytes",
+                  "key": "Content-Length",
+                  "value": "2737"
+                },
+                {
+                  "disabled": false,
+                  "description": "The type of connection used to transfer the response",
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "disabled": false,
+                  "key": "Conekta-Media-Type",
+                  "value": "conekta-v2.2.0; format=application/json",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"id\": \"cus_2tHJfJ79KyUwpxTik\",\n  \"livemode\": true,\n  \"object\": \"token\",\n  \"used\": false,\n  \"checkout\": {\n    \"allowed_payment_methods\": [\n      \"card\",\n      \"card\"\n    ],\n    \"can_not_expire\": false,\n    \"emails_sent\": 0,\n    \"exclude_card_networks\": [\n      \"visa\",\n      \"visa\"\n    ],\n    \"expires_at\": 1675715413,\n    \"failure_url\": \"https://example.com/failure\",\n    \"force_3ds_flow\": false,\n    \"id\": \"524f9d2f-8c2e-4e64-a33d-6006711a91bd\",\n    \"livemode\": true,\n    \"metadata\": {\n      \"key\": \"value\"\n    },\n    \"monthly_installments_enabled\": false,\n    \"monthly_installments_options\": [\n      3,\n      3\n    ],\n    \"name\": \"tok-2toNoPZpJgRU4PvgZ\",\n    \"needs_shipping_contact\": false,\n    \"object\": \"checkout\",\n    \"on_demand_enabled\": false,\n    \"paid_payments_count\": 0,\n    \"recurrent\": false,\n    \"sms_sent\": 0,\n    \"starts_at\": 1675715413,\n    \"status\": \"Issued\",\n    \"success_url\": \"https://example.com/success\",\n    \"type\": \"Integration\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68ee8dff-6dde-417c-b2d7-8a25544e3594",
+              "name": "authentication error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"card\": {\n    \"cvc\": \"123\",\n    \"exp_month\": \"12\",\n    \"exp_year\": \"26\",\n    \"name\": \"Miguel\",\n    \"number\": \"4242424242424242\",\n    \"device_fingerprint\": \"zptcxk4p6w1ijwz85snf1l3bqe5g09ie\"\n  },\n  \"checkout\": {\n    \"returns_control_on\": \"Token\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8f84e89-99bd-4f37-b4e3-f0a894086e0b",
+              "name": "parameter validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"card\": {\n    \"cvc\": \"123\",\n    \"exp_month\": \"12\",\n    \"exp_year\": \"26\",\n    \"name\": \"Miguel\",\n    \"number\": \"4242424242424242\",\n    \"device_fingerprint\": \"zptcxk4p6w1ijwz85snf1l3bqe5g09ie\"\n  },\n  \"checkout\": {\n    \"returns_control_on\": \"Token\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The token does not exist.\",\n      \"param\": \"payment_method.token_id\",\n      \"code\": \"conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token\",\n      \"debug_message\": \"The token does not exist.\"\n    }\n  ],\n  \"log_id\": \"641b6d813cd9a50001515017\",\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92a20ae6-9189-4a55-9171-32e84d9a51f7",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"card\": {\n    \"cvc\": \"123\",\n    \"exp_month\": \"12\",\n    \"exp_year\": \"26\",\n    \"name\": \"Miguel\",\n    \"number\": \"4242424242424242\",\n    \"device_fingerprint\": \"zptcxk4p6w1ijwz85snf1l3bqe5g09ie\"\n  },\n  \"checkout\": {\n    \"returns_control_on\": \"Token\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.conekta.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "45c0291a-0e84-44da-945a-aec094c8bbd1",
+    "name": "Conekta Antifraud Tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
+      "type": "text/plain"
+    }
+  }
+}

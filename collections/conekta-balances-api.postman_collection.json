@@ -1,0 +1,261 @@
+{
+  "item": [
+    {
+      "id": "d2cc56c8-380e-4765-9498-39757e3f3c95",
+      "name": "Balances",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81556e6d-d56c-4bbd-b9f8-d7702501dbba",
+          "name": "Get a company's balance",
+          "request": {
+            "name": "Get a company's balance",
+            "description": {
+              "content": "Get a company's balance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0ded9191-f962-4634-96db-ca3d9042532d",
+              "name": "successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The date and time that the response was sent",
+                  "key": "Date",
+                  "value": "Fri, 03 Feb 2023 16:57:48 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The length of the response body in bytes",
+                  "key": "Content-Length",
+                  "value": "2737"
+                },
+                {
+                  "disabled": false,
+                  "description": "The type of connection used to transfer the response",
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "disabled": false,
+                  "key": "Conekta-Media-Type",
+                  "value": "conekta-v2.2.0; format=application/json",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"available\": [\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    },\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    }\n  ],\n  \"cashout_retention_amount\": [\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    },\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    }\n  ],\n  \"conekta_retention\": [\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    },\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    }\n  ],\n  \"gateway\": [\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    },\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    }\n  ],\n  \"pending\": [\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    },\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    }\n  ],\n  \"retained\": [\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    },\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    }\n  ],\n  \"retention_amount\": [\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    },\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    }\n  ],\n  \"target_collateral_amount\": {},\n  \"target_retention_amount\": [\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    },\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    }\n  ],\n  \"temporarily_retained\": [\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    },\n    {\n      \"amount\": 100,\n      \"currency\": \"MXN\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "540b64d9-ae89-4305-bd29-e14c1aecb238",
+              "name": "authentication error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63d8625a-2d8c-493a-bdf2-e42d8bd374f1",
+              "name": "internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.conekta.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7281113b-ccaf-4be1-be98-a4fd670cb5fe",
+    "name": "Conekta Antifraud Balances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
+      "type": "text/plain"
+    }
+  }
+}

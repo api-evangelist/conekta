@@ -1,0 +1,158 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Conekta Antifraud API",
+    "version": "2.2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Antifraud",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of whitelisted rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/antifraud/whitelists",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Return all rules"
+        },
+        {
+          "info": {
+            "name": "Create whitelisted rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.conekta.io/antifraud/whitelists",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create whitelisted rule"
+        },
+        {
+          "info": {
+            "name": "Delete whitelisted rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.conekta.io/antifraud/whitelists/:id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ]
+          },
+          "docs": "Delete whitelisted rule"
+        },
+        {
+          "info": {
+            "name": "Get list of blacklisted rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.conekta.io/antifraud/blacklists",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Return all rules"
+        },
+        {
+          "info": {
+            "name": "Create blacklisted rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.conekta.io/antifraud/blacklists",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create blacklisted rule"
+        },
+        {
+          "info": {
+            "name": "Delete blacklisted rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.conekta.io/antifraud/blacklists/:id",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": ""
+              },
+              {
+                "name": "X-Child-Company-Id",
+                "value": "6441b6376b60c3a638da80af"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "6307a60c41de27127515a575",
+                "type": "path",
+                "description": "Identifier of the resource"
+              }
+            ]
+          },
+          "docs": "Delete blacklisted rule"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
