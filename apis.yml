@@ -7,6 +7,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - Anti-Fraud
+  tags_raw:
   - Antifraud
   properties:
   - type: OpenAPI
@@ -33,6 +35,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - APIKeys
+  tags_raw:
   - Api Keys
   properties:
   - type: OpenAPI
@@ -189,6 +193,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -241,6 +247,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -371,6 +379,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -449,6 +459,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -553,6 +565,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -631,6 +645,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
@@ -653,6 +669,22 @@ apis:
     url: rules/conekta-rules.yml
 name: Conekta
 tags:
+  - Payments
+  - Payment Processing
+  - Cards
+  - Cash
+  - OXXO
+  - SPEI
+  - Mexico
+  - Latin America
+  - LatAm
+  - Fintech
+  - Subscription
+  - Anti-Fraud
+  - Checkout
+  - BNPL
+  - 3D Secure
+tags_raw:
   - Payments
   - Payment Processing
   - Cards
