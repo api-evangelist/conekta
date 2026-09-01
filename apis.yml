@@ -7,7 +7,7 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
-  - Antifraud
+  - Anti-Fraud
   tags_raw:
   - Antifraud
   properties:
@@ -677,10 +677,10 @@ tags:
   - SPEI
   - Mexico
   - Latin America
-  - LATAM
+  - LatAm
   - Fintech
   - Subscription
-  - Antifraud
+  - Anti-Fraud
   - Checkout
   - BNPL
   - 3D Secure
