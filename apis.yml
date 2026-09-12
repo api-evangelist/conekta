@@ -730,6 +730,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/conekta.png
 access: 3rd-Party
 common:
+  - type: Website
+    url: https://www.conekta.com/
   - type: AgenticAccess
     url: agentic-access/conekta-agentic-access.yml
   - type: DomainSecurity
