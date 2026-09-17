@@ -1,34 +1,6 @@
 aid: conekta
 url: https://raw.githubusercontent.com/api-evangelist/conekta/refs/heads/main/apis.yml
 apis:
-- aid: conekta:conekta-antifraud-api
-  name: Conekta Antifraud API
-  description: The Antifraud API from Conekta — 4 operation(s) for antifraud.
-  humanURL: https://developers.conekta.com/reference
-  baseURL: https://api.conekta.io
-  tags:
-  - Anti-Fraud
-  tags_raw:
-  - Antifraud
-  properties:
-  - type: OpenAPI
-    url: openapi/conekta-antifraud-api-openapi.yml
-  - type: Documentation
-    url: https://developers.conekta.com/reference
-  - type: Documentation
-    url: https://developers.conekta.com/docs/welcome
-  - type: Authentication
-    url: https://developers.conekta.com/reference/autenticación
-  - type: JSONSchema
-    url: json-schema/conekta-order-schema.json
-  - type: JSONSchema
-    url: json-schema/conekta-charge-schema.json
-  - type: JSONSchema
-    url: json-schema/conekta-customer-schema.json
-  - type: JSONLD
-    url: json-ld/conekta-context.jsonld
-  - type: Spectral
-    url: rules/conekta-rules.yml
 - aid: conekta:conekta-api-keys-api
   name: Conekta Api Keys API
   description: The Api Keys API from Conekta — 2 operation(s) for api keys.
@@ -651,6 +623,32 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/conekta-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.conekta.com/reference
+  - type: Documentation
+    url: https://developers.conekta.com/docs/welcome
+  - type: Authentication
+    url: https://developers.conekta.com/reference/autenticación
+  - type: JSONSchema
+    url: json-schema/conekta-order-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-charge-schema.json
+  - type: JSONSchema
+    url: json-schema/conekta-customer-schema.json
+  - type: JSONLD
+    url: json-ld/conekta-context.jsonld
+  - type: Spectral
+    url: rules/conekta-rules.yml
+- aid: conekta:conekta-anti-fraud-api
+  name: Conekta anti Fraud API
+  description: The anti Fraud API from Conekta — 4 operation(s) for anti fraud.
+  humanURL: https://developers.conekta.com/reference
+  baseURL: https://api.conekta.io
+  tags:
+  - anti Fraud
+  properties:
+  - type: OpenAPI
+    url: openapi/conekta-anti-fraud-api-openapi.yml
   - type: Documentation
     url: https://developers.conekta.com/reference
   - type: Documentation
