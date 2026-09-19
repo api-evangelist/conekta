@@ -247,6 +247,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - Payment Links
+  tags_raw:
   - Payment Link
   properties:
   - type: OpenAPI
@@ -485,6 +487,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - Tax
+  tags_raw:
   - Taxes
   properties:
   - type: OpenAPI
@@ -645,6 +649,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - Anti-Fraud
+  tags_raw:
   - anti Fraud
   properties:
   - type: OpenAPI
@@ -675,7 +681,6 @@ tags:
   - SPEI
   - Mexico
   - Latin America
-  - LatAm
   - Fintech
   - Subscription
   - Anti-Fraud
