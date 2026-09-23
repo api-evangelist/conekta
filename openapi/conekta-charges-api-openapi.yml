@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: engineering@conekta.com
@@ -8,7 +8,7 @@ info:
   license:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Conekta Antifraud Charges API
+  title: Conekta Charges API
   version: 2.2.0
 servers:
 - description: Conekta main server
@@ -572,126 +572,6 @@ paths:
       - Charges
 components:
   schemas:
-    payment_method_general_request:
-      description: 'Payment method used in the charge. Go to the [payment methods](https://developers.conekta.com/reference/m%C3%A9todos-de-pago) section for more details
-
-        '
-      properties:
-        expires_at:
-          description: Method expiration date as unix timestamp
-          example: 1677196303
-          format: int64
-          type: integer
-        monthly_installments:
-          description: How many months without interest to apply, it can be 3, 6, 9, 12 or 18
-          format: int8
-          type: integer
-        type:
-          description: Type of payment method
-          example: card
-          type: string
-        token_id:
-          example: tok_2897348234
-          type: string
-        payment_source_id:
-          example: src_2tLkkyfMPh6v7pFry
-          type: string
-        cvc:
-          description: Optional, It is a value that allows identifying the security code of the card. Only for PCI merchants
-          example: '123'
-          type: string
-        contract_id:
-          description: Optional id sent to indicate the bank contract for recurrent card charges.
-          example: S781317595
-          type: string
-        customer_ip_address:
-          description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
-          example: 0.0.0.0
-          type: string
-      required:
-      - type
-      title: payment_method_general_request
-    payment_method_bnpl_request:
-      allOf:
-      - description: Contains details of the payment methods that the customer has active or has used in Conekta
-        properties:
-          type:
-            description: Type of payment method
-            example: card | cash | spei | bnpl | pay_by_bank
-            type: string
-        required:
-        - type
-        title: customer_payment_method_request
-      - properties:
-          cancel_url:
-            description: URL to redirect the customer after a canceled payment
-            example: https://example.com/cancel
-            type: string
-          can_not_expire:
-            description: Indicates if the payment method can not expire
-            example: true
-            type: boolean
-          failure_url:
-            description: URL to redirect the customer after a failed payment
-            example: https://example.com/failure
-            type: string
-          product_type:
-            description: Product type of the payment method, use for the payment method to know the product type
-            enum:
-            - aplazo_bnpl
-            - azteca_bnpl
-            - coppel_bnpl
-            - creditea_bnpl
-            example: aplazo_bnpl
-            type: string
-          success_url:
-            description: URL to redirect the customer after a successful payment
-            example: https://example.com/success
-            type: string
-          type:
-            description: Type of the payment method
-            example: bnpl
-            type: string
-        required:
-        - can_not_expire
-        - cancel_url
-        - failure_url
-        - product_type
-        - success_url
-        - type
-      title: payment_method_bnpl_request
-    payment_method_pbb_request:
-      allOf:
-      - description: Contains details of the payment methods that the customer has active or has used in Conekta
-        properties:
-          type:
-            description: Type of payment method
-            example: card | cash | spei | bnpl | pay_by_bank
-            type: string
-        required:
-        - type
-        title: customer_payment_method_request
-      - properties:
-          expires_at:
-            description: Expiration date of the payment method, in Unix timestamp format
-            example: 1680397724
-            format: int64
-            minimum: 0
-            type: integer
-          product_type:
-            description: Product type of the payment method, use for the payment method to know the product type
-            enum:
-            - bbva_pay_by_bank
-            example: bbva_pay_by_bank
-            type: string
-          type:
-            description: Type of the payment method
-            example: pay_by_bank
-            type: string
-        required:
-        - product_type
-        - type
-      title: payment_method_pbb_request
     details_error:
       properties:
         code:
@@ -707,53 +587,40 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    charge_request:
-      description: The charges to be made
+    charge_response_refunds_data:
       properties:
         amount:
-          description: Amount to be charged in cents
-          example: 40000
+          example: -15000
           format: int64
           type: integer
-        payment_method:
-          $ref: '#/components/schemas/charge_request_payment_method'
-        reference_id:
-          description: Custom reference to add to the charge
-          type: string
-      required:
-      - payment_method
-      title: charge_request
-    charge_response_channel:
-      properties:
-        segment:
-          example: Checkout
-          type: string
-        checkout_request_id:
-          example: 6fca054a-8519-4c43-971e-cea35cc519bb
-          type: string
-        checkout_request_type:
-          example: HostedPayment
-          type: string
-        id:
-          example: channel_2tNDzhA4Akmzj11AU
-          type: string
-    chargeback_file_response:
-      description: A file associated with a chargeback (e.g. evidence document)
-      properties:
-        id:
-          example: chbkf_2zPxWFUnGNLySoums
-          type: string
-        file_name:
-          example: 20251221500000000000201.pdf
-          type: string
-        url:
-          nullable: true
+        auth_code:
+          example: '867372'
           type: string
         created_at:
-          example: 1768846800
+          example: 1678226878
           format: int64
           type: integer
-      title: chargeback_file_response
+        expires_at:
+          description: refund expiration date
+          example: 1678226878
+          format: int64
+          type: integer
+        id:
+          example: 6407b5bee1329a000175ba11
+          type: string
+        object:
+          example: refund
+          type: string
+        status:
+          description: refund status
+          example: pending
+          type: string
+      required:
+      - amount
+      - created_at
+      - id
+      - object
+      title: charge_response_refunds_data
     payment_method_card_request:
       allOf:
       - description: Contains details of the payment methods that the customer has active or has used in Conekta
@@ -803,6 +670,188 @@ components:
         - name
         - number
       title: payment_method_card_request
+    chargeback_file_response:
+      description: A file associated with a chargeback (e.g. evidence document)
+      properties:
+        id:
+          example: chbkf_2zPxWFUnGNLySoums
+          type: string
+        file_name:
+          example: 20251221500000000000201.pdf
+          type: string
+        url:
+          nullable: true
+          type: string
+        created_at:
+          example: 1768846800
+          format: int64
+          type: integer
+      title: chargeback_file_response
+    payment_method_bnpl_payment:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for bnpl payment responses
+        properties:
+          object:
+            enum:
+            - bnpl_payment
+            type: string
+          cancel_url:
+            description: URL to redirect the customer after a canceled payment
+            example: https://example.com/cancel
+            type: string
+          expires_at:
+            description: Expiration date of the charge
+            example: 1683053729
+            format: int64
+            type: integer
+          failure_url:
+            description: URL to redirect the customer after a failed payment
+            example: https://example.com/failure
+            type: string
+          product_type:
+            description: Product type of the charge
+            type: string
+          redirect_url:
+            description: URL to redirect the customer to complete the payment
+            example: https://example.com/redirect
+            type: string
+          success_url:
+            description: URL to redirect the customer after a successful payment
+            example: https://example.com/success
+            type: string
+        required:
+        - expires_at
+        - product_type
+        title: charge_data_payment_method_bnpl_payment_response
+      title: payment_method_bnpl_payment
+      x-discriminator-value: bnpl_payment
+    charge_request:
+      description: The charges to be made
+      properties:
+        amount:
+          description: Amount to be charged in cents
+          example: 40000
+          format: int64
+          type: integer
+        payment_method:
+          $ref: '#/components/schemas/charge_request_payment_method'
+        reference_id:
+          description: Custom reference to add to the charge
+          type: string
+      required:
+      - payment_method
+      title: charge_request
+    payment_method_bank_transfer:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for bank transfer responses
+        properties:
+          bank:
+            example: STP
+            type: string
+          clabe:
+            example: '646180111805034237'
+            type: string
+          description:
+            type: string
+            nullable: true
+          executed_at:
+            type: string
+            nullable: true
+          expires_at:
+            example: 1683053729
+            format: int64
+            type: integer
+          issuing_account_bank:
+            type: string
+            nullable: true
+          issuing_account_number:
+            type: string
+            nullable: true
+          issuing_account_holder_name:
+            type: string
+            nullable: true
+          issuing_account_tax_id:
+            type: string
+            nullable: true
+          payment_attempts:
+            items: {}
+            type: array
+          receiving_account_holder_name:
+            type: string
+            nullable: true
+          receiving_account_number:
+            example: '646180111805034237'
+            type: string
+          receiving_account_bank:
+            example: STP
+            type: string
+          receiving_account_tax_id:
+            type: string
+            nullable: true
+          reference_number:
+            type: string
+            nullable: true
+          tracking_code:
+            type: string
+            nullable: true
+          customer_ip_address:
+            example: 0.0.0.0
+            type: string
+        title: charge_data_payment_method_bank_transfer_response
+      title: payment_method_bank_transfer
+      x-discriminator-value: bank_transfer_payment
+    charges_order_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/charge_response'
+            type: array
+      description: The charges associated with the order
+      title: charges_order_response
     payment_method_cash:
       allOf:
       - properties:
@@ -857,6 +906,244 @@ components:
         title: charge_data_payment_method_cash_response
       title: payment_method_cash
       x-discriminator-value: cash_payment
+    payment_method_pbb_request:
+      allOf:
+      - description: Contains details of the payment methods that the customer has active or has used in Conekta
+        properties:
+          type:
+            description: Type of payment method
+            example: card | cash | spei | bnpl | pay_by_bank
+            type: string
+        required:
+        - type
+        title: customer_payment_method_request
+      - properties:
+          expires_at:
+            description: Expiration date of the payment method, in Unix timestamp format
+            example: 1680397724
+            format: int64
+            minimum: 0
+            type: integer
+          product_type:
+            description: Product type of the payment method, use for the payment method to know the product type
+            enum:
+            - bbva_pay_by_bank
+            example: bbva_pay_by_bank
+            type: string
+          type:
+            description: Type of the payment method
+            example: pay_by_bank
+            type: string
+        required:
+        - product_type
+        - type
+      title: payment_method_pbb_request
+    payment_method_general_request:
+      description: 'Payment method used in the charge. Go to the [payment methods](https://developers.conekta.com/reference/m%C3%A9todos-de-pago) section for more details
+
+        '
+      properties:
+        expires_at:
+          description: Method expiration date as unix timestamp
+          example: 1677196303
+          format: int64
+          type: integer
+        monthly_installments:
+          description: How many months without interest to apply, it can be 3, 6, 9, 12 or 18
+          format: int8
+          type: integer
+        type:
+          description: Type of payment method
+          example: card
+          type: string
+        token_id:
+          example: tok_2897348234
+          type: string
+        payment_source_id:
+          example: src_2tLkkyfMPh6v7pFry
+          type: string
+        cvc:
+          description: Optional, It is a value that allows identifying the security code of the card. Only for PCI merchants
+          example: '123'
+          type: string
+        contract_id:
+          description: Optional id sent to indicate the bank contract for recurrent card charges.
+          example: S781317595
+          type: string
+        customer_ip_address:
+          description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+          example: 0.0.0.0
+          type: string
+      required:
+      - type
+      title: payment_method_general_request
+    charge_response_channel:
+      properties:
+        segment:
+          example: Checkout
+          type: string
+        checkout_request_id:
+          example: 6fca054a-8519-4c43-971e-cea35cc519bb
+          type: string
+        checkout_request_type:
+          example: HostedPayment
+          type: string
+        id:
+          example: channel_2tNDzhA4Akmzj11AU
+          type: string
+    charge_order_response_payment_method:
+      discriminator:
+        mapping:
+          cash_payment: payment_method_cash
+          card_payment: payment_method_card
+          bank_transfer_payment: payment_method_bank_transfer
+          bnpl_payment: payment_method_bnpl_payment
+          pay_by_bank_payment: payment_method_pbb_payment
+        propertyName: object
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_cash'
+      - $ref: '#/components/schemas/payment_method_card'
+      - $ref: '#/components/schemas/payment_method_bank_transfer'
+      - $ref: '#/components/schemas/payment_method_bnpl_payment'
+      - $ref: '#/components/schemas/payment_method_pbb_payment'
+      title: charge_order_response_payment_method
+      propertyName: object
+    payment_method_card:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for card responses
+        properties:
+          account_type:
+            description: Account type of the card
+            example: Credit
+            type: string
+          auth_code:
+            example: '867372'
+            type: string
+          brand:
+            description: Brand of the card
+            example: visa
+            type: string
+          contract_id:
+            description: Id sent for recurrent charges.
+            example: S781317595
+            type: string
+          country:
+            description: Country of the card
+            example: MX
+            type: string
+          exp_month:
+            description: Expiration month of the card
+            example: '02'
+            type: string
+          exp_year:
+            description: Expiration year of the card
+            example: '2026'
+            type: string
+          fraud_indicators:
+            items: {}
+            type: array
+          issuer:
+            description: Issuer of the card
+            example: BANAMEX
+            type: string
+          last4:
+            description: Last 4 digits of the card
+            example: '4242'
+            type: string
+          name:
+            description: Name of the cardholder
+            example: Fulanito Perez
+            type: string
+          customer_ip_address:
+            description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+            example: 0.0.0.0
+            type: string
+        title: charge_data_payment_method_card_response
+      title: payment_method_card
+      x-discriminator-value: card_payment
+    charge_response_payment_method:
+      discriminator:
+        mapping:
+          cash_payment: payment_method_cash
+          card_payment: payment_method_card
+          bank_transfer_payment: payment_method_bank_transfer
+          bnpl_payment: payment_method_bnpl_payment
+          pay_by_bank_payment: payment_method_pbb_payment
+        propertyName: object
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_cash'
+      - $ref: '#/components/schemas/payment_method_card'
+      - $ref: '#/components/schemas/payment_method_bank_transfer'
+      - $ref: '#/components/schemas/payment_method_bnpl_payment'
+      - $ref: '#/components/schemas/payment_method_pbb_payment'
+      title: charge_response_payment_method
+      propertyName: object
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    charge_response_refunds:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            description: refunds
+            items:
+              $ref: '#/components/schemas/charge_response_refunds_data'
+            type: array
+      title: charge_response_refunds
+      nullable: true
     charge_update_request:
       description: requested field for update a charge
       properties:
@@ -907,74 +1194,102 @@ components:
         title: charge_data_payment_method_pbb_payment_response
       title: payment_method_pbb_payment
       x-discriminator-value: pay_by_bank_payment
-    charge_order_response_payment_method:
-      discriminator:
-        mapping:
-          cash_payment: payment_method_cash
-          card_payment: payment_method_card
-          bank_transfer_payment: payment_method_bank_transfer
-          bnpl_payment: payment_method_bnpl_payment
-          pay_by_bank_payment: payment_method_pbb_payment
-        propertyName: object
-      oneOf:
-      - $ref: '#/components/schemas/payment_method_cash'
-      - $ref: '#/components/schemas/payment_method_card'
-      - $ref: '#/components/schemas/payment_method_bank_transfer'
-      - $ref: '#/components/schemas/payment_method_bnpl_payment'
-      - $ref: '#/components/schemas/payment_method_pbb_payment'
-      title: charge_order_response_payment_method
-      propertyName: object
-    charge_response_refunds_data:
+    get_charges_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/charge_response'
+            type: array
+      title: get_charges_response
+    charge_order_response:
       properties:
         amount:
-          example: -15000
-          format: int64
+          example: 4321
           type: integer
-        auth_code:
-          example: '867372'
-          type: string
+        channel:
+          $ref: '#/components/schemas/charge_response_channel'
         created_at:
-          example: 1678226878
+          example: 1676386026
           format: int64
           type: integer
-        expires_at:
-          description: refund expiration date
-          example: 1678226878
-          format: int64
-          type: integer
+        currency:
+          example: MXN
+          type: string
+        customer_id:
+          type: string
+        description:
+          example: Payment from order
+          type: string
+        device_fingerprint:
+          example: 6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba
+          type: string
+          nullable: true
+        failure_code:
+          example: suspected_fraud
+          type: string
+        failure_message:
+          example: Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.
+          type: string
         id:
-          example: 6407b5bee1329a000175ba11
+          example: 63efa757cf65380001aec040
           type: string
+        livemode:
+          example: true
+          type: boolean
+        monthly_installments:
+          type: integer
+          nullable: true
         object:
-          example: refund
           type: string
+        order_id:
+          example: ord_2tN73UdUSNrYRPD9r
+          type: string
+        paid_at:
+          example: 1676390742
+          type: integer
+          nullable: true
+        payment_method:
+          $ref: '#/components/schemas/charge_order_response_payment_method'
+        reference_id:
+          description: Reference ID of the charge
+          example: ref_2tN73UdUSNrYRPD9r
+          type: string
+          nullable: true
+        refunds:
+          items: {}
+          type: array
         status:
-          description: refund status
-          example: pending
+          example: pending_payment
           type: string
-      required:
-      - amount
-      - created_at
-      - id
-      - object
-      title: charge_response_refunds_data
-    charge_response_payment_method:
-      discriminator:
-        mapping:
-          cash_payment: payment_method_cash
-          card_payment: payment_method_card
-          bank_transfer_payment: payment_method_bank_transfer
-          bnpl_payment: payment_method_bnpl_payment
-          pay_by_bank_payment: payment_method_pbb_payment
-        propertyName: object
-      oneOf:
-      - $ref: '#/components/schemas/payment_method_cash'
-      - $ref: '#/components/schemas/payment_method_card'
-      - $ref: '#/components/schemas/payment_method_bank_transfer'
-      - $ref: '#/components/schemas/payment_method_bnpl_payment'
-      - $ref: '#/components/schemas/payment_method_pbb_payment'
-      title: charge_response_payment_method
-      propertyName: object
+      title: charge_order_response
     charge_response:
       properties:
         amount:
@@ -1049,110 +1364,6 @@ components:
       - order_id
       - status
       title: charge_response
-    charge_response_refunds:
-      allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - properties:
-          data:
-            description: refunds
-            items:
-              $ref: '#/components/schemas/charge_response_refunds_data'
-            type: array
-      title: charge_response_refunds
-      nullable: true
-    payment_method_bank_transfer:
-      allOf:
-      - properties:
-          type:
-            type: string
-          object:
-            example: payment_source
-            type: string
-        required:
-        - object
-      - description: use for bank transfer responses
-        properties:
-          bank:
-            example: STP
-            type: string
-          clabe:
-            example: '646180111805034237'
-            type: string
-          description:
-            type: string
-            nullable: true
-          executed_at:
-            type: string
-            nullable: true
-          expires_at:
-            example: 1683053729
-            format: int64
-            type: integer
-          issuing_account_bank:
-            type: string
-            nullable: true
-          issuing_account_number:
-            type: string
-            nullable: true
-          issuing_account_holder_name:
-            type: string
-            nullable: true
-          issuing_account_tax_id:
-            type: string
-            nullable: true
-          payment_attempts:
-            items: {}
-            type: array
-          receiving_account_holder_name:
-            type: string
-            nullable: true
-          receiving_account_number:
-            example: '646180111805034237'
-            type: string
-          receiving_account_bank:
-            example: STP
-            type: string
-          receiving_account_tax_id:
-            type: string
-            nullable: true
-          reference_number:
-            type: string
-            nullable: true
-          tracking_code:
-            type: string
-            nullable: true
-          customer_ip_address:
-            example: 0.0.0.0
-            type: string
-        title: charge_data_payment_method_bank_transfer_response
-      title: payment_method_bank_transfer
-      x-discriminator-value: bank_transfer_payment
     charge_request_payment_method:
       oneOf:
       - $ref: '#/components/schemas/payment_method_pbb_request'
@@ -1160,67 +1371,6 @@ components:
       - $ref: '#/components/schemas/payment_method_card_request'
       - $ref: '#/components/schemas/payment_method_general_request'
       title: charge_request_payment_method
-    charge_order_response:
-      properties:
-        amount:
-          example: 4321
-          type: integer
-        channel:
-          $ref: '#/components/schemas/charge_response_channel'
-        created_at:
-          example: 1676386026
-          format: int64
-          type: integer
-        currency:
-          example: MXN
-          type: string
-        customer_id:
-          type: string
-        description:
-          example: Payment from order
-          type: string
-        device_fingerprint:
-          example: 6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba
-          type: string
-          nullable: true
-        failure_code:
-          example: suspected_fraud
-          type: string
-        failure_message:
-          example: Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.
-          type: string
-        id:
-          example: 63efa757cf65380001aec040
-          type: string
-        livemode:
-          example: true
-          type: boolean
-        monthly_installments:
-          type: integer
-          nullable: true
-        object:
-          type: string
-        order_id:
-          example: ord_2tN73UdUSNrYRPD9r
-          type: string
-        paid_at:
-          example: 1676390742
-          type: integer
-          nullable: true
-        payment_method:
-          $ref: '#/components/schemas/charge_order_response_payment_method'
-        reference_id:
-          description: Reference ID of the charge
-          example: ref_2tN73UdUSNrYRPD9r
-          type: string
-          nullable: true
-        refunds:
-          items: {}
-          type: array
-        status:
-          example: pending_payment
-          type: string
-      title: charge_order_response
     chargeback_response:
       description: Chargeback object
       nullable: true
@@ -1306,205 +1456,55 @@ components:
           format: int64
           type: integer
       title: chargeback_response
-    payment_method_card:
+    payment_method_bnpl_request:
       allOf:
-      - properties:
+      - description: Contains details of the payment methods that the customer has active or has used in Conekta
+        properties:
           type:
-            type: string
-          object:
-            example: payment_source
+            description: Type of payment method
+            example: card | cash | spei | bnpl | pay_by_bank
             type: string
         required:
-        - object
-      - description: use for card responses
-        properties:
-          account_type:
-            description: Account type of the card
-            example: Credit
-            type: string
-          auth_code:
-            example: '867372'
-            type: string
-          brand:
-            description: Brand of the card
-            example: visa
-            type: string
-          contract_id:
-            description: Id sent for recurrent charges.
-            example: S781317595
-            type: string
-          country:
-            description: Country of the card
-            example: MX
-            type: string
-          exp_month:
-            description: Expiration month of the card
-            example: '02'
-            type: string
-          exp_year:
-            description: Expiration year of the card
-            example: '2026'
-            type: string
-          fraud_indicators:
-            items: {}
-            type: array
-          issuer:
-            description: Issuer of the card
-            example: BANAMEX
-            type: string
-          last4:
-            description: Last 4 digits of the card
-            example: '4242'
-            type: string
-          name:
-            description: Name of the cardholder
-            example: Fulanito Perez
-            type: string
-          customer_ip_address:
-            description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
-            example: 0.0.0.0
-            type: string
-        title: charge_data_payment_method_card_response
-      title: payment_method_card
-      x-discriminator-value: card_payment
-    payment_method_bnpl_payment:
-      allOf:
+        - type
+        title: customer_payment_method_request
       - properties:
-          type:
-            type: string
-          object:
-            example: payment_source
-            type: string
-        required:
-        - object
-      - description: use for bnpl payment responses
-        properties:
-          object:
-            enum:
-            - bnpl_payment
-            type: string
           cancel_url:
             description: URL to redirect the customer after a canceled payment
             example: https://example.com/cancel
             type: string
-          expires_at:
-            description: Expiration date of the charge
-            example: 1683053729
-            format: int64
-            type: integer
+          can_not_expire:
+            description: Indicates if the payment method can not expire
+            example: true
+            type: boolean
           failure_url:
             description: URL to redirect the customer after a failed payment
             example: https://example.com/failure
             type: string
           product_type:
-            description: Product type of the charge
-            type: string
-          redirect_url:
-            description: URL to redirect the customer to complete the payment
-            example: https://example.com/redirect
+            description: Product type of the payment method, use for the payment method to know the product type
+            enum:
+            - aplazo_bnpl
+            - azteca_bnpl
+            - coppel_bnpl
+            - creditea_bnpl
+            example: aplazo_bnpl
             type: string
           success_url:
             description: URL to redirect the customer after a successful payment
             example: https://example.com/success
             type: string
-        required:
-        - expires_at
-        - product_type
-        title: charge_data_payment_method_bnpl_payment_response
-      title: payment_method_bnpl_payment
-      x-discriminator-value: bnpl_payment
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
           type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
-    charges_order_response:
-      allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
+            description: Type of the payment method
+            example: bnpl
             type: string
         required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/charge_response'
-            type: array
-      description: The charges associated with the order
-      title: charges_order_response
-    get_charges_response:
-      allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/charge_response'
-            type: array
-      title: get_charges_response
+        - can_not_expire
+        - cancel_url
+        - failure_url
+        - product_type
+        - success_url
+        - type
+      title: payment_method_bnpl_request
   securitySchemes:
     bearerAuth:
       scheme: bearer

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: engineering@conekta.com
@@ -8,7 +8,7 @@ info:
   license:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Conekta Antifraud Api Keys API
+  title: Conekta Api Keys API
   version: 2.2.0
 servers:
 - description: Conekta main server
@@ -16,7 +16,7 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: Api Keys
+- name: API Keys
 paths:
   /api_keys:
     get:
@@ -139,7 +139,7 @@ paths:
       - bearerAuth: []
       summary: Get list of Api Keys
       tags:
-      - Api Keys
+      - API Keys
     post:
       description: Create a api key
       operationId: createApiKey
@@ -246,7 +246,7 @@ paths:
       - bearerAuth: []
       summary: Create Api Key
       tags:
-      - Api Keys
+      - API Keys
   /api_keys/{id}:
     delete:
       description: Deletes a api key that corresponds to a api key ID
@@ -346,7 +346,7 @@ paths:
       - bearerAuth: []
       summary: Delete Api Key
       tags:
-      - Api Keys
+      - API Keys
     get:
       description: Gets a api key that corresponds to a api key ID
       operationId: getApiKey
@@ -454,7 +454,7 @@ paths:
       - bearerAuth: []
       summary: Get Api Key
       tags:
-      - Api Keys
+      - API Keys
     put:
       description: Update an existing api key
       operationId: updateApiKey
@@ -544,24 +544,61 @@ paths:
       - bearerAuth: []
       summary: Update Api Key
       tags:
-      - Api Keys
+      - API Keys
 components:
   schemas:
-    details_error:
+    api_key_response:
+      description: api keys model
       properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
+        active:
+          description: Indicates if the api key is active
+          example: true
+          type: boolean
+        created_at:
+          description: Unix timestamp in seconds of when the api key was created
+          example: 1684167881
+          format: int64
+          type: integer
+        updated_at:
+          description: Unix timestamp in seconds of when the api key was last updated
+          example: 1684167923
+          format: int64
+          type: integer
+        deactivated_at:
+          description: Unix timestamp in seconds of when the api key was deleted
+          format: int64
+          type: integer
           nullable: true
-        message:
-          example: Acceso no autorizado.
+        last_used_at:
+          description: Unix timestamp in seconds with the api key was used
+          format: int64
+          type: integer
+          nullable: true
+        description:
+          description: A name or brief explanation of what this api key is used for
+          example: online store
           type: string
-        debug_message:
-          example: Please include your access key in your request.
+        id:
+          description: Unique identifier of the api key
+          example: 64625cc9f3e02c00163f5e4d
           type: string
-      title: details_error
+        livemode:
+          description: Indicates if the api key is in production
+          example: false
+          type: boolean
+        object:
+          description: Object name, value is 'api_key'
+          example: api_key
+          type: string
+        prefix:
+          description: The first few characters of the authentication_token
+          example: key_rp
+          type: string
+        role:
+          description: Indicates if the api key is private or public
+          example: private
+          type: string
+      title: api_key_response
     api_key_create_response:
       allOf:
       - properties:
@@ -621,73 +658,21 @@ components:
             type: string
         title: api_key_response
       title: api_key_create_response
-    api_key_update_request:
+    details_error:
       properties:
-        active:
-          description: Indicates if the webhook key is active
-          example: true
-          type: boolean
-        description:
-          description: A name or brief explanation of what this api key is used for
-          example: online store
+        code:
+          example: conekta.errors.authentication.missing_key
           type: string
-      title: api_key_update_request
-    get_api_keys_response:
-      allOf:
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/api_key_response'
-            type: array
-      title: get_api_keys_response
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
     delete_api_keys_response:
       allOf:
       - description: api keys model
@@ -736,58 +721,62 @@ components:
             example: true
             type: boolean
       title: delete_api_keys_response
-    api_key_response:
-      description: api keys model
-      properties:
-        active:
-          description: Indicates if the api key is active
-          example: true
-          type: boolean
-        created_at:
-          description: Unix timestamp in seconds of when the api key was created
-          example: 1684167881
-          format: int64
-          type: integer
-        updated_at:
-          description: Unix timestamp in seconds of when the api key was last updated
-          example: 1684167923
-          format: int64
-          type: integer
-        deactivated_at:
-          description: Unix timestamp in seconds of when the api key was deleted
-          format: int64
-          type: integer
-          nullable: true
-        last_used_at:
-          description: Unix timestamp in seconds with the api key was used
-          format: int64
-          type: integer
-          nullable: true
-        description:
-          description: A name or brief explanation of what this api key is used for
-          example: online store
-          type: string
-        id:
-          description: Unique identifier of the api key
-          example: 64625cc9f3e02c00163f5e4d
-          type: string
-        livemode:
-          description: Indicates if the api key is in production
-          example: false
-          type: boolean
-        object:
-          description: Object name, value is 'api_key'
-          example: api_key
-          type: string
-        prefix:
-          description: The first few characters of the authentication_token
-          example: key_rp
-          type: string
-        role:
-          description: Indicates if the api key is private or public
-          example: private
-          type: string
-      title: api_key_response
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    get_api_keys_response:
+      allOf:
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/api_key_response'
+            type: array
+      title: get_api_keys_response
     api_key_request:
       properties:
         description:
@@ -802,6 +791,17 @@ components:
       - role
       title: api_key_request
       name: api_key_request
+    api_key_update_request:
+      properties:
+        active:
+          description: Indicates if the webhook key is active
+          example: true
+          type: boolean
+        description:
+          description: A name or brief explanation of what this api key is used for
+          example: online store
+          type: string
+      title: api_key_update_request
   securitySchemes:
     bearerAuth:
       scheme: bearer

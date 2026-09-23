@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: engineering@conekta.com
@@ -8,7 +8,7 @@ info:
   license:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Conekta Antifraud Subscriptions - Customer Portal API
+  title: Conekta Subscriptions - Customer Portal API
   version: 2.2.0
 servers:
 - description: Conekta main server
@@ -267,6 +267,43 @@ paths:
       - Subscriptions - Customer Portal
 components:
   schemas:
+    subscription_details_plan:
+      properties:
+        id:
+          example: VG5
+          type: string
+        object:
+          example: plan
+          type: string
+        name:
+          example: CLARO
+          type: string
+        amount:
+          example: 30000
+          format: int32
+          type: integer
+        currency:
+          example: USD
+          type: string
+        interval:
+          example: month
+          type: string
+        frequency:
+          example: 1
+          format: int32
+          type: integer
+        trial_period_days:
+          format: int32
+          type: integer
+          nullable: true
+        expiry_count:
+          example: 1
+          format: int32
+          type: integer
+        created_at:
+          example: 1742087277
+          format: int64
+          type: integer
     details_error:
       properties:
         code:
@@ -282,6 +319,113 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
+    customer_portal_response:
+      description: Customer portal model
+      properties:
+        slug:
+          description: Unique slug identifier for the portal
+          example: agIvD4QSBl4Nunq4TmuozMw2ThtyVC
+          type: string
+        subscription_id:
+          description: Associated subscription ID
+          example: sub_2yYsQuYtXAbP1fdYu
+          type: string
+        customer_id:
+          description: Associated customer ID
+          example: cus_2yDzKtEAD3khH8Sga
+          type: string
+        livemode:
+          description: Whether this is a live or test mode portal
+          example: false
+          type: boolean
+        subscription:
+          $ref: '#/components/schemas/subscription_details'
+        customer:
+          $ref: '#/components/schemas/customer_details'
+        id:
+          description: Customer portal ID
+          example: scp_2ym7QbU9dTh7Froti
+          type: string
+        company_id:
+          description: Associated company ID
+          example: 63dad459920de10001d177b3
+          type: string
+        object:
+          example: customer_portal
+          type: string
+        created_at:
+          description: Unix timestamp of creation
+          example: 1759108828
+          format: int64
+          type: integer
+        updated_at:
+          description: Unix timestamp of last update
+          example: 1759108828
+          format: int64
+          type: integer
+        portal_url:
+          description: URL to access the customer portal
+          example: https://pay.stg.conekta.io/subscription/management/agIvD4QSBl4Nunq4TmuozMw2ThtyVC
+          format: uri
+          type: string
+      title: customer_portal_response
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    subscription_details:
+      description: Subscription details for customer portal
+      properties:
+        card:
+          $ref: '#/components/schemas/subscription_details_card'
+        plan:
+          $ref: '#/components/schemas/subscription_details_plan'
+        id:
+          example: sub_2yYsQuYtXAbP1fdYu
+          type: string
+        object:
+          example: subscription
+          type: string
+        status:
+          example: canceled
+          type: string
+        plan_id:
+          example: VG5
+          type: string
+        customer_id:
+          example: cus_2yDzKtEAD3khH8Sga
+          type: string
+        next_billing_cycle:
+          example: 1876833632
+          format: int64
+          type: integer
+          nullable: true
+        created_at:
+          example: 1755873642
+          format: int64
+          type: integer
+        updated_at:
+          example: 1761745218
+          format: int64
+          type: integer
+      title: subscription_details
     subscription_details_card:
       properties:
         id:
@@ -338,150 +482,6 @@ components:
           format: email
           type: string
       title: customer_details
-    subscription_details_plan:
-      properties:
-        id:
-          example: VG5
-          type: string
-        object:
-          example: plan
-          type: string
-        name:
-          example: CLARO
-          type: string
-        amount:
-          example: 30000
-          format: int32
-          type: integer
-        currency:
-          example: USD
-          type: string
-        interval:
-          example: month
-          type: string
-        frequency:
-          example: 1
-          format: int32
-          type: integer
-        trial_period_days:
-          format: int32
-          type: integer
-          nullable: true
-        expiry_count:
-          example: 1
-          format: int32
-          type: integer
-        created_at:
-          example: 1742087277
-          format: int64
-          type: integer
-    subscription_details:
-      description: Subscription details for customer portal
-      properties:
-        card:
-          $ref: '#/components/schemas/subscription_details_card'
-        plan:
-          $ref: '#/components/schemas/subscription_details_plan'
-        id:
-          example: sub_2yYsQuYtXAbP1fdYu
-          type: string
-        object:
-          example: subscription
-          type: string
-        status:
-          example: canceled
-          type: string
-        plan_id:
-          example: VG5
-          type: string
-        customer_id:
-          example: cus_2yDzKtEAD3khH8Sga
-          type: string
-        next_billing_cycle:
-          example: 1876833632
-          format: int64
-          type: integer
-          nullable: true
-        created_at:
-          example: 1755873642
-          format: int64
-          type: integer
-        updated_at:
-          example: 1761745218
-          format: int64
-          type: integer
-      title: subscription_details
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
-    customer_portal_response:
-      description: Customer portal model
-      properties:
-        slug:
-          description: Unique slug identifier for the portal
-          example: agIvD4QSBl4Nunq4TmuozMw2ThtyVC
-          type: string
-        subscription_id:
-          description: Associated subscription ID
-          example: sub_2yYsQuYtXAbP1fdYu
-          type: string
-        customer_id:
-          description: Associated customer ID
-          example: cus_2yDzKtEAD3khH8Sga
-          type: string
-        livemode:
-          description: Whether this is a live or test mode portal
-          example: false
-          type: boolean
-        subscription:
-          $ref: '#/components/schemas/subscription_details'
-        customer:
-          $ref: '#/components/schemas/customer_details'
-        id:
-          description: Customer portal ID
-          example: scp_2ym7QbU9dTh7Froti
-          type: string
-        company_id:
-          description: Associated company ID
-          example: 63dad459920de10001d177b3
-          type: string
-        object:
-          example: customer_portal
-          type: string
-        created_at:
-          description: Unix timestamp of creation
-          example: 1759108828
-          format: int64
-          type: integer
-        updated_at:
-          description: Unix timestamp of last update
-          example: 1759108828
-          format: int64
-          type: integer
-        portal_url:
-          description: URL to access the customer portal
-          example: https://pay.stg.conekta.io/subscription/management/agIvD4QSBl4Nunq4TmuozMw2ThtyVC
-          format: uri
-          type: string
-      title: customer_portal_response
   securitySchemes:
     bearerAuth:
       scheme: bearer

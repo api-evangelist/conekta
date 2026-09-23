@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: engineering@conekta.com
@@ -8,7 +8,7 @@ info:
   license:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Conekta Antifraud Webhook keys API
+  title: Conekta Webhook keys API
   version: 2.2.0
 servers:
 - description: Conekta main server
@@ -568,6 +568,50 @@ paths:
       - Webhook keys
 components:
   schemas:
+    webhook_key_request:
+      properties:
+        active:
+          default: true
+          description: Indicates if the webhook key is active
+          example: true
+          type: boolean
+      title: webhook_key_request
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     webhook_key_response:
       description: webhook keys model
       properties:
@@ -602,21 +646,6 @@ components:
           example: webhook_key
           type: string
       title: webhook_key_response
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
     webhook_key_delete_response:
       description: webhook keys model
       properties:
@@ -646,35 +675,6 @@ components:
           example: webhook_key
           type: string
       title: webhook_key_delete_response
-    webhook_key_create_response:
-      description: webhook keys model
-      properties:
-        active:
-          description: Indicates if the webhook key is active
-          example: true
-          type: boolean
-        created_at:
-          description: Unix timestamp in seconds with the creation date of the webhook key
-          example: 1577836800
-          format: int64
-          type: integer
-        id:
-          description: Unique identifier of the webhook key
-          example: 62730ba6fb7dfd6a712f118e
-          type: string
-        livemode:
-          description: Indicates if the webhook key is in live mode
-          example: false
-          type: boolean
-        object:
-          description: Object name, value is webhook_key
-          example: webhook_key
-          type: string
-        public_key:
-          description: Public key to be used in the webhook
-          example: '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqULpUc6D6mSAq5a0yLY/\noOjd1mWm6q+QI8y/FI4STr2F+XgKeNnMxSqnyFrHtKQ/ut4Zi45WFnJLfEQL7aW5\n67yE2dWyo6GaL7yZUfLC0Y3sHPGzaGtvDF36ISW7LliYNoMiA3Bx5/1Sr0G23pGW\n0Mp8IO1Nlz0sJWuU/d7zCz/UN6cl9g/BP4eaQ7deS56YuWcj5sTlwqFTlwN12kpA\nIzMZ7gnvYQnZTpPny5lben6QEuxTvZcPApcyOweiESjMnXfkfWOyuYtgMrbsU6oL\nA6sWa6j0pePW7AYeBqB4tyAlenkCSqzHg8bMk5Bm7hiT6I9Pls774lJbnOYmmuNE\n8QIDAQAB\n-----END PUBLIC KEY-----\n'
-          type: string
-      title: webhook_key_create_response
     get_webhook_keys_response:
       allOf:
       - description: pagination metadata
@@ -710,14 +710,6 @@ components:
               $ref: '#/components/schemas/webhook_key_response'
             type: array
       title: get_webhook_keys_response
-    webhook_key_request:
-      properties:
-        active:
-          default: true
-          description: Indicates if the webhook key is active
-          example: true
-          type: boolean
-      title: webhook_key_request
     webhook_key_update_request:
       properties:
         active:
@@ -726,27 +718,35 @@ components:
           example: false
           type: boolean
       title: webhook_key_update_request
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
+    webhook_key_create_response:
+      description: webhook keys model
+      properties:
+        active:
+          description: Indicates if the webhook key is active
+          example: true
+          type: boolean
+        created_at:
+          description: Unix timestamp in seconds with the creation date of the webhook key
+          example: 1577836800
+          format: int64
+          type: integer
+        id:
+          description: Unique identifier of the webhook key
+          example: 62730ba6fb7dfd6a712f118e
+          type: string
+        livemode:
+          description: Indicates if the webhook key is in live mode
+          example: false
+          type: boolean
+        object:
+          description: Object name, value is webhook_key
+          example: webhook_key
+          type: string
+        public_key:
+          description: Public key to be used in the webhook
+          example: '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqULpUc6D6mSAq5a0yLY/\noOjd1mWm6q+QI8y/FI4STr2F+XgKeNnMxSqnyFrHtKQ/ut4Zi45WFnJLfEQL7aW5\n67yE2dWyo6GaL7yZUfLC0Y3sHPGzaGtvDF36ISW7LliYNoMiA3Bx5/1Sr0G23pGW\n0Mp8IO1Nlz0sJWuU/d7zCz/UN6cl9g/BP4eaQ7deS56YuWcj5sTlwqFTlwN12kpA\nIzMZ7gnvYQnZTpPny5lben6QEuxTvZcPApcyOweiESjMnXfkfWOyuYtgMrbsU6oL\nA6sWa6j0pePW7AYeBqB4tyAlenkCSqzHg8bMk5Bm7hiT6I9Pls774lJbnOYmmuNE\n8QIDAQAB\n-----END PUBLIC KEY-----\n'
+          type: string
+      title: webhook_key_create_response
   securitySchemes:
     bearerAuth:
       scheme: bearer

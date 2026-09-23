@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: engineering@conekta.com
@@ -8,7 +8,7 @@ info:
   license:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Conekta Antifraud Shipping Contacts API
+  title: Conekta Shipping Contacts API
   version: 2.2.0
 servers:
 - description: Conekta main server
@@ -381,6 +381,41 @@ paths:
       - Shipping Contacts
 components:
   schemas:
+    customer_shipping_contacts_request:
+      description: '[Shipping](https://developers.conekta.com/v2.2.0/reference/createcustomershippingcontacts)
+
+        details, required in case of sending a shipping. If we do not receive a shipping_contact on the order, the default shipping_contact of the customer will be used.'
+      properties:
+        phone:
+          description: Phone contact
+          example: '+525511223344'
+          type: string
+        receiver:
+          description: Name of the person who will receive the order
+          example: Marvin Fuller
+          type: string
+        between_streets:
+          description: The street names between which the order will be delivered.
+          example: Ackerman Crescent
+          type: string
+        address:
+          $ref: '#/components/schemas/customer_shipping_contacts_request_address'
+        parent_id:
+          type: string
+        default:
+          type: boolean
+          nullable: true
+        deleted:
+          type: boolean
+          nullable: true
+        metadata:
+          additionalProperties: true
+          description: Metadata associated with the shipping contact
+          maxProperties: 100
+          type: object
+      required:
+      - address
+      title: customer_shipping_contacts_request
     details_error:
       properties:
         code:
@@ -396,6 +431,32 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
+    customer_shipping_contacts_request_address:
+      description: Address of the person who will receive the order
+      properties:
+        street1:
+          example: Nuevo Leon 254
+          type: string
+        street2:
+          example: Departamento 404
+          type: string
+        postal_code:
+          example: '06100'
+          type: string
+        city:
+          example: Ciudad de Mexico
+          type: string
+        state:
+          example: Ciudad de Mexico
+          type: string
+        country:
+          description: this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
+          example: MX
+          type: string
+        residential:
+          example: true
+          type: boolean
+          nullable: true
     customer_update_shipping_contacts_request:
       description: '[Shipping](https://developers.conekta.com/v2.2.0/reference/createcustomershippingcontacts)
 
@@ -424,6 +485,55 @@ components:
           type: boolean
           nullable: true
       title: customer_update_shipping_contacts_request
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    customer_shipping_contacts_address:
+      properties:
+        object:
+          example: shipping_address
+          type: string
+        street1:
+          example: Nuevo Leon 254
+          type: string
+        street2:
+          example: Departamento 404
+          type: string
+        postal_code:
+          example: '06100'
+          type: string
+        city:
+          example: Ciudad de Mexico
+          type: string
+        state:
+          example: Ciudad de Mexico
+          type: string
+        country:
+          example: MX
+          type: string
+        residential:
+          example: true
+          type: boolean
+          nullable: true
+      title: customer_shipping_contacts_address
     customer_shipping_contacts_response:
       description: Contains the detail of the shipping addresses that the client has active or has used in Conekta
       properties:
@@ -463,116 +573,6 @@ components:
           example: false
           type: boolean
       title: customer_shipping_contacts_response
-    customer_shipping_contacts_address:
-      properties:
-        object:
-          example: shipping_address
-          type: string
-        street1:
-          example: Nuevo Leon 254
-          type: string
-        street2:
-          example: Departamento 404
-          type: string
-        postal_code:
-          example: '06100'
-          type: string
-        city:
-          example: Ciudad de Mexico
-          type: string
-        state:
-          example: Ciudad de Mexico
-          type: string
-        country:
-          example: MX
-          type: string
-        residential:
-          example: true
-          type: boolean
-          nullable: true
-      title: customer_shipping_contacts_address
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
-    customer_shipping_contacts_request_address:
-      description: Address of the person who will receive the order
-      properties:
-        street1:
-          example: Nuevo Leon 254
-          type: string
-        street2:
-          example: Departamento 404
-          type: string
-        postal_code:
-          example: '06100'
-          type: string
-        city:
-          example: Ciudad de Mexico
-          type: string
-        state:
-          example: Ciudad de Mexico
-          type: string
-        country:
-          description: this field follows the [ISO 3166-1 alpha-2 standard](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)
-          example: MX
-          type: string
-        residential:
-          example: true
-          type: boolean
-          nullable: true
-    customer_shipping_contacts_request:
-      description: '[Shipping](https://developers.conekta.com/v2.2.0/reference/createcustomershippingcontacts)
-
-        details, required in case of sending a shipping. If we do not receive a shipping_contact on the order, the default shipping_contact of the customer will be used.'
-      properties:
-        phone:
-          description: Phone contact
-          example: '+525511223344'
-          type: string
-        receiver:
-          description: Name of the person who will receive the order
-          example: Marvin Fuller
-          type: string
-        between_streets:
-          description: The street names between which the order will be delivered.
-          example: Ackerman Crescent
-          type: string
-        address:
-          $ref: '#/components/schemas/customer_shipping_contacts_request_address'
-        parent_id:
-          type: string
-        default:
-          type: boolean
-          nullable: true
-        deleted:
-          type: boolean
-          nullable: true
-        metadata:
-          additionalProperties: true
-          description: Metadata associated with the shipping contact
-          maxProperties: 100
-          type: object
-      required:
-      - address
-      title: customer_shipping_contacts_request
   securitySchemes:
     bearerAuth:
       scheme: bearer

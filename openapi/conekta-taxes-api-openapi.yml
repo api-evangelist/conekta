@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: engineering@conekta.com
@@ -8,7 +8,7 @@ info:
   license:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Conekta Antifraud Taxes API
+  title: Conekta Taxes API
   version: 2.2.0
 servers:
 - description: Conekta main server
@@ -366,45 +366,6 @@ paths:
       - Taxes
 components:
   schemas:
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
-    order_tax_request:
-      description: create new taxes for an existing order
-      properties:
-        amount:
-          description: The amount to be collected for tax in cents
-          example: 100
-          format: int64
-          minimum: 0
-          type: integer
-        description:
-          description: description or tax's name
-          example: testing
-          minLength: 2
-          type: string
-        metadata:
-          additionalProperties: true
-          example:
-            key: value
-          maxProperties: 100
-          type: object
-      required:
-      - amount
-      - description
-      title: order_tax_request
     order_tax_response:
       allOf:
       - description: create new taxes for an existing order
@@ -444,7 +405,22 @@ components:
       required:
       - id
       title: order_tax_response
-    ordersUpdateTaxes_request:
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    order_tax_request:
       description: create new taxes for an existing order
       properties:
         amount:
@@ -459,9 +435,15 @@ components:
           minLength: 2
           type: string
         metadata:
-          additionalProperties:
-            type: object
+          additionalProperties: true
+          example:
+            key: value
           maxProperties: 100
+          type: object
+      required:
+      - amount
+      - description
+      title: order_tax_request
     error:
       allOf:
       - properties:
@@ -483,6 +465,24 @@ components:
             type: string
       description: err model
       title: error
+    ordersUpdateTaxes_request:
+      description: create new taxes for an existing order
+      properties:
+        amount:
+          description: The amount to be collected for tax in cents
+          example: 100
+          format: int64
+          minimum: 0
+          type: integer
+        description:
+          description: description or tax's name
+          example: testing
+          minLength: 2
+          type: string
+        metadata:
+          additionalProperties:
+            type: object
+          maxProperties: 100
   securitySchemes:
     bearerAuth:
       scheme: bearer

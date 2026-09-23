@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: engineering@conekta.com
@@ -8,7 +8,7 @@ info:
   license:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Conekta Antifraud Subscriptions API
+  title: Conekta Subscriptions API
   version: 2.2.0
 servers:
 - description: Conekta main server
@@ -2420,21 +2420,6 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    subscription_request:
-      description: It is a parameter that allows to identify in the response, the detailed content of the plans to which the client has subscribed
-      properties:
-        plan_id:
-          example: f84gdgf5g48r15fd21g8w424fd1
-          type: string
-        card_id:
-          example: src_2qUCNd5AyQqfPMBuV
-          type: string
-        trial_end:
-          example: 1484040996
-          type: integer
-      required:
-      - plan_id
-      title: subscription_request
     event_response:
       description: event model
       properties:
@@ -2469,19 +2454,36 @@ components:
           example: successful
           type: string
       title: event_response
-    updates_a_subscription:
-      description: You can modify the subscription to change the plan used by your customers.
+    WebhookLog:
       properties:
-        plan_id:
-          example: f84gdgf5g48r15fd21g8w424fd1
-          type: string
-        card_id:
-          example: src_2qUCNd5AyQqfPMBuV
-          type: string
-        trial_end:
-          example: 1484040996
+        failed_attempts:
+          example: 10
           type: integer
-      title: updates a subscription
+        id:
+          example: webhl_2svd2sh6GbqzyWBNZ
+          type: string
+        last_attempted_at:
+          example: 1669651274
+          type: integer
+        last_http_response_status:
+          example: 200
+          format: int32
+          type: integer
+        object:
+          example: webhook_log
+          type: string
+        response_data:
+          additionalProperties: true
+          example:
+            amount: 3000
+            payable: true
+          maxProperties: 100
+          type: object
+        url:
+          example: https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval
+          format: uri
+          type: string
+      title: WebhookLog
     subscription_response:
       description: subscription model
       properties:
@@ -2590,6 +2592,21 @@ components:
               $ref: '#/components/schemas/event_response'
             type: array
       title: subscription_events_response
+    subscription_request:
+      description: It is a parameter that allows to identify in the response, the detailed content of the plans to which the client has subscribed
+      properties:
+        plan_id:
+          example: f84gdgf5g48r15fd21g8w424fd1
+          type: string
+        card_id:
+          example: src_2qUCNd5AyQqfPMBuV
+          type: string
+        trial_end:
+          example: 1484040996
+          type: integer
+      required:
+      - plan_id
+      title: subscription_request
     error:
       allOf:
       - properties:
@@ -2611,36 +2628,19 @@ components:
             type: string
       description: err model
       title: error
-    WebhookLog:
+    updates_a_subscription:
+      description: You can modify the subscription to change the plan used by your customers.
       properties:
-        failed_attempts:
-          example: 10
-          type: integer
-        id:
-          example: webhl_2svd2sh6GbqzyWBNZ
+        plan_id:
+          example: f84gdgf5g48r15fd21g8w424fd1
           type: string
-        last_attempted_at:
-          example: 1669651274
-          type: integer
-        last_http_response_status:
-          example: 200
-          format: int32
-          type: integer
-        object:
-          example: webhook_log
+        card_id:
+          example: src_2qUCNd5AyQqfPMBuV
           type: string
-        response_data:
-          additionalProperties: true
-          example:
-            amount: 3000
-            payable: true
-          maxProperties: 100
-          type: object
-        url:
-          example: https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval
-          format: uri
-          type: string
-      title: WebhookLog
+        trial_end:
+          example: 1484040996
+          type: integer
+      title: updates a subscription
   securitySchemes:
     bearerAuth:
       scheme: bearer

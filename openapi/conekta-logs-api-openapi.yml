@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: engineering@conekta.com
@@ -8,7 +8,7 @@ info:
   license:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Conekta Antifraud Logs API
+  title: Conekta Logs API
   version: 2.2.0
 servers:
 - description: Conekta main server
@@ -294,115 +294,32 @@ components:
             type: string
       description: err model
       title: error
-    logs_response_data:
+    logs_response_for_request:
+      description: logs model
       properties:
-        created_at:
-          example: 1661445644
-          format: int64
-          type: integer
-        id:
-          example: 6307a60c41de27127515a575
-          type: string
-        ip_address:
-          example: 54.235.131.48
-          format: ipv4
-          type: string
-        livemode:
-          example: true
+        has_more:
+          description: True, if there are more pages.
+          readOnly: true
           type: boolean
-        loggable_id:
-          example: ord_87632467832
+        object:
+          description: The object type
+          readOnly: true
+          type: string
+        next_page_url:
+          description: URL of the next page.
           type: string
           nullable: true
-        loggable_type:
-          example: order
+        previous_page_url:
+          description: Url of the previous page.
           type: string
           nullable: true
-        method:
-          example: POST
-          type: string
-        oauth_token_id:
-          type: string
-          nullable: true
-        query_string:
-          additionalProperties: true
-          example:
-            amount: 3000
-            payable: true
-          type: object
-        related:
-          example: FilterResource
-          type: string
-        request_body:
-          example:
-            filters:
-              amount:
-                amount_from: 0
-                amount_to: 0
-              created_at:
-                date_from: 1653627600
-                date_to: 1661489999
-              filterName: Payments
-              sort_by: created_at
-              sort_direction: desc
-              status: []
-              type: []
-            id: 78e65162-0f37-4942-847c-9bf7081d54c2
-            page: '0'
-            report_type: charges
-            testMode: false
-          type: object
-        request_headers:
-          additionalProperties:
-            type: string
-          example:
-            Accept: application/vnd.conekta-v2.2.0+json
-            Accept-Encoding: gzip, deflate, br
-            Accept-Language: es-419, es; q=0.9, en; q=0.8
-            Activitypermission: orders:read
-            Apiversion: 2.2.0
-        response_body:
-          type: object
-        response_headers:
-          additionalProperties:
-            type: string
-          example:
-            Access-Control-Allow-Headers: Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, X-Prototype-Version, Authorization, Accept, Date, Version, X-Forwarded-For, Host, Connection, X-Forwarded-Proto, X-Forwarded-Port, X-Amzn-Trace-Id, Accept-Encoding, Accept-Language, Referer, Origin, Activitypermission, Apiversion, Entityid, Livemode, Sec-Ch-Ua, Sec-Ch-Ua-Mobile, Sec-Ch-Ua-Platform, Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site, X-Datadog-Parent-Id, X-Datadog-Sampling-Priority, X-Datadog-Trace-Id, X-Forwarded-Host, X-Forwarded-Server, X-Real-Ip
-            Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS
-            Access-Control-Allow-Origin: '*'
-            Access-Control-Max-Age: '1728000'
-            Conekta-Media-Type: conekta-v2.2.0; format=application/json
-            Content-Type: application/json; charset=utf-8
-            Referrer-Policy: strict-origin-when-cross-origin
-            Strict-Transport-Security: max-age=31536000; includeSubDomains
-            X-Content-Type-Options: nosniff
-            X-Download-Options: noopen
-            X-Frame-Options: SAMEORIGIN
-            X-Permitted-Cross-Domain-Policies: none
-            X-XSS-Protection: 1; mode=block
-        searchable_tags:
-          example:
-          - 6307a60c41de27127515a575
-          - 6307a60c41de27127515a571
+        data:
+          description: set to page results.
           items:
-            type: string
+            $ref: '#/components/schemas/logs_response_data'
           type: array
-        status:
-          example: 200
-          type: string
-        updated_at:
-          example: 2022-08-25 16:40:44.887000+00:00
-          type: string
-        url:
-          example: /filter_resource
-          type: string
-        user_account_id:
-          example: 5a0b7001edbb6e1725b0b2c6
-          type: string
-        version:
-          example: 2.2.0
-          type: string
-      title: logs_response_data
+          nullable: true
+      title: logs_response_for_request
     log_response_for_request:
       description: log model
       properties:
@@ -517,32 +434,115 @@ components:
       - id
       - livemode
       title: log_response_for_request
-    logs_response_for_request:
-      description: logs model
+    logs_response_data:
       properties:
-        has_more:
-          description: True, if there are more pages.
-          readOnly: true
+        created_at:
+          example: 1661445644
+          format: int64
+          type: integer
+        id:
+          example: 6307a60c41de27127515a575
+          type: string
+        ip_address:
+          example: 54.235.131.48
+          format: ipv4
+          type: string
+        livemode:
+          example: true
           type: boolean
-        object:
-          description: The object type
-          readOnly: true
-          type: string
-        next_page_url:
-          description: URL of the next page.
+        loggable_id:
+          example: ord_87632467832
           type: string
           nullable: true
-        previous_page_url:
-          description: Url of the previous page.
+        loggable_type:
+          example: order
           type: string
           nullable: true
-        data:
-          description: set to page results.
+        method:
+          example: POST
+          type: string
+        oauth_token_id:
+          type: string
+          nullable: true
+        query_string:
+          additionalProperties: true
+          example:
+            amount: 3000
+            payable: true
+          type: object
+        related:
+          example: FilterResource
+          type: string
+        request_body:
+          example:
+            filters:
+              amount:
+                amount_from: 0
+                amount_to: 0
+              created_at:
+                date_from: 1653627600
+                date_to: 1661489999
+              filterName: Payments
+              sort_by: created_at
+              sort_direction: desc
+              status: []
+              type: []
+            id: 78e65162-0f37-4942-847c-9bf7081d54c2
+            page: '0'
+            report_type: charges
+            testMode: false
+          type: object
+        request_headers:
+          additionalProperties:
+            type: string
+          example:
+            Accept: application/vnd.conekta-v2.2.0+json
+            Accept-Encoding: gzip, deflate, br
+            Accept-Language: es-419, es; q=0.9, en; q=0.8
+            Activitypermission: orders:read
+            Apiversion: 2.2.0
+        response_body:
+          type: object
+        response_headers:
+          additionalProperties:
+            type: string
+          example:
+            Access-Control-Allow-Headers: Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control, X-Prototype-Version, Authorization, Accept, Date, Version, X-Forwarded-For, Host, Connection, X-Forwarded-Proto, X-Forwarded-Port, X-Amzn-Trace-Id, Accept-Encoding, Accept-Language, Referer, Origin, Activitypermission, Apiversion, Entityid, Livemode, Sec-Ch-Ua, Sec-Ch-Ua-Mobile, Sec-Ch-Ua-Platform, Sec-Fetch-Dest, Sec-Fetch-Mode, Sec-Fetch-Site, X-Datadog-Parent-Id, X-Datadog-Sampling-Priority, X-Datadog-Trace-Id, X-Forwarded-Host, X-Forwarded-Server, X-Real-Ip
+            Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS
+            Access-Control-Allow-Origin: '*'
+            Access-Control-Max-Age: '1728000'
+            Conekta-Media-Type: conekta-v2.2.0; format=application/json
+            Content-Type: application/json; charset=utf-8
+            Referrer-Policy: strict-origin-when-cross-origin
+            Strict-Transport-Security: max-age=31536000; includeSubDomains
+            X-Content-Type-Options: nosniff
+            X-Download-Options: noopen
+            X-Frame-Options: SAMEORIGIN
+            X-Permitted-Cross-Domain-Policies: none
+            X-XSS-Protection: 1; mode=block
+        searchable_tags:
+          example:
+          - 6307a60c41de27127515a575
+          - 6307a60c41de27127515a571
           items:
-            $ref: '#/components/schemas/logs_response_data'
+            type: string
           type: array
-          nullable: true
-      title: logs_response_for_request
+        status:
+          example: 200
+          type: string
+        updated_at:
+          example: 2022-08-25 16:40:44.887000+00:00
+          type: string
+        url:
+          example: /filter_resource
+          type: string
+        user_account_id:
+          example: 5a0b7001edbb6e1725b0b2c6
+          type: string
+        version:
+          example: 2.2.0
+          type: string
+      title: logs_response_data
   securitySchemes:
     bearerAuth:
       scheme: bearer

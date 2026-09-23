@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: engineering@conekta.com
@@ -8,7 +8,7 @@ info:
   license:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Conekta Antifraud Balances API
+  title: Conekta Balances API
   version: 2.2.0
 servers:
 - description: Conekta main server
@@ -20,7 +20,6 @@ tags:
 paths:
   /balance:
     get:
-      description: Get a company's balance
       operationId: getBalance
       parameters:
       - description: Use for knowing which language to use
@@ -118,34 +117,6 @@ paths:
       - Balances
 components:
   schemas:
-    balance_common_fiels_response:
-      description: balance common fields model
-      properties:
-        amount:
-          description: The balance's amount
-          example: 100
-          format: int64
-          type: integer
-        currency:
-          description: The balance's currency
-          example: MXN
-          type: string
-      title: balance_common_fiels_response
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
     balance_response:
       description: balance model
       properties:
@@ -198,6 +169,34 @@ components:
             $ref: '#/components/schemas/balance_common_fiels_response'
           type: array
       title: balance_response
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    balance_common_fiels_response:
+      description: balance common fields model
+      properties:
+        amount:
+          description: The balance's amount
+          example: 100
+          format: int64
+          type: integer
+        currency:
+          description: The balance's currency
+          example: MXN
+          type: string
+      title: balance_common_fiels_response
     error:
       allOf:
       - properties:

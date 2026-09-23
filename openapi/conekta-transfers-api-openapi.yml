@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: engineering@conekta.com
@@ -8,7 +8,7 @@ info:
   license:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Conekta Antifraud Transfers API
+  title: Conekta Transfers API
   version: 2.2.0
 servers:
 - description: Conekta main server
@@ -292,51 +292,6 @@ paths:
       - Transfers
 components:
   schemas:
-    transfers_response:
-      description: A transfer represents the action of sending an amount to a business bank account including the status, amount and method used to make the transfer.
-      properties:
-        amount:
-          description: Amount in cents of the transfer.
-          example: 10000
-          format: int64
-          type: integer
-        created_at:
-          description: Date and time of creation of the transfer.
-          example: 1553273553
-          format: int64
-          type: integer
-        currency:
-          description: The currency of the transfer. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
-          example: MXN
-          maxLength: 3
-          type: string
-        id:
-          description: Unique identifier of the transfer.
-          example: 5b0337d4dD344ef954fe1X4b6
-          type: string
-        livemode:
-          description: Indicates whether the transfer was created in live mode or test mode.
-          example: true
-          type: boolean
-        method:
-          $ref: '#/components/schemas/transfer_method_response'
-        object:
-          description: Object name, which is transfer.
-          example: transfer
-          type: string
-        statement_description:
-          description: Description of the transfer.
-          example: Conekta 4401234
-          type: string
-        statement_reference:
-          description: Reference number of the transfer.
-          example: '4401234'
-          type: string
-        status:
-          description: Code indicating transfer status.
-          example: pending
-          type: string
-      title: transfers_response
     details_error:
       properties:
         code:
@@ -389,6 +344,87 @@ components:
           example: BankTransferPayoutMethod
           type: string
       title: transfer_method_response
+    get_transfers_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            description: Transfers
+            items:
+              $ref: '#/components/schemas/transfers_response'
+            type: array
+      title: get_transfers_response
+    transfers_response:
+      description: A transfer represents the action of sending an amount to a business bank account including the status, amount and method used to make the transfer.
+      properties:
+        amount:
+          description: Amount in cents of the transfer.
+          example: 10000
+          format: int64
+          type: integer
+        created_at:
+          description: Date and time of creation of the transfer.
+          example: 1553273553
+          format: int64
+          type: integer
+        currency:
+          description: The currency of the transfer. It uses the 3-letter code of the [International Standard ISO 4217.](https://es.wikipedia.org/wiki/ISO_4217)
+          example: MXN
+          maxLength: 3
+          type: string
+        id:
+          description: Unique identifier of the transfer.
+          example: 5b0337d4dD344ef954fe1X4b6
+          type: string
+        livemode:
+          description: Indicates whether the transfer was created in live mode or test mode.
+          example: true
+          type: boolean
+        method:
+          $ref: '#/components/schemas/transfer_method_response'
+        object:
+          description: Object name, which is transfer.
+          example: transfer
+          type: string
+        statement_description:
+          description: Description of the transfer.
+          example: Conekta 4401234
+          type: string
+        statement_reference:
+          description: Reference number of the transfer.
+          example: '4401234'
+          type: string
+        status:
+          description: Code indicating transfer status.
+          example: pending
+          type: string
+      title: transfers_response
     error:
       allOf:
       - properties:
@@ -447,42 +483,6 @@ components:
           example: BankTransferPayoutMethod
           type: string
       title: transfer_destination_response
-    get_transfers_response:
-      allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - properties:
-          data:
-            description: Transfers
-            items:
-              $ref: '#/components/schemas/transfers_response'
-            type: array
-      title: get_transfers_response
     transfer_response:
       description: A transfer represents the action of sending an amount to a business bank account including the status, amount and method used to make the transfer.
       properties:

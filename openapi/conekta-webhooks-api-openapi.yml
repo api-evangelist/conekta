@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: engineering@conekta.com
@@ -8,7 +8,7 @@ info:
   license:
     name: MIT-LICENSE
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Conekta Antifraud Webhooks API
+  title: Conekta Webhooks API
   version: 2.2.0
 servers:
 - description: Conekta main server
@@ -690,24 +690,6 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    webhook_request:
-      description: a webhook
-      properties:
-        url:
-          description: Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
-          example: https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8
-          format: url
-          pattern: ^(?!.*(localhost|127\.0\.0\.1)).*$
-          type: string
-        subscribed_events:
-          description: events that will be sent to the webhook
-          example: customer.created
-          items:
-            type: string
-          type: array
-      required:
-      - url
-      title: webhook_request
     update_webhook:
       description: an updated webhook
       properties:
@@ -749,41 +731,6 @@ components:
             type: string
       description: err model
       title: error
-    get_webhooks_response:
-      allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/webhook_response'
-            type: array
-      title: get_webhooks_response
     webhook_response:
       description: webhooks model
       properties:
@@ -832,6 +779,59 @@ components:
           example: https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval
           type: string
       title: webhook_response
+    get_webhooks_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/webhook_response'
+            type: array
+      title: get_webhooks_response
+    webhook_request:
+      description: a webhook
+      properties:
+        url:
+          description: Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
+          example: https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8
+          format: url
+          pattern: ^(?!.*(localhost|127\.0\.0\.1)).*$
+          type: string
+        subscribed_events:
+          description: events that will be sent to the webhook
+          example: customer.created
+          items:
+            type: string
+          type: array
+      required:
+      - url
+      title: webhook_request
   securitySchemes:
     bearerAuth:
       scheme: bearer
