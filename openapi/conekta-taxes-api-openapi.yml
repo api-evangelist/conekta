@@ -420,6 +420,27 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     order_tax_request:
       description: create new taxes for an existing order
       properties:
@@ -444,27 +465,6 @@ components:
       - amount
       - description
       title: order_tax_request
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
     ordersUpdateTaxes_request:
       description: create new taxes for an existing order
       properties:

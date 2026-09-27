@@ -748,109 +748,6 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    get_plans_response:
-      allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/plan_response'
-            type: array
-      title: get_plans_response
-    plan_response:
-      description: plans model
-      properties:
-        amount:
-          example: 10000
-          type: integer
-        created_at:
-          example: 1666900846
-          format: int64
-          type: integer
-        currency:
-          example: MXN
-          maxLength: 3
-          type: string
-        expiry_count:
-          example: 12
-          type: integer
-          nullable: true
-        frequency:
-          example: 1
-          type: integer
-        id:
-          example: gold-plan
-          type: string
-        interval:
-          example: month
-          type: string
-        livemode:
-          example: true
-          type: boolean
-        name:
-          example: Extra Plan3
-          type: string
-        object:
-          example: plan
-          type: string
-        trial_period_days:
-          example: 0
-          type: integer
-          nullable: true
-        max_retries:
-          example: 3
-          type: integer
-        retry_delay_hours:
-          example: 48
-          type: integer
-      title: plan_response
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
     plan_request:
       description: a plan
       properties:
@@ -910,6 +807,74 @@ components:
       - interval
       - name
       title: plan_request
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    plan_response:
+      description: plans model
+      properties:
+        amount:
+          example: 10000
+          type: integer
+        created_at:
+          example: 1666900846
+          format: int64
+          type: integer
+        currency:
+          example: MXN
+          maxLength: 3
+          type: string
+        expiry_count:
+          example: 12
+          type: integer
+          nullable: true
+        frequency:
+          example: 1
+          type: integer
+        id:
+          example: gold-plan
+          type: string
+        interval:
+          example: month
+          type: string
+        livemode:
+          example: true
+          type: boolean
+        name:
+          example: Extra Plan3
+          type: string
+        object:
+          example: plan
+          type: string
+        trial_period_days:
+          example: 0
+          type: integer
+          nullable: true
+        max_retries:
+          example: 3
+          type: integer
+        retry_delay_hours:
+          example: 48
+          type: integer
+      title: plan_response
     update_plan:
       description: a plan
       properties:
@@ -932,6 +897,41 @@ components:
           example: Extra Plan3
           type: string
       title: update_plan
+    get_plans_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/plan_response'
+            type: array
+      title: get_plans_response
   securitySchemes:
     bearerAuth:
       scheme: bearer

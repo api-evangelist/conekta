@@ -391,45 +391,6 @@ paths:
       - Shippings
 components:
   schemas:
-    shipping_order_response:
-      allOf:
-      - properties:
-          amount:
-            description: Shipping amount in cents
-            example: 100
-            format: int64
-            minimum: 0
-            type: integer
-          carrier:
-            description: Carrier name for the shipment
-            example: FEDEX
-            type: string
-          tracking_number:
-            description: Tracking number can be used to track the shipment
-            example: TRACK123
-            type: string
-          method:
-            description: Method of shipment
-            example: Same day
-            type: string
-          metadata:
-            additionalProperties: true
-            description: Hash where the user can send additional information for each 'shipping'.
-            example:
-              key: value
-            maxProperties: 100
-            type: object
-        required:
-        - amount
-        title: shipping_request
-      - properties:
-          id:
-            type: string
-          object:
-            type: string
-          parent_id:
-            type: string
-      title: shipping_order_response
     shipping_request:
       properties:
         amount:
@@ -475,6 +436,45 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
+    shipping_order_response:
+      allOf:
+      - properties:
+          amount:
+            description: Shipping amount in cents
+            example: 100
+            format: int64
+            minimum: 0
+            type: integer
+          carrier:
+            description: Carrier name for the shipment
+            example: FEDEX
+            type: string
+          tracking_number:
+            description: Tracking number can be used to track the shipment
+            example: TRACK123
+            type: string
+          method:
+            description: Method of shipment
+            example: Same day
+            type: string
+          metadata:
+            additionalProperties: true
+            description: Hash where the user can send additional information for each 'shipping'.
+            example:
+              key: value
+            maxProperties: 100
+            type: object
+        required:
+        - amount
+        title: shipping_request
+      - properties:
+          id:
+            type: string
+          object:
+            type: string
+          parent_id:
+            type: string
+      title: shipping_order_response
     error:
       allOf:
       - properties:

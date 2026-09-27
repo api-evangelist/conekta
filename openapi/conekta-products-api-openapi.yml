@@ -366,42 +366,6 @@ paths:
       - Products
 components:
   schemas:
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
     product_order_response:
       allOf:
       - properties:
@@ -468,6 +432,21 @@ components:
           parent_id:
             type: string
       title: product order response
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
     product:
       properties:
         antifraud_info:
@@ -525,6 +504,27 @@ components:
       - quantity
       - unit_price
       title: product
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     update_product:
       properties:
         antifraud_info:

@@ -1007,33 +1007,14 @@ paths:
       - Payment Link
 components:
   schemas:
-    customer_info:
+    customer_info_customer_id:
       properties:
-        name:
-          example: DevTest
-          type: string
-        email:
-          example: test@conekta.com
-          format: email
-          type: string
-        phone:
-          example: '5522997233'
-          type: string
-        corporate:
-          type: boolean
-        object:
-          example: customer_info
+        customer_id:
+          example: cus_23874283647
           type: string
       required:
-      - email
-      - name
-      - phone
-      title: customer_info
-    checkout_order_template_customer_info:
-      description: It is the information of the customer who will be created when receiving a new payment.
-      oneOf:
-      - $ref: '#/components/schemas/customer_info'
-      - $ref: '#/components/schemas/customer_info_customer_id'
+      - customer_id
+      title: customer_info_customer_id
     checkout_order_template:
       description: It maintains the attributes with which the order will be created when receiving a new payment.
       properties:
@@ -1069,106 +1050,33 @@ components:
       required:
       - currency
       - line_items
-    checkout:
-      description: It is a sub-resource of the Order model that can be stipulated in order to configure its corresponding checkout
+    customer_info:
       properties:
-        allowed_payment_methods:
-          description: Those are the payment methods that will be available for the link
-          example:
-          - cash
-          - card
-          - bank_transfer
-          - bnpl
-          - pay_by_bank
-          items:
-            type: string
-          type: array
-        exclude_card_networks:
-          description: List of card networks to exclude from the checkout. This field is only applicable for card payments.
-          example:
-          - visa
-          - amex
-          items:
-            enum:
-            - visa
-            - mastercard
-            - amex
-            type: string
-          title: checkout_exclude_card_networks
-          type: array
-        expires_at:
-          description: "It is the time when the link will expire. \nIt is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date.\n"
-          example: 1680397724
-          format: int64
-          minimum: 1
-          type: integer
-        monthly_installments_enabled:
-          description: This flag allows you to specify if months without interest will be active.
-          example: true
-          type: boolean
-        monthly_installments_options:
-          description: This field allows you to specify the number of months without interest.
-          example:
-          - 3
-          - 6
-          - 12
-          items:
-            format: int8
-            type: integer
-          type: array
-        three_ds_mode:
-          description: Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
-          type: string
-          nullable: true
         name:
-          description: Reason for charge
-          example: Payment Link Name 1594138857
+          example: DevTest
           type: string
-        needs_shipping_contact:
-          description: This flag allows you to fill in the shipping information at checkout.
-          example: false
-          type: boolean
-        on_demand_enabled:
-          description: This flag allows you to specify if the link will be on demand.
-          example: true
-          type: boolean
-          nullable: true
-        plan_ids:
-          description: It is a list of plan IDs that will be associated with the order.
-          example:
-          - plan_123
-          - plan_456
-          items:
-            type: string
-          type: array
-        order_template:
-          $ref: '#/components/schemas/checkout_order_template'
-        payments_limit_count:
-          description: It is the number of payments that can be made through the link.
-          example: 5
-          format: int8
-          minimum: 1
-          type: integer
-        success_url:
-          description: The URL to redirect to after a successful payment.
-          example: https://www.conekta.com/success
+        email:
+          example: test@conekta.com
+          format: email
           type: string
-        recurrent:
-          description: 'false: single use. true: multiple payments'
-          example: false
+        phone:
+          example: '5522997233'
+          type: string
+        corporate:
           type: boolean
-        type:
-          description: It is the type of link that will be created. It must be a valid type.
-          example: PaymentLink
+        object:
+          example: customer_info
           type: string
       required:
-      - allowed_payment_methods
-      - expires_at
+      - email
       - name
-      - order_template
-      - recurrent
-      - type
-      title: checkout
+      - phone
+      title: customer_info
+    checkout_order_template_customer_info:
+      description: It is the information of the customer who will be created when receiving a new payment.
+      oneOf:
+      - $ref: '#/components/schemas/customer_info'
+      - $ref: '#/components/schemas/customer_info_customer_id'
     details_error:
       properties:
         code:
@@ -1184,37 +1092,84 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    customer_info_customer_id:
+    product:
       properties:
-        customer_id:
-          example: cus_23874283647
+        antifraud_info:
+          additionalProperties: true
+          example:
+            key: value
+          type: object
+        brand:
+          description: The brand of the item.
+          example: Cohiba
           type: string
-      required:
-      - customer_id
-      title: customer_info_customer_id
-    order_discount_lines_request:
-      description: List of discounts that apply to the order.
-      properties:
-        amount:
-          description: The amount to be deducted from the total sum of all payments, in cents.
-          example: 500
-          format: int64
+        description:
+          description: Short description of the item
+          example: Imported From Mex.
+          maxLength: 250
+          type: string
+        metadata:
+          additionalProperties: true
+          default: {}
+          description: It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
+          example:
+            key: value
+          maxProperties: 100
+          type: object
+        name:
+          description: The name of the item. It will be displayed in the order.
+          example: Box of Cohiba S1s
+          type: string
+        quantity:
+          description: The quantity of the item in the order.
+          example: 1
+          format: int32
+          minimum: 1
+          type: integer
+        sku:
+          description: The stock keeping unit for the item. It is used to identify the item in the order.
+          example: XYZ12345
+          type: string
+        tags:
+          description: List of tags for the item. It is used to identify the item in the order.
+          example:
+          - food
+          - mexican food
+          items:
+            type: string
+          type: array
+        unit_price:
+          description: The price of the item in cents.
+          example: 20000
+          format: int32
           minimum: 0
           type: integer
-        code:
-          description: Discount code.
-          example: '123'
-          type: string
-        type:
-          description: It can be 'loyalty', 'campaign', 'coupon' o 'sign'
-          example: loyalty
-          type: string
       required:
-      - amount
-      - code
-      - type
-      title: order_discount_lines_request
-      name: order_discount_lines_request
+      - name
+      - quantity
+      - unit_price
+      title: product
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     order_tax_request:
       description: create new taxes for an existing order
       properties:
@@ -1239,27 +1194,6 @@ components:
       - amount
       - description
       title: order_tax_request
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
     checkouts_response:
       allOf:
       - description: pagination metadata
@@ -1418,6 +1352,29 @@ components:
       - name
       - object
       title: checkout_response
+    order_discount_lines_request:
+      description: List of discounts that apply to the order.
+      properties:
+        amount:
+          description: The amount to be deducted from the total sum of all payments, in cents.
+          example: 500
+          format: int64
+          minimum: 0
+          type: integer
+        code:
+          description: Discount code.
+          example: '123'
+          type: string
+        type:
+          description: It can be 'loyalty', 'campaign', 'coupon' o 'sign'
+          example: loyalty
+          type: string
+      required:
+      - amount
+      - code
+      - type
+      title: order_discount_lines_request
+      name: order_discount_lines_request
     smsCheckout_request:
       properties:
         phonenumber:
@@ -1425,63 +1382,6 @@ components:
           type: string
       required:
       - phonenumber
-    product:
-      properties:
-        antifraud_info:
-          additionalProperties: true
-          example:
-            key: value
-          type: object
-        brand:
-          description: The brand of the item.
-          example: Cohiba
-          type: string
-        description:
-          description: Short description of the item
-          example: Imported From Mex.
-          maxLength: 250
-          type: string
-        metadata:
-          additionalProperties: true
-          default: {}
-          description: It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
-          example:
-            key: value
-          maxProperties: 100
-          type: object
-        name:
-          description: The name of the item. It will be displayed in the order.
-          example: Box of Cohiba S1s
-          type: string
-        quantity:
-          description: The quantity of the item in the order.
-          example: 1
-          format: int32
-          minimum: 1
-          type: integer
-        sku:
-          description: The stock keeping unit for the item. It is used to identify the item in the order.
-          example: XYZ12345
-          type: string
-        tags:
-          description: List of tags for the item. It is used to identify the item in the order.
-          example:
-          - food
-          - mexican food
-          items:
-            type: string
-          type: array
-        unit_price:
-          description: The price of the item in cents.
-          example: 20000
-          format: int32
-          minimum: 0
-          type: integer
-      required:
-      - name
-      - quantity
-      - unit_price
-      title: product
     emailCheckout_request:
       properties:
         email:
@@ -1490,6 +1390,106 @@ components:
           type: string
       required:
       - email
+    checkout:
+      description: It is a sub-resource of the Order model that can be stipulated in order to configure its corresponding checkout
+      properties:
+        allowed_payment_methods:
+          description: Those are the payment methods that will be available for the link
+          example:
+          - cash
+          - card
+          - bank_transfer
+          - bnpl
+          - pay_by_bank
+          items:
+            type: string
+          type: array
+        exclude_card_networks:
+          description: List of card networks to exclude from the checkout. This field is only applicable for card payments.
+          example:
+          - visa
+          - amex
+          items:
+            enum:
+            - visa
+            - mastercard
+            - amex
+            type: string
+          title: checkout_exclude_card_networks
+          type: array
+        expires_at:
+          description: "It is the time when the link will expire. \nIt is expressed in seconds since the Unix epoch. The valid range is from 5 minutes to 365 days from the creation date.\n"
+          example: 1680397724
+          format: int64
+          minimum: 1
+          type: integer
+        monthly_installments_enabled:
+          description: This flag allows you to specify if months without interest will be active.
+          example: true
+          type: boolean
+        monthly_installments_options:
+          description: This field allows you to specify the number of months without interest.
+          example:
+          - 3
+          - 6
+          - 12
+          items:
+            format: int8
+            type: integer
+          type: array
+        three_ds_mode:
+          description: Indicates the 3DS2 mode for the order, either smart or strict. This property is only applicable when 3DS is enabled. When 3DS is disabled, this field should be null.
+          type: string
+          nullable: true
+        name:
+          description: Reason for charge
+          example: Payment Link Name 1594138857
+          type: string
+        needs_shipping_contact:
+          description: This flag allows you to fill in the shipping information at checkout.
+          example: false
+          type: boolean
+        on_demand_enabled:
+          description: This flag allows you to specify if the link will be on demand.
+          example: true
+          type: boolean
+          nullable: true
+        plan_ids:
+          description: It is a list of plan IDs that will be associated with the order.
+          example:
+          - plan_123
+          - plan_456
+          items:
+            type: string
+          type: array
+        order_template:
+          $ref: '#/components/schemas/checkout_order_template'
+        payments_limit_count:
+          description: It is the number of payments that can be made through the link.
+          example: 5
+          format: int8
+          minimum: 1
+          type: integer
+        success_url:
+          description: The URL to redirect to after a successful payment.
+          example: https://www.conekta.com/success
+          type: string
+        recurrent:
+          description: 'false: single use. true: multiple payments'
+          example: false
+          type: boolean
+        type:
+          description: It is the type of link that will be created. It must be a valid type.
+          example: PaymentLink
+          type: string
+      required:
+      - allowed_payment_methods
+      - expires_at
+      - name
+      - order_template
+      - recurrent
+      - type
+      title: checkout
   securitySchemes:
     bearerAuth:
       scheme: bearer

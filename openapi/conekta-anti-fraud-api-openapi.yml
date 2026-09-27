@@ -498,6 +498,78 @@ paths:
       - anti Fraud
 components:
   schemas:
+    deleted_blacklist_rule_response:
+      properties:
+        id:
+          description: Blacklist rule id
+          example: 2fw8EWJusiRrxdPzT
+          type: string
+        field:
+          description: field used for blacklists rule deleted
+          example: email
+          type: string
+        value:
+          description: value used for blacklists rule deleted
+          example: email@example.com
+          type: string
+        description:
+          description: use an description for blacklisted rule
+          example: banned customer example@example.com
+          type: string
+      title: deleted_blacklist_rule_response
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    blacklist_rule_response:
+      properties:
+        id:
+          description: Blacklist rule id
+          example: 2fw8EWJusiRrxdPzT
+          type: string
+        field:
+          description: field used for blacklists rule
+          example: email
+          type: string
+        value:
+          description: value used for blacklists rule
+          example: email@example.com
+          type: string
+        description:
+          description: use an description for blacklisted rule
+          example: secure customer example@example.com
+          type: string
+      title: blacklist_rule_response
+    deleted_whitelist_rule_response:
+      properties:
+        id:
+          description: Whitelist rule id
+          example: 2fw8EWJusiRrxdPzT
+          type: string
+        field:
+          description: field used for whitelists rule deleted
+          example: email
+          type: string
+        value:
+          description: value used for whitelists rule deleted
+          example: email@example.com
+          type: string
+        description:
+          description: use an description for whitelisted rule
+          example: secure customer example@example.com
+          type: string
+      title: deleted_whitelist_rule_response
     risk_rules_list:
       allOf:
       - description: pagination metadata
@@ -533,21 +605,6 @@ components:
               $ref: '#/components/schemas/risk_rules_data'
             type: array
       title: risk_rules_list
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
     risk_rules_data:
       properties:
         id:
@@ -579,25 +636,24 @@ components:
           example: secure customer example@example.com
           type: string
       title: risk_rules_data
-    deleted_whitelist_rule_response:
+    CreateRuleWhitelist_request:
       properties:
-        id:
-          description: Whitelist rule id
-          example: 2fw8EWJusiRrxdPzT
+        description:
+          description: Description of the rule
+          example: this client email was verified at 20/09/22 by internal process
           type: string
         field:
-          description: field used for whitelists rule deleted
-          example: email
+          description: Field to be used for the rule
+          example: email | phone | card_token
           type: string
         value:
-          description: value used for whitelists rule deleted
-          example: email@example.com
+          description: Value to be used for the rule
+          example: email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV
           type: string
-        description:
-          description: use an description for whitelisted rule
-          example: secure customer example@example.com
-          type: string
-      title: deleted_whitelist_rule_response
+      required:
+      - description
+      - field
+      - value
     error:
       allOf:
       - properties:
@@ -619,25 +675,6 @@ components:
             type: string
       description: err model
       title: error
-    deleted_blacklist_rule_response:
-      properties:
-        id:
-          description: Blacklist rule id
-          example: 2fw8EWJusiRrxdPzT
-          type: string
-        field:
-          description: field used for blacklists rule deleted
-          example: email
-          type: string
-        value:
-          description: value used for blacklists rule deleted
-          example: email@example.com
-          type: string
-        description:
-          description: use an description for blacklisted rule
-          example: banned customer example@example.com
-          type: string
-      title: deleted_blacklist_rule_response
     whitelistlist_rule_response:
       properties:
         id:
@@ -657,43 +694,6 @@ components:
           example: banned customer example@example.com
           type: string
       title: whitelistlist_rule_response
-    blacklist_rule_response:
-      properties:
-        id:
-          description: Blacklist rule id
-          example: 2fw8EWJusiRrxdPzT
-          type: string
-        field:
-          description: field used for blacklists rule
-          example: email
-          type: string
-        value:
-          description: value used for blacklists rule
-          example: email@example.com
-          type: string
-        description:
-          description: use an description for blacklisted rule
-          example: secure customer example@example.com
-          type: string
-      title: blacklist_rule_response
-    CreateRuleWhitelist_request:
-      properties:
-        description:
-          description: Description of the rule
-          example: this client email was verified at 20/09/22 by internal process
-          type: string
-        field:
-          description: Field to be used for the rule
-          example: email | phone | card_token
-          type: string
-        value:
-          description: Value to be used for the rule
-          example: email@example.com | 818081808180 | src_2qUCNd5AyQqfPMBuV
-          type: string
-      required:
-      - description
-      - field
-      - value
   securitySchemes:
     bearerAuth:
       scheme: bearer

@@ -2405,6 +2405,19 @@ paths:
       - Subscriptions
 components:
   schemas:
+    updates_a_subscription:
+      description: You can modify the subscription to change the plan used by your customers.
+      properties:
+        plan_id:
+          example: f84gdgf5g48r15fd21g8w424fd1
+          type: string
+        card_id:
+          example: src_2qUCNd5AyQqfPMBuV
+          type: string
+        trial_end:
+          example: 1484040996
+          type: integer
+      title: updates a subscription
     details_error:
       properties:
         code:
@@ -2420,40 +2433,27 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    event_response:
-      description: event model
-      properties:
-        created_at:
-          example: 1661445644
-          format: int64
-          type: integer
-        data:
-          additionalProperties: true
-          example:
-            action: ping
-            livemode: true
-          maxProperties: 100
-          type: object
-        id:
-          example: 6307a60c41de27127515a575
-          type: string
-        livemode:
-          example: true
-          type: boolean
-        object:
-          example: event
-          type: string
-        type:
-          example: webhook_ping
-          type: string
-        webhook_logs:
-          items:
-            $ref: '#/components/schemas/WebhookLog'
-          type: array
-        webhook_status:
-          example: successful
-          type: string
-      title: event_response
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     WebhookLog:
       properties:
         failed_attempts:
@@ -2484,6 +2484,56 @@ components:
           format: uri
           type: string
       title: WebhookLog
+    subscription_events_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/event_response'
+            type: array
+      title: subscription_events_response
+    subscription_request:
+      description: It is a parameter that allows to identify in the response, the detailed content of the plans to which the client has subscribed
+      properties:
+        plan_id:
+          example: f84gdgf5g48r15fd21g8w424fd1
+          type: string
+        card_id:
+          example: src_2qUCNd5AyQqfPMBuV
+          type: string
+        trial_end:
+          example: 1484040996
+          type: integer
+      required:
+      - plan_id
+      title: subscription_request
     subscription_response:
       description: subscription model
       properties:
@@ -2557,90 +2607,40 @@ components:
           type: integer
           nullable: true
       title: subscription_response
-    subscription_events_response:
-      allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/event_response'
-            type: array
-      title: subscription_events_response
-    subscription_request:
-      description: It is a parameter that allows to identify in the response, the detailed content of the plans to which the client has subscribed
+    event_response:
+      description: event model
       properties:
-        plan_id:
-          example: f84gdgf5g48r15fd21g8w424fd1
-          type: string
-        card_id:
-          example: src_2qUCNd5AyQqfPMBuV
-          type: string
-        trial_end:
-          example: 1484040996
+        created_at:
+          example: 1661445644
+          format: int64
           type: integer
-      required:
-      - plan_id
-      title: subscription_request
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
-    updates_a_subscription:
-      description: You can modify the subscription to change the plan used by your customers.
-      properties:
-        plan_id:
-          example: f84gdgf5g48r15fd21g8w424fd1
+        data:
+          additionalProperties: true
+          example:
+            action: ping
+            livemode: true
+          maxProperties: 100
+          type: object
+        id:
+          example: 6307a60c41de27127515a575
           type: string
-        card_id:
-          example: src_2qUCNd5AyQqfPMBuV
+        livemode:
+          example: true
+          type: boolean
+        object:
+          example: event
           type: string
-        trial_end:
-          example: 1484040996
-          type: integer
-      title: updates a subscription
+        type:
+          example: webhook_ping
+          type: string
+        webhook_logs:
+          items:
+            $ref: '#/components/schemas/WebhookLog'
+          type: array
+        webhook_status:
+          example: successful
+          type: string
+      title: event_response
   securitySchemes:
     bearerAuth:
       scheme: bearer

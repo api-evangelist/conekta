@@ -650,66 +650,6 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    order_discount_lines_request:
-      description: List of discounts that apply to the order.
-      properties:
-        amount:
-          description: The amount to be deducted from the total sum of all payments, in cents.
-          example: 500
-          format: int64
-          minimum: 0
-          type: integer
-        code:
-          description: Discount code.
-          example: '123'
-          type: string
-        type:
-          description: It can be 'loyalty', 'campaign', 'coupon' o 'sign'
-          example: loyalty
-          type: string
-      required:
-      - amount
-      - code
-      - type
-      title: order_discount_lines_request
-      name: order_discount_lines_request
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
-    update_order_discount_lines_request:
-      description: List of discounts that apply to the order.
-      properties:
-        amount:
-          example: 500
-          format: int64
-          minimum: 0
-          type: integer
-        code:
-          description: Discount code.
-          example: '123'
-          type: string
-        type:
-          example: loyalty
-          type: string
-      title: update_order_discount_lines_request
     discount_lines_response:
       allOf:
       - description: List of discounts that apply to the order.
@@ -752,6 +692,66 @@ components:
         - object
         - parent_id
       title: discount_lines_response
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    update_order_discount_lines_request:
+      description: List of discounts that apply to the order.
+      properties:
+        amount:
+          example: 500
+          format: int64
+          minimum: 0
+          type: integer
+        code:
+          description: Discount code.
+          example: '123'
+          type: string
+        type:
+          example: loyalty
+          type: string
+      title: update_order_discount_lines_request
+    order_discount_lines_request:
+      description: List of discounts that apply to the order.
+      properties:
+        amount:
+          description: The amount to be deducted from the total sum of all payments, in cents.
+          example: 500
+          format: int64
+          minimum: 0
+          type: integer
+        code:
+          description: Discount code.
+          example: '123'
+          type: string
+        type:
+          description: It can be 'loyalty', 'campaign', 'coupon' o 'sign'
+          example: loyalty
+          type: string
+      required:
+      - amount
+      - code
+      - type
+      title: order_discount_lines_request
+      name: order_discount_lines_request
   securitySchemes:
     bearerAuth:
       scheme: bearer

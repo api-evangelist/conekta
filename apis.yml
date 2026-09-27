@@ -1,5 +1,8 @@
 aid: conekta
 url: https://raw.githubusercontent.com/api-evangelist/conekta/refs/heads/main/apis.yml
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-24
 apis:
 - aid: conekta:conekta-api-keys-api
   name: Conekta Api Keys API
@@ -649,8 +652,6 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
-  - Anti-Fraud
-  tags_raw:
   - anti Fraud
   properties:
   - type: OpenAPI
@@ -683,7 +684,7 @@ tags:
   - Latin America
   - Fintech
   - Subscription
-  - Anti-Fraud
+  - Fraud Prevention
   - Checkout
   - Buy Now Pay Later
   - 3D Secure
@@ -703,6 +704,7 @@ tags_raw:
   - Checkout
   - BNPL
   - 3D Secure
+  - Anti-Fraud
 kind: contract
 deliveryModel:
   model: saas

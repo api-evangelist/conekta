@@ -922,41 +922,6 @@ paths:
       - Companies
 components:
   schemas:
-    get_companies_response:
-      allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/company_response'
-            type: array
-      title: get_companies_response
     company_document_response:
       properties:
         file_classification:
@@ -1010,23 +975,6 @@ components:
           type: string
           nullable: true
       title: company_document_response
-    Create_Company_Request:
-      properties:
-        name:
-          description: The name of the company.
-          example: test
-          type: string
-        type_company:
-          description: The type of company, 'owner'
-          example: owner
-          type: string
-        comercial_info:
-          $ref: '#/components/schemas/Create_Company_Request_comercial_info'
-        fiscal_info:
-          $ref: '#/components/schemas/Create_Company_Request_fiscal_info'
-        bank_account_info:
-          $ref: '#/components/schemas/Create_Company_Request_bank_account_info'
-      title: Create Company Request
     details_error:
       properties:
         code:
@@ -1042,6 +990,38 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    Create_Company_Request_fiscal_info:
+      description: Fiscal information for the company.
+      properties:
+        business_phone:
+          description: The business phone number for fiscal purposes.
+          example: '5300000000'
+          type: string
+        fiscal_type:
+          description: The fiscal type of the company (e.g., 'moral', 'persona_fisica').
+          example: moral
+          type: string
     CompanyDocumentResponse:
       description: Response body after uploading a company document.
       properties:
@@ -1100,27 +1080,149 @@ components:
       - file_name
       - status
       title: CompanyDocumentResponse
-    error:
+    company_response:
+      properties:
+        id:
+          description: The unique identifier for the company.
+          example: 6827305a1ec60400015eb116
+          type: string
+        name:
+          description: The name of the company.
+          example: test
+          type: string
+        active:
+          description: Indicates if the company is active.
+          example: false
+          type: boolean
+        account_status:
+          description: The current status of the company's account.
+          example: signed_up
+          type: string
+        parent_company_id:
+          description: The identifier of the parent company, if any.
+          example: 680bf1da38716d00013543bc
+          type: string
+          nullable: true
+        onboarding_status:
+          description: The current status of the company's onboarding process.
+          example: pending
+          type: string
+        documents:
+          description: A list of documents related to the company.
+          items:
+            $ref: '#/components/schemas/company_document_response'
+          type: array
+        created_at:
+          description: Timestamp of when the company was created.
+          example: 1748968241
+          format: int64
+          type: integer
+        object:
+          description: The type of object, typically "company".
+          example: company
+          type: string
+        three_ds_enabled:
+          description: Indicates if 3DS authentication is enabled for the company.
+          example: true
+          type: boolean
+        three_ds_mode:
+          description: The 3DS mode for the company, either 'smart' or 'strict'. This property is only applicable when three_ds_enabled is true. When three_ds_enabled is false, this field will be null.
+          enum:
+          - smart
+          - strict
+          example: strict
+          type: string
+          nullable: true
+      required:
+      - account_status
+      - active
+      - created_at
+      - documents
+      - id
+      - name
+      - object
+      - onboarding_status
+      title: company_response
+    Create_Company_Request_bank_account_info:
+      description: Bank account information for the company.
+      properties:
+        clabe:
+          description: The 18-digit CLABE for the bank account.
+          example: '002010077777777771'
+          type: string
+    get_companies_response:
       allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
             type: string
             nullable: true
-          type:
-            example: authentication_error
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
             type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/company_response'
+            type: array
+      title: get_companies_response
+    Create_Company_Request_comercial_info:
+      description: Commercial information for the company.
+      properties:
+        website:
+          description: The company's website URL.
+          example: http://www.test.com
+          format: url
+          type: string
+        mcc:
+          description: The Merchant Category Code (MCC) for the company.
+          example: '5812'
+          type: string
+        merchant_support_email:
+          description: Email address for merchant support.
+          example: test@test.com
+          format: email
+          type: string
+        merchant_support_phone:
+          description: Phone number for merchant support.
+          example: '5300000000'
+          type: string
+    Create_Company_Request:
+      properties:
+        name:
+          description: The name of the company.
+          example: test
+          type: string
+        type_company:
+          description: The type of company, 'owner'
+          example: owner
+          type: string
+        comercial_info:
+          $ref: '#/components/schemas/Create_Company_Request_comercial_info'
+        fiscal_info:
+          $ref: '#/components/schemas/Create_Company_Request_fiscal_info'
+        bank_account_info:
+          $ref: '#/components/schemas/Create_Company_Request_bank_account_info'
+      title: Create Company Request
     CompanyDocumentRequest:
       description: Request body for uploading a company document.
       example:
@@ -1203,108 +1305,6 @@ components:
       - file_data
       - file_name
       title: CompanyDocumentRequest
-    company_response:
-      properties:
-        id:
-          description: The unique identifier for the company.
-          example: 6827305a1ec60400015eb116
-          type: string
-        name:
-          description: The name of the company.
-          example: test
-          type: string
-        active:
-          description: Indicates if the company is active.
-          example: false
-          type: boolean
-        account_status:
-          description: The current status of the company's account.
-          example: signed_up
-          type: string
-        parent_company_id:
-          description: The identifier of the parent company, if any.
-          example: 680bf1da38716d00013543bc
-          type: string
-          nullable: true
-        onboarding_status:
-          description: The current status of the company's onboarding process.
-          example: pending
-          type: string
-        documents:
-          description: A list of documents related to the company.
-          items:
-            $ref: '#/components/schemas/company_document_response'
-          type: array
-        created_at:
-          description: Timestamp of when the company was created.
-          example: 1748968241
-          format: int64
-          type: integer
-        object:
-          description: The type of object, typically "company".
-          example: company
-          type: string
-        three_ds_enabled:
-          description: Indicates if 3DS authentication is enabled for the company.
-          example: true
-          type: boolean
-        three_ds_mode:
-          description: The 3DS mode for the company, either 'smart' or 'strict'. This property is only applicable when three_ds_enabled is true. When three_ds_enabled is false, this field will be null.
-          enum:
-          - smart
-          - strict
-          example: strict
-          type: string
-          nullable: true
-      required:
-      - account_status
-      - active
-      - created_at
-      - documents
-      - id
-      - name
-      - object
-      - onboarding_status
-      title: company_response
-    Create_Company_Request_fiscal_info:
-      description: Fiscal information for the company.
-      properties:
-        business_phone:
-          description: The business phone number for fiscal purposes.
-          example: '5300000000'
-          type: string
-        fiscal_type:
-          description: The fiscal type of the company (e.g., 'moral', 'persona_fisica').
-          example: moral
-          type: string
-    Create_Company_Request_comercial_info:
-      description: Commercial information for the company.
-      properties:
-        website:
-          description: The company's website URL.
-          example: http://www.test.com
-          format: url
-          type: string
-        mcc:
-          description: The Merchant Category Code (MCC) for the company.
-          example: '5812'
-          type: string
-        merchant_support_email:
-          description: Email address for merchant support.
-          example: test@test.com
-          format: email
-          type: string
-        merchant_support_phone:
-          description: Phone number for merchant support.
-          example: '5300000000'
-          type: string
-    Create_Company_Request_bank_account_info:
-      description: Bank account information for the company.
-      properties:
-        clabe:
-          description: The 18-digit CLABE for the bank account.
-          example: '002010077777777771'
-          type: string
   securitySchemes:
     bearerAuth:
       scheme: bearer

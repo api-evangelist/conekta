@@ -320,57 +320,27 @@ paths:
       - Transactions
 components:
   schemas:
-    get_transactions_response:
+    error:
       allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
       - properties:
-          data:
-            description: Transactions
+          details:
             items:
-              $ref: '#/components/schemas/transaction_response'
+              $ref: '#/components/schemas/details_error'
             type: array
-      title: get_transactions_response
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     transaction_response:
       description: 'The Transaction object represents the actions or steps of an order. Statuses can be: unprocessed, pending, available, owen, paid_out, voided, capture, capture_reversal, liquidation, liquidation_reversal, payout, payout_reversal, refund, refund_reversal, chargeback, chargeback_reversal, rounding_adjustment, won_chargeback, transferred, and transferred.'
       properties:
@@ -436,27 +406,57 @@ components:
       - status
       - type
       title: transaction_response
-    error:
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    get_transactions_response:
       allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
             type: string
             nullable: true
-          type:
-            example: authentication_error
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
             type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            description: Transactions
+            items:
+              $ref: '#/components/schemas/transaction_response'
+            type: array
+      title: get_transactions_response
   securitySchemes:
     bearerAuth:
       scheme: bearer
