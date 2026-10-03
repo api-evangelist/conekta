@@ -547,41 +547,68 @@ paths:
       - API Keys
 components:
   schemas:
-    get_api_keys_response:
+    api_key_request:
+      properties:
+        description:
+          description: A name or brief explanation of what this api key is used for
+          example: online store
+          type: string
+        role:
+          example: private
+          type: string
+          descripción: Indicates if the api key is private or public
+      required:
+      - role
+      title: api_key_request
+      name: api_key_request
+    delete_api_keys_response:
       allOf:
-      - description: page metadata
+      - description: api keys model
         properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+          active:
+            description: Indicates if the api key is active
+            example: true
+            type: boolean
+          created_at:
+            description: Unix timestamp in seconds of when the api key was created
+            example: 1684167881
+            format: int64
+            type: integer
+          description:
+            description: A name or brief explanation of what this api key is used for
+            example: online store
             type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
+          livemode:
+            description: Indicates if the api key is in production
             example: false
             type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
+          prefix:
+            description: The first few characters of the authentication_token
+            example: key_rp
             type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
+          id:
+            description: Unique identifier of the api key
+            example: 64625cc9f3e02c00163f5e4d
+            type: string
+          object:
+            description: Object name, value is 'api_key'
+            example: api_key
+            type: string
+          last_used_at:
+            description: Unix timestamp in seconds with the api key was used
+            format: int64
+            type: integer
+            nullable: true
+          role:
+            description: Indicates if the api key is private or public
+            example: private
+            type: string
+        title: api_key_response_delete
       - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/api_key_response'
-            type: array
-      title: get_api_keys_response
+          deleted:
+            example: true
+            type: boolean
+      title: delete_api_keys_response
     details_error:
       properties:
         code:
@@ -597,27 +624,6 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
     api_key_update_request:
       properties:
         active:
@@ -629,20 +635,6 @@ components:
           example: online store
           type: string
       title: api_key_update_request
-    api_key_request:
-      properties:
-        description:
-          description: A name or brief explanation of what this api key is used for
-          example: online store
-          type: string
-        role:
-          example: private
-          type: string
-          descripción: Indicates if the api key is private or public
-      required:
-      - role
-      title: api_key_request
-      name: api_key_request
     api_key_create_response:
       allOf:
       - properties:
@@ -702,6 +694,27 @@ components:
             type: string
         title: api_key_response
       title: api_key_create_response
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     api_key_response:
       description: api keys model
       properties:
@@ -754,54 +767,41 @@ components:
           example: private
           type: string
       title: api_key_response
-    delete_api_keys_response:
+    get_api_keys_response:
       allOf:
-      - description: api keys model
+      - description: page metadata
         properties:
-          active:
-            description: Indicates if the api key is active
-            example: true
-            type: boolean
-          created_at:
-            description: Unix timestamp in seconds of when the api key was created
-            example: 1684167881
-            format: int64
-            type: integer
-          description:
-            description: A name or brief explanation of what this api key is used for
-            example: online store
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
             type: string
-          livemode:
-            description: Indicates if the api key is in production
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
             example: false
             type: boolean
-          prefix:
-            description: The first few characters of the authentication_token
-            example: key_rp
-            type: string
-          id:
-            description: Unique identifier of the api key
-            example: 64625cc9f3e02c00163f5e4d
-            type: string
           object:
-            description: Object name, value is 'api_key'
-            example: api_key
+            description: Object type, in this case is list
+            example: list
             type: string
-          last_used_at:
-            description: Unix timestamp in seconds with the api key was used
-            format: int64
-            type: integer
-            nullable: true
-          role:
-            description: Indicates if the api key is private or public
-            example: private
-            type: string
-        title: api_key_response_delete
+        required:
+        - has_more
+        - object
+        title: pagination metadata
       - properties:
-          deleted:
-            example: true
-            type: boolean
-      title: delete_api_keys_response
+          data:
+            items:
+              $ref: '#/components/schemas/api_key_response'
+            type: array
+      title: get_api_keys_response
   securitySchemes:
     bearerAuth:
       scheme: bearer

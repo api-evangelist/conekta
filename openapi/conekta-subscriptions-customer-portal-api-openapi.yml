@@ -267,6 +267,82 @@ paths:
       - Subscriptions - Customer Portal
 components:
   schemas:
+    subscription_details_card:
+      properties:
+        id:
+          example: src_2yw5zPrVahTy7xy7P
+          type: string
+        created_at:
+          example: 1761745218
+          format: int64
+          type: integer
+        active:
+          example: true
+          type: boolean
+        object:
+          example: card
+          type: string
+        exp_month:
+          example: '05'
+          type: string
+        exp_year:
+          example: '26'
+          type: string
+        brand:
+          example: mastercard
+          type: string
+        last4:
+          example: '1005'
+          type: string
+        name:
+          example: test
+          type: string
+        payment_source_status:
+          example: active
+          type: string
+        customer_id:
+          example: cus_2yDzKtEAD3khH8Sga
+          type: string
+        customer_custom_reference:
+          type: string
+          nullable: true
+    subscription_details_plan:
+      properties:
+        id:
+          example: VG5
+          type: string
+        object:
+          example: plan
+          type: string
+        name:
+          example: CLARO
+          type: string
+        amount:
+          example: 30000
+          format: int32
+          type: integer
+        currency:
+          example: USD
+          type: string
+        interval:
+          example: month
+          type: string
+        frequency:
+          example: 1
+          format: int32
+          type: integer
+        trial_period_days:
+          format: int32
+          type: integer
+          nullable: true
+        expiry_count:
+          example: 1
+          format: int32
+          type: integer
+        created_at:
+          example: 1742087277
+          format: int64
+          type: integer
     customer_portal_response:
       description: Customer portal model
       properties:
@@ -317,45 +393,42 @@ components:
           format: uri
           type: string
       title: customer_portal_response
-    subscription_details_card:
+    subscription_details:
+      description: Subscription details for customer portal
       properties:
+        card:
+          $ref: '#/components/schemas/subscription_details_card'
+        plan:
+          $ref: '#/components/schemas/subscription_details_plan'
         id:
-          example: src_2yw5zPrVahTy7xy7P
+          example: sub_2yYsQuYtXAbP1fdYu
           type: string
-        created_at:
-          example: 1761745218
-          format: int64
-          type: integer
-        active:
-          example: true
-          type: boolean
         object:
-          example: card
+          example: subscription
           type: string
-        exp_month:
-          example: '05'
+        status:
+          example: canceled
           type: string
-        exp_year:
-          example: '26'
-          type: string
-        brand:
-          example: mastercard
-          type: string
-        last4:
-          example: '1005'
-          type: string
-        name:
-          example: test
-          type: string
-        payment_source_status:
-          example: active
+        plan_id:
+          example: VG5
           type: string
         customer_id:
           example: cus_2yDzKtEAD3khH8Sga
           type: string
-        customer_custom_reference:
-          type: string
+        next_billing_cycle:
+          example: 1876833632
+          format: int64
+          type: integer
           nullable: true
+        created_at:
+          example: 1755873642
+          format: int64
+          type: integer
+        updated_at:
+          example: 1761745218
+          format: int64
+          type: integer
+      title: subscription_details
     details_error:
       properties:
         code:
@@ -409,79 +482,6 @@ components:
           format: email
           type: string
       title: customer_details
-    subscription_details:
-      description: Subscription details for customer portal
-      properties:
-        card:
-          $ref: '#/components/schemas/subscription_details_card'
-        plan:
-          $ref: '#/components/schemas/subscription_details_plan'
-        id:
-          example: sub_2yYsQuYtXAbP1fdYu
-          type: string
-        object:
-          example: subscription
-          type: string
-        status:
-          example: canceled
-          type: string
-        plan_id:
-          example: VG5
-          type: string
-        customer_id:
-          example: cus_2yDzKtEAD3khH8Sga
-          type: string
-        next_billing_cycle:
-          example: 1876833632
-          format: int64
-          type: integer
-          nullable: true
-        created_at:
-          example: 1755873642
-          format: int64
-          type: integer
-        updated_at:
-          example: 1761745218
-          format: int64
-          type: integer
-      title: subscription_details
-    subscription_details_plan:
-      properties:
-        id:
-          example: VG5
-          type: string
-        object:
-          example: plan
-          type: string
-        name:
-          example: CLARO
-          type: string
-        amount:
-          example: 30000
-          format: int32
-          type: integer
-        currency:
-          example: USD
-          type: string
-        interval:
-          example: month
-          type: string
-        frequency:
-          example: 1
-          format: int32
-          type: integer
-        trial_period_days:
-          format: int32
-          type: integer
-          nullable: true
-        expiry_count:
-          example: 1
-          format: int32
-          type: integer
-        created_at:
-          example: 1742087277
-          format: int64
-          type: integer
   securitySchemes:
     bearerAuth:
       scheme: bearer

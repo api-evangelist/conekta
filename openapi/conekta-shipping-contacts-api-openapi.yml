@@ -381,45 +381,6 @@ paths:
       - Shipping Contacts
 components:
   schemas:
-    customer_shipping_contacts_response:
-      description: Contains the detail of the shipping addresses that the client has active or has used in Conekta
-      properties:
-        phone:
-          example: '+525511223344'
-          type: string
-        receiver:
-          example: Marvin Fuller
-          type: string
-        between_streets:
-          example: Ackerman Crescent
-          type: string
-          nullable: true
-        address:
-          $ref: '#/components/schemas/customer_shipping_contacts_address'
-        parent_id:
-          type: string
-        default:
-          example: false
-          type: boolean
-        id:
-          example: adr_1234567890
-          type: string
-        created_at:
-          example: 1675715413
-          format: int64
-          type: integer
-        metadata:
-          additionalProperties: true
-          description: Metadata associated with the shipping contact
-          maxProperties: 100
-          type: object
-        object:
-          example: shipping_contact
-          type: string
-        deleted:
-          example: false
-          type: boolean
-      title: customer_shipping_contacts_response
     customer_shipping_contacts_request_address:
       description: Address of the person who will receive the order
       properties:
@@ -481,6 +442,45 @@ components:
       required:
       - address
       title: customer_shipping_contacts_request
+    customer_shipping_contacts_response:
+      description: Contains the detail of the shipping addresses that the client has active or has used in Conekta
+      properties:
+        phone:
+          example: '+525511223344'
+          type: string
+        receiver:
+          example: Marvin Fuller
+          type: string
+        between_streets:
+          example: Ackerman Crescent
+          type: string
+          nullable: true
+        address:
+          $ref: '#/components/schemas/customer_shipping_contacts_address'
+        parent_id:
+          type: string
+        default:
+          example: false
+          type: boolean
+        id:
+          example: adr_1234567890
+          type: string
+        created_at:
+          example: 1675715413
+          format: int64
+          type: integer
+        metadata:
+          additionalProperties: true
+          description: Metadata associated with the shipping contact
+          maxProperties: 100
+          type: object
+        object:
+          example: shipping_contact
+          type: string
+        deleted:
+          example: false
+          type: boolean
+      title: customer_shipping_contacts_response
     details_error:
       properties:
         code:
@@ -496,27 +496,6 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
     customer_update_shipping_contacts_request:
       description: '[Shipping](https://developers.conekta.com/v2.2.0/reference/createcustomershippingcontacts)
 
@@ -545,6 +524,27 @@ components:
           type: boolean
           nullable: true
       title: customer_update_shipping_contacts_request
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     customer_shipping_contacts_address:
       properties:
         object:

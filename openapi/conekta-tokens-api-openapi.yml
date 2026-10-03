@@ -140,14 +140,6 @@ paths:
       - Tokens
 components:
   schemas:
-    token_request_checkout:
-      deprecated: true
-      properties:
-        returns_control_on:
-          description: It is a value that allows identifying the returns control on.
-          example: Token
-          type: string
-      nullable: true
     token_response_checkout:
       deprecated: true
       properties:
@@ -246,6 +238,42 @@ components:
           example: Integration
           type: string
       nullable: true
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     token_request_card:
       properties:
         cvc:
@@ -287,42 +315,6 @@ components:
       - name
       - number
       nullable: true
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
     token_request:
       description: a token
       properties:
@@ -358,6 +350,14 @@ components:
       - object
       - used
       title: token_response
+    token_request_checkout:
+      deprecated: true
+      properties:
+        returns_control_on:
+          description: It is a value that allows identifying the returns control on.
+          example: Token
+          type: string
+      nullable: true
   securitySchemes:
     bearerAuth:
       scheme: bearer

@@ -675,6 +675,44 @@ paths:
       - Webhooks
 components:
   schemas:
+    update_webhook:
+      description: an updated webhook
+      properties:
+        url:
+          description: Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
+          example: https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8
+          format: url
+          pattern: ^(?!.*(localhost|127\.0\.0\.1)).*$
+          type: string
+        subscribed_events:
+          description: events that will be sent to the webhook
+          example: customer.created
+          items:
+            type: string
+          type: array
+        active:
+          description: whether the webhook is active or not
+          example: true
+          type: boolean
+      title: update_webhook
+    webhook_request:
+      description: a webhook
+      properties:
+        url:
+          description: Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
+          example: https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8
+          format: url
+          pattern: ^(?!.*(localhost|127\.0\.0\.1)).*$
+          type: string
+        subscribed_events:
+          description: events that will be sent to the webhook
+          example: customer.created
+          items:
+            type: string
+          type: array
+      required:
+      - url
+      title: webhook_request
     get_webhooks_response:
       allOf:
       - description: pagination metadata
@@ -758,26 +796,6 @@ components:
           example: https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval
           type: string
       title: webhook_response
-    update_webhook:
-      description: an updated webhook
-      properties:
-        url:
-          description: Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
-          example: https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8
-          format: url
-          pattern: ^(?!.*(localhost|127\.0\.0\.1)).*$
-          type: string
-        subscribed_events:
-          description: events that will be sent to the webhook
-          example: customer.created
-          items:
-            type: string
-          type: array
-        active:
-          description: whether the webhook is active or not
-          example: true
-          type: boolean
-      title: update_webhook
     details_error:
       properties:
         code:
@@ -793,24 +811,6 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    webhook_request:
-      description: a webhook
-      properties:
-        url:
-          description: Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
-          example: https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8
-          format: url
-          pattern: ^(?!.*(localhost|127\.0\.0\.1)).*$
-          type: string
-        subscribed_events:
-          description: events that will be sent to the webhook
-          example: customer.created
-          items:
-            type: string
-          type: array
-      required:
-      - url
-      title: webhook_request
     error:
       allOf:
       - properties:

@@ -366,6 +366,30 @@ paths:
       - Taxes
 components:
   schemas:
+    order_tax_request:
+      description: create new taxes for an existing order
+      properties:
+        amount:
+          description: The amount to be collected for tax in cents
+          example: 100
+          format: int64
+          minimum: 0
+          type: integer
+        description:
+          description: description or tax's name
+          example: testing
+          minLength: 2
+          type: string
+        metadata:
+          additionalProperties: true
+          example:
+            key: value
+          maxProperties: 100
+          type: object
+      required:
+      - amount
+      - description
+      title: order_tax_request
     order_tax_response:
       allOf:
       - description: create new taxes for an existing order
@@ -405,6 +429,24 @@ components:
       required:
       - id
       title: order_tax_response
+    ordersUpdateTaxes_request:
+      description: create new taxes for an existing order
+      properties:
+        amount:
+          description: The amount to be collected for tax in cents
+          example: 100
+          format: int64
+          minimum: 0
+          type: integer
+        description:
+          description: description or tax's name
+          example: testing
+          minLength: 2
+          type: string
+        metadata:
+          additionalProperties:
+            type: object
+          maxProperties: 100
     details_error:
       properties:
         code:
@@ -441,48 +483,6 @@ components:
             type: string
       description: err model
       title: error
-    order_tax_request:
-      description: create new taxes for an existing order
-      properties:
-        amount:
-          description: The amount to be collected for tax in cents
-          example: 100
-          format: int64
-          minimum: 0
-          type: integer
-        description:
-          description: description or tax's name
-          example: testing
-          minLength: 2
-          type: string
-        metadata:
-          additionalProperties: true
-          example:
-            key: value
-          maxProperties: 100
-          type: object
-      required:
-      - amount
-      - description
-      title: order_tax_request
-    ordersUpdateTaxes_request:
-      description: create new taxes for an existing order
-      properties:
-        amount:
-          description: The amount to be collected for tax in cents
-          example: 100
-          format: int64
-          minimum: 0
-          type: integer
-        description:
-          description: description or tax's name
-          example: testing
-          minLength: 2
-          type: string
-        metadata:
-          additionalProperties:
-            type: object
-          maxProperties: 100
   securitySchemes:
     bearerAuth:
       scheme: bearer

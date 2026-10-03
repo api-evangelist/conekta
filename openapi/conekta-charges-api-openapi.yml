@@ -572,7 +572,57 @@ paths:
       - Charges
 components:
   schemas:
-    charge_response_refunds:
+    charge_update_request:
+      description: requested field for update a charge
+      properties:
+        reference_id:
+          description: custom reference id
+          example: '278482642'
+          type: string
+      title: charge_update_request
+    payment_method_pbb_payment:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for pbb payment responses
+        properties:
+          deep_link:
+            description: Deep link for the payment, use for mobile apps/flows
+            example: https://mgm.bbva.mx/WA3b/pbb?AGREEMENT=002484374&AMOUNT=1&CONCEPT=PagoDirecto&CURRENCY=MXN&REFERENCE=22277523174328893295
+            type: string
+          expires_at:
+            description: Expiration date of the charge
+            example: 1683053729
+            format: int64
+            minimum: 0
+            type: integer
+          product_type:
+            description: Product type of the charge
+            type: string
+          redirect_url:
+            description: URL to redirect the customer to complete the payment
+            example: https://example.com/redirect
+            type: string
+          reference:
+            description: Reference for the payment
+            example: '22277523174328893295'
+            type: string
+        required:
+        - deep_link
+        - expires_at
+        - product_type
+        - redirect_url
+        - reference
+        title: charge_data_payment_method_pbb_payment_response
+      title: payment_method_pbb_payment
+      x-discriminator-value: pay_by_bank_payment
+    get_charges_response:
       allOf:
       - description: pagination metadata
         properties:
@@ -603,12 +653,141 @@ components:
         title: page metadata
       - properties:
           data:
-            description: refunds
             items:
-              $ref: '#/components/schemas/charge_response_refunds_data'
+              $ref: '#/components/schemas/charge_response'
             type: array
-      title: charge_response_refunds
-      nullable: true
+      title: get_charges_response
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    charge_response:
+      properties:
+        amount:
+          example: 4321
+          type: integer
+        channel:
+          $ref: '#/components/schemas/charge_response_channel'
+        created_at:
+          example: 1676386026
+          format: int64
+          type: integer
+        currency:
+          example: MXN
+          type: string
+        customer_id:
+          type: string
+        description:
+          example: Payment from order
+          type: string
+        device_fingerprint:
+          example: 6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba
+          type: string
+        failure_code:
+          example: suspected_fraud
+          type: string
+        failure_message:
+          example: Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.
+          type: string
+        id:
+          description: Charge ID
+          example: 63efa757cf65380001aec040
+          type: string
+        livemode:
+          description: Whether the charge was made in live mode or not
+          example: false
+          type: boolean
+        object:
+          example: charge
+          type: string
+        order_id:
+          description: Order ID
+          example: ord_2tN73UdUSNrYRPD9r
+          type: string
+        paid_at:
+          description: charge Payment date
+          example: 1676390742
+          format: int64
+          nullable: true
+          type: integer
+        payment_method:
+          $ref: '#/components/schemas/charge_response_payment_method'
+        reference_id:
+          description: Reference ID of the charge
+          example: ref_2tN73UdUSNrYRPD9r
+          type: string
+          nullable: true
+        refunds:
+          $ref: '#/components/schemas/charge_response_refunds'
+        chargeback:
+          $ref: '#/components/schemas/chargeback_response'
+        status:
+          description: Charge status
+          example: pending_payment
+          type: string
+      required:
+      - amount
+      - created_at
+      - currency
+      - id
+      - livemode
+      - object
+      - order_id
+      - status
+      title: charge_response
+    charge_response_channel:
+      properties:
+        segment:
+          example: Checkout
+          type: string
+        checkout_request_id:
+          example: 6fca054a-8519-4c43-971e-cea35cc519bb
+          type: string
+        checkout_request_type:
+          example: HostedPayment
+          type: string
+        id:
+          example: channel_2tNDzhA4Akmzj11AU
+          type: string
+    charge_request_payment_method:
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_pbb_request'
+      - $ref: '#/components/schemas/payment_method_bnpl_request'
+      - $ref: '#/components/schemas/payment_method_card_request'
+      - $ref: '#/components/schemas/payment_method_general_request'
+      title: charge_request_payment_method
     payment_method_bnpl_request:
       allOf:
       - description: Contains details of the payment methods that the customer has active or has used in Conekta
@@ -658,59 +837,23 @@ components:
         - success_url
         - type
       title: payment_method_bnpl_request
-    charges_order_response:
-      allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/charge_response'
-            type: array
-      description: The charges associated with the order
-      title: charges_order_response
-    chargeback_file_response:
-      description: A file associated with a chargeback (e.g. evidence document)
-      properties:
-        id:
-          example: chbkf_2zPxWFUnGNLySoums
-          type: string
-        file_name:
-          example: 20251221500000000000201.pdf
-          type: string
-        url:
-          nullable: true
-          type: string
-        created_at:
-          example: 1768846800
-          format: int64
-          type: integer
-      title: chargeback_file_response
+    charge_response_payment_method:
+      discriminator:
+        mapping:
+          cash_payment: payment_method_cash
+          card_payment: payment_method_card
+          bank_transfer_payment: payment_method_bank_transfer
+          bnpl_payment: payment_method_bnpl_payment
+          pay_by_bank_payment: payment_method_pbb_payment
+        propertyName: object
+      oneOf:
+      - $ref: '#/components/schemas/payment_method_cash'
+      - $ref: '#/components/schemas/payment_method_card'
+      - $ref: '#/components/schemas/payment_method_bank_transfer'
+      - $ref: '#/components/schemas/payment_method_bnpl_payment'
+      - $ref: '#/components/schemas/payment_method_pbb_payment'
+      title: charge_response_payment_method
+      propertyName: object
     payment_method_pbb_request:
       allOf:
       - description: Contains details of the payment methods that the customer has active or has used in Conekta
@@ -743,311 +886,6 @@ components:
         - product_type
         - type
       title: payment_method_pbb_request
-    chargeback_response:
-      description: Chargeback object
-      nullable: true
-      properties:
-        id:
-          example: chbk_2zPxWFUnGNLySoumn
-          type: string
-        status:
-          enum:
-          - won
-          - lost
-          - action_required
-          - pending_review
-          - under_review
-          - covered
-          - rt
-          - rt_sent
-          - represented
-          example: lost
-          type: string
-        reason:
-          enum:
-          - unrecognized
-          - unauthorized
-          - unauthorized_by_client
-          - unrecognized_like_fraud
-          - insufficient_evidence
-          - illegible_evidence
-          - general
-          - late_evidence
-          - incorrect_exchange
-          - fraudulent_business
-          - billing
-          - twice_transaction
-          - transaction_not_refunded
-          - bank_doc_request
-          - unrecognized_purchase
-          - subscription_canceled
-          - copy_of_purchase
-          - differents_amounts
-          - subscription_not_requested
-          - damaged_products
-          - show_documents
-          - duplicate
-          - fraudulent
-          - service_canceled
-          - product_unacceptable
-          - product_not_received
-          - incorrect_amount
-          - chip_liabiliaty_shift
-          - credit_not_processed
-          example: unrecognized
-          type: string
-        note:
-          nullable: true
-          type: string
-        followup_status:
-          enum:
-          - customer_uncontacted
-          - customer_contacted
-          - customer_unreachable
-          nullable: true
-          type: string
-        response_from_client:
-          nullable: true
-          type: string
-        files:
-          items:
-            $ref: '#/components/schemas/chargeback_file_response'
-          type: array
-        object:
-          example: chargeback
-          type: string
-        charge_id:
-          example: 6966a06c044243000156c24d
-          type: string
-        created_at:
-          example: 1768846800
-          format: int64
-          type: integer
-        evidence_due_by:
-          example: 1769126399
-          format: int64
-          type: integer
-      title: chargeback_response
-    charge_order_response:
-      properties:
-        amount:
-          example: 4321
-          type: integer
-        channel:
-          $ref: '#/components/schemas/charge_response_channel'
-        created_at:
-          example: 1676386026
-          format: int64
-          type: integer
-        currency:
-          example: MXN
-          type: string
-        customer_id:
-          type: string
-        description:
-          example: Payment from order
-          type: string
-        device_fingerprint:
-          example: 6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba
-          type: string
-          nullable: true
-        failure_code:
-          example: suspected_fraud
-          type: string
-        failure_message:
-          example: Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.
-          type: string
-        id:
-          example: 63efa757cf65380001aec040
-          type: string
-        livemode:
-          example: true
-          type: boolean
-        monthly_installments:
-          type: integer
-          nullable: true
-        object:
-          type: string
-        order_id:
-          example: ord_2tN73UdUSNrYRPD9r
-          type: string
-        paid_at:
-          example: 1676390742
-          type: integer
-          nullable: true
-        payment_method:
-          $ref: '#/components/schemas/charge_order_response_payment_method'
-        reference_id:
-          description: Reference ID of the charge
-          example: ref_2tN73UdUSNrYRPD9r
-          type: string
-          nullable: true
-        refunds:
-          items: {}
-          type: array
-        status:
-          example: pending_payment
-          type: string
-      title: charge_order_response
-    payment_method_card:
-      allOf:
-      - properties:
-          type:
-            type: string
-          object:
-            example: payment_source
-            type: string
-        required:
-        - object
-      - description: use for card responses
-        properties:
-          account_type:
-            description: Account type of the card
-            example: Credit
-            type: string
-          auth_code:
-            example: '867372'
-            type: string
-          brand:
-            description: Brand of the card
-            example: visa
-            type: string
-          contract_id:
-            description: Id sent for recurrent charges.
-            example: S781317595
-            type: string
-          country:
-            description: Country of the card
-            example: MX
-            type: string
-          exp_month:
-            description: Expiration month of the card
-            example: '02'
-            type: string
-          exp_year:
-            description: Expiration year of the card
-            example: '2026'
-            type: string
-          fraud_indicators:
-            items: {}
-            type: array
-          issuer:
-            description: Issuer of the card
-            example: BANAMEX
-            type: string
-          last4:
-            description: Last 4 digits of the card
-            example: '4242'
-            type: string
-          name:
-            description: Name of the cardholder
-            example: Fulanito Perez
-            type: string
-          customer_ip_address:
-            description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
-            example: 0.0.0.0
-            type: string
-        title: charge_data_payment_method_card_response
-      title: payment_method_card
-      x-discriminator-value: card_payment
-    charge_response_channel:
-      properties:
-        segment:
-          example: Checkout
-          type: string
-        checkout_request_id:
-          example: 6fca054a-8519-4c43-971e-cea35cc519bb
-          type: string
-        checkout_request_type:
-          example: HostedPayment
-          type: string
-        id:
-          example: channel_2tNDzhA4Akmzj11AU
-          type: string
-    charge_request:
-      description: The charges to be made
-      properties:
-        amount:
-          description: Amount to be charged in cents
-          example: 40000
-          format: int64
-          type: integer
-        payment_method:
-          $ref: '#/components/schemas/charge_request_payment_method'
-        reference_id:
-          description: Custom reference to add to the charge
-          type: string
-      required:
-      - payment_method
-      title: charge_request
-    charge_response_refunds_data:
-      properties:
-        amount:
-          example: -15000
-          format: int64
-          type: integer
-        auth_code:
-          example: '867372'
-          type: string
-        created_at:
-          example: 1678226878
-          format: int64
-          type: integer
-        expires_at:
-          description: refund expiration date
-          example: 1678226878
-          format: int64
-          type: integer
-        id:
-          example: 6407b5bee1329a000175ba11
-          type: string
-        object:
-          example: refund
-          type: string
-        status:
-          description: refund status
-          example: pending
-          type: string
-      required:
-      - amount
-      - created_at
-      - id
-      - object
-      title: charge_response_refunds_data
-    charge_order_response_payment_method:
-      discriminator:
-        mapping:
-          cash_payment: payment_method_cash
-          card_payment: payment_method_card
-          bank_transfer_payment: payment_method_bank_transfer
-          bnpl_payment: payment_method_bnpl_payment
-          pay_by_bank_payment: payment_method_pbb_payment
-        propertyName: object
-      oneOf:
-      - $ref: '#/components/schemas/payment_method_cash'
-      - $ref: '#/components/schemas/payment_method_card'
-      - $ref: '#/components/schemas/payment_method_bank_transfer'
-      - $ref: '#/components/schemas/payment_method_bnpl_payment'
-      - $ref: '#/components/schemas/payment_method_pbb_payment'
-      title: charge_order_response_payment_method
-      propertyName: object
-    charge_response_payment_method:
-      discriminator:
-        mapping:
-          cash_payment: payment_method_cash
-          card_payment: payment_method_card
-          bank_transfer_payment: payment_method_bank_transfer
-          bnpl_payment: payment_method_bnpl_payment
-          pay_by_bank_payment: payment_method_pbb_payment
-        propertyName: object
-      oneOf:
-      - $ref: '#/components/schemas/payment_method_cash'
-      - $ref: '#/components/schemas/payment_method_card'
-      - $ref: '#/components/schemas/payment_method_bank_transfer'
-      - $ref: '#/components/schemas/payment_method_bnpl_payment'
-      - $ref: '#/components/schemas/payment_method_pbb_payment'
-      title: charge_response_payment_method
-      propertyName: object
     payment_method_bnpl_payment:
       allOf:
       - properties:
@@ -1133,13 +971,419 @@ components:
       required:
       - type
       title: payment_method_general_request
-    charge_request_payment_method:
+    charge_request:
+      description: The charges to be made
+      properties:
+        amount:
+          description: Amount to be charged in cents
+          example: 40000
+          format: int64
+          type: integer
+        payment_method:
+          $ref: '#/components/schemas/charge_request_payment_method'
+        reference_id:
+          description: Custom reference to add to the charge
+          type: string
+      required:
+      - payment_method
+      title: charge_request
+    charge_order_response:
+      properties:
+        amount:
+          example: 4321
+          type: integer
+        channel:
+          $ref: '#/components/schemas/charge_response_channel'
+        created_at:
+          example: 1676386026
+          format: int64
+          type: integer
+        currency:
+          example: MXN
+          type: string
+        customer_id:
+          type: string
+        description:
+          example: Payment from order
+          type: string
+        device_fingerprint:
+          example: 6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba
+          type: string
+          nullable: true
+        failure_code:
+          example: suspected_fraud
+          type: string
+        failure_message:
+          example: Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.
+          type: string
+        id:
+          example: 63efa757cf65380001aec040
+          type: string
+        livemode:
+          example: true
+          type: boolean
+        monthly_installments:
+          type: integer
+          nullable: true
+        object:
+          type: string
+        order_id:
+          example: ord_2tN73UdUSNrYRPD9r
+          type: string
+        paid_at:
+          example: 1676390742
+          type: integer
+          nullable: true
+        payment_method:
+          $ref: '#/components/schemas/charge_order_response_payment_method'
+        reference_id:
+          description: Reference ID of the charge
+          example: ref_2tN73UdUSNrYRPD9r
+          type: string
+          nullable: true
+        refunds:
+          items: {}
+          type: array
+        status:
+          example: pending_payment
+          type: string
+      title: charge_order_response
+    charge_response_refunds:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            description: refunds
+            items:
+              $ref: '#/components/schemas/charge_response_refunds_data'
+            type: array
+      title: charge_response_refunds
+      nullable: true
+    charge_response_refunds_data:
+      properties:
+        amount:
+          example: -15000
+          format: int64
+          type: integer
+        auth_code:
+          example: '867372'
+          type: string
+        created_at:
+          example: 1678226878
+          format: int64
+          type: integer
+        expires_at:
+          description: refund expiration date
+          example: 1678226878
+          format: int64
+          type: integer
+        id:
+          example: 6407b5bee1329a000175ba11
+          type: string
+        object:
+          example: refund
+          type: string
+        status:
+          description: refund status
+          example: pending
+          type: string
+      required:
+      - amount
+      - created_at
+      - id
+      - object
+      title: charge_response_refunds_data
+    chargeback_file_response:
+      description: A file associated with a chargeback (e.g. evidence document)
+      properties:
+        id:
+          example: chbkf_2zPxWFUnGNLySoums
+          type: string
+        file_name:
+          example: 20251221500000000000201.pdf
+          type: string
+        url:
+          nullable: true
+          type: string
+        created_at:
+          example: 1768846800
+          format: int64
+          type: integer
+      title: chargeback_file_response
+    charges_order_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/charge_response'
+            type: array
+      description: The charges associated with the order
+      title: charges_order_response
+    payment_method_card:
+      allOf:
+      - properties:
+          type:
+            type: string
+          object:
+            example: payment_source
+            type: string
+        required:
+        - object
+      - description: use for card responses
+        properties:
+          account_type:
+            description: Account type of the card
+            example: Credit
+            type: string
+          auth_code:
+            example: '867372'
+            type: string
+          brand:
+            description: Brand of the card
+            example: visa
+            type: string
+          contract_id:
+            description: Id sent for recurrent charges.
+            example: S781317595
+            type: string
+          country:
+            description: Country of the card
+            example: MX
+            type: string
+          exp_month:
+            description: Expiration month of the card
+            example: '02'
+            type: string
+          exp_year:
+            description: Expiration year of the card
+            example: '2026'
+            type: string
+          fraud_indicators:
+            items: {}
+            type: array
+          issuer:
+            description: Issuer of the card
+            example: BANAMEX
+            type: string
+          last4:
+            description: Last 4 digits of the card
+            example: '4242'
+            type: string
+          name:
+            description: Name of the cardholder
+            example: Fulanito Perez
+            type: string
+          customer_ip_address:
+            description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+            example: 0.0.0.0
+            type: string
+        title: charge_data_payment_method_card_response
+      title: payment_method_card
+      x-discriminator-value: card_payment
+    chargeback_response:
+      description: Chargeback object
+      nullable: true
+      properties:
+        id:
+          example: chbk_2zPxWFUnGNLySoumn
+          type: string
+        status:
+          enum:
+          - won
+          - lost
+          - action_required
+          - pending_review
+          - under_review
+          - covered
+          - rt
+          - rt_sent
+          - represented
+          example: lost
+          type: string
+        reason:
+          enum:
+          - unrecognized
+          - unauthorized
+          - unauthorized_by_client
+          - unrecognized_like_fraud
+          - insufficient_evidence
+          - illegible_evidence
+          - general
+          - late_evidence
+          - incorrect_exchange
+          - fraudulent_business
+          - billing
+          - twice_transaction
+          - transaction_not_refunded
+          - bank_doc_request
+          - unrecognized_purchase
+          - subscription_canceled
+          - copy_of_purchase
+          - differents_amounts
+          - subscription_not_requested
+          - damaged_products
+          - show_documents
+          - duplicate
+          - fraudulent
+          - service_canceled
+          - product_unacceptable
+          - product_not_received
+          - incorrect_amount
+          - chip_liabiliaty_shift
+          - credit_not_processed
+          example: unrecognized
+          type: string
+        note:
+          nullable: true
+          type: string
+        followup_status:
+          enum:
+          - customer_uncontacted
+          - customer_contacted
+          - customer_unreachable
+          nullable: true
+          type: string
+        response_from_client:
+          nullable: true
+          type: string
+        files:
+          items:
+            $ref: '#/components/schemas/chargeback_file_response'
+          type: array
+        object:
+          example: chargeback
+          type: string
+        charge_id:
+          example: 6966a06c044243000156c24d
+          type: string
+        created_at:
+          example: 1768846800
+          format: int64
+          type: integer
+        evidence_due_by:
+          example: 1769126399
+          format: int64
+          type: integer
+      title: chargeback_response
+    payment_method_card_request:
+      allOf:
+      - description: Contains details of the payment methods that the customer has active or has used in Conekta
+        properties:
+          type:
+            description: Type of payment method
+            example: card | cash | spei | bnpl | pay_by_bank
+            type: string
+        required:
+        - type
+        title: customer_payment_method_request
+      - properties:
+          cvc:
+            description: Card security code
+            example: '198'
+            maxLength: 4
+            minLength: 3
+            type: string
+          exp_month:
+            description: Card expiration month
+            example: '12'
+            maxLength: 2
+            minLength: 2
+            type: string
+          exp_year:
+            description: Card expiration year
+            example: '2025'
+            maxLength: 4
+            minLength: 4
+            type: string
+          name:
+            description: Cardholder name
+            example: John Doe
+            type: string
+          number:
+            description: Card number
+            example: '4242424242424242'
+            type: string
+          customer_ip_address:
+            description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
+            example: 0.0.0.0
+            type: string
+        required:
+        - cvc
+        - exp_month
+        - exp_year
+        - name
+        - number
+      title: payment_method_card_request
+    charge_order_response_payment_method:
+      discriminator:
+        mapping:
+          cash_payment: payment_method_cash
+          card_payment: payment_method_card
+          bank_transfer_payment: payment_method_bank_transfer
+          bnpl_payment: payment_method_bnpl_payment
+          pay_by_bank_payment: payment_method_pbb_payment
+        propertyName: object
       oneOf:
-      - $ref: '#/components/schemas/payment_method_pbb_request'
-      - $ref: '#/components/schemas/payment_method_bnpl_request'
-      - $ref: '#/components/schemas/payment_method_card_request'
-      - $ref: '#/components/schemas/payment_method_general_request'
-      title: charge_request_payment_method
+      - $ref: '#/components/schemas/payment_method_cash'
+      - $ref: '#/components/schemas/payment_method_card'
+      - $ref: '#/components/schemas/payment_method_bank_transfer'
+      - $ref: '#/components/schemas/payment_method_bnpl_payment'
+      - $ref: '#/components/schemas/payment_method_pbb_payment'
+      title: charge_order_response_payment_method
+      propertyName: object
     payment_method_cash:
       allOf:
       - properties:
@@ -1261,250 +1505,6 @@ components:
         title: charge_data_payment_method_bank_transfer_response
       title: payment_method_bank_transfer
       x-discriminator-value: bank_transfer_payment
-    get_charges_response:
-      allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/charge_response'
-            type: array
-      title: get_charges_response
-    charge_update_request:
-      description: requested field for update a charge
-      properties:
-        reference_id:
-          description: custom reference id
-          example: '278482642'
-          type: string
-      title: charge_update_request
-    payment_method_pbb_payment:
-      allOf:
-      - properties:
-          type:
-            type: string
-          object:
-            example: payment_source
-            type: string
-        required:
-        - object
-      - description: use for pbb payment responses
-        properties:
-          deep_link:
-            description: Deep link for the payment, use for mobile apps/flows
-            example: https://mgm.bbva.mx/WA3b/pbb?AGREEMENT=002484374&AMOUNT=1&CONCEPT=PagoDirecto&CURRENCY=MXN&REFERENCE=22277523174328893295
-            type: string
-          expires_at:
-            description: Expiration date of the charge
-            example: 1683053729
-            format: int64
-            minimum: 0
-            type: integer
-          product_type:
-            description: Product type of the charge
-            type: string
-          redirect_url:
-            description: URL to redirect the customer to complete the payment
-            example: https://example.com/redirect
-            type: string
-          reference:
-            description: Reference for the payment
-            example: '22277523174328893295'
-            type: string
-        required:
-        - deep_link
-        - expires_at
-        - product_type
-        - redirect_url
-        - reference
-        title: charge_data_payment_method_pbb_payment_response
-      title: payment_method_pbb_payment
-      x-discriminator-value: pay_by_bank_payment
-    charge_response:
-      properties:
-        amount:
-          example: 4321
-          type: integer
-        channel:
-          $ref: '#/components/schemas/charge_response_channel'
-        created_at:
-          example: 1676386026
-          format: int64
-          type: integer
-        currency:
-          example: MXN
-          type: string
-        customer_id:
-          type: string
-        description:
-          example: Payment from order
-          type: string
-        device_fingerprint:
-          example: 6FR3chaU4Y1nGAW5NAGd1rcjAKa142Ba
-          type: string
-        failure_code:
-          example: suspected_fraud
-          type: string
-        failure_message:
-          example: Este cargo ha sido declinado porque el comportamiento del comprador es sospechoso.
-          type: string
-        id:
-          description: Charge ID
-          example: 63efa757cf65380001aec040
-          type: string
-        livemode:
-          description: Whether the charge was made in live mode or not
-          example: false
-          type: boolean
-        object:
-          example: charge
-          type: string
-        order_id:
-          description: Order ID
-          example: ord_2tN73UdUSNrYRPD9r
-          type: string
-        paid_at:
-          description: charge Payment date
-          example: 1676390742
-          format: int64
-          nullable: true
-          type: integer
-        payment_method:
-          $ref: '#/components/schemas/charge_response_payment_method'
-        reference_id:
-          description: Reference ID of the charge
-          example: ref_2tN73UdUSNrYRPD9r
-          type: string
-          nullable: true
-        refunds:
-          $ref: '#/components/schemas/charge_response_refunds'
-        chargeback:
-          $ref: '#/components/schemas/chargeback_response'
-        status:
-          description: Charge status
-          example: pending_payment
-          type: string
-      required:
-      - amount
-      - created_at
-      - currency
-      - id
-      - livemode
-      - object
-      - order_id
-      - status
-      title: charge_response
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
-    payment_method_card_request:
-      allOf:
-      - description: Contains details of the payment methods that the customer has active or has used in Conekta
-        properties:
-          type:
-            description: Type of payment method
-            example: card | cash | spei | bnpl | pay_by_bank
-            type: string
-        required:
-        - type
-        title: customer_payment_method_request
-      - properties:
-          cvc:
-            description: Card security code
-            example: '198'
-            maxLength: 4
-            minLength: 3
-            type: string
-          exp_month:
-            description: Card expiration month
-            example: '12'
-            maxLength: 2
-            minLength: 2
-            type: string
-          exp_year:
-            description: Card expiration year
-            example: '2025'
-            maxLength: 4
-            minLength: 4
-            type: string
-          name:
-            description: Cardholder name
-            example: John Doe
-            type: string
-          number:
-            description: Card number
-            example: '4242424242424242'
-            type: string
-          customer_ip_address:
-            description: Optional field used to capture the customer's IP address for fraud prevention and security monitoring purposes
-            example: 0.0.0.0
-            type: string
-        required:
-        - cvc
-        - exp_month
-        - exp_year
-        - name
-        - number
-      title: payment_method_card_request
   securitySchemes:
     bearerAuth:
       scheme: bearer

@@ -635,21 +635,6 @@ components:
               $ref: '#/components/schemas/discount_lines_response'
             type: array
       title: get_order_discount_lines_response
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
     discount_lines_response:
       allOf:
       - description: List of discounts that apply to the order.
@@ -692,6 +677,44 @@ components:
         - object
         - parent_id
       title: discount_lines_response
+    order_discount_lines_request:
+      description: List of discounts that apply to the order.
+      properties:
+        amount:
+          description: The amount to be deducted from the total sum of all payments, in cents.
+          example: 500
+          format: int64
+          minimum: 0
+          type: integer
+        code:
+          description: Discount code.
+          example: '123'
+          type: string
+        type:
+          description: It can be 'loyalty', 'campaign', 'coupon' o 'sign'
+          example: loyalty
+          type: string
+      required:
+      - amount
+      - code
+      - type
+      title: order_discount_lines_request
+      name: order_discount_lines_request
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
     error:
       allOf:
       - properties:
@@ -729,29 +752,6 @@ components:
           example: loyalty
           type: string
       title: update_order_discount_lines_request
-    order_discount_lines_request:
-      description: List of discounts that apply to the order.
-      properties:
-        amount:
-          description: The amount to be deducted from the total sum of all payments, in cents.
-          example: 500
-          format: int64
-          minimum: 0
-          type: integer
-        code:
-          description: Discount code.
-          example: '123'
-          type: string
-        type:
-          description: It can be 'loyalty', 'campaign', 'coupon' o 'sign'
-          example: loyalty
-          type: string
-      required:
-      - amount
-      - code
-      - type
-      title: order_discount_lines_request
-      name: order_discount_lines_request
   securitySchemes:
     bearerAuth:
       scheme: bearer
