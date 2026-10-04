@@ -1,22 +1,20 @@
-# Kin Score artifact — conekta — 2026-08-28T221322
+# Kin Score artifact — conekta — 2026-09-25T210408
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: conekta
-  schema_version: 0.15.1
-  scored_at: '2026-08-28'
-  run_ts: 2026-08-28T221322
-  composite: 56.3
-  band: strong
+  schema_version: 0.23.0
+  scored_at: '2026-09-25'
+  run_ts: 2026-09-25T210408
+  composite: 52.0
+  band: developing
   facets:
-    discoverability: 74.1
-    contract_quality: 71.4
-    governance: 13.6
-    operational_transparency: 42.1
-    developer_ergonomics: 56.0
-    commercial_clarity: 63.2
+    discoverability: 66.1
+    contract_quality: 64.8
     contract_governance: 13.6
-    access_clarity: 63.2
+    operational_transparency: 40.0
+    developer_ergonomics: 56.0
+    access_clarity: 60.0
   agent_readiness:
     score: 32.3
     band: agent-ready
@@ -44,7 +42,7 @@ kin_score:
     applies: true
     regime: Payments
     regime_id: payments
-    score: 32.8
+    score: 18.8
     matched_via: tags
   provenance:
     agentic_access: derived

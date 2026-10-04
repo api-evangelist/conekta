@@ -652,6 +652,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - Fraud Prevention
+  tags_raw:
   - anti Fraud
   properties:
   - type: OpenAPI
@@ -735,6 +737,9 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/conekta.png
 access: 3rd-Party
 common:
+  - type: CapabilityMap
+    url: capabilities/conekta-capability-edges.yml
+    name: Conekta Business Capability Map
   - type: Website
     url: https://www.conekta.com/
   - type: AgenticAccess
