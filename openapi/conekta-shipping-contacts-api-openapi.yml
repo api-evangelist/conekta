@@ -407,6 +407,70 @@ components:
           example: true
           type: boolean
           nullable: true
+    customer_update_shipping_contacts_request:
+      description: '[Shipping](https://developers.conekta.com/v2.2.0/reference/createcustomershippingcontacts)
+
+        details, required in case of sending a shipping. If we do not receive a shipping_contact on the order, the default shipping_contact of the customer will be used.'
+      properties:
+        phone:
+          description: Phone contact
+          example: '+525511223344'
+          type: string
+        receiver:
+          description: Name of the person who will receive the order
+          example: Marvin Fuller
+          type: string
+        between_streets:
+          description: The street names between which the order will be delivered.
+          example: Ackerman Crescent
+          type: string
+        address:
+          $ref: '#/components/schemas/customer_shipping_contacts_request_address'
+        parent_id:
+          type: string
+        default:
+          type: boolean
+          nullable: true
+        deleted:
+          type: boolean
+          nullable: true
+      title: customer_update_shipping_contacts_request
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
     customer_shipping_contacts_request:
       description: '[Shipping](https://developers.conekta.com/v2.2.0/reference/createcustomershippingcontacts)
 
@@ -481,70 +545,6 @@ components:
           example: false
           type: boolean
       title: customer_shipping_contacts_response
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
-    customer_update_shipping_contacts_request:
-      description: '[Shipping](https://developers.conekta.com/v2.2.0/reference/createcustomershippingcontacts)
-
-        details, required in case of sending a shipping. If we do not receive a shipping_contact on the order, the default shipping_contact of the customer will be used.'
-      properties:
-        phone:
-          description: Phone contact
-          example: '+525511223344'
-          type: string
-        receiver:
-          description: Name of the person who will receive the order
-          example: Marvin Fuller
-          type: string
-        between_streets:
-          description: The street names between which the order will be delivered.
-          example: Ackerman Crescent
-          type: string
-        address:
-          $ref: '#/components/schemas/customer_shipping_contacts_request_address'
-        parent_id:
-          type: string
-        default:
-          type: boolean
-          nullable: true
-        deleted:
-          type: boolean
-          nullable: true
-      title: customer_update_shipping_contacts_request
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
     customer_shipping_contacts_address:
       properties:
         object:

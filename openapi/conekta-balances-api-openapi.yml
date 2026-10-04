@@ -117,6 +117,34 @@ paths:
       - Balances
 components:
   schemas:
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    balance_common_fiels_response:
+      description: balance common fields model
+      properties:
+        amount:
+          description: The balance's amount
+          example: 100
+          format: int64
+          type: integer
+        currency:
+          description: The balance's currency
+          example: MXN
+          type: string
+      title: balance_common_fiels_response
     error:
       allOf:
       - properties:
@@ -138,19 +166,6 @@ components:
             type: string
       description: err model
       title: error
-    balance_common_fiels_response:
-      description: balance common fields model
-      properties:
-        amount:
-          description: The balance's amount
-          example: 100
-          format: int64
-          type: integer
-        currency:
-          description: The balance's currency
-          example: MXN
-          type: string
-      title: balance_common_fiels_response
     balance_response:
       description: balance model
       properties:
@@ -203,21 +218,6 @@ components:
             $ref: '#/components/schemas/balance_common_fiels_response'
           type: array
       title: balance_response
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
   securitySchemes:
     bearerAuth:
       scheme: bearer

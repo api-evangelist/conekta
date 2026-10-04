@@ -391,21 +391,6 @@ paths:
       - Shippings
 components:
   schemas:
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
     error:
       allOf:
       - properties:
@@ -427,6 +412,21 @@ components:
             type: string
       description: err model
       title: error
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
     shipping_order_response:
       allOf:
       - properties:

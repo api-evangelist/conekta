@@ -140,6 +140,84 @@ paths:
       - Tokens
 components:
   schemas:
+    token_request_checkout:
+      deprecated: true
+      properties:
+        returns_control_on:
+          description: It is a value that allows identifying the returns control on.
+          example: Token
+          type: string
+      nullable: true
+    token_request_card:
+      properties:
+        cvc:
+          description: It is a value that allows identifying the security code of the card.
+          example: '123'
+          maxLength: 4
+          type: string
+          x-encripted: true
+        device_fingerprint:
+          description: It is a value that allows identifying the device fingerprint.
+          example: zptcxk4p6w1ijwz85snf1l3bqe5g09ie
+          type: string
+        exp_month:
+          description: It is a value that allows identifying the expiration month of the card.
+          example: '12'
+          maxLength: 2
+          type: string
+          x-encripted: true
+        exp_year:
+          description: It is a value that allows identifying the expiration year of the card.
+          example: '26'
+          maxLength: 2
+          type: string
+          x-encripted: true
+        name:
+          description: It is a value that allows identifying the name of the cardholder.
+          example: Miguel
+          type: string
+          x-encripted: true
+        number:
+          description: It is a value that allows identifying the number of the card.
+          example: '4242424242424242'
+          type: string
+          x-encripted: true
+      required:
+      - cvc
+      - exp_month
+      - exp_year
+      - name
+      - number
+      nullable: true
+    token_request:
+      description: a token
+      properties:
+        card:
+          $ref: '#/components/schemas/token_request_card'
+        checkout:
+          $ref: '#/components/schemas/token_request_checkout'
+      title: token request
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     token_response_checkout:
       deprecated: true
       properties:
@@ -253,76 +331,6 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
-    token_request_card:
-      properties:
-        cvc:
-          description: It is a value that allows identifying the security code of the card.
-          example: '123'
-          maxLength: 4
-          type: string
-          x-encripted: true
-        device_fingerprint:
-          description: It is a value that allows identifying the device fingerprint.
-          example: zptcxk4p6w1ijwz85snf1l3bqe5g09ie
-          type: string
-        exp_month:
-          description: It is a value that allows identifying the expiration month of the card.
-          example: '12'
-          maxLength: 2
-          type: string
-          x-encripted: true
-        exp_year:
-          description: It is a value that allows identifying the expiration year of the card.
-          example: '26'
-          maxLength: 2
-          type: string
-          x-encripted: true
-        name:
-          description: It is a value that allows identifying the name of the cardholder.
-          example: Miguel
-          type: string
-          x-encripted: true
-        number:
-          description: It is a value that allows identifying the number of the card.
-          example: '4242424242424242'
-          type: string
-          x-encripted: true
-      required:
-      - cvc
-      - exp_month
-      - exp_year
-      - name
-      - number
-      nullable: true
-    token_request:
-      description: a token
-      properties:
-        card:
-          $ref: '#/components/schemas/token_request_card'
-        checkout:
-          $ref: '#/components/schemas/token_request_checkout'
-      title: token request
     token_response:
       description: token response
       properties:
@@ -350,14 +358,6 @@ components:
       - object
       - used
       title: token_response
-    token_request_checkout:
-      deprecated: true
-      properties:
-        returns_control_on:
-          description: It is a value that allows identifying the returns control on.
-          example: Token
-          type: string
-      nullable: true
   securitySchemes:
     bearerAuth:
       scheme: bearer

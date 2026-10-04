@@ -675,26 +675,6 @@ paths:
       - Webhooks
 components:
   schemas:
-    update_webhook:
-      description: an updated webhook
-      properties:
-        url:
-          description: Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
-          example: https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8
-          format: url
-          pattern: ^(?!.*(localhost|127\.0\.0\.1)).*$
-          type: string
-        subscribed_events:
-          description: events that will be sent to the webhook
-          example: customer.created
-          items:
-            type: string
-          type: array
-        active:
-          description: whether the webhook is active or not
-          example: true
-          type: boolean
-      title: update_webhook
     webhook_request:
       description: a webhook
       properties:
@@ -713,6 +693,27 @@ components:
       required:
       - url
       title: webhook_request
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     get_webhooks_response:
       allOf:
       - description: pagination metadata
@@ -811,27 +812,26 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
+    update_webhook:
+      description: an updated webhook
+      properties:
+        url:
+          description: Here you must place the URL of your Webhook remember that you must program what you will do with the events received. Also do not forget to handle the HTTPS protocol for greater security.
+          example: https://webhook.site/89277eaa-a8e4-4306-8dc5-f55c80703dc8
+          format: url
+          pattern: ^(?!.*(localhost|127\.0\.0\.1)).*$
+          type: string
+        subscribed_events:
+          description: events that will be sent to the webhook
+          example: customer.created
+          items:
             type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
+          type: array
+        active:
+          description: whether the webhook is active or not
+          example: true
+          type: boolean
+      title: update_webhook
   securitySchemes:
     bearerAuth:
       scheme: bearer

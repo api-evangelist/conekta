@@ -1007,217 +1007,19 @@ paths:
       - Payment Link
 components:
   schemas:
-    order_tax_request:
-      description: create new taxes for an existing order
+    checkout_order_template_customer_info:
+      description: It is the information of the customer who will be created when receiving a new payment.
+      oneOf:
+      - $ref: '#/components/schemas/customer_info'
+      - $ref: '#/components/schemas/customer_info_customer_id'
+    customer_info_customer_id:
       properties:
-        amount:
-          description: The amount to be collected for tax in cents
-          example: 100
-          format: int64
-          minimum: 0
-          type: integer
-        description:
-          description: description or tax's name
-          example: testing
-          minLength: 2
-          type: string
-        metadata:
-          additionalProperties: true
-          example:
-            key: value
-          maxProperties: 100
-          type: object
-      required:
-      - amount
-      - description
-      title: order_tax_request
-    customer_info:
-      properties:
-        name:
-          example: DevTest
-          type: string
-        email:
-          example: test@conekta.com
-          format: email
-          type: string
-        phone:
-          example: '5522997233'
-          type: string
-        corporate:
-          type: boolean
-        object:
-          example: customer_info
+        customer_id:
+          example: cus_23874283647
           type: string
       required:
-      - email
-      - name
-      - phone
-      title: customer_info
-    checkouts_response:
-      allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/checkout_response'
-            type: array
-      title: checkouts_response
-    checkout_order_template:
-      description: It maintains the attributes with which the order will be created when receiving a new payment.
-      properties:
-        currency:
-          description: It is the currency in which the order will be created. It must be a valid ISO 4217 currency code.
-          example: MXN
-          maxLength: 3
-          type: string
-        customer_info:
-          $ref: '#/components/schemas/checkout_order_template_customer_info'
-        line_items:
-          description: They are the products to buy. Each contains the "unit price" and "quantity" parameters that are used to calculate the total amount of the order.
-          items:
-            $ref: '#/components/schemas/product'
-          type: array
-        metadata:
-          additionalProperties: true
-          description: It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
-          example:
-            key: value
-          maxProperties: 100
-          type: object
-        tax_lines:
-          description: List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
-          items:
-            $ref: '#/components/schemas/order_tax_request'
-          type: array
-        discount_lines:
-          description: List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
-          items:
-            $ref: '#/components/schemas/order_discount_lines_request'
-          type: array
-      required:
-      - currency
-      - line_items
-    order_discount_lines_request:
-      description: List of discounts that apply to the order.
-      properties:
-        amount:
-          description: The amount to be deducted from the total sum of all payments, in cents.
-          example: 500
-          format: int64
-          minimum: 0
-          type: integer
-        code:
-          description: Discount code.
-          example: '123'
-          type: string
-        type:
-          description: It can be 'loyalty', 'campaign', 'coupon' o 'sign'
-          example: loyalty
-          type: string
-      required:
-      - amount
-      - code
-      - type
-      title: order_discount_lines_request
-      name: order_discount_lines_request
-    product:
-      properties:
-        antifraud_info:
-          additionalProperties: true
-          example:
-            key: value
-          type: object
-        brand:
-          description: The brand of the item.
-          example: Cohiba
-          type: string
-        description:
-          description: Short description of the item
-          example: Imported From Mex.
-          maxLength: 250
-          type: string
-        metadata:
-          additionalProperties: true
-          default: {}
-          description: It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
-          example:
-            key: value
-          maxProperties: 100
-          type: object
-        name:
-          description: The name of the item. It will be displayed in the order.
-          example: Box of Cohiba S1s
-          type: string
-        quantity:
-          description: The quantity of the item in the order.
-          example: 1
-          format: int32
-          minimum: 1
-          type: integer
-        sku:
-          description: The stock keeping unit for the item. It is used to identify the item in the order.
-          example: XYZ12345
-          type: string
-        tags:
-          description: List of tags for the item. It is used to identify the item in the order.
-          example:
-          - food
-          - mexican food
-          items:
-            type: string
-          type: array
-        unit_price:
-          description: The price of the item in cents.
-          example: 20000
-          format: int32
-          minimum: 0
-          type: integer
-      required:
-      - name
-      - quantity
-      - unit_price
-      title: product
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
+      - customer_id
+      title: customer_info_customer_id
     checkout:
       description: It is a sub-resource of the Order model that can be stipulated in order to configure its corresponding checkout
       properties:
@@ -1318,32 +1120,36 @@ components:
       - recurrent
       - type
       title: checkout
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
-    checkout_order_template_customer_info:
-      description: It is the information of the customer who will be created when receiving a new payment.
-      oneOf:
-      - $ref: '#/components/schemas/customer_info'
-      - $ref: '#/components/schemas/customer_info_customer_id'
+    customer_info:
+      properties:
+        name:
+          example: DevTest
+          type: string
+        email:
+          example: test@conekta.com
+          format: email
+          type: string
+        phone:
+          example: '5522997233'
+          type: string
+        corporate:
+          type: boolean
+        object:
+          example: customer_info
+          type: string
+      required:
+      - email
+      - name
+      - phone
+      title: customer_info
+    emailCheckout_request:
+      properties:
+        email:
+          example: example@conekta.com
+          format: email
+          type: string
+      required:
+      - email
     checkout_response:
       description: checkout response
       properties:
@@ -1467,22 +1273,6 @@ components:
       - name
       - object
       title: checkout_response
-    emailCheckout_request:
-      properties:
-        email:
-          example: example@conekta.com
-          format: email
-          type: string
-      required:
-      - email
-    customer_info_customer_id:
-      properties:
-        customer_id:
-          example: cus_23874283647
-          type: string
-      required:
-      - customer_id
-      title: customer_info_customer_id
     smsCheckout_request:
       properties:
         phonenumber:
@@ -1490,6 +1280,216 @@ components:
           type: string
       required:
       - phonenumber
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    checkout_order_template:
+      description: It maintains the attributes with which the order will be created when receiving a new payment.
+      properties:
+        currency:
+          description: It is the currency in which the order will be created. It must be a valid ISO 4217 currency code.
+          example: MXN
+          maxLength: 3
+          type: string
+        customer_info:
+          $ref: '#/components/schemas/checkout_order_template_customer_info'
+        line_items:
+          description: They are the products to buy. Each contains the "unit price" and "quantity" parameters that are used to calculate the total amount of the order.
+          items:
+            $ref: '#/components/schemas/product'
+          type: array
+        metadata:
+          additionalProperties: true
+          description: It is a set of key-value pairs that you can attach to the order. It can be used to store additional information about the order in a structured format.
+          example:
+            key: value
+          maxProperties: 100
+          type: object
+        tax_lines:
+          description: List of [taxes](https://developers.conekta.com/v2.2.0/reference/orderscreatetaxes) that are applied to the order.
+          items:
+            $ref: '#/components/schemas/order_tax_request'
+          type: array
+        discount_lines:
+          description: List of [discounts](https://developers.conekta.com/v2.2.0/reference/orderscreatediscountline) that are applied to the order.
+          items:
+            $ref: '#/components/schemas/order_discount_lines_request'
+          type: array
+      required:
+      - currency
+      - line_items
+    order_discount_lines_request:
+      description: List of discounts that apply to the order.
+      properties:
+        amount:
+          description: The amount to be deducted from the total sum of all payments, in cents.
+          example: 500
+          format: int64
+          minimum: 0
+          type: integer
+        code:
+          description: Discount code.
+          example: '123'
+          type: string
+        type:
+          description: It can be 'loyalty', 'campaign', 'coupon' o 'sign'
+          example: loyalty
+          type: string
+      required:
+      - amount
+      - code
+      - type
+      title: order_discount_lines_request
+      name: order_discount_lines_request
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    product:
+      properties:
+        antifraud_info:
+          additionalProperties: true
+          example:
+            key: value
+          type: object
+        brand:
+          description: The brand of the item.
+          example: Cohiba
+          type: string
+        description:
+          description: Short description of the item
+          example: Imported From Mex.
+          maxLength: 250
+          type: string
+        metadata:
+          additionalProperties: true
+          default: {}
+          description: It is a key/value hash that can hold custom fields. Maximum 100 elements and allows special characters.
+          example:
+            key: value
+          maxProperties: 100
+          type: object
+        name:
+          description: The name of the item. It will be displayed in the order.
+          example: Box of Cohiba S1s
+          type: string
+        quantity:
+          description: The quantity of the item in the order.
+          example: 1
+          format: int32
+          minimum: 1
+          type: integer
+        sku:
+          description: The stock keeping unit for the item. It is used to identify the item in the order.
+          example: XYZ12345
+          type: string
+        tags:
+          description: List of tags for the item. It is used to identify the item in the order.
+          example:
+          - food
+          - mexican food
+          items:
+            type: string
+          type: array
+        unit_price:
+          description: The price of the item in cents.
+          example: 20000
+          format: int32
+          minimum: 0
+          type: integer
+      required:
+      - name
+      - quantity
+      - unit_price
+      title: product
+    order_tax_request:
+      description: create new taxes for an existing order
+      properties:
+        amount:
+          description: The amount to be collected for tax in cents
+          example: 100
+          format: int64
+          minimum: 0
+          type: integer
+        description:
+          description: description or tax's name
+          example: testing
+          minLength: 2
+          type: string
+        metadata:
+          additionalProperties: true
+          example:
+            key: value
+          maxProperties: 100
+          type: object
+      required:
+      - amount
+      - description
+      title: order_tax_request
+    checkouts_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/checkout_response'
+            type: array
+      title: checkouts_response
   securitySchemes:
     bearerAuth:
       scheme: bearer

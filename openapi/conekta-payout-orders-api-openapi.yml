@@ -403,75 +403,6 @@ paths:
       - Payout Orders
 components:
   schemas:
-    payout_orders_response:
-      allOf:
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/payout_order_response'
-            title: payout_orders_data_response
-            type: array
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      title: payout_orders_response
-    payout_order_response_customer_info:
-      allOf:
-      - properties:
-          id:
-            description: The id of the customer.
-            example: cus_23874283647
-            type: string
-        required:
-        - id
-      - properties:
-          customer_custom_reference:
-            description: Custom reference
-            example: custom_reference
-            type: string
-            nullable: true
-          name:
-            example: DevTest
-            type: string
-          email:
-            example: test@conekta.com
-            format: email
-            type: string
-          phone:
-            example: '5522997233'
-            type: string
-          corporate:
-            default: false
-            type: boolean
-          object:
-            example: customer_info
-            type: string
-        title: order_customer_info_response
-      description: The customer information of the payout order.
     payout_order_response:
       description: payout order model response
       properties:
@@ -558,48 +489,96 @@ components:
       - status
       - updated_at
       title: payout_order_response
-    payout_order_payouts_item:
+    payout:
+      description: The payout information of the payout order.
       properties:
-        amount:
-          description: The amount of the payout.
-          example: 3000
-          type: integer
-        currency:
-          description: The currency in which the payout is made.
-          example: MXN
-          type: string
-        expires_at:
-          description: The expiration date of the payout.
-          example: 1677626837
-          format: int64
-          type: integer
-        id:
-          description: The id of the payout.
-          example: payout_2vZwsRAhhGp2dFDJx
-          type: string
-        livemode:
-          description: The live mode of the payout.
-          example: true
-          type: boolean
-        object:
-          description: The object of the payout.
-          example: payout
-          type: string
-        payout_order_id:
-          description: The id of the payout order.
-          example: f2654d66-d740-457a-9a8c-f96b5196f44e
-          type: string
-        status:
-          description: The status of the payout.
-          example: open
-          type: string
+        payout_method:
+          $ref: '#/components/schemas/payout_method'
       required:
-      - amount
-      - currency
-      - id
-      - livemode
-      - object
-      title: payout_order_payouts_item
+      - payout_method
+      title: payout
+    payout_orders_response:
+      allOf:
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/payout_order_response'
+            title: payout_orders_data_response
+            type: array
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      title: payout_orders_response
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    payout_order_request_customer_info:
+      allOf:
+      - properties:
+          customer_id:
+            example: cus_23874283647
+            type: string
+        required:
+        - customer_id
+        title: customer_info_customer_id
+      description: The customer information to whom the payout order is made.
     payout_method:
       description: The payout method of the payout order.
       properties:
@@ -659,60 +638,81 @@ components:
       - payout
       - reason
       title: payout_order_request
-    details_error:
+    payout_order_payouts_item:
       properties:
-        code:
-          example: conekta.errors.authentication.missing_key
+        amount:
+          description: The amount of the payout.
+          example: 3000
+          type: integer
+        currency:
+          description: The currency in which the payout is made.
+          example: MXN
           type: string
-        param:
+        expires_at:
+          description: The expiration date of the payout.
+          example: 1677626837
+          format: int64
+          type: integer
+        id:
+          description: The id of the payout.
+          example: payout_2vZwsRAhhGp2dFDJx
           type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
+        livemode:
+          description: The live mode of the payout.
+          example: true
+          type: boolean
+        object:
+          description: The object of the payout.
+          example: payout
           type: string
-        debug_message:
-          example: Please include your access key in your request.
+        payout_order_id:
+          description: The id of the payout order.
+          example: f2654d66-d740-457a-9a8c-f96b5196f44e
           type: string
-      title: details_error
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
-    payout:
-      description: The payout information of the payout order.
-      properties:
-        payout_method:
-          $ref: '#/components/schemas/payout_method'
+        status:
+          description: The status of the payout.
+          example: open
+          type: string
       required:
-      - payout_method
-      title: payout
-    payout_order_request_customer_info:
+      - amount
+      - currency
+      - id
+      - livemode
+      - object
+      title: payout_order_payouts_item
+    payout_order_response_customer_info:
       allOf:
       - properties:
-          customer_id:
+          id:
+            description: The id of the customer.
             example: cus_23874283647
             type: string
         required:
-        - customer_id
-        title: customer_info_customer_id
-      description: The customer information to whom the payout order is made.
+        - id
+      - properties:
+          customer_custom_reference:
+            description: Custom reference
+            example: custom_reference
+            type: string
+            nullable: true
+          name:
+            example: DevTest
+            type: string
+          email:
+            example: test@conekta.com
+            format: email
+            type: string
+          phone:
+            example: '5522997233'
+            type: string
+          corporate:
+            default: false
+            type: boolean
+          object:
+            example: customer_info
+            type: string
+        title: order_customer_info_response
+      description: The customer information of the payout order.
   securitySchemes:
     bearerAuth:
       scheme: bearer

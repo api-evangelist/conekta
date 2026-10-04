@@ -267,45 +267,6 @@ paths:
       - Subscriptions - Customer Portal
 components:
   schemas:
-    subscription_details_card:
-      properties:
-        id:
-          example: src_2yw5zPrVahTy7xy7P
-          type: string
-        created_at:
-          example: 1761745218
-          format: int64
-          type: integer
-        active:
-          example: true
-          type: boolean
-        object:
-          example: card
-          type: string
-        exp_month:
-          example: '05'
-          type: string
-        exp_year:
-          example: '26'
-          type: string
-        brand:
-          example: mastercard
-          type: string
-        last4:
-          example: '1005'
-          type: string
-        name:
-          example: test
-          type: string
-        payment_source_status:
-          example: active
-          type: string
-        customer_id:
-          example: cus_2yDzKtEAD3khH8Sga
-          type: string
-        customer_custom_reference:
-          type: string
-          nullable: true
     subscription_details_plan:
       properties:
         id:
@@ -393,6 +354,81 @@ components:
           format: uri
           type: string
       title: customer_portal_response
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    subscription_details_card:
+      properties:
+        id:
+          example: src_2yw5zPrVahTy7xy7P
+          type: string
+        created_at:
+          example: 1761745218
+          format: int64
+          type: integer
+        active:
+          example: true
+          type: boolean
+        object:
+          example: card
+          type: string
+        exp_month:
+          example: '05'
+          type: string
+        exp_year:
+          example: '26'
+          type: string
+        brand:
+          example: mastercard
+          type: string
+        last4:
+          example: '1005'
+          type: string
+        name:
+          example: test
+          type: string
+        payment_source_status:
+          example: active
+          type: string
+        customer_id:
+          example: cus_2yDzKtEAD3khH8Sga
+          type: string
+        customer_custom_reference:
+          type: string
+          nullable: true
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
     subscription_details:
       description: Subscription details for customer portal
       properties:
@@ -429,42 +465,6 @@ components:
           format: int64
           type: integer
       title: subscription_details
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
     customer_details:
       description: Customer details for customer portal
       properties:

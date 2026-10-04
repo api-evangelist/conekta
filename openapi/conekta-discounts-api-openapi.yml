@@ -600,41 +600,22 @@ paths:
       - Discounts
 components:
   schemas:
-    get_order_discount_lines_response:
-      allOf:
-      - description: pagination metadata
-        properties:
-          has_more:
-            description: Indicates if there are more pages to be requested
-            example: false
-            type: boolean
-          object:
-            description: Object type, in this case is list
-            example: list
-            type: string
-        required:
-        - has_more
-        - object
-        title: pagination metadata
-      - description: page metadata
-        properties:
-          next_page_url:
-            description: URL of the next page.
-            example: https://api.conekta.io/resources?limit=10&next=chrg_1
-            type: string
-            nullable: true
-          previous_page_url:
-            description: Url of the previous page.
-            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
-            type: string
-            nullable: true
-        title: page metadata
-      - properties:
-          data:
-            items:
-              $ref: '#/components/schemas/discount_lines_response'
-            type: array
-      title: get_order_discount_lines_response
+    update_order_discount_lines_request:
+      description: List of discounts that apply to the order.
+      properties:
+        amount:
+          example: 500
+          format: int64
+          minimum: 0
+          type: integer
+        code:
+          description: Discount code.
+          example: '123'
+          type: string
+        type:
+          example: loyalty
+          type: string
+      title: update_order_discount_lines_request
     discount_lines_response:
       allOf:
       - description: List of discounts that apply to the order.
@@ -677,6 +658,62 @@ components:
         - object
         - parent_id
       title: discount_lines_response
+    get_order_discount_lines_response:
+      allOf:
+      - description: pagination metadata
+        properties:
+          has_more:
+            description: Indicates if there are more pages to be requested
+            example: false
+            type: boolean
+          object:
+            description: Object type, in this case is list
+            example: list
+            type: string
+        required:
+        - has_more
+        - object
+        title: pagination metadata
+      - description: page metadata
+        properties:
+          next_page_url:
+            description: URL of the next page.
+            example: https://api.conekta.io/resources?limit=10&next=chrg_1
+            type: string
+            nullable: true
+          previous_page_url:
+            description: Url of the previous page.
+            example: https://api.conekta.io/resources?limit=10&previous=chrg_1
+            type: string
+            nullable: true
+        title: page metadata
+      - properties:
+          data:
+            items:
+              $ref: '#/components/schemas/discount_lines_response'
+            type: array
+      title: get_order_discount_lines_response
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     order_discount_lines_request:
       description: List of discounts that apply to the order.
       properties:
@@ -715,43 +752,6 @@ components:
           example: Please include your access key in your request.
           type: string
       title: details_error
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
-    update_order_discount_lines_request:
-      description: List of discounts that apply to the order.
-      properties:
-        amount:
-          example: 500
-          format: int64
-          minimum: 0
-          type: integer
-        code:
-          description: Discount code.
-          example: '123'
-          type: string
-        type:
-          example: loyalty
-          type: string
-      title: update_order_discount_lines_request
   securitySchemes:
     bearerAuth:
       scheme: bearer

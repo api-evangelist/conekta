@@ -366,7 +366,7 @@ paths:
       - Taxes
 components:
   schemas:
-    order_tax_request:
+    ordersUpdateTaxes_request:
       description: create new taxes for an existing order
       properties:
         amount:
@@ -381,15 +381,45 @@ components:
           minLength: 2
           type: string
         metadata:
-          additionalProperties: true
-          example:
-            key: value
+          additionalProperties:
+            type: object
           maxProperties: 100
-          type: object
-      required:
-      - amount
-      - description
-      title: order_tax_request
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
     order_tax_response:
       allOf:
       - description: create new taxes for an existing order
@@ -429,7 +459,7 @@ components:
       required:
       - id
       title: order_tax_response
-    ordersUpdateTaxes_request:
+    order_tax_request:
       description: create new taxes for an existing order
       properties:
         amount:
@@ -444,45 +474,15 @@ components:
           minLength: 2
           type: string
         metadata:
-          additionalProperties:
-            type: object
+          additionalProperties: true
+          example:
+            key: value
           maxProperties: 100
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
+          type: object
+      required:
+      - amount
+      - description
+      title: order_tax_request
   securitySchemes:
     bearerAuth:
       scheme: bearer

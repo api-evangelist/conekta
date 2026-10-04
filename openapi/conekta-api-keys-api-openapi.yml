@@ -561,69 +561,6 @@ components:
       - role
       title: api_key_request
       name: api_key_request
-    delete_api_keys_response:
-      allOf:
-      - description: api keys model
-        properties:
-          active:
-            description: Indicates if the api key is active
-            example: true
-            type: boolean
-          created_at:
-            description: Unix timestamp in seconds of when the api key was created
-            example: 1684167881
-            format: int64
-            type: integer
-          description:
-            description: A name or brief explanation of what this api key is used for
-            example: online store
-            type: string
-          livemode:
-            description: Indicates if the api key is in production
-            example: false
-            type: boolean
-          prefix:
-            description: The first few characters of the authentication_token
-            example: key_rp
-            type: string
-          id:
-            description: Unique identifier of the api key
-            example: 64625cc9f3e02c00163f5e4d
-            type: string
-          object:
-            description: Object name, value is 'api_key'
-            example: api_key
-            type: string
-          last_used_at:
-            description: Unix timestamp in seconds with the api key was used
-            format: int64
-            type: integer
-            nullable: true
-          role:
-            description: Indicates if the api key is private or public
-            example: private
-            type: string
-        title: api_key_response_delete
-      - properties:
-          deleted:
-            example: true
-            type: boolean
-      title: delete_api_keys_response
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
     api_key_update_request:
       properties:
         active:
@@ -635,6 +572,27 @@ components:
           example: online store
           type: string
       title: api_key_update_request
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
     api_key_create_response:
       allOf:
       - properties:
@@ -694,27 +652,21 @@ components:
             type: string
         title: api_key_response
       title: api_key_create_response
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
     api_key_response:
       description: api keys model
       properties:
@@ -767,6 +719,54 @@ components:
           example: private
           type: string
       title: api_key_response
+    delete_api_keys_response:
+      allOf:
+      - description: api keys model
+        properties:
+          active:
+            description: Indicates if the api key is active
+            example: true
+            type: boolean
+          created_at:
+            description: Unix timestamp in seconds of when the api key was created
+            example: 1684167881
+            format: int64
+            type: integer
+          description:
+            description: A name or brief explanation of what this api key is used for
+            example: online store
+            type: string
+          livemode:
+            description: Indicates if the api key is in production
+            example: false
+            type: boolean
+          prefix:
+            description: The first few characters of the authentication_token
+            example: key_rp
+            type: string
+          id:
+            description: Unique identifier of the api key
+            example: 64625cc9f3e02c00163f5e4d
+            type: string
+          object:
+            description: Object name, value is 'api_key'
+            example: api_key
+            type: string
+          last_used_at:
+            description: Unix timestamp in seconds with the api key was used
+            format: int64
+            type: integer
+            nullable: true
+          role:
+            description: Indicates if the api key is private or public
+            example: private
+            type: string
+        title: api_key_response_delete
+      - properties:
+          deleted:
+            example: true
+            type: boolean
+      title: delete_api_keys_response
     get_api_keys_response:
       allOf:
       - description: page metadata

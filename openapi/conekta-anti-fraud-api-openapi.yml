@@ -498,75 +498,6 @@ paths:
       - anti Fraud
 components:
   schemas:
-    blacklist_rule_response:
-      properties:
-        id:
-          description: Blacklist rule id
-          example: 2fw8EWJusiRrxdPzT
-          type: string
-        field:
-          description: field used for blacklists rule
-          example: email
-          type: string
-        value:
-          description: value used for blacklists rule
-          example: email@example.com
-          type: string
-        description:
-          description: use an description for blacklisted rule
-          example: secure customer example@example.com
-          type: string
-      title: blacklist_rule_response
-    deleted_blacklist_rule_response:
-      properties:
-        id:
-          description: Blacklist rule id
-          example: 2fw8EWJusiRrxdPzT
-          type: string
-        field:
-          description: field used for blacklists rule deleted
-          example: email
-          type: string
-        value:
-          description: value used for blacklists rule deleted
-          example: email@example.com
-          type: string
-        description:
-          description: use an description for blacklisted rule
-          example: banned customer example@example.com
-          type: string
-      title: deleted_blacklist_rule_response
-    risk_rules_data:
-      properties:
-        id:
-          description: rule id
-          example: 618c3f2fdb8b8da9be376af9
-          type: string
-        field:
-          description: field to be used for the rule
-          example: email
-          type: string
-        created_at:
-          description: rule creation date
-          example: 2021-11-10 21:52:47.339000+00:00
-          type: string
-        value:
-          description: value to be used for the rule
-          example: email@example.com
-          type: string
-        is_global:
-          description: if the rule is global
-          example: false
-          type: boolean
-        is_test:
-          description: if the rule is test
-          example: false
-          type: boolean
-        description:
-          description: description of the rule
-          example: secure customer example@example.com
-          type: string
-      title: risk_rules_data
     deleted_whitelist_rule_response:
       properties:
         id:
@@ -586,61 +517,6 @@ components:
           example: secure customer example@example.com
           type: string
       title: deleted_whitelist_rule_response
-    details_error:
-      properties:
-        code:
-          example: conekta.errors.authentication.missing_key
-          type: string
-        param:
-          type: string
-          nullable: true
-        message:
-          example: Acceso no autorizado.
-          type: string
-        debug_message:
-          example: Please include your access key in your request.
-          type: string
-      title: details_error
-    error:
-      allOf:
-      - properties:
-          details:
-            items:
-              $ref: '#/components/schemas/details_error'
-            type: array
-      - properties:
-          log_id:
-            description: log id
-            example: 507f1f77bcf86cd799439011
-            type: string
-            nullable: true
-          type:
-            example: authentication_error
-            type: string
-          object:
-            example: error
-            type: string
-      description: err model
-      title: error
-    whitelistlist_rule_response:
-      properties:
-        id:
-          description: Whitelist rule id
-          example: 2fw8EWJusiRrxdPzT
-          type: string
-        field:
-          description: field used for whitelists rule
-          example: email
-          type: string
-        value:
-          description: value used for whitelists rule
-          example: email@example.com
-          type: string
-        description:
-          description: use an description for whitelisted rule
-          example: banned customer example@example.com
-          type: string
-      title: whitelistlist_rule_response
     risk_rules_list:
       allOf:
       - description: pagination metadata
@@ -676,6 +552,80 @@ components:
               $ref: '#/components/schemas/risk_rules_data'
             type: array
       title: risk_rules_list
+    deleted_blacklist_rule_response:
+      properties:
+        id:
+          description: Blacklist rule id
+          example: 2fw8EWJusiRrxdPzT
+          type: string
+        field:
+          description: field used for blacklists rule deleted
+          example: email
+          type: string
+        value:
+          description: value used for blacklists rule deleted
+          example: email@example.com
+          type: string
+        description:
+          description: use an description for blacklisted rule
+          example: banned customer example@example.com
+          type: string
+      title: deleted_blacklist_rule_response
+    error:
+      allOf:
+      - properties:
+          details:
+            items:
+              $ref: '#/components/schemas/details_error'
+            type: array
+      - properties:
+          log_id:
+            description: log id
+            example: 507f1f77bcf86cd799439011
+            type: string
+            nullable: true
+          type:
+            example: authentication_error
+            type: string
+          object:
+            example: error
+            type: string
+      description: err model
+      title: error
+    details_error:
+      properties:
+        code:
+          example: conekta.errors.authentication.missing_key
+          type: string
+        param:
+          type: string
+          nullable: true
+        message:
+          example: Acceso no autorizado.
+          type: string
+        debug_message:
+          example: Please include your access key in your request.
+          type: string
+      title: details_error
+    whitelistlist_rule_response:
+      properties:
+        id:
+          description: Whitelist rule id
+          example: 2fw8EWJusiRrxdPzT
+          type: string
+        field:
+          description: field used for whitelists rule
+          example: email
+          type: string
+        value:
+          description: value used for whitelists rule
+          example: email@example.com
+          type: string
+        description:
+          description: use an description for whitelisted rule
+          example: banned customer example@example.com
+          type: string
+      title: whitelistlist_rule_response
     CreateRuleWhitelist_request:
       properties:
         description:
@@ -694,6 +644,56 @@ components:
       - description
       - field
       - value
+    risk_rules_data:
+      properties:
+        id:
+          description: rule id
+          example: 618c3f2fdb8b8da9be376af9
+          type: string
+        field:
+          description: field to be used for the rule
+          example: email
+          type: string
+        created_at:
+          description: rule creation date
+          example: 2021-11-10 21:52:47.339000+00:00
+          type: string
+        value:
+          description: value to be used for the rule
+          example: email@example.com
+          type: string
+        is_global:
+          description: if the rule is global
+          example: false
+          type: boolean
+        is_test:
+          description: if the rule is test
+          example: false
+          type: boolean
+        description:
+          description: description of the rule
+          example: secure customer example@example.com
+          type: string
+      title: risk_rules_data
+    blacklist_rule_response:
+      properties:
+        id:
+          description: Blacklist rule id
+          example: 2fw8EWJusiRrxdPzT
+          type: string
+        field:
+          description: field used for blacklists rule
+          example: email
+          type: string
+        value:
+          description: value used for blacklists rule
+          example: email@example.com
+          type: string
+        description:
+          description: use an description for blacklisted rule
+          example: secure customer example@example.com
+          type: string
+      title: blacklist_rule_response
   securitySchemes:
     bearerAuth:
       scheme: bearer
