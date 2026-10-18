@@ -652,6 +652,8 @@ apis:
   humanURL: https://developers.conekta.com/reference
   baseURL: https://api.conekta.io
   tags:
+  - Fraud Prevention
+  tags_raw:
   - anti Fraud
   properties:
   - type: OpenAPI
