@@ -1,1322 +1,1267 @@
 {
+  "info": {
+    "_postman_id": "e324cfc1-f9cb-4bda-9c76-bd2cfd93de6d",
+    "name": "Conekta Taxes API",
+    "description": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:31:49.000Z",
+    "updatedAt": "2026-10-21T20:31:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e324cfc1-f9cb-4bda-9c76-bd2cfd93de6d"
+  },
   "item": [
     {
-      "id": "3935c8c3-29cf-4f7a-8d0e-f614269fe973",
-      "name": "Taxes",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "orders",
       "item": [
         {
-          "id": "1890cdb2-2f75-440f-8a72-8c811da7c0d2",
-          "name": "Create Tax",
-          "request": {
-            "name": "Create Tax",
-            "description": {
-              "content": "Create new taxes for an existing orden",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "orders",
-                ":id",
-                "tax_lines"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "disabled": false,
-                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                "key": "X-Child-Company-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 7210.178168038814,\n    \"key_1\": \"string\",\n    \"key_2\": 9344.160462946207,\n    \"key_3\": 3534.479714705163,\n    \"key_4\": \"string\",\n    \"key_5\": 2577.337921638223,\n    \"key_6\": 9632.548659859698,\n    \"key_7\": false,\n    \"key_8\": \"string\",\n    \"key_9\": 6777.446285754261,\n    \"key_10\": true,\n    \"key_11\": true,\n    \"key_12\": 6405.421621722619,\n    \"key_13\": 5272.414810804414,\n    \"key_14\": 9480,\n    \"key_15\": 6857,\n    \"key_16\": 8363.778266491743,\n    \"key_17\": 8239,\n    \"key_18\": false,\n    \"key_19\": 3394.5962978736966,\n    \"key_20\": \"string\",\n    \"key_21\": false,\n    \"key_22\": true,\n    \"key_23\": 3631,\n    \"key_24\": \"string\",\n    \"key_25\": 7070.305793736681,\n    \"key_26\": true,\n    \"key_27\": true,\n    \"key_28\": false,\n    \"key_29\": \"string\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "{id}",
+          "item": [
             {
-              "id": "10bc7d36-888a-4611-91f4-e9e1ada0097f",
-              "name": "successful",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "tax_lines",
+              "item": [
+                {
+                  "name": "{tax_id}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
+                      "name": "Delete Tax",
+                      "id": "0f7878e4-abd6-486a-88a7-c5fc35ba1a27",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/orders/:id/tax_lines/:tax_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orders",
+                            ":id",
+                            "tax_lines",
+                            ":tax_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8e305da6-788c-4608-ad90-49108431394d",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the resource"
+                            },
+                            {
+                              "id": "e67aad38-7e56-41f9-8ac9-4dc0ce2f4be3",
+                              "key": "tax_id",
+                              "value": "<string>",
+                              "description": "(Required) identifier"
+                            }
+                          ]
+                        },
+                        "description": "Delete taxes for an existing orden"
+                      },
+                      "response": [
+                        {
+                          "id": "7cee3a55-0a7b-4517-a159-dbe3b1eab390",
+                          "name": "successful",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orders/:id/tax_lines/:tax_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orders",
+                                ":id",
+                                "tax_lines",
+                                ":tax_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "tax_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"metadata\": {\n    \"cillum_5\": \"non veniam ipsum\",\n    \"quisf2\": 13925071,\n    \"est0\": -17785354,\n    \"voluptate_a\": false,\n    \"aliquipa52\": 2988680,\n    \"sint_405\": -49737466.51628388,\n    \"qui_c\": 35256748,\n    \"culpa1\": \"nulla dolore Ut\",\n    \"laboris_45f\": false,\n    \"elit9\": \"voluptate\",\n    \"reprehenderit605\": false,\n    \"site\": true,\n    \"ad_33\": \"fugiat deserunt culpa\",\n    \"aliqua8_e\": 21301038.281387582,\n    \"Excepteur_39a\": false,\n    \"exercitationff\": true,\n    \"Duis_c55\": \"id ullamco et in\",\n    \"esse_99\": true,\n    \"etc\": 98846014.45866102,\n    \"Lorem_d_a\": true,\n    \"anim_f2\": \"voluptate Ut\",\n    \"aliquipf\": \"aliqua mollit nostrud\",\n    \"nulla30\": -36034767,\n    \"ea_12_\": \"in dolor non ut in\",\n    \"consequata\": -78757558,\n    \"ipsum___\": -56493168,\n    \"Lorem_f\": \"anim sint magna dolore et\",\n    \"qui_8\": 38350106,\n    \"Ut_6\": \"Excepteur nulla id eu\",\n    \"velit6\": 68033121,\n    \"Lorem_b44\": 71988903,\n    \"dolore3\": 20731181.40044667,\n    \"occaecat_c9_\": \"quis adipisicing\",\n    \"laboris_56c\": false,\n    \"adipisicing_3\": true,\n    \"culpa_c4f\": -98423342,\n    \"ipsume9c\": \"reprehenderit consequat sunt\",\n    \"sunt_4b1\": -20127903,\n    \"occaecat9\": false,\n    \"tempor_f\": 71805338,\n    \"incididunta48\": -25638830,\n    \"culpa_0_5\": 22763306,\n    \"Ut717\": 43227647.44155455,\n    \"proident303\": -99262009.14733933,\n    \"proident_39\": 96161551,\n    \"aliquip_b\": \"sint proident nisi qui\"\n  },\n  \"object\": \"<string>\",\n  \"parent_id\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:49.000Z",
+                          "updatedAt": "2026-10-21T20:31:49.000Z",
+                          "uid": "35240-7cee3a55-0a7b-4517-a159-dbe3b1eab390"
+                        },
+                        {
+                          "id": "a32c23f5-69be-479b-91b3-b131f4b1cdcc",
+                          "name": "authentication error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orders/:id/tax_lines/:tax_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orders",
+                                ":id",
+                                "tax_lines",
+                                ":tax_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "tax_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:49.000Z",
+                          "updatedAt": "2026-10-21T20:31:49.000Z",
+                          "uid": "35240-a32c23f5-69be-479b-91b3-b131f4b1cdcc"
+                        },
+                        {
+                          "id": "b47cb743-3aec-4052-8d21-ace05a5d088f",
+                          "name": "not found entity",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orders/:id/tax_lines/:tax_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orders",
+                                ":id",
+                                "tax_lines",
+                                ":tax_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "tax_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:49.000Z",
+                          "updatedAt": "2026-10-21T20:31:49.000Z",
+                          "uid": "35240-b47cb743-3aec-4052-8d21-ace05a5d088f"
+                        },
+                        {
+                          "id": "f9d39e41-5fab-4e4d-a236-94e1b044396f",
+                          "name": "parameter validation error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orders/:id/tax_lines/:tax_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orders",
+                                ":id",
+                                "tax_lines",
+                                ":tax_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "tax_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:49.000Z",
+                          "updatedAt": "2026-10-21T20:31:49.000Z",
+                          "uid": "35240-f9d39e41-5fab-4e4d-a236-94e1b044396f"
+                        },
+                        {
+                          "id": "e7b28a07-680e-4f63-a87f-c06e097560f6",
+                          "name": "internal server error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/orders/:id/tax_lines/:tax_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orders",
+                                ":id",
+                                "tax_lines",
+                                ":tax_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "tax_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:49.000Z",
+                          "updatedAt": "2026-10-21T20:31:49.000Z",
+                          "uid": "35240-e7b28a07-680e-4f63-a87f-c06e097560f6"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:31:49.000Z",
+                      "updatedAt": "2026-10-21T20:31:49.000Z",
+                      "uid": "35240-0f7878e4-abd6-486a-88a7-c5fc35ba1a27"
+                    },
+                    {
+                      "name": "Update Tax",
+                      "id": "cc75ebd7-f7c2-4d75-8da2-c1bcfe24cce8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"ad0\": {},\n    \"ipsum58\": {},\n    \"ut5\": {},\n    \"proidentb\": {},\n    \"non6\": {},\n    \"quis6\": {},\n    \"in044\": {},\n    \"sunt_a\": {},\n    \"non5b\": {},\n    \"Lorem42\": {},\n    \"ullamco_e\": {},\n    \"esse_f\": {},\n    \"mollite0\": {},\n    \"proidentaa1\": {},\n    \"quis_\": {},\n    \"ad_30\": {},\n    \"dolore_8_\": {},\n    \"ute\": {},\n    \"velit_6\": {},\n    \"dolor_1a\": {},\n    \"pariatur1\": {},\n    \"eu_ff\": {},\n    \"laborum3\": {},\n    \"labore_c0_\": {},\n    \"nond1_\": {},\n    \"minimdcf\": {},\n    \"fugiat__\": {},\n    \"aliqua_2\": {},\n    \"et_8\": {},\n    \"proidentd3\": {},\n    \"officia_d\": {},\n    \"in8d5\": {},\n    \"minim300\": {},\n    \"utd45\": {},\n    \"dolor_7b\": {},\n    \"ad_2\": {},\n    \"non_2\": {},\n    \"Ut3\": {},\n    \"eu_e4c\": {},\n    \"ut6ce\": {},\n    \"reprehenderit_86a\": {},\n    \"labore1\": {},\n    \"eu_be8\": {},\n    \"mollit_98\": {},\n    \"veniamf\": {},\n    \"mollit_c\": {},\n    \"labore_d_0\": {},\n    \"adipisicing_d\": {},\n    \"voluptate_86\": {},\n    \"commodo_834\": {},\n    \"eiusmod_844\": {},\n    \"in7\": {},\n    \"sed_02\": {},\n    \"id62\": {},\n    \"dolor_c5\": {},\n    \"Excepteur_b88\": {},\n    \"est57f\": {},\n    \"velit_34\": {},\n    \"proident_8\": {},\n    \"consequatdb\": {},\n    \"culpa_f\": {},\n    \"pariatur_db\": {},\n    \"minim40\": {},\n    \"adipisicing70\": {},\n    \"nostruda\": {},\n    \"ipsum_a72\": {},\n    \"consequat_2e\": {},\n    \"sed4b6\": {},\n    \"aliquipa\": {},\n    \"dolore8\": {},\n    \"in_3\": {},\n    \"proidentbc8\": {},\n    \"sit6ff\": {},\n    \"cupidatatcb\": {},\n    \"amet4\": {},\n    \"esse_838\": {},\n    \"eiusmod0\": {},\n    \"adipisicing9\": {}\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orders/:id/tax_lines/:tax_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orders",
+                            ":id",
+                            "tax_lines",
+                            ":tax_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8b62ebc1-a649-4a6b-bde5-5afa3947789e",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the resource"
+                            },
+                            {
+                              "id": "1342d76b-2dca-4b76-8ebf-4b1e89a466fa",
+                              "key": "tax_id",
+                              "value": "<string>",
+                              "description": "(Required) identifier"
+                            }
+                          ]
+                        },
+                        "description": "Update taxes for an existing orden"
+                      },
+                      "response": [
+                        {
+                          "id": "93a945d6-a7be-4668-9164-47d00c2bcdae",
+                          "name": "successful",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"ad0\": {},\n    \"ipsum58\": {},\n    \"ut5\": {},\n    \"proidentb\": {},\n    \"non6\": {},\n    \"quis6\": {},\n    \"in044\": {},\n    \"sunt_a\": {},\n    \"non5b\": {},\n    \"Lorem42\": {},\n    \"ullamco_e\": {},\n    \"esse_f\": {},\n    \"mollite0\": {},\n    \"proidentaa1\": {},\n    \"quis_\": {},\n    \"ad_30\": {},\n    \"dolore_8_\": {},\n    \"ute\": {},\n    \"velit_6\": {},\n    \"dolor_1a\": {},\n    \"pariatur1\": {},\n    \"eu_ff\": {},\n    \"laborum3\": {},\n    \"labore_c0_\": {},\n    \"nond1_\": {},\n    \"minimdcf\": {},\n    \"fugiat__\": {},\n    \"aliqua_2\": {},\n    \"et_8\": {},\n    \"proidentd3\": {},\n    \"officia_d\": {},\n    \"in8d5\": {},\n    \"minim300\": {},\n    \"utd45\": {},\n    \"dolor_7b\": {},\n    \"ad_2\": {},\n    \"non_2\": {},\n    \"Ut3\": {},\n    \"eu_e4c\": {},\n    \"ut6ce\": {},\n    \"reprehenderit_86a\": {},\n    \"labore1\": {},\n    \"eu_be8\": {},\n    \"mollit_98\": {},\n    \"veniamf\": {},\n    \"mollit_c\": {},\n    \"labore_d_0\": {},\n    \"adipisicing_d\": {},\n    \"voluptate_86\": {},\n    \"commodo_834\": {},\n    \"eiusmod_844\": {},\n    \"in7\": {},\n    \"sed_02\": {},\n    \"id62\": {},\n    \"dolor_c5\": {},\n    \"Excepteur_b88\": {},\n    \"est57f\": {},\n    \"velit_34\": {},\n    \"proident_8\": {},\n    \"consequatdb\": {},\n    \"culpa_f\": {},\n    \"pariatur_db\": {},\n    \"minim40\": {},\n    \"adipisicing70\": {},\n    \"nostruda\": {},\n    \"ipsum_a72\": {},\n    \"consequat_2e\": {},\n    \"sed4b6\": {},\n    \"aliquipa\": {},\n    \"dolore8\": {},\n    \"in_3\": {},\n    \"proidentbc8\": {},\n    \"sit6ff\": {},\n    \"cupidatatcb\": {},\n    \"amet4\": {},\n    \"esse_838\": {},\n    \"eiusmod0\": {},\n    \"adipisicing9\": {}\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/orders/:id/tax_lines/:tax_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orders",
+                                ":id",
+                                "tax_lines",
+                                ":tax_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "tax_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"metadata\": {\n    \"cillum_5\": \"non veniam ipsum\",\n    \"quisf2\": 13925071,\n    \"est0\": -17785354,\n    \"voluptate_a\": false,\n    \"aliquipa52\": 2988680,\n    \"sint_405\": -49737466.51628388,\n    \"qui_c\": 35256748,\n    \"culpa1\": \"nulla dolore Ut\",\n    \"laboris_45f\": false,\n    \"elit9\": \"voluptate\",\n    \"reprehenderit605\": false,\n    \"site\": true,\n    \"ad_33\": \"fugiat deserunt culpa\",\n    \"aliqua8_e\": 21301038.281387582,\n    \"Excepteur_39a\": false,\n    \"exercitationff\": true,\n    \"Duis_c55\": \"id ullamco et in\",\n    \"esse_99\": true,\n    \"etc\": 98846014.45866102,\n    \"Lorem_d_a\": true,\n    \"anim_f2\": \"voluptate Ut\",\n    \"aliquipf\": \"aliqua mollit nostrud\",\n    \"nulla30\": -36034767,\n    \"ea_12_\": \"in dolor non ut in\",\n    \"consequata\": -78757558,\n    \"ipsum___\": -56493168,\n    \"Lorem_f\": \"anim sint magna dolore et\",\n    \"qui_8\": 38350106,\n    \"Ut_6\": \"Excepteur nulla id eu\",\n    \"velit6\": 68033121,\n    \"Lorem_b44\": 71988903,\n    \"dolore3\": 20731181.40044667,\n    \"occaecat_c9_\": \"quis adipisicing\",\n    \"laboris_56c\": false,\n    \"adipisicing_3\": true,\n    \"culpa_c4f\": -98423342,\n    \"ipsume9c\": \"reprehenderit consequat sunt\",\n    \"sunt_4b1\": -20127903,\n    \"occaecat9\": false,\n    \"tempor_f\": 71805338,\n    \"incididunta48\": -25638830,\n    \"culpa_0_5\": 22763306,\n    \"Ut717\": 43227647.44155455,\n    \"proident303\": -99262009.14733933,\n    \"proident_39\": 96161551,\n    \"aliquip_b\": \"sint proident nisi qui\"\n  },\n  \"object\": \"<string>\",\n  \"parent_id\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:49.000Z",
+                          "updatedAt": "2026-10-21T20:31:49.000Z",
+                          "uid": "35240-93a945d6-a7be-4668-9164-47d00c2bcdae"
+                        },
+                        {
+                          "id": "5c07991d-a90f-4c85-b508-86b60a6b28cf",
+                          "name": "authentication error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"ad0\": {},\n    \"ipsum58\": {},\n    \"ut5\": {},\n    \"proidentb\": {},\n    \"non6\": {},\n    \"quis6\": {},\n    \"in044\": {},\n    \"sunt_a\": {},\n    \"non5b\": {},\n    \"Lorem42\": {},\n    \"ullamco_e\": {},\n    \"esse_f\": {},\n    \"mollite0\": {},\n    \"proidentaa1\": {},\n    \"quis_\": {},\n    \"ad_30\": {},\n    \"dolore_8_\": {},\n    \"ute\": {},\n    \"velit_6\": {},\n    \"dolor_1a\": {},\n    \"pariatur1\": {},\n    \"eu_ff\": {},\n    \"laborum3\": {},\n    \"labore_c0_\": {},\n    \"nond1_\": {},\n    \"minimdcf\": {},\n    \"fugiat__\": {},\n    \"aliqua_2\": {},\n    \"et_8\": {},\n    \"proidentd3\": {},\n    \"officia_d\": {},\n    \"in8d5\": {},\n    \"minim300\": {},\n    \"utd45\": {},\n    \"dolor_7b\": {},\n    \"ad_2\": {},\n    \"non_2\": {},\n    \"Ut3\": {},\n    \"eu_e4c\": {},\n    \"ut6ce\": {},\n    \"reprehenderit_86a\": {},\n    \"labore1\": {},\n    \"eu_be8\": {},\n    \"mollit_98\": {},\n    \"veniamf\": {},\n    \"mollit_c\": {},\n    \"labore_d_0\": {},\n    \"adipisicing_d\": {},\n    \"voluptate_86\": {},\n    \"commodo_834\": {},\n    \"eiusmod_844\": {},\n    \"in7\": {},\n    \"sed_02\": {},\n    \"id62\": {},\n    \"dolor_c5\": {},\n    \"Excepteur_b88\": {},\n    \"est57f\": {},\n    \"velit_34\": {},\n    \"proident_8\": {},\n    \"consequatdb\": {},\n    \"culpa_f\": {},\n    \"pariatur_db\": {},\n    \"minim40\": {},\n    \"adipisicing70\": {},\n    \"nostruda\": {},\n    \"ipsum_a72\": {},\n    \"consequat_2e\": {},\n    \"sed4b6\": {},\n    \"aliquipa\": {},\n    \"dolore8\": {},\n    \"in_3\": {},\n    \"proidentbc8\": {},\n    \"sit6ff\": {},\n    \"cupidatatcb\": {},\n    \"amet4\": {},\n    \"esse_838\": {},\n    \"eiusmod0\": {},\n    \"adipisicing9\": {}\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/orders/:id/tax_lines/:tax_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orders",
+                                ":id",
+                                "tax_lines",
+                                ":tax_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "tax_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:49.000Z",
+                          "updatedAt": "2026-10-21T20:31:49.000Z",
+                          "uid": "35240-5c07991d-a90f-4c85-b508-86b60a6b28cf"
+                        },
+                        {
+                          "id": "db6a92c6-ebc2-4e3f-8da6-e869e3c04d4c",
+                          "name": "not found entity",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"ad0\": {},\n    \"ipsum58\": {},\n    \"ut5\": {},\n    \"proidentb\": {},\n    \"non6\": {},\n    \"quis6\": {},\n    \"in044\": {},\n    \"sunt_a\": {},\n    \"non5b\": {},\n    \"Lorem42\": {},\n    \"ullamco_e\": {},\n    \"esse_f\": {},\n    \"mollite0\": {},\n    \"proidentaa1\": {},\n    \"quis_\": {},\n    \"ad_30\": {},\n    \"dolore_8_\": {},\n    \"ute\": {},\n    \"velit_6\": {},\n    \"dolor_1a\": {},\n    \"pariatur1\": {},\n    \"eu_ff\": {},\n    \"laborum3\": {},\n    \"labore_c0_\": {},\n    \"nond1_\": {},\n    \"minimdcf\": {},\n    \"fugiat__\": {},\n    \"aliqua_2\": {},\n    \"et_8\": {},\n    \"proidentd3\": {},\n    \"officia_d\": {},\n    \"in8d5\": {},\n    \"minim300\": {},\n    \"utd45\": {},\n    \"dolor_7b\": {},\n    \"ad_2\": {},\n    \"non_2\": {},\n    \"Ut3\": {},\n    \"eu_e4c\": {},\n    \"ut6ce\": {},\n    \"reprehenderit_86a\": {},\n    \"labore1\": {},\n    \"eu_be8\": {},\n    \"mollit_98\": {},\n    \"veniamf\": {},\n    \"mollit_c\": {},\n    \"labore_d_0\": {},\n    \"adipisicing_d\": {},\n    \"voluptate_86\": {},\n    \"commodo_834\": {},\n    \"eiusmod_844\": {},\n    \"in7\": {},\n    \"sed_02\": {},\n    \"id62\": {},\n    \"dolor_c5\": {},\n    \"Excepteur_b88\": {},\n    \"est57f\": {},\n    \"velit_34\": {},\n    \"proident_8\": {},\n    \"consequatdb\": {},\n    \"culpa_f\": {},\n    \"pariatur_db\": {},\n    \"minim40\": {},\n    \"adipisicing70\": {},\n    \"nostruda\": {},\n    \"ipsum_a72\": {},\n    \"consequat_2e\": {},\n    \"sed4b6\": {},\n    \"aliquipa\": {},\n    \"dolore8\": {},\n    \"in_3\": {},\n    \"proidentbc8\": {},\n    \"sit6ff\": {},\n    \"cupidatatcb\": {},\n    \"amet4\": {},\n    \"esse_838\": {},\n    \"eiusmod0\": {},\n    \"adipisicing9\": {}\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/orders/:id/tax_lines/:tax_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orders",
+                                ":id",
+                                "tax_lines",
+                                ":tax_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "tax_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:49.000Z",
+                          "updatedAt": "2026-10-21T20:31:49.000Z",
+                          "uid": "35240-db6a92c6-ebc2-4e3f-8da6-e869e3c04d4c"
+                        },
+                        {
+                          "id": "3f8bbdbd-a397-4b19-908c-ff60343fde9b",
+                          "name": "parameter validation error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"ad0\": {},\n    \"ipsum58\": {},\n    \"ut5\": {},\n    \"proidentb\": {},\n    \"non6\": {},\n    \"quis6\": {},\n    \"in044\": {},\n    \"sunt_a\": {},\n    \"non5b\": {},\n    \"Lorem42\": {},\n    \"ullamco_e\": {},\n    \"esse_f\": {},\n    \"mollite0\": {},\n    \"proidentaa1\": {},\n    \"quis_\": {},\n    \"ad_30\": {},\n    \"dolore_8_\": {},\n    \"ute\": {},\n    \"velit_6\": {},\n    \"dolor_1a\": {},\n    \"pariatur1\": {},\n    \"eu_ff\": {},\n    \"laborum3\": {},\n    \"labore_c0_\": {},\n    \"nond1_\": {},\n    \"minimdcf\": {},\n    \"fugiat__\": {},\n    \"aliqua_2\": {},\n    \"et_8\": {},\n    \"proidentd3\": {},\n    \"officia_d\": {},\n    \"in8d5\": {},\n    \"minim300\": {},\n    \"utd45\": {},\n    \"dolor_7b\": {},\n    \"ad_2\": {},\n    \"non_2\": {},\n    \"Ut3\": {},\n    \"eu_e4c\": {},\n    \"ut6ce\": {},\n    \"reprehenderit_86a\": {},\n    \"labore1\": {},\n    \"eu_be8\": {},\n    \"mollit_98\": {},\n    \"veniamf\": {},\n    \"mollit_c\": {},\n    \"labore_d_0\": {},\n    \"adipisicing_d\": {},\n    \"voluptate_86\": {},\n    \"commodo_834\": {},\n    \"eiusmod_844\": {},\n    \"in7\": {},\n    \"sed_02\": {},\n    \"id62\": {},\n    \"dolor_c5\": {},\n    \"Excepteur_b88\": {},\n    \"est57f\": {},\n    \"velit_34\": {},\n    \"proident_8\": {},\n    \"consequatdb\": {},\n    \"culpa_f\": {},\n    \"pariatur_db\": {},\n    \"minim40\": {},\n    \"adipisicing70\": {},\n    \"nostruda\": {},\n    \"ipsum_a72\": {},\n    \"consequat_2e\": {},\n    \"sed4b6\": {},\n    \"aliquipa\": {},\n    \"dolore8\": {},\n    \"in_3\": {},\n    \"proidentbc8\": {},\n    \"sit6ff\": {},\n    \"cupidatatcb\": {},\n    \"amet4\": {},\n    \"esse_838\": {},\n    \"eiusmod0\": {},\n    \"adipisicing9\": {}\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/orders/:id/tax_lines/:tax_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orders",
+                                ":id",
+                                "tax_lines",
+                                ":tax_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "tax_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:49.000Z",
+                          "updatedAt": "2026-10-21T20:31:49.000Z",
+                          "uid": "35240-3f8bbdbd-a397-4b19-908c-ff60343fde9b"
+                        },
+                        {
+                          "id": "272ed8cb-d775-4ef6-997b-75667a5f83fb",
+                          "name": "internal server error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"ad0\": {},\n    \"ipsum58\": {},\n    \"ut5\": {},\n    \"proidentb\": {},\n    \"non6\": {},\n    \"quis6\": {},\n    \"in044\": {},\n    \"sunt_a\": {},\n    \"non5b\": {},\n    \"Lorem42\": {},\n    \"ullamco_e\": {},\n    \"esse_f\": {},\n    \"mollite0\": {},\n    \"proidentaa1\": {},\n    \"quis_\": {},\n    \"ad_30\": {},\n    \"dolore_8_\": {},\n    \"ute\": {},\n    \"velit_6\": {},\n    \"dolor_1a\": {},\n    \"pariatur1\": {},\n    \"eu_ff\": {},\n    \"laborum3\": {},\n    \"labore_c0_\": {},\n    \"nond1_\": {},\n    \"minimdcf\": {},\n    \"fugiat__\": {},\n    \"aliqua_2\": {},\n    \"et_8\": {},\n    \"proidentd3\": {},\n    \"officia_d\": {},\n    \"in8d5\": {},\n    \"minim300\": {},\n    \"utd45\": {},\n    \"dolor_7b\": {},\n    \"ad_2\": {},\n    \"non_2\": {},\n    \"Ut3\": {},\n    \"eu_e4c\": {},\n    \"ut6ce\": {},\n    \"reprehenderit_86a\": {},\n    \"labore1\": {},\n    \"eu_be8\": {},\n    \"mollit_98\": {},\n    \"veniamf\": {},\n    \"mollit_c\": {},\n    \"labore_d_0\": {},\n    \"adipisicing_d\": {},\n    \"voluptate_86\": {},\n    \"commodo_834\": {},\n    \"eiusmod_844\": {},\n    \"in7\": {},\n    \"sed_02\": {},\n    \"id62\": {},\n    \"dolor_c5\": {},\n    \"Excepteur_b88\": {},\n    \"est57f\": {},\n    \"velit_34\": {},\n    \"proident_8\": {},\n    \"consequatdb\": {},\n    \"culpa_f\": {},\n    \"pariatur_db\": {},\n    \"minim40\": {},\n    \"adipisicing70\": {},\n    \"nostruda\": {},\n    \"ipsum_a72\": {},\n    \"consequat_2e\": {},\n    \"sed4b6\": {},\n    \"aliquipa\": {},\n    \"dolore8\": {},\n    \"in_3\": {},\n    \"proidentbc8\": {},\n    \"sit6ff\": {},\n    \"cupidatatcb\": {},\n    \"amet4\": {},\n    \"esse_838\": {},\n    \"eiusmod0\": {},\n    \"adipisicing9\": {}\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/orders/:id/tax_lines/:tax_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "orders",
+                                ":id",
+                                "tax_lines",
+                                ":tax_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "tax_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:49.000Z",
+                          "updatedAt": "2026-10-21T20:31:49.000Z",
+                          "uid": "35240-272ed8cb-d775-4ef6-997b-75667a5f83fb"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:31:49.000Z",
+                      "updatedAt": "2026-10-21T20:31:49.000Z",
+                      "uid": "35240-cc75ebd7-f7c2-4d75-8da2-c1bcfe24cce8"
                     }
-                  ]
+                  ],
+                  "id": "dd853cff-d2af-4acc-943e-2a405eaf0cf5",
+                  "createdAt": "2026-10-21T20:31:49.000Z",
+                  "updatedAt": "2026-10-21T20:31:49.000Z",
+                  "uid": "35240-dd853cff-d2af-4acc-943e-2a405eaf0cf5"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key\": \"value\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
+                  "name": "Create Tax",
+                  "id": "1b59addf-65a4-4a31-8903-1efef9a9d845",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                        "key": "X-Child-Company-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"id99\": \"anim in esse\",\n    \"ullamco3\": 11072263.19898346,\n    \"sintab\": false,\n    \"occaecat__74\": -86061522.1661496,\n    \"in9\": -34865081,\n    \"incididunt_11\": true,\n    \"inee\": \"do in cillum dolore\",\n    \"eiusmod_4_a\": false,\n    \"laborum_6\": true,\n    \"ut_e04\": 23126558.126913205,\n    \"suntfe\": -97317655,\n    \"nulla_b\": 9511462,\n    \"dolore6b\": -30862388.356560364,\n    \"fugiat_8\": \"sed\",\n    \"aute_75\": -44562609.446693055,\n    \"qui23\": 61090971,\n    \"ut7\": false,\n    \"cillum_c\": false,\n    \"sint395\": false,\n    \"iruree_\": -46863161,\n    \"ut_e33\": false,\n    \"ex_41\": 34877338.988672644,\n    \"qui6a\": true,\n    \"ut_da\": 9901818,\n    \"nostrude\": \"tempor nulla\",\n    \"aliquacd3\": -14743661.005735561,\n    \"nostrud3bf\": \"et velit cillum dolore Excepteur\",\n    \"non_53\": -7232644.352054104,\n    \"adipisicing_f5\": 66231667.77748141,\n    \"nulla_4e\": -22130500.093435705,\n    \"nisi2\": 41570514,\n    \"dolore5\": \"culpa sit\",\n    \"fugiat__7\": -80468239.82023254,\n    \"sit5d9\": 30993055.061508507,\n    \"ine81\": true,\n    \"velit586\": \"ad dolor qui anim dolore\",\n    \"sit8\": -35976681.43982502,\n    \"aute_ced\": false,\n    \"ipsum5d9\": -49793748.35932391,\n    \"commodo__e4\": \"esse Excepteur veniam\",\n    \"eiusmod_d91\": \"officia consequat\",\n    \"ullamcoc7\": true,\n    \"veniam56\": \"laboris et ex sint\",\n    \"dolore_c\": -70181837.09413864,\n    \"sint692\": 71015610,\n    \"sunt83\": 12211375.662680984,\n    \"deserunt_621\": \"et eu\",\n    \"pariatur317\": 81633165,\n    \"magna_5\": 43298026.07316053,\n    \"quisf\": \"sint ad eiusmod\",\n    \"ut_\": -16893107,\n    \"laborumf49\": \"nulla\",\n    \"sint24\": -27284440.780613124,\n    \"amet0\": 7125056.375322148,\n    \"dolor631\": -28896344,\n    \"sint9c\": 69367452,\n    \"in__c\": \"sint consequat laboris mollit\",\n    \"velit3_6\": true,\n    \"labore3b\": \"adipisicing anim sit ad\",\n    \"eiusmod_58\": 64286396,\n    \"anim_0e\": false,\n    \"Duisb3\": \"ex i\",\n    \"Excepteur_e_2\": -64214156.24442921,\n    \"sunt_f\": -16224479.877825364,\n    \"autef5\": -20904627.774225578,\n    \"commodo535\": 45871236,\n    \"et_9\": -86588761,\n    \"dolord_d\": 37522971.7260969,\n    \"ametf6\": \"cupidatat id ullamco laboris non\",\n    \"in74c\": -41653960,\n    \"in1\": 86253700.40498939,\n    \"occaecat__b8\": -44232847,\n    \"pariatur_e31\": \"\",\n    \"fugiat35\": 40620408,\n    \"ipsumc9f\": true,\n    \"sunt_5\": \"aliquip cupidatat esse con\",\n    \"incididuntc\": true,\n    \"non___b\": true,\n    \"velit87\": \"magna Duis anim\",\n    \"labore_f2\": -37484625,\n    \"elit_4\": \"laboris et veniam in ut\",\n    \"qui_7\": -68271461,\n    \"tempor_d0\": -29011973.944620937,\n    \"aute_c\": -10698787.785554662,\n    \"consequat_f_b\": \"in minim\",\n    \"consequatbf\": true,\n    \"ametc4\": -85160096,\n    \"dolorb\": false,\n    \"eiusmodf\": -73722240,\n    \"sint3fb\": -97684882,\n    \"elit9e5\": false,\n    \"tempor3_\": 67670926,\n    \"in_f\": 62815726.530459285,\n    \"est_c\": false,\n    \"adipisicing284\": \"voluptate cupidatat\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:id/tax_lines",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":id",
+                        "tax_lines"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1d3213ff-ca6e-46bf-a515-cff99ef9043b",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the resource"
+                        }
+                      ]
+                    },
+                    "description": "Create new taxes for an existing orden"
+                  },
+                  "response": [
+                    {
+                      "id": "bd68c21e-f37b-4251-93f3-f85db8179343",
+                      "name": "successful",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"id99\": \"anim in esse\",\n    \"ullamco3\": 11072263.19898346,\n    \"sintab\": false,\n    \"occaecat__74\": -86061522.1661496,\n    \"in9\": -34865081,\n    \"incididunt_11\": true,\n    \"inee\": \"do in cillum dolore\",\n    \"eiusmod_4_a\": false,\n    \"laborum_6\": true,\n    \"ut_e04\": 23126558.126913205,\n    \"suntfe\": -97317655,\n    \"nulla_b\": 9511462,\n    \"dolore6b\": -30862388.356560364,\n    \"fugiat_8\": \"sed\",\n    \"aute_75\": -44562609.446693055,\n    \"qui23\": 61090971,\n    \"ut7\": false,\n    \"cillum_c\": false,\n    \"sint395\": false,\n    \"iruree_\": -46863161,\n    \"ut_e33\": false,\n    \"ex_41\": 34877338.988672644,\n    \"qui6a\": true,\n    \"ut_da\": 9901818,\n    \"nostrude\": \"tempor nulla\",\n    \"aliquacd3\": -14743661.005735561,\n    \"nostrud3bf\": \"et velit cillum dolore Excepteur\",\n    \"non_53\": -7232644.352054104,\n    \"adipisicing_f5\": 66231667.77748141,\n    \"nulla_4e\": -22130500.093435705,\n    \"nisi2\": 41570514,\n    \"dolore5\": \"culpa sit\",\n    \"fugiat__7\": -80468239.82023254,\n    \"sit5d9\": 30993055.061508507,\n    \"ine81\": true,\n    \"velit586\": \"ad dolor qui anim dolore\",\n    \"sit8\": -35976681.43982502,\n    \"aute_ced\": false,\n    \"ipsum5d9\": -49793748.35932391,\n    \"commodo__e4\": \"esse Excepteur veniam\",\n    \"eiusmod_d91\": \"officia consequat\",\n    \"ullamcoc7\": true,\n    \"veniam56\": \"laboris et ex sint\",\n    \"dolore_c\": -70181837.09413864,\n    \"sint692\": 71015610,\n    \"sunt83\": 12211375.662680984,\n    \"deserunt_621\": \"et eu\",\n    \"pariatur317\": 81633165,\n    \"magna_5\": 43298026.07316053,\n    \"quisf\": \"sint ad eiusmod\",\n    \"ut_\": -16893107,\n    \"laborumf49\": \"nulla\",\n    \"sint24\": -27284440.780613124,\n    \"amet0\": 7125056.375322148,\n    \"dolor631\": -28896344,\n    \"sint9c\": 69367452,\n    \"in__c\": \"sint consequat laboris mollit\",\n    \"velit3_6\": true,\n    \"labore3b\": \"adipisicing anim sit ad\",\n    \"eiusmod_58\": 64286396,\n    \"anim_0e\": false,\n    \"Duisb3\": \"ex i\",\n    \"Excepteur_e_2\": -64214156.24442921,\n    \"sunt_f\": -16224479.877825364,\n    \"autef5\": -20904627.774225578,\n    \"commodo535\": 45871236,\n    \"et_9\": -86588761,\n    \"dolord_d\": 37522971.7260969,\n    \"ametf6\": \"cupidatat id ullamco laboris non\",\n    \"in74c\": -41653960,\n    \"in1\": 86253700.40498939,\n    \"occaecat__b8\": -44232847,\n    \"pariatur_e31\": \"\",\n    \"fugiat35\": 40620408,\n    \"ipsumc9f\": true,\n    \"sunt_5\": \"aliquip cupidatat esse con\",\n    \"incididuntc\": true,\n    \"non___b\": true,\n    \"velit87\": \"magna Duis anim\",\n    \"labore_f2\": -37484625,\n    \"elit_4\": \"laboris et veniam in ut\",\n    \"qui_7\": -68271461,\n    \"tempor_d0\": -29011973.944620937,\n    \"aute_c\": -10698787.785554662,\n    \"consequat_f_b\": \"in minim\",\n    \"consequatbf\": true,\n    \"ametc4\": -85160096,\n    \"dolorb\": false,\n    \"eiusmodf\": -73722240,\n    \"sint3fb\": -97684882,\n    \"elit9e5\": false,\n    \"tempor3_\": 67670926,\n    \"in_f\": 62815726.530459285,\n    \"est_c\": false,\n    \"adipisicing284\": \"voluptate cupidatat\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orders/:id/tax_lines",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orders",
+                            ":id",
+                            "tax_lines"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"metadata\": {\n    \"cillum_5\": \"non veniam ipsum\",\n    \"quisf2\": 13925071,\n    \"est0\": -17785354,\n    \"voluptate_a\": false,\n    \"aliquipa52\": 2988680,\n    \"sint_405\": -49737466.51628388,\n    \"qui_c\": 35256748,\n    \"culpa1\": \"nulla dolore Ut\",\n    \"laboris_45f\": false,\n    \"elit9\": \"voluptate\",\n    \"reprehenderit605\": false,\n    \"site\": true,\n    \"ad_33\": \"fugiat deserunt culpa\",\n    \"aliqua8_e\": 21301038.281387582,\n    \"Excepteur_39a\": false,\n    \"exercitationff\": true,\n    \"Duis_c55\": \"id ullamco et in\",\n    \"esse_99\": true,\n    \"etc\": 98846014.45866102,\n    \"Lorem_d_a\": true,\n    \"anim_f2\": \"voluptate Ut\",\n    \"aliquipf\": \"aliqua mollit nostrud\",\n    \"nulla30\": -36034767,\n    \"ea_12_\": \"in dolor non ut in\",\n    \"consequata\": -78757558,\n    \"ipsum___\": -56493168,\n    \"Lorem_f\": \"anim sint magna dolore et\",\n    \"qui_8\": 38350106,\n    \"Ut_6\": \"Excepteur nulla id eu\",\n    \"velit6\": 68033121,\n    \"Lorem_b44\": 71988903,\n    \"dolore3\": 20731181.40044667,\n    \"occaecat_c9_\": \"quis adipisicing\",\n    \"laboris_56c\": false,\n    \"adipisicing_3\": true,\n    \"culpa_c4f\": -98423342,\n    \"ipsume9c\": \"reprehenderit consequat sunt\",\n    \"sunt_4b1\": -20127903,\n    \"occaecat9\": false,\n    \"tempor_f\": 71805338,\n    \"incididunta48\": -25638830,\n    \"culpa_0_5\": 22763306,\n    \"Ut717\": 43227647.44155455,\n    \"proident303\": -99262009.14733933,\n    \"proident_39\": 96161551,\n    \"aliquip_b\": \"sint proident nisi qui\"\n  },\n  \"object\": \"<string>\",\n  \"parent_id\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:31:49.000Z",
+                      "updatedAt": "2026-10-21T20:31:49.000Z",
+                      "uid": "35240-bd68c21e-f37b-4251-93f3-f85db8179343"
+                    },
+                    {
+                      "id": "aa702cfc-0a3b-4b7b-9215-9f6dc556ef9f",
+                      "name": "authentication error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"id99\": \"anim in esse\",\n    \"ullamco3\": 11072263.19898346,\n    \"sintab\": false,\n    \"occaecat__74\": -86061522.1661496,\n    \"in9\": -34865081,\n    \"incididunt_11\": true,\n    \"inee\": \"do in cillum dolore\",\n    \"eiusmod_4_a\": false,\n    \"laborum_6\": true,\n    \"ut_e04\": 23126558.126913205,\n    \"suntfe\": -97317655,\n    \"nulla_b\": 9511462,\n    \"dolore6b\": -30862388.356560364,\n    \"fugiat_8\": \"sed\",\n    \"aute_75\": -44562609.446693055,\n    \"qui23\": 61090971,\n    \"ut7\": false,\n    \"cillum_c\": false,\n    \"sint395\": false,\n    \"iruree_\": -46863161,\n    \"ut_e33\": false,\n    \"ex_41\": 34877338.988672644,\n    \"qui6a\": true,\n    \"ut_da\": 9901818,\n    \"nostrude\": \"tempor nulla\",\n    \"aliquacd3\": -14743661.005735561,\n    \"nostrud3bf\": \"et velit cillum dolore Excepteur\",\n    \"non_53\": -7232644.352054104,\n    \"adipisicing_f5\": 66231667.77748141,\n    \"nulla_4e\": -22130500.093435705,\n    \"nisi2\": 41570514,\n    \"dolore5\": \"culpa sit\",\n    \"fugiat__7\": -80468239.82023254,\n    \"sit5d9\": 30993055.061508507,\n    \"ine81\": true,\n    \"velit586\": \"ad dolor qui anim dolore\",\n    \"sit8\": -35976681.43982502,\n    \"aute_ced\": false,\n    \"ipsum5d9\": -49793748.35932391,\n    \"commodo__e4\": \"esse Excepteur veniam\",\n    \"eiusmod_d91\": \"officia consequat\",\n    \"ullamcoc7\": true,\n    \"veniam56\": \"laboris et ex sint\",\n    \"dolore_c\": -70181837.09413864,\n    \"sint692\": 71015610,\n    \"sunt83\": 12211375.662680984,\n    \"deserunt_621\": \"et eu\",\n    \"pariatur317\": 81633165,\n    \"magna_5\": 43298026.07316053,\n    \"quisf\": \"sint ad eiusmod\",\n    \"ut_\": -16893107,\n    \"laborumf49\": \"nulla\",\n    \"sint24\": -27284440.780613124,\n    \"amet0\": 7125056.375322148,\n    \"dolor631\": -28896344,\n    \"sint9c\": 69367452,\n    \"in__c\": \"sint consequat laboris mollit\",\n    \"velit3_6\": true,\n    \"labore3b\": \"adipisicing anim sit ad\",\n    \"eiusmod_58\": 64286396,\n    \"anim_0e\": false,\n    \"Duisb3\": \"ex i\",\n    \"Excepteur_e_2\": -64214156.24442921,\n    \"sunt_f\": -16224479.877825364,\n    \"autef5\": -20904627.774225578,\n    \"commodo535\": 45871236,\n    \"et_9\": -86588761,\n    \"dolord_d\": 37522971.7260969,\n    \"ametf6\": \"cupidatat id ullamco laboris non\",\n    \"in74c\": -41653960,\n    \"in1\": 86253700.40498939,\n    \"occaecat__b8\": -44232847,\n    \"pariatur_e31\": \"\",\n    \"fugiat35\": 40620408,\n    \"ipsumc9f\": true,\n    \"sunt_5\": \"aliquip cupidatat esse con\",\n    \"incididuntc\": true,\n    \"non___b\": true,\n    \"velit87\": \"magna Duis anim\",\n    \"labore_f2\": -37484625,\n    \"elit_4\": \"laboris et veniam in ut\",\n    \"qui_7\": -68271461,\n    \"tempor_d0\": -29011973.944620937,\n    \"aute_c\": -10698787.785554662,\n    \"consequat_f_b\": \"in minim\",\n    \"consequatbf\": true,\n    \"ametc4\": -85160096,\n    \"dolorb\": false,\n    \"eiusmodf\": -73722240,\n    \"sint3fb\": -97684882,\n    \"elit9e5\": false,\n    \"tempor3_\": 67670926,\n    \"in_f\": 62815726.530459285,\n    \"est_c\": false,\n    \"adipisicing284\": \"voluptate cupidatat\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orders/:id/tax_lines",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orders",
+                            ":id",
+                            "tax_lines"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:31:49.000Z",
+                      "updatedAt": "2026-10-21T20:31:49.000Z",
+                      "uid": "35240-aa702cfc-0a3b-4b7b-9215-9f6dc556ef9f"
+                    },
+                    {
+                      "id": "af42f0da-6084-4530-903f-36edc1118271",
+                      "name": "not found entity",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"id99\": \"anim in esse\",\n    \"ullamco3\": 11072263.19898346,\n    \"sintab\": false,\n    \"occaecat__74\": -86061522.1661496,\n    \"in9\": -34865081,\n    \"incididunt_11\": true,\n    \"inee\": \"do in cillum dolore\",\n    \"eiusmod_4_a\": false,\n    \"laborum_6\": true,\n    \"ut_e04\": 23126558.126913205,\n    \"suntfe\": -97317655,\n    \"nulla_b\": 9511462,\n    \"dolore6b\": -30862388.356560364,\n    \"fugiat_8\": \"sed\",\n    \"aute_75\": -44562609.446693055,\n    \"qui23\": 61090971,\n    \"ut7\": false,\n    \"cillum_c\": false,\n    \"sint395\": false,\n    \"iruree_\": -46863161,\n    \"ut_e33\": false,\n    \"ex_41\": 34877338.988672644,\n    \"qui6a\": true,\n    \"ut_da\": 9901818,\n    \"nostrude\": \"tempor nulla\",\n    \"aliquacd3\": -14743661.005735561,\n    \"nostrud3bf\": \"et velit cillum dolore Excepteur\",\n    \"non_53\": -7232644.352054104,\n    \"adipisicing_f5\": 66231667.77748141,\n    \"nulla_4e\": -22130500.093435705,\n    \"nisi2\": 41570514,\n    \"dolore5\": \"culpa sit\",\n    \"fugiat__7\": -80468239.82023254,\n    \"sit5d9\": 30993055.061508507,\n    \"ine81\": true,\n    \"velit586\": \"ad dolor qui anim dolore\",\n    \"sit8\": -35976681.43982502,\n    \"aute_ced\": false,\n    \"ipsum5d9\": -49793748.35932391,\n    \"commodo__e4\": \"esse Excepteur veniam\",\n    \"eiusmod_d91\": \"officia consequat\",\n    \"ullamcoc7\": true,\n    \"veniam56\": \"laboris et ex sint\",\n    \"dolore_c\": -70181837.09413864,\n    \"sint692\": 71015610,\n    \"sunt83\": 12211375.662680984,\n    \"deserunt_621\": \"et eu\",\n    \"pariatur317\": 81633165,\n    \"magna_5\": 43298026.07316053,\n    \"quisf\": \"sint ad eiusmod\",\n    \"ut_\": -16893107,\n    \"laborumf49\": \"nulla\",\n    \"sint24\": -27284440.780613124,\n    \"amet0\": 7125056.375322148,\n    \"dolor631\": -28896344,\n    \"sint9c\": 69367452,\n    \"in__c\": \"sint consequat laboris mollit\",\n    \"velit3_6\": true,\n    \"labore3b\": \"adipisicing anim sit ad\",\n    \"eiusmod_58\": 64286396,\n    \"anim_0e\": false,\n    \"Duisb3\": \"ex i\",\n    \"Excepteur_e_2\": -64214156.24442921,\n    \"sunt_f\": -16224479.877825364,\n    \"autef5\": -20904627.774225578,\n    \"commodo535\": 45871236,\n    \"et_9\": -86588761,\n    \"dolord_d\": 37522971.7260969,\n    \"ametf6\": \"cupidatat id ullamco laboris non\",\n    \"in74c\": -41653960,\n    \"in1\": 86253700.40498939,\n    \"occaecat__b8\": -44232847,\n    \"pariatur_e31\": \"\",\n    \"fugiat35\": 40620408,\n    \"ipsumc9f\": true,\n    \"sunt_5\": \"aliquip cupidatat esse con\",\n    \"incididuntc\": true,\n    \"non___b\": true,\n    \"velit87\": \"magna Duis anim\",\n    \"labore_f2\": -37484625,\n    \"elit_4\": \"laboris et veniam in ut\",\n    \"qui_7\": -68271461,\n    \"tempor_d0\": -29011973.944620937,\n    \"aute_c\": -10698787.785554662,\n    \"consequat_f_b\": \"in minim\",\n    \"consequatbf\": true,\n    \"ametc4\": -85160096,\n    \"dolorb\": false,\n    \"eiusmodf\": -73722240,\n    \"sint3fb\": -97684882,\n    \"elit9e5\": false,\n    \"tempor3_\": 67670926,\n    \"in_f\": 62815726.530459285,\n    \"est_c\": false,\n    \"adipisicing284\": \"voluptate cupidatat\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orders/:id/tax_lines",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orders",
+                            ":id",
+                            "tax_lines"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:31:49.000Z",
+                      "updatedAt": "2026-10-21T20:31:49.000Z",
+                      "uid": "35240-af42f0da-6084-4530-903f-36edc1118271"
+                    },
+                    {
+                      "id": "d8499d06-e67c-41a2-844d-2e4a86c18521",
+                      "name": "internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"id99\": \"anim in esse\",\n    \"ullamco3\": 11072263.19898346,\n    \"sintab\": false,\n    \"occaecat__74\": -86061522.1661496,\n    \"in9\": -34865081,\n    \"incididunt_11\": true,\n    \"inee\": \"do in cillum dolore\",\n    \"eiusmod_4_a\": false,\n    \"laborum_6\": true,\n    \"ut_e04\": 23126558.126913205,\n    \"suntfe\": -97317655,\n    \"nulla_b\": 9511462,\n    \"dolore6b\": -30862388.356560364,\n    \"fugiat_8\": \"sed\",\n    \"aute_75\": -44562609.446693055,\n    \"qui23\": 61090971,\n    \"ut7\": false,\n    \"cillum_c\": false,\n    \"sint395\": false,\n    \"iruree_\": -46863161,\n    \"ut_e33\": false,\n    \"ex_41\": 34877338.988672644,\n    \"qui6a\": true,\n    \"ut_da\": 9901818,\n    \"nostrude\": \"tempor nulla\",\n    \"aliquacd3\": -14743661.005735561,\n    \"nostrud3bf\": \"et velit cillum dolore Excepteur\",\n    \"non_53\": -7232644.352054104,\n    \"adipisicing_f5\": 66231667.77748141,\n    \"nulla_4e\": -22130500.093435705,\n    \"nisi2\": 41570514,\n    \"dolore5\": \"culpa sit\",\n    \"fugiat__7\": -80468239.82023254,\n    \"sit5d9\": 30993055.061508507,\n    \"ine81\": true,\n    \"velit586\": \"ad dolor qui anim dolore\",\n    \"sit8\": -35976681.43982502,\n    \"aute_ced\": false,\n    \"ipsum5d9\": -49793748.35932391,\n    \"commodo__e4\": \"esse Excepteur veniam\",\n    \"eiusmod_d91\": \"officia consequat\",\n    \"ullamcoc7\": true,\n    \"veniam56\": \"laboris et ex sint\",\n    \"dolore_c\": -70181837.09413864,\n    \"sint692\": 71015610,\n    \"sunt83\": 12211375.662680984,\n    \"deserunt_621\": \"et eu\",\n    \"pariatur317\": 81633165,\n    \"magna_5\": 43298026.07316053,\n    \"quisf\": \"sint ad eiusmod\",\n    \"ut_\": -16893107,\n    \"laborumf49\": \"nulla\",\n    \"sint24\": -27284440.780613124,\n    \"amet0\": 7125056.375322148,\n    \"dolor631\": -28896344,\n    \"sint9c\": 69367452,\n    \"in__c\": \"sint consequat laboris mollit\",\n    \"velit3_6\": true,\n    \"labore3b\": \"adipisicing anim sit ad\",\n    \"eiusmod_58\": 64286396,\n    \"anim_0e\": false,\n    \"Duisb3\": \"ex i\",\n    \"Excepteur_e_2\": -64214156.24442921,\n    \"sunt_f\": -16224479.877825364,\n    \"autef5\": -20904627.774225578,\n    \"commodo535\": 45871236,\n    \"et_9\": -86588761,\n    \"dolord_d\": 37522971.7260969,\n    \"ametf6\": \"cupidatat id ullamco laboris non\",\n    \"in74c\": -41653960,\n    \"in1\": 86253700.40498939,\n    \"occaecat__b8\": -44232847,\n    \"pariatur_e31\": \"\",\n    \"fugiat35\": 40620408,\n    \"ipsumc9f\": true,\n    \"sunt_5\": \"aliquip cupidatat esse con\",\n    \"incididuntc\": true,\n    \"non___b\": true,\n    \"velit87\": \"magna Duis anim\",\n    \"labore_f2\": -37484625,\n    \"elit_4\": \"laboris et veniam in ut\",\n    \"qui_7\": -68271461,\n    \"tempor_d0\": -29011973.944620937,\n    \"aute_c\": -10698787.785554662,\n    \"consequat_f_b\": \"in minim\",\n    \"consequatbf\": true,\n    \"ametc4\": -85160096,\n    \"dolorb\": false,\n    \"eiusmodf\": -73722240,\n    \"sint3fb\": -97684882,\n    \"elit9e5\": false,\n    \"tempor3_\": 67670926,\n    \"in_f\": 62815726.530459285,\n    \"est_c\": false,\n    \"adipisicing284\": \"voluptate cupidatat\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orders/:id/tax_lines",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orders",
+                            ":id",
+                            "tax_lines"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:31:49.000Z",
+                      "updatedAt": "2026-10-21T20:31:49.000Z",
+                      "uid": "35240-d8499d06-e67c-41a2-844d-2e4a86c18521"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:31:49.000Z",
+                  "updatedAt": "2026-10-21T20:31:49.000Z",
+                  "uid": "35240-1b59addf-65a4-4a31-8903-1efef9a9d845"
                 }
               ],
-              "body": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"id\": \"tax_lin_2tQ8dC5mg1UADmVPo\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"object\": \"tax_line\",\n  \"parent_id\": \"ord_2tPAmKCEJqh8RE6nY\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "340853ba-00d1-49ee-8355-c796bc6e37d0",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key\": \"value\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "38da7e50-4e78-4a8c-9525-eb4963c6c996",
-              "name": "not found entity",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key\": \"value\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f20a2e56-ac5c-4ded-90fa-deccfd356850",
-              "name": "internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key\": \"value\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "962ea36c-9116-408c-a63a-e43aa5f73507",
-          "name": "Delete Tax",
-          "request": {
-            "name": "Delete Tax",
-            "description": {
-              "content": "Delete taxes for an existing orden",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "orders",
-                ":id",
-                "tax_lines",
-                ":tax_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tax_id",
-                  "description": "(Required) identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "disabled": false,
-                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                "key": "X-Child-Company-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "7201bfd6-36ed-4b00-82c1-956e11748df5",
-              "name": "successful",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines",
-                    ":tax_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tax_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"id\": \"tax_lin_2tQ8dC5mg1UADmVPo\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"object\": \"tax_line\",\n  \"parent_id\": \"ord_2tPAmKCEJqh8RE6nY\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8b8817e8-4710-4117-a1e4-dca01bc979f6",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines",
-                    ":tax_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tax_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3a49cdd5-9068-46fb-8959-090309678009",
-              "name": "not found entity",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines",
-                    ":tax_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tax_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "de4b5146-c332-455b-9897-ac1d23e02ead",
-              "name": "parameter validation error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines",
-                    ":tax_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tax_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The token does not exist.\",\n      \"param\": \"payment_method.token_id\",\n      \"code\": \"conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token\",\n      \"debug_message\": \"The token does not exist.\"\n    }\n  ],\n  \"log_id\": \"641b6d813cd9a50001515017\",\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "edccaa27-e399-4475-af18-760cc81e53cc",
-              "name": "internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines",
-                    ":tax_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tax_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "655f633c-684b-48ed-8d63-3ae1eeeecf5a",
-          "name": "Update Tax",
-          "request": {
-            "name": "Update Tax",
-            "description": {
-              "content": "Update taxes for an existing orden",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "orders",
-                ":id",
-                "tax_lines",
-                ":tax_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "tax_id",
-                  "description": "(Required) identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "disabled": false,
-                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                "key": "X-Child-Company-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\",\n    \"key_3\": \"<object>\",\n    \"key_4\": \"<object>\",\n    \"key_5\": \"<object>\",\n    \"key_6\": \"<object>\",\n    \"key_7\": \"<object>\",\n    \"key_8\": \"<object>\",\n    \"key_9\": \"<object>\",\n    \"key_10\": \"<object>\",\n    \"key_11\": \"<object>\",\n    \"key_12\": \"<object>\",\n    \"key_13\": \"<object>\",\n    \"key_14\": \"<object>\",\n    \"key_15\": \"<object>\",\n    \"key_16\": \"<object>\",\n    \"key_17\": \"<object>\",\n    \"key_18\": \"<object>\",\n    \"key_19\": \"<object>\",\n    \"key_20\": \"<object>\",\n    \"key_21\": \"<object>\",\n    \"key_22\": \"<object>\",\n    \"key_23\": \"<object>\",\n    \"key_24\": \"<object>\",\n    \"key_25\": \"<object>\",\n    \"key_26\": \"<object>\",\n    \"key_27\": \"<object>\",\n    \"key_28\": \"<object>\",\n    \"key_29\": \"<object>\",\n    \"key_30\": \"<object>\",\n    \"key_31\": \"<object>\",\n    \"key_32\": \"<object>\",\n    \"key_33\": \"<object>\",\n    \"key_34\": \"<object>\",\n    \"key_35\": \"<object>\",\n    \"key_36\": \"<object>\",\n    \"key_37\": \"<object>\",\n    \"key_38\": \"<object>\",\n    \"key_39\": \"<object>\",\n    \"key_40\": \"<object>\",\n    \"key_41\": \"<object>\",\n    \"key_42\": \"<object>\",\n    \"key_43\": \"<object>\",\n    \"key_44\": \"<object>\",\n    \"key_45\": \"<object>\",\n    \"key_46\": \"<object>\",\n    \"key_47\": \"<object>\",\n    \"key_48\": \"<object>\",\n    \"key_49\": \"<object>\",\n    \"key_50\": \"<object>\",\n    \"key_51\": \"<object>\",\n    \"key_52\": \"<object>\",\n    \"key_53\": \"<object>\",\n    \"key_54\": \"<object>\",\n    \"key_55\": \"<object>\",\n    \"key_56\": \"<object>\",\n    \"key_57\": \"<object>\",\n    \"key_58\": \"<object>\",\n    \"key_59\": \"<object>\",\n    \"key_60\": \"<object>\",\n    \"key_61\": \"<object>\",\n    \"key_62\": \"<object>\",\n    \"key_63\": \"<object>\",\n    \"key_64\": \"<object>\",\n    \"key_65\": \"<object>\",\n    \"key_66\": \"<object>\",\n    \"key_67\": \"<object>\",\n    \"key_68\": \"<object>\",\n    \"key_69\": \"<object>\",\n    \"key_70\": \"<object>\",\n    \"key_71\": \"<object>\",\n    \"key_72\": \"<object>\",\n    \"key_73\": \"<object>\",\n    \"key_74\": \"<object>\",\n    \"key_75\": \"<object>\",\n    \"key_76\": \"<object>\"\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "1479ef6d-57fc-43eb-afea-777c9630c24d",
-              "name": "successful",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines",
-                    ":tax_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tax_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\",\n    \"key_3\": \"<object>\",\n    \"key_4\": \"<object>\",\n    \"key_5\": \"<object>\",\n    \"key_6\": \"<object>\",\n    \"key_7\": \"<object>\",\n    \"key_8\": \"<object>\",\n    \"key_9\": \"<object>\",\n    \"key_10\": \"<object>\",\n    \"key_11\": \"<object>\",\n    \"key_12\": \"<object>\",\n    \"key_13\": \"<object>\",\n    \"key_14\": \"<object>\",\n    \"key_15\": \"<object>\",\n    \"key_16\": \"<object>\",\n    \"key_17\": \"<object>\",\n    \"key_18\": \"<object>\",\n    \"key_19\": \"<object>\",\n    \"key_20\": \"<object>\",\n    \"key_21\": \"<object>\",\n    \"key_22\": \"<object>\",\n    \"key_23\": \"<object>\",\n    \"key_24\": \"<object>\",\n    \"key_25\": \"<object>\",\n    \"key_26\": \"<object>\",\n    \"key_27\": \"<object>\",\n    \"key_28\": \"<object>\",\n    \"key_29\": \"<object>\",\n    \"key_30\": \"<object>\",\n    \"key_31\": \"<object>\",\n    \"key_32\": \"<object>\",\n    \"key_33\": \"<object>\",\n    \"key_34\": \"<object>\",\n    \"key_35\": \"<object>\",\n    \"key_36\": \"<object>\",\n    \"key_37\": \"<object>\",\n    \"key_38\": \"<object>\",\n    \"key_39\": \"<object>\",\n    \"key_40\": \"<object>\",\n    \"key_41\": \"<object>\",\n    \"key_42\": \"<object>\",\n    \"key_43\": \"<object>\",\n    \"key_44\": \"<object>\",\n    \"key_45\": \"<object>\",\n    \"key_46\": \"<object>\",\n    \"key_47\": \"<object>\",\n    \"key_48\": \"<object>\",\n    \"key_49\": \"<object>\",\n    \"key_50\": \"<object>\",\n    \"key_51\": \"<object>\",\n    \"key_52\": \"<object>\",\n    \"key_53\": \"<object>\",\n    \"key_54\": \"<object>\",\n    \"key_55\": \"<object>\",\n    \"key_56\": \"<object>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"id\": \"tax_lin_2tQ8dC5mg1UADmVPo\",\n  \"metadata\": {\n    \"key\": \"value\"\n  },\n  \"object\": \"tax_line\",\n  \"parent_id\": \"ord_2tPAmKCEJqh8RE6nY\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "503583f7-6634-431f-ae91-bf76806389ed",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines",
-                    ":tax_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tax_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\",\n    \"key_3\": \"<object>\",\n    \"key_4\": \"<object>\",\n    \"key_5\": \"<object>\",\n    \"key_6\": \"<object>\",\n    \"key_7\": \"<object>\",\n    \"key_8\": \"<object>\",\n    \"key_9\": \"<object>\",\n    \"key_10\": \"<object>\",\n    \"key_11\": \"<object>\",\n    \"key_12\": \"<object>\",\n    \"key_13\": \"<object>\",\n    \"key_14\": \"<object>\",\n    \"key_15\": \"<object>\",\n    \"key_16\": \"<object>\",\n    \"key_17\": \"<object>\",\n    \"key_18\": \"<object>\",\n    \"key_19\": \"<object>\",\n    \"key_20\": \"<object>\",\n    \"key_21\": \"<object>\",\n    \"key_22\": \"<object>\",\n    \"key_23\": \"<object>\",\n    \"key_24\": \"<object>\",\n    \"key_25\": \"<object>\",\n    \"key_26\": \"<object>\",\n    \"key_27\": \"<object>\",\n    \"key_28\": \"<object>\",\n    \"key_29\": \"<object>\",\n    \"key_30\": \"<object>\",\n    \"key_31\": \"<object>\",\n    \"key_32\": \"<object>\",\n    \"key_33\": \"<object>\",\n    \"key_34\": \"<object>\",\n    \"key_35\": \"<object>\",\n    \"key_36\": \"<object>\",\n    \"key_37\": \"<object>\",\n    \"key_38\": \"<object>\",\n    \"key_39\": \"<object>\",\n    \"key_40\": \"<object>\",\n    \"key_41\": \"<object>\",\n    \"key_42\": \"<object>\",\n    \"key_43\": \"<object>\",\n    \"key_44\": \"<object>\",\n    \"key_45\": \"<object>\",\n    \"key_46\": \"<object>\",\n    \"key_47\": \"<object>\",\n    \"key_48\": \"<object>\",\n    \"key_49\": \"<object>\",\n    \"key_50\": \"<object>\",\n    \"key_51\": \"<object>\",\n    \"key_52\": \"<object>\",\n    \"key_53\": \"<object>\",\n    \"key_54\": \"<object>\",\n    \"key_55\": \"<object>\",\n    \"key_56\": \"<object>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "43ec4a72-77ed-432d-a301-98a3f19050cf",
-              "name": "not found entity",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines",
-                    ":tax_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tax_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\",\n    \"key_3\": \"<object>\",\n    \"key_4\": \"<object>\",\n    \"key_5\": \"<object>\",\n    \"key_6\": \"<object>\",\n    \"key_7\": \"<object>\",\n    \"key_8\": \"<object>\",\n    \"key_9\": \"<object>\",\n    \"key_10\": \"<object>\",\n    \"key_11\": \"<object>\",\n    \"key_12\": \"<object>\",\n    \"key_13\": \"<object>\",\n    \"key_14\": \"<object>\",\n    \"key_15\": \"<object>\",\n    \"key_16\": \"<object>\",\n    \"key_17\": \"<object>\",\n    \"key_18\": \"<object>\",\n    \"key_19\": \"<object>\",\n    \"key_20\": \"<object>\",\n    \"key_21\": \"<object>\",\n    \"key_22\": \"<object>\",\n    \"key_23\": \"<object>\",\n    \"key_24\": \"<object>\",\n    \"key_25\": \"<object>\",\n    \"key_26\": \"<object>\",\n    \"key_27\": \"<object>\",\n    \"key_28\": \"<object>\",\n    \"key_29\": \"<object>\",\n    \"key_30\": \"<object>\",\n    \"key_31\": \"<object>\",\n    \"key_32\": \"<object>\",\n    \"key_33\": \"<object>\",\n    \"key_34\": \"<object>\",\n    \"key_35\": \"<object>\",\n    \"key_36\": \"<object>\",\n    \"key_37\": \"<object>\",\n    \"key_38\": \"<object>\",\n    \"key_39\": \"<object>\",\n    \"key_40\": \"<object>\",\n    \"key_41\": \"<object>\",\n    \"key_42\": \"<object>\",\n    \"key_43\": \"<object>\",\n    \"key_44\": \"<object>\",\n    \"key_45\": \"<object>\",\n    \"key_46\": \"<object>\",\n    \"key_47\": \"<object>\",\n    \"key_48\": \"<object>\",\n    \"key_49\": \"<object>\",\n    \"key_50\": \"<object>\",\n    \"key_51\": \"<object>\",\n    \"key_52\": \"<object>\",\n    \"key_53\": \"<object>\",\n    \"key_54\": \"<object>\",\n    \"key_55\": \"<object>\",\n    \"key_56\": \"<object>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6e83f94f-eff6-4679-9234-86acdce9b583",
-              "name": "parameter validation error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines",
-                    ":tax_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tax_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\",\n    \"key_3\": \"<object>\",\n    \"key_4\": \"<object>\",\n    \"key_5\": \"<object>\",\n    \"key_6\": \"<object>\",\n    \"key_7\": \"<object>\",\n    \"key_8\": \"<object>\",\n    \"key_9\": \"<object>\",\n    \"key_10\": \"<object>\",\n    \"key_11\": \"<object>\",\n    \"key_12\": \"<object>\",\n    \"key_13\": \"<object>\",\n    \"key_14\": \"<object>\",\n    \"key_15\": \"<object>\",\n    \"key_16\": \"<object>\",\n    \"key_17\": \"<object>\",\n    \"key_18\": \"<object>\",\n    \"key_19\": \"<object>\",\n    \"key_20\": \"<object>\",\n    \"key_21\": \"<object>\",\n    \"key_22\": \"<object>\",\n    \"key_23\": \"<object>\",\n    \"key_24\": \"<object>\",\n    \"key_25\": \"<object>\",\n    \"key_26\": \"<object>\",\n    \"key_27\": \"<object>\",\n    \"key_28\": \"<object>\",\n    \"key_29\": \"<object>\",\n    \"key_30\": \"<object>\",\n    \"key_31\": \"<object>\",\n    \"key_32\": \"<object>\",\n    \"key_33\": \"<object>\",\n    \"key_34\": \"<object>\",\n    \"key_35\": \"<object>\",\n    \"key_36\": \"<object>\",\n    \"key_37\": \"<object>\",\n    \"key_38\": \"<object>\",\n    \"key_39\": \"<object>\",\n    \"key_40\": \"<object>\",\n    \"key_41\": \"<object>\",\n    \"key_42\": \"<object>\",\n    \"key_43\": \"<object>\",\n    \"key_44\": \"<object>\",\n    \"key_45\": \"<object>\",\n    \"key_46\": \"<object>\",\n    \"key_47\": \"<object>\",\n    \"key_48\": \"<object>\",\n    \"key_49\": \"<object>\",\n    \"key_50\": \"<object>\",\n    \"key_51\": \"<object>\",\n    \"key_52\": \"<object>\",\n    \"key_53\": \"<object>\",\n    \"key_54\": \"<object>\",\n    \"key_55\": \"<object>\",\n    \"key_56\": \"<object>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The token does not exist.\",\n      \"param\": \"payment_method.token_id\",\n      \"code\": \"conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token\",\n      \"debug_message\": \"The token does not exist.\"\n    }\n  ],\n  \"log_id\": \"641b6d813cd9a50001515017\",\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "3cc02555-88c4-43f6-be7a-9d2afef4ef17",
-              "name": "internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "orders",
-                    ":id",
-                    "tax_lines",
-                    ":tax_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "tax_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"amount\": 100,\n  \"description\": \"testing\",\n  \"metadata\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\",\n    \"key_3\": \"<object>\",\n    \"key_4\": \"<object>\",\n    \"key_5\": \"<object>\",\n    \"key_6\": \"<object>\",\n    \"key_7\": \"<object>\",\n    \"key_8\": \"<object>\",\n    \"key_9\": \"<object>\",\n    \"key_10\": \"<object>\",\n    \"key_11\": \"<object>\",\n    \"key_12\": \"<object>\",\n    \"key_13\": \"<object>\",\n    \"key_14\": \"<object>\",\n    \"key_15\": \"<object>\",\n    \"key_16\": \"<object>\",\n    \"key_17\": \"<object>\",\n    \"key_18\": \"<object>\",\n    \"key_19\": \"<object>\",\n    \"key_20\": \"<object>\",\n    \"key_21\": \"<object>\",\n    \"key_22\": \"<object>\",\n    \"key_23\": \"<object>\",\n    \"key_24\": \"<object>\",\n    \"key_25\": \"<object>\",\n    \"key_26\": \"<object>\",\n    \"key_27\": \"<object>\",\n    \"key_28\": \"<object>\",\n    \"key_29\": \"<object>\",\n    \"key_30\": \"<object>\",\n    \"key_31\": \"<object>\",\n    \"key_32\": \"<object>\",\n    \"key_33\": \"<object>\",\n    \"key_34\": \"<object>\",\n    \"key_35\": \"<object>\",\n    \"key_36\": \"<object>\",\n    \"key_37\": \"<object>\",\n    \"key_38\": \"<object>\",\n    \"key_39\": \"<object>\",\n    \"key_40\": \"<object>\",\n    \"key_41\": \"<object>\",\n    \"key_42\": \"<object>\",\n    \"key_43\": \"<object>\",\n    \"key_44\": \"<object>\",\n    \"key_45\": \"<object>\",\n    \"key_46\": \"<object>\",\n    \"key_47\": \"<object>\",\n    \"key_48\": \"<object>\",\n    \"key_49\": \"<object>\",\n    \"key_50\": \"<object>\",\n    \"key_51\": \"<object>\",\n    \"key_52\": \"<object>\",\n    \"key_53\": \"<object>\",\n    \"key_54\": \"<object>\",\n    \"key_55\": \"<object>\",\n    \"key_56\": \"<object>\"\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "0f078552-b2cc-4009-b41b-3983a7b266d3",
+              "createdAt": "2026-10-21T20:31:49.000Z",
+              "updatedAt": "2026-10-21T20:31:49.000Z",
+              "uid": "35240-0f078552-b2cc-4009-b41b-3983a7b266d3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "ab00ed23-84cf-4a01-9baa-25b568053fb3",
+          "createdAt": "2026-10-21T20:31:49.000Z",
+          "updatedAt": "2026-10-21T20:31:49.000Z",
+          "uid": "35240-ab00ed23-84cf-4a01-9baa-25b568053fb3"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.conekta.io",
-      "key": "baseUrl"
+      "id": "6f1edb26-401a-4dd6-86c8-603db43df03c",
+      "createdAt": "2026-10-21T20:31:49.000Z",
+      "updatedAt": "2026-10-21T20:31:49.000Z",
+      "uid": "35240-6f1edb26-401a-4dd6-86c8-603db43df03c"
     }
   ],
   "auth": {
@@ -1324,17 +1269,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "dce7d869-10ab-40af-b86b-7e57c946dbc0",
-    "name": "Conekta Antifraud Taxes API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.conekta.io"
     }
-  }
+  ]
 }

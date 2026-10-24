@@ -1,687 +1,709 @@
 {
+  "info": {
+    "_postman_id": "e19ebad1-d7a7-49f9-9100-00690198d0df",
+    "name": "Conekta Transfers API",
+    "description": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:32:00.000Z",
+    "updatedAt": "2026-10-21T20:32:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e19ebad1-d7a7-49f9-9100-00690198d0df"
+  },
   "item": [
     {
-      "id": "57e676dd-851c-4bf0-b862-70b28e7d0efc",
-      "name": "Transfers",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "transfers",
       "item": [
         {
-          "id": "8b1b1bad-c9d4-4cd2-ae3b-39a4a5e6a71b",
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get Transfer",
+              "id": "90ccc231-1796-4164-97bf-b2647d2b359e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transfers/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "85589f30-c35a-4996-b718-9f5c930d247c",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "description": "Get the details of a Transfer"
+              },
+              "response": [
+                {
+                  "id": "ae8ddc0f-05c4-4261-a83f-567b748a8acf",
+                  "name": "successful",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                        "key": "X-Child-Company-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The date and time that the response was sent",
+                        "type": "text/plain"
+                      },
+                      "key": "Date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The format of the response body",
+                        "type": "text/plain"
+                      },
+                      "key": "Content-Type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The length of the response body in bytes",
+                        "type": "text/plain"
+                      },
+                      "key": "Content-Length",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The type of connection used to transfer the response",
+                        "type": "text/plain"
+                      },
+                      "key": "Connection",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Conekta-Media-Type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"amount\": \"<long>\",\n  \"created_at\": \"<long>\",\n  \"currency\": \"<string>\",\n  \"id\": \"<string>\",\n  \"livemode\": \"<boolean>\",\n  \"destination\": {\n    \"account_holder\": \"<string>\",\n    \"account_number\": \"<string>\",\n    \"bank\": \"<string>\",\n    \"created_at\": \"<long>\",\n    \"id\": \"<string>\",\n    \"object\": \"<string>\",\n    \"payee_id\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"object\": \"<string>\",\n  \"statement_description\": \"<string>\",\n  \"statement_reference\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:00.000Z",
+                  "updatedAt": "2026-10-21T20:32:00.000Z",
+                  "uid": "35240-ae8ddc0f-05c4-4261-a83f-567b748a8acf"
+                },
+                {
+                  "id": "165a3339-74de-42fc-a362-a33a2f4dcb58",
+                  "name": "authentication error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                        "key": "X-Child-Company-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:00.000Z",
+                  "updatedAt": "2026-10-21T20:32:00.000Z",
+                  "uid": "35240-165a3339-74de-42fc-a362-a33a2f4dcb58"
+                },
+                {
+                  "id": "31b3e277-f7b6-4a85-939d-de6c1b5758af",
+                  "name": "authentication error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                        "key": "X-Child-Company-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:00.000Z",
+                  "updatedAt": "2026-10-21T20:32:00.000Z",
+                  "uid": "35240-31b3e277-f7b6-4a85-939d-de6c1b5758af"
+                },
+                {
+                  "id": "42cf230e-b571-4b3a-97f0-bad7a2fd8022",
+                  "name": "internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                        "key": "X-Child-Company-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transfers/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transfers",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:00.000Z",
+                  "updatedAt": "2026-10-21T20:32:00.000Z",
+                  "uid": "35240-42cf230e-b571-4b3a-97f0-bad7a2fd8022"
+                }
+              ],
+              "createdAt": "2026-10-21T20:32:00.000Z",
+              "updatedAt": "2026-10-21T20:32:00.000Z",
+              "uid": "35240-90ccc231-1796-4164-97bf-b2647d2b359e"
+            }
+          ],
+          "id": "55b7fba3-1d93-4728-b9eb-bdc7a290ebd4",
+          "createdAt": "2026-10-21T20:32:00.000Z",
+          "updatedAt": "2026-10-21T20:32:00.000Z",
+          "uid": "35240-55b7fba3-1d93-4728-b9eb-bdc7a290ebd4"
+        },
+        {
           "name": "Get a list of transfers",
+          "id": "b8fcd063-dd30-467f-bfe4-c7bda79e908a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Get a list of transfers",
-            "description": {
-              "content": "Get transfers details in the form of a list",
-              "type": "text/plain"
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
             },
+            "method": "GET",
+            "header": [
+              {
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/transfers?limit=20&search=<string>&next=<string>&previous=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "transfers"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "The numbers of items to return, the maximum value is 250",
                   "key": "limit",
-                  "value": "20",
-                  "description": "The numbers of items to return, the maximum value is 250"
+                  "value": "20"
                 },
                 {
-                  "disabled": false,
+                  "description": "General order search, e.g. by mail, reference etc.",
                   "key": "search",
-                  "value": "<string>",
-                  "description": "General order search, e.g. by mail, reference etc."
+                  "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "next page",
                   "key": "next",
-                  "value": "<string>",
-                  "description": "next page"
+                  "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "previous page",
                   "key": "previous",
-                  "value": "<string>",
-                  "description": "previous page"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "disabled": false,
-                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                "key": "X-Child-Company-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
+                  "value": "<string>"
                 }
               ]
-            }
+            },
+            "description": "Get transfers details in the form of a list"
           },
           "response": [
             {
-              "id": "7652a627-49da-428e-8489-5b4985008474",
+              "id": "6c650c89-7b70-4342-8d50-2b14f64da031",
               "name": "successful",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "transfers"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    },
-                    {
-                      "key": "search",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "previous",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Use for knowing which language to use",
                     "key": "Accept-Language",
                     "value": "es"
                   },
                   {
-                    "disabled": false,
                     "description": "In the case of a holding company, the company id of the child company to which will process the request.",
                     "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
+                    "value": "<string>"
                   },
                   {
                     "key": "Accept",
                     "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/transfers?limit=20&search=<string>&next=<string>&previous=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transfers"
+                  ],
+                  "query": [
+                    {
+                      "description": "The numbers of items to return, the maximum value is 250",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "General order search, e.g. by mail, reference etc.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "next page",
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "previous page",
+                      "key": "previous",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
-                {
-                  "disabled": false,
-                  "description": "The date and time that the response was sent",
-                  "key": "Date",
-                  "value": "Fri, 03 Feb 2023 16:57:48 GMT"
-                },
-                {
-                  "disabled": false,
-                  "description": "The length of the response body in bytes",
-                  "key": "Content-Length",
-                  "value": "2737"
-                },
-                {
-                  "disabled": false,
-                  "description": "The type of connection used to transfer the response",
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "disabled": false,
-                  "key": "Conekta-Media-Type",
-                  "value": "conekta-v2.2.0; format=application/json",
-                  "description": ""
-                },
                 {
                   "key": "Content-Type",
                   "value": "application/vnd.conekta-v2.2.0+json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The date and time that the response was sent",
+                    "type": "text/plain"
+                  },
+                  "key": "Date",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The format of the response body",
+                    "type": "text/plain"
+                  },
+                  "key": "Content-Type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The length of the response body in bytes",
+                    "type": "text/plain"
+                  },
+                  "key": "Content-Length",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The type of connection used to transfer the response",
+                    "type": "text/plain"
+                  },
+                  "key": "Connection",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "Conekta-Media-Type",
+                  "value": "<string>"
                 }
               ],
-              "body": "{\n  \"has_more\": false,\n  \"object\": \"list\",\n  \"next_page_url\": \"https://api.conekta.io/resources?limit=10&next=chrg_1\",\n  \"previous_page_url\": \"https://api.conekta.io/resources?limit=10&previous=chrg_1\",\n  \"data\": [\n    {\n      \"amount\": 10000,\n      \"created_at\": 1553273553,\n      \"currency\": \"MXN\",\n      \"id\": \"5b0337d4dD344ef954fe1X4b6\",\n      \"livemode\": true,\n      \"method\": {\n        \"account_holder\": \"John Doe\",\n        \"account_number\": \"string\",\n        \"bank\": \"BBVA Bancomer\",\n        \"created_at\": 1553273553,\n        \"id\": \"pytmtd_2ide3qwTdDvNBosEC\",\n        \"object\": \"bank_transfer_payout_method\",\n        \"payee_id\": \"payee_2icdDewRxDENBos85\",\n        \"type\": \"BankTransferPayoutMethod\"\n      },\n      \"object\": \"transfer\",\n      \"statement_description\": \"Conekta 4401234\",\n      \"statement_reference\": \"4401234\",\n      \"status\": \"pending\"\n    },\n    {\n      \"amount\": 10000,\n      \"created_at\": 1553273553,\n      \"currency\": \"MXN\",\n      \"id\": \"5b0337d4dD344ef954fe1X4b6\",\n      \"livemode\": true,\n      \"method\": {\n        \"account_holder\": \"John Doe\",\n        \"account_number\": \"string\",\n        \"bank\": \"BBVA Bancomer\",\n        \"created_at\": 1553273553,\n        \"id\": \"pytmtd_2ide3qwTdDvNBosEC\",\n        \"object\": \"bank_transfer_payout_method\",\n        \"payee_id\": \"payee_2icdDewRxDENBos85\",\n        \"type\": \"BankTransferPayoutMethod\"\n      },\n      \"object\": \"transfer\",\n      \"statement_description\": \"Conekta 4401234\",\n      \"statement_reference\": \"4401234\",\n      \"status\": \"pending\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"has_more\": \"<boolean>\",\n  \"object\": \"<string>\",\n  \"next_page_url\": \"<string>\",\n  \"previous_page_url\": \"<string>\",\n  \"data\": [\n    {\n      \"amount\": \"<long>\",\n      \"created_at\": \"<long>\",\n      \"currency\": \"<string>\",\n      \"id\": \"<string>\",\n      \"livemode\": \"<boolean>\",\n      \"method\": {\n        \"account_holder\": \"<string>\",\n        \"account_number\": \"<string>\",\n        \"bank\": \"<string>\",\n        \"created_at\": \"<long>\",\n        \"id\": \"<string>\",\n        \"object\": \"<string>\",\n        \"payee_id\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"object\": \"<string>\",\n      \"statement_description\": \"<string>\",\n      \"statement_reference\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"amount\": \"<long>\",\n      \"created_at\": \"<long>\",\n      \"currency\": \"<string>\",\n      \"id\": \"<string>\",\n      \"livemode\": \"<boolean>\",\n      \"method\": {\n        \"account_holder\": \"<string>\",\n        \"account_number\": \"<string>\",\n        \"bank\": \"<string>\",\n        \"created_at\": \"<long>\",\n        \"id\": \"<string>\",\n        \"object\": \"<string>\",\n        \"payee_id\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"object\": \"<string>\",\n      \"statement_description\": \"<string>\",\n      \"statement_reference\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-21T20:32:00.000Z",
+              "updatedAt": "2026-10-21T20:32:00.000Z",
+              "uid": "35240-6c650c89-7b70-4342-8d50-2b14f64da031"
             },
             {
-              "id": "e8eccb35-1e31-4702-88ae-c4cacf32e7c0",
+              "id": "574f55ea-9f82-4e0d-a76a-9e9d7eecd616",
               "name": "authentication error",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "transfers"
-                  ],
+                  "raw": "{{baseUrl}}/transfers?limit=20&search=<string>&next=<string>&previous=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "transfers"
+                  ],
                   "query": [
                     {
+                      "description": "The numbers of items to return, the maximum value is 250",
                       "key": "limit",
                       "value": "20"
                     },
                     {
+                      "description": "General order search, e.g. by mail, reference etc.",
                       "key": "search",
                       "value": "<string>"
                     },
                     {
+                      "description": "next page",
                       "key": "next",
                       "value": "<string>"
                     },
                     {
+                      "description": "previous page",
                       "key": "previous",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/vnd.conekta-v2.2.0+json"
                 }
               ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:32:00.000Z",
+              "updatedAt": "2026-10-21T20:32:00.000Z",
+              "uid": "35240-574f55ea-9f82-4e0d-a76a-9e9d7eecd616"
             },
             {
-              "id": "0d6fdf5e-12f6-4253-8d6a-751b8ff153fc",
+              "id": "af9e42a9-6d70-4752-9383-0ae5ad76ccc2",
               "name": "internal server error",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "transfers"
-                  ],
+                  "raw": "{{baseUrl}}/transfers?limit=20&search=<string>&next=<string>&previous=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "transfers"
+                  ],
                   "query": [
                     {
+                      "description": "The numbers of items to return, the maximum value is 250",
                       "key": "limit",
                       "value": "20"
                     },
                     {
+                      "description": "General order search, e.g. by mail, reference etc.",
                       "key": "search",
                       "value": "<string>"
                     },
                     {
+                      "description": "next page",
                       "key": "next",
                       "value": "<string>"
                     },
                     {
+                      "description": "previous page",
                       "key": "previous",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/vnd.conekta-v2.2.0+json"
                 }
               ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:32:00.000Z",
+              "updatedAt": "2026-10-21T20:32:00.000Z",
+              "uid": "35240-af9e42a9-6d70-4752-9383-0ae5ad76ccc2"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "b5967865-1fdd-4a38-bf15-ce8bbc69088a",
-          "name": "Get Transfer",
-          "request": {
-            "name": "Get Transfer",
-            "description": {
-              "content": "Get the details of a Transfer",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "transfers",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "disabled": false,
-                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                "key": "X-Child-Company-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "ea6e4961-60bd-454a-9a2b-7fab39fce82f",
-              "name": "successful",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "transfers",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The date and time that the response was sent",
-                  "key": "Date",
-                  "value": "Fri, 03 Feb 2023 16:57:48 GMT"
-                },
-                {
-                  "disabled": false,
-                  "description": "The length of the response body in bytes",
-                  "key": "Content-Length",
-                  "value": "2737"
-                },
-                {
-                  "disabled": false,
-                  "description": "The type of connection used to transfer the response",
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "disabled": false,
-                  "key": "Conekta-Media-Type",
-                  "value": "conekta-v2.2.0; format=application/json",
-                  "description": ""
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"amount\": 10000,\n  \"created_at\": 1553273553,\n  \"currency\": \"MXN\",\n  \"id\": \"5b0337d4dD344ef954fe1X4b6\",\n  \"livemode\": true,\n  \"destination\": {\n    \"account_holder\": \"John Doe\",\n    \"account_number\": \"string\",\n    \"bank\": \"BBVA Bancomer\",\n    \"created_at\": 1553273553,\n    \"id\": \"pytmtd_2ide3qwTdDvNBosEC\",\n    \"object\": \"bank_transfer_payout_method\",\n    \"payee_id\": \"payee_2icdDewRxDENBos85\",\n    \"type\": \"BankTransferPayoutMethod\"\n  },\n  \"object\": \"transfer\",\n  \"statement_description\": \"Conekta 4401234\",\n  \"statement_reference\": \"4401234\",\n  \"status\": \"pending\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9c46ac6c-81e6-4148-acc2-76791ff74ca4",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "transfers",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "277033f4-cdae-4391-b62b-c3c3158134db",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "transfers",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "558d882c-0f90-47a7-b9d0-f88d1e54f69f",
-              "name": "internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "transfers",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T20:32:00.000Z",
+          "updatedAt": "2026-10-21T20:32:00.000Z",
+          "uid": "35240-b8fcd063-dd30-467f-bfe4-c7bda79e908a"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.conekta.io",
-      "key": "baseUrl"
+      "id": "5c095628-25ae-45a0-8e02-ebfbdeb8efaf",
+      "createdAt": "2026-10-21T20:32:00.000Z",
+      "updatedAt": "2026-10-21T20:32:00.000Z",
+      "uid": "35240-5c095628-25ae-45a0-8e02-ebfbdeb8efaf"
     }
   ],
   "auth": {
@@ -689,17 +711,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "13caba73-b8b1-47d0-834f-8cd75a7b08df",
-    "name": "Conekta Antifraud Transfers API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.conekta.io"
     }
-  }
+  ]
 }

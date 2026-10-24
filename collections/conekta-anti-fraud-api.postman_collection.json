@@ -1,0 +1,1650 @@
+{
+  "info": {
+    "_postman_id": "3425688b-023e-44cb-b9b7-d3ff12c89b7e",
+    "name": "Conekta Antifraud API",
+    "description": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:32:11.000Z",
+    "updatedAt": "2026-10-21T20:32:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3425688b-023e-44cb-b9b7-d3ff12c89b7e"
+  },
+  "item": [
+    {
+      "name": "antifraud",
+      "item": [
+        {
+          "name": "whitelists",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Delete whitelisted rule",
+                  "id": "a0e975da-9e26-41ce-a4b0-7665ce444a2c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                        "key": "X-Child-Company-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/whitelists/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "whitelists",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a7282479-d6e3-4f7a-b9b0-fb63dd8ba5ec",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the resource"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "78bcce4f-1f9d-4022-bf49-fe25e552d30f",
+                      "name": "successfully deleted rule",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/antifraud/whitelists/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "antifraud",
+                            "whitelists",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:32:12.000Z",
+                      "updatedAt": "2026-10-21T20:32:12.000Z",
+                      "uid": "35240-78bcce4f-1f9d-4022-bf49-fe25e552d30f"
+                    },
+                    {
+                      "id": "da456757-7c81-4290-8c5a-495606df0d11",
+                      "name": "authentication error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/antifraud/whitelists/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "antifraud",
+                            "whitelists",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:32:12.000Z",
+                      "updatedAt": "2026-10-21T20:32:12.000Z",
+                      "uid": "35240-da456757-7c81-4290-8c5a-495606df0d11"
+                    },
+                    {
+                      "id": "f67a8dd4-6ebe-4d14-8417-12770e01dd46",
+                      "name": "forbidden error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/antifraud/whitelists/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "antifraud",
+                            "whitelists",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:32:12.000Z",
+                      "updatedAt": "2026-10-21T20:32:12.000Z",
+                      "uid": "35240-f67a8dd4-6ebe-4d14-8417-12770e01dd46"
+                    },
+                    {
+                      "id": "a2dc8664-6a30-4135-add6-b03968f41570",
+                      "name": "not found entity",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/antifraud/whitelists/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "antifraud",
+                            "whitelists",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:32:12.000Z",
+                      "updatedAt": "2026-10-21T20:32:12.000Z",
+                      "uid": "35240-a2dc8664-6a30-4135-add6-b03968f41570"
+                    },
+                    {
+                      "id": "3e2b6f76-38cc-4312-818d-1bd0e0c10acd",
+                      "name": "internal server error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/antifraud/whitelists/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "antifraud",
+                            "whitelists",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:32:12.000Z",
+                      "updatedAt": "2026-10-21T20:32:12.000Z",
+                      "uid": "35240-3e2b6f76-38cc-4312-818d-1bd0e0c10acd"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-a0e975da-9e26-41ce-a4b0-7665ce444a2c"
+                }
+              ],
+              "id": "2d5261c2-d3cc-46d1-941b-e76cdbdd86a0",
+              "createdAt": "2026-10-21T20:32:12.000Z",
+              "updatedAt": "2026-10-21T20:32:12.000Z",
+              "uid": "35240-2d5261c2-d3cc-46d1-941b-e76cdbdd86a0"
+            },
+            {
+              "name": "Get a list of whitelisted rules",
+              "id": "825c94de-9ff3-4589-a562-ac4d713b9243",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/antifraud/whitelists",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "antifraud",
+                    "whitelists"
+                  ]
+                },
+                "description": "Return all rules"
+              },
+              "response": [
+                {
+                  "id": "aa96c338-c344-421d-bc33-e2f53a9603a9",
+                  "name": "All the rules",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/whitelists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "whitelists"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"has_more\": \"<boolean>\",\n  \"object\": \"<string>\",\n  \"next_page_url\": \"<string>\",\n  \"previous_page_url\": \"<string>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"field\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"value\": \"<string>\",\n      \"is_global\": \"<boolean>\",\n      \"is_test\": \"<boolean>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"field\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"value\": \"<string>\",\n      \"is_global\": \"<boolean>\",\n      \"is_test\": \"<boolean>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-aa96c338-c344-421d-bc33-e2f53a9603a9"
+                },
+                {
+                  "id": "93525c8f-431c-4029-9777-e21bc2ca4418",
+                  "name": "authentication error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/whitelists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "whitelists"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-93525c8f-431c-4029-9777-e21bc2ca4418"
+                },
+                {
+                  "id": "97c4f3c6-b38f-4bc8-a5b3-f33e500d5a10",
+                  "name": "forbidden error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/whitelists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "whitelists"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-97c4f3c6-b38f-4bc8-a5b3-f33e500d5a10"
+                },
+                {
+                  "id": "6f6b56fa-aa24-4608-a593-d35550eb484d",
+                  "name": "internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/whitelists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "whitelists"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-6f6b56fa-aa24-4608-a593-d35550eb484d"
+                }
+              ],
+              "createdAt": "2026-10-21T20:32:12.000Z",
+              "updatedAt": "2026-10-21T20:32:12.000Z",
+              "uid": "35240-825c94de-9ff3-4589-a562-ac4d713b9243"
+            },
+            {
+              "name": "Create whitelisted rule",
+              "id": "ad2cf4aa-cb6a-4ce2-b860-659883c29335",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/antifraud/whitelists",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "antifraud",
+                    "whitelists"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "5f15e15a-74e9-4b4c-ac80-180bccc68686",
+                  "name": "successfully registered rule",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/whitelists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "whitelists"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-5f15e15a-74e9-4b4c-ac80-180bccc68686"
+                },
+                {
+                  "id": "bcfe57a4-86c8-4c9a-870d-e74bbe6f2766",
+                  "name": "authentication error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/whitelists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "whitelists"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-bcfe57a4-86c8-4c9a-870d-e74bbe6f2766"
+                },
+                {
+                  "id": "216b186f-ea23-40ef-8a4f-a80ce2acd9ae",
+                  "name": "forbidden error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/whitelists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "whitelists"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-216b186f-ea23-40ef-8a4f-a80ce2acd9ae"
+                },
+                {
+                  "id": "2c771393-7b6b-4607-a82e-50e33dd7c435",
+                  "name": "internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/whitelists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "whitelists"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-2c771393-7b6b-4607-a82e-50e33dd7c435"
+                }
+              ],
+              "createdAt": "2026-10-21T20:32:12.000Z",
+              "updatedAt": "2026-10-21T20:32:12.000Z",
+              "uid": "35240-ad2cf4aa-cb6a-4ce2-b860-659883c29335"
+            }
+          ],
+          "id": "f7b547c0-2a90-4d85-8ef3-8a76aacc87a1",
+          "createdAt": "2026-10-21T20:32:12.000Z",
+          "updatedAt": "2026-10-21T20:32:12.000Z",
+          "uid": "35240-f7b547c0-2a90-4d85-8ef3-8a76aacc87a1"
+        },
+        {
+          "name": "blacklists",
+          "item": [
+            {
+              "name": "{id}",
+              "item": [
+                {
+                  "name": "Delete blacklisted rule",
+                  "id": "49af3e23-fb66-4bfb-a9a5-5e7d7fcc8128",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                        "key": "X-Child-Company-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/blacklists/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "blacklists",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c2ac61c0-514c-4a93-b9a1-5199924f2414",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the resource"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "6af63dea-c4e4-45a8-b3a5-434c59c3f256",
+                      "name": "successfully deleted rule",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/antifraud/blacklists/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "antifraud",
+                            "blacklists",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:32:12.000Z",
+                      "updatedAt": "2026-10-21T20:32:12.000Z",
+                      "uid": "35240-6af63dea-c4e4-45a8-b3a5-434c59c3f256"
+                    },
+                    {
+                      "id": "e031e822-2431-4860-a720-95f4040961fc",
+                      "name": "authentication error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/antifraud/blacklists/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "antifraud",
+                            "blacklists",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:32:12.000Z",
+                      "updatedAt": "2026-10-21T20:32:12.000Z",
+                      "uid": "35240-e031e822-2431-4860-a720-95f4040961fc"
+                    },
+                    {
+                      "id": "bb1ee32a-6bce-4f49-8a73-e0577af90c65",
+                      "name": "not found entity",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/antifraud/blacklists/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "antifraud",
+                            "blacklists",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:32:12.000Z",
+                      "updatedAt": "2026-10-21T20:32:12.000Z",
+                      "uid": "35240-bb1ee32a-6bce-4f49-8a73-e0577af90c65"
+                    },
+                    {
+                      "id": "08ed9368-a68c-43f2-bc53-8f97b7011013",
+                      "name": "internal server error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/antifraud/blacklists/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "antifraud",
+                            "blacklists",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:32:12.000Z",
+                      "updatedAt": "2026-10-21T20:32:12.000Z",
+                      "uid": "35240-08ed9368-a68c-43f2-bc53-8f97b7011013"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-49af3e23-fb66-4bfb-a9a5-5e7d7fcc8128"
+                }
+              ],
+              "id": "04564150-b1db-477b-b361-3cc85ac7ee30",
+              "createdAt": "2026-10-21T20:32:12.000Z",
+              "updatedAt": "2026-10-21T20:32:12.000Z",
+              "uid": "35240-04564150-b1db-477b-b361-3cc85ac7ee30"
+            },
+            {
+              "name": "Get list of blacklisted rules",
+              "id": "07562261-c3a7-4a6b-9a89-318956572346",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/antifraud/blacklists",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "antifraud",
+                    "blacklists"
+                  ]
+                },
+                "description": "Return all rules"
+              },
+              "response": [
+                {
+                  "id": "415bdc81-2e92-4b41-83ac-7481ddb01a22",
+                  "name": "All the rules",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/blacklists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "blacklists"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"has_more\": \"<boolean>\",\n  \"object\": \"<string>\",\n  \"next_page_url\": \"<string>\",\n  \"previous_page_url\": \"<string>\",\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"field\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"value\": \"<string>\",\n      \"is_global\": \"<boolean>\",\n      \"is_test\": \"<boolean>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"field\": \"<string>\",\n      \"created_at\": \"<string>\",\n      \"value\": \"<string>\",\n      \"is_global\": \"<boolean>\",\n      \"is_test\": \"<boolean>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-415bdc81-2e92-4b41-83ac-7481ddb01a22"
+                },
+                {
+                  "id": "2ff91470-a589-48d6-80ef-e85547aa9e90",
+                  "name": "authentication error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/blacklists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "blacklists"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-2ff91470-a589-48d6-80ef-e85547aa9e90"
+                },
+                {
+                  "id": "2feb28b4-2c69-4c59-8a5e-3f5c69e46b1e",
+                  "name": "internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/blacklists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "blacklists"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-2feb28b4-2c69-4c59-8a5e-3f5c69e46b1e"
+                }
+              ],
+              "createdAt": "2026-10-21T20:32:12.000Z",
+              "updatedAt": "2026-10-21T20:32:12.000Z",
+              "uid": "35240-07562261-c3a7-4a6b-9a89-318956572346"
+            },
+            {
+              "name": "Create blacklisted rule",
+              "id": "633d70b7-a8d7-4bb7-ab0c-ff747107cdde",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/antifraud/blacklists",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "antifraud",
+                    "blacklists"
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "fe9950f5-1f3f-46a7-824d-dd12f129c22e",
+                  "name": "successfully registered rule",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/blacklists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "blacklists"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-fe9950f5-1f3f-46a7-824d-dd12f129c22e"
+                },
+                {
+                  "id": "fd5f2065-adfc-4d46-b751-b2a63a4f5558",
+                  "name": "authentication error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/blacklists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "blacklists"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-fd5f2065-adfc-4d46-b751-b2a63a4f5558"
+                },
+                {
+                  "id": "982a45b2-2c3b-4ca3-b836-878ab2b86216",
+                  "name": "internal server error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"<string>\",\n  \"field\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/antifraud/blacklists",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "antifraud",
+                        "blacklists"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:32:12.000Z",
+                  "updatedAt": "2026-10-21T20:32:12.000Z",
+                  "uid": "35240-982a45b2-2c3b-4ca3-b836-878ab2b86216"
+                }
+              ],
+              "createdAt": "2026-10-21T20:32:12.000Z",
+              "updatedAt": "2026-10-21T20:32:12.000Z",
+              "uid": "35240-633d70b7-a8d7-4bb7-ab0c-ff747107cdde"
+            }
+          ],
+          "id": "b179415a-8d95-4f17-84a7-d0b827d3e20c",
+          "createdAt": "2026-10-21T20:32:12.000Z",
+          "updatedAt": "2026-10-21T20:32:12.000Z",
+          "uid": "35240-b179415a-8d95-4f17-84a7-d0b827d3e20c"
+        }
+      ],
+      "id": "c1770652-0813-4a7d-8f02-e036568c1e93",
+      "createdAt": "2026-10-21T20:32:12.000Z",
+      "updatedAt": "2026-10-21T20:32:12.000Z",
+      "uid": "35240-c1770652-0813-4a7d-8f02-e036568c1e93"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.conekta.io"
+    }
+  ]
+}

@@ -1,1395 +1,1340 @@
 {
+  "info": {
+    "_postman_id": "48e58cad-59b0-4dee-a7fa-14208af36286",
+    "name": "Conekta Shipping Contacts API",
+    "description": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:31:29.000Z",
+    "updatedAt": "2026-10-21T20:31:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-48e58cad-59b0-4dee-a7fa-14208af36286"
+  },
   "item": [
     {
-      "id": "78bd9c0b-9d74-4b80-a891-b3ac54736585",
-      "name": "Shipping Contacts",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "customers",
       "item": [
         {
-          "id": "3d588af1-dd1e-486f-809b-db6385cd9a30",
-          "name": "Create a shipping contacts",
-          "request": {
-            "name": "Create a shipping contacts",
-            "description": {
-              "content": "Create a shipping contacts for a customer.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customers",
-                ":id",
-                "shipping_contacts"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "disabled": false,
-                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                "key": "X-Child-Company-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": 6953,\n    \"key_1\": 8410,\n    \"key_2\": false,\n    \"key_3\": \"string\",\n    \"key_4\": false,\n    \"key_5\": true,\n    \"key_6\": true,\n    \"key_7\": 8872.432522302248,\n    \"key_8\": \"string\",\n    \"key_9\": \"string\",\n    \"key_10\": \"string\",\n    \"key_11\": 4210,\n    \"key_12\": \"string\",\n    \"key_13\": \"string\",\n    \"key_14\": 7703.800460860498,\n    \"key_15\": 591,\n    \"key_16\": true,\n    \"key_17\": \"string\",\n    \"key_18\": false,\n    \"key_19\": 1271,\n    \"key_20\": \"string\",\n    \"key_21\": 3741.1015670268234,\n    \"key_22\": \"string\",\n    \"key_23\": 6325.855728972692,\n    \"key_24\": 7794.058209487801,\n    \"key_25\": true,\n    \"key_26\": true,\n    \"key_27\": 8590\n  }\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "{id}",
+          "item": [
             {
-              "id": "3123f5bf-c5bb-4f4f-9503-608a45b059fb",
-              "name": "successful operation",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "shipping_contacts",
+              "item": [
+                {
+                  "name": "{shipping_contacts_id}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
+                      "name": "Delete shipping contacts",
+                      "id": "f4860ed4-4673-4f9b-bfe5-3f08a3b300a7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/shipping_contacts/:shipping_contacts_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "shipping_contacts",
+                            ":shipping_contacts_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3965133a-0ac1-4eaf-95a2-1fdb80f57dbb",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the resource"
+                            },
+                            {
+                              "id": "c4aa8dc2-b79f-47fc-9dde-d758e74d4d53",
+                              "key": "shipping_contacts_id",
+                              "value": "<string>",
+                              "description": "(Required) identifier"
+                            }
+                          ]
+                        },
+                        "description": "Delete shipping contact that corresponds to a customer ID."
+                      },
+                      "response": [
+                        {
+                          "id": "564001f6-0869-4ca0-a873-f7915f46f38a",
+                          "name": "successful operation",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:id/shipping_contacts/:shipping_contacts_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":id",
+                                "shipping_contacts",
+                                ":shipping_contacts_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "shipping_contacts_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"address\": {\n    \"object\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<long>\",\n  \"metadata\": {\n    \"ut_216\": false,\n    \"amet_81e\": \"qui aliqua\",\n    \"minim4\": -92074712.87365708,\n    \"nulla_bc\": \"aute enim quis proident incididunt\",\n    \"enim_2_\": -48587305.35490157,\n    \"Duis1\": -17748025,\n    \"dolore_1ef\": \"amet esse aliqua voluptate nisi\",\n    \"laborum_7b\": -19500538,\n    \"amet4\": false,\n    \"eiusmodb8\": -30338342,\n    \"nostrud7_9\": -22422128.319907263,\n    \"esse4\": true,\n    \"ipsum96\": 88747876.96122533,\n    \"non1e\": \"dolore ut proident pariatur sint\",\n    \"in3f\": -79738561.8342851,\n    \"consequat8c3\": \"ipsum\",\n    \"minim_566\": \"consectetur\",\n    \"anim_a94\": -82439030,\n    \"incididunt779\": 71008292,\n    \"Duis0_d\": \"sint irure aliquip enim\",\n    \"magna_e\": -45309165,\n    \"consequat_2df\": \"aliqua cupidatat\",\n    \"veniam5\": -45297478,\n    \"dolor_2_\": true,\n    \"eu9\": -94992038.70054771,\n    \"non_af\": 12372456,\n    \"dolore79b\": 14216178,\n    \"sintba6\": -22893768.717186853,\n    \"et8\": 5912245,\n    \"id_f11\": -72676030,\n    \"laborum6\": true,\n    \"nostrud44\": \"Lorem aliquip dolore Ut Duis\",\n    \"ullamco_7d\": -4106776,\n    \"labore_6\": 57013682,\n    \"velitad\": 13735940,\n    \"enim_6bf\": true,\n    \"laborumf7\": -10646615,\n    \"deseruntf\": -20434949,\n    \"nostrud_e\": 12869170,\n    \"cupidatatdf\": -68022736,\n    \"velit_71\": false,\n    \"occaecat_f7b\": 38895681,\n    \"magnad3\": -93685629,\n    \"dolore_39\": \"oc\",\n    \"reprehenderit13\": 9224521,\n    \"eaa5\": -7663194,\n    \"dolore4\": \"laborum consequat tempor\",\n    \"est3\": true,\n    \"fugiat_481\": -61575055.9299785,\n    \"commodo0\": 288067,\n    \"irure_a4\": -4042489.581029281,\n    \"nisi6\": -19155386,\n    \"Duis_4\": -44759561.792345434,\n    \"ut728\": 30682981,\n    \"consequat_061\": false,\n    \"officiae\": 61260981,\n    \"iruref\": true,\n    \"ad_364\": \"occaecat Lorem adipisicing in\",\n    \"dolore1\": -86648716.94040781,\n    \"sed3\": -39859560,\n    \"tempor6f\": \"quis pariatur ipsum labore\",\n    \"Ut_fcc\": \"eni\",\n    \"ullamco_6\": -31057481,\n    \"incididunt20\": 43488760,\n    \"commodo7a\": true,\n    \"officia_37\": false,\n    \"dolor1\": \"Excepteur proident commodo\",\n    \"eiusmod_d_\": true,\n    \"velit__2\": true,\n    \"voluptatee2\": \"ullamco anim ea Excepteur do\",\n    \"labore__6b\": \"dolor esse\",\n    \"minimbc5\": 12584344,\n    \"do_73\": false,\n    \"tempor_dd0\": false,\n    \"anim75\": false,\n    \"nisie\": false,\n    \"sit_d8\": -78046354.70362777,\n    \"reprehenderit_51\": \"consequat ullamco culpa laboris et\",\n    \"eub1\": \"in in ut consectetur mollit\",\n    \"aliquaf79\": true,\n    \"eud0\": 9467935.095955178,\n    \"culpa_49\": \"in voluptate Duis\",\n    \"proident03_\": -53736302.1889874,\n    \"mollite\": \"occaecat\",\n    \"culpa_188\": false,\n    \"none\": \"fugiat qui eu nos\",\n    \"cillum_9f\": \"magna occaecat dolor qui\",\n    \"Excepteur6\": true,\n    \"reprehenderitd0\": -37022886.79698382,\n    \"autece6\": false,\n    \"eu6\": -9072147.7264283,\n    \"animbee\": true,\n    \"ut79f\": \"non anim qui officia\"\n  },\n  \"object\": \"<string>\",\n  \"deleted\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-21T20:31:30.000Z",
+                          "updatedAt": "2026-10-21T20:31:30.000Z",
+                          "uid": "35240-564001f6-0869-4ca0-a873-f7915f46f38a"
+                        },
+                        {
+                          "id": "f6236d8f-18eb-4b06-b548-ddc40a50957a",
+                          "name": "authentication error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:id/shipping_contacts/:shipping_contacts_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":id",
+                                "shipping_contacts",
+                                ":shipping_contacts_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "shipping_contacts_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:30.000Z",
+                          "updatedAt": "2026-10-21T20:31:30.000Z",
+                          "uid": "35240-f6236d8f-18eb-4b06-b548-ddc40a50957a"
+                        },
+                        {
+                          "id": "39806408-25ee-4112-baac-08ded089e650",
+                          "name": "not found entity",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:id/shipping_contacts/:shipping_contacts_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":id",
+                                "shipping_contacts",
+                                ":shipping_contacts_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "shipping_contacts_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:30.000Z",
+                          "updatedAt": "2026-10-21T20:31:30.000Z",
+                          "uid": "35240-39806408-25ee-4112-baac-08ded089e650"
+                        },
+                        {
+                          "id": "408586e6-2786-45fb-b8cb-585fa3d55ba6",
+                          "name": "parameter validation error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:id/shipping_contacts/:shipping_contacts_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":id",
+                                "shipping_contacts",
+                                ":shipping_contacts_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "shipping_contacts_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:30.000Z",
+                          "updatedAt": "2026-10-21T20:31:30.000Z",
+                          "uid": "35240-408586e6-2786-45fb-b8cb-585fa3d55ba6"
+                        },
+                        {
+                          "id": "21abdf0a-bfe6-4c3b-97ea-6ffdd945cbd0",
+                          "name": "internal server error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:id/shipping_contacts/:shipping_contacts_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":id",
+                                "shipping_contacts",
+                                ":shipping_contacts_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "shipping_contacts_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:30.000Z",
+                          "updatedAt": "2026-10-21T20:31:30.000Z",
+                          "uid": "35240-21abdf0a-bfe6-4c3b-97ea-6ffdd945cbd0"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:31:30.000Z",
+                      "updatedAt": "2026-10-21T20:31:30.000Z",
+                      "uid": "35240-f4860ed4-4673-4f9b-bfe5-3f08a3b300a7"
+                    },
+                    {
+                      "name": "Update shipping contacts",
+                      "id": "781c0b67-94d1-4687-8d1c-eac55813c184",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "bearer",
+                          "bearer": [
+                            {
+                              "key": "token",
+                              "value": "{{bearerToken}}",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/shipping_contacts/:shipping_contacts_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "shipping_contacts",
+                            ":shipping_contacts_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0cb0ed71-1fe4-45d9-9636-a1e7c18e9b12",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) Identifier of the resource"
+                            },
+                            {
+                              "id": "52c709cf-8ae3-4e50-b25a-96e9ab984a7f",
+                              "key": "shipping_contacts_id",
+                              "value": "<string>",
+                              "description": "(Required) identifier"
+                            }
+                          ]
+                        },
+                        "description": "Update shipping contact that corresponds to a customer ID."
+                      },
+                      "response": [
+                        {
+                          "id": "cfa8fbc6-2e98-4817-b6ce-bd55dd83d8d0",
+                          "name": "successful operation",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:id/shipping_contacts/:shipping_contacts_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":id",
+                                "shipping_contacts",
+                                ":shipping_contacts_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "shipping_contacts_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"address\": {\n    \"object\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<long>\",\n  \"metadata\": {\n    \"ut_216\": false,\n    \"amet_81e\": \"qui aliqua\",\n    \"minim4\": -92074712.87365708,\n    \"nulla_bc\": \"aute enim quis proident incididunt\",\n    \"enim_2_\": -48587305.35490157,\n    \"Duis1\": -17748025,\n    \"dolore_1ef\": \"amet esse aliqua voluptate nisi\",\n    \"laborum_7b\": -19500538,\n    \"amet4\": false,\n    \"eiusmodb8\": -30338342,\n    \"nostrud7_9\": -22422128.319907263,\n    \"esse4\": true,\n    \"ipsum96\": 88747876.96122533,\n    \"non1e\": \"dolore ut proident pariatur sint\",\n    \"in3f\": -79738561.8342851,\n    \"consequat8c3\": \"ipsum\",\n    \"minim_566\": \"consectetur\",\n    \"anim_a94\": -82439030,\n    \"incididunt779\": 71008292,\n    \"Duis0_d\": \"sint irure aliquip enim\",\n    \"magna_e\": -45309165,\n    \"consequat_2df\": \"aliqua cupidatat\",\n    \"veniam5\": -45297478,\n    \"dolor_2_\": true,\n    \"eu9\": -94992038.70054771,\n    \"non_af\": 12372456,\n    \"dolore79b\": 14216178,\n    \"sintba6\": -22893768.717186853,\n    \"et8\": 5912245,\n    \"id_f11\": -72676030,\n    \"laborum6\": true,\n    \"nostrud44\": \"Lorem aliquip dolore Ut Duis\",\n    \"ullamco_7d\": -4106776,\n    \"labore_6\": 57013682,\n    \"velitad\": 13735940,\n    \"enim_6bf\": true,\n    \"laborumf7\": -10646615,\n    \"deseruntf\": -20434949,\n    \"nostrud_e\": 12869170,\n    \"cupidatatdf\": -68022736,\n    \"velit_71\": false,\n    \"occaecat_f7b\": 38895681,\n    \"magnad3\": -93685629,\n    \"dolore_39\": \"oc\",\n    \"reprehenderit13\": 9224521,\n    \"eaa5\": -7663194,\n    \"dolore4\": \"laborum consequat tempor\",\n    \"est3\": true,\n    \"fugiat_481\": -61575055.9299785,\n    \"commodo0\": 288067,\n    \"irure_a4\": -4042489.581029281,\n    \"nisi6\": -19155386,\n    \"Duis_4\": -44759561.792345434,\n    \"ut728\": 30682981,\n    \"consequat_061\": false,\n    \"officiae\": 61260981,\n    \"iruref\": true,\n    \"ad_364\": \"occaecat Lorem adipisicing in\",\n    \"dolore1\": -86648716.94040781,\n    \"sed3\": -39859560,\n    \"tempor6f\": \"quis pariatur ipsum labore\",\n    \"Ut_fcc\": \"eni\",\n    \"ullamco_6\": -31057481,\n    \"incididunt20\": 43488760,\n    \"commodo7a\": true,\n    \"officia_37\": false,\n    \"dolor1\": \"Excepteur proident commodo\",\n    \"eiusmod_d_\": true,\n    \"velit__2\": true,\n    \"voluptatee2\": \"ullamco anim ea Excepteur do\",\n    \"labore__6b\": \"dolor esse\",\n    \"minimbc5\": 12584344,\n    \"do_73\": false,\n    \"tempor_dd0\": false,\n    \"anim75\": false,\n    \"nisie\": false,\n    \"sit_d8\": -78046354.70362777,\n    \"reprehenderit_51\": \"consequat ullamco culpa laboris et\",\n    \"eub1\": \"in in ut consectetur mollit\",\n    \"aliquaf79\": true,\n    \"eud0\": 9467935.095955178,\n    \"culpa_49\": \"in voluptate Duis\",\n    \"proident03_\": -53736302.1889874,\n    \"mollite\": \"occaecat\",\n    \"culpa_188\": false,\n    \"none\": \"fugiat qui eu nos\",\n    \"cillum_9f\": \"magna occaecat dolor qui\",\n    \"Excepteur6\": true,\n    \"reprehenderitd0\": -37022886.79698382,\n    \"autece6\": false,\n    \"eu6\": -9072147.7264283,\n    \"animbee\": true,\n    \"ut79f\": \"non anim qui officia\"\n  },\n  \"object\": \"<string>\",\n  \"deleted\": \"<boolean>\"\n}",
+                          "createdAt": "2026-10-21T20:31:30.000Z",
+                          "updatedAt": "2026-10-21T20:31:30.000Z",
+                          "uid": "35240-cfa8fbc6-2e98-4817-b6ce-bd55dd83d8d0"
+                        },
+                        {
+                          "id": "da31ccd4-0593-43c9-afc7-ef80e4fedf2d",
+                          "name": "authentication error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:id/shipping_contacts/:shipping_contacts_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":id",
+                                "shipping_contacts",
+                                ":shipping_contacts_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "shipping_contacts_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:30.000Z",
+                          "updatedAt": "2026-10-21T20:31:30.000Z",
+                          "uid": "35240-da31ccd4-0593-43c9-afc7-ef80e4fedf2d"
+                        },
+                        {
+                          "id": "d00eeca5-2a3e-431a-a6bd-f9789509f3c4",
+                          "name": "not found entity",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:id/shipping_contacts/:shipping_contacts_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":id",
+                                "shipping_contacts",
+                                ":shipping_contacts_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "shipping_contacts_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:30.000Z",
+                          "updatedAt": "2026-10-21T20:31:30.000Z",
+                          "uid": "35240-d00eeca5-2a3e-431a-a6bd-f9789509f3c4"
+                        },
+                        {
+                          "id": "4eac35cc-8ba9-4d8e-a00c-b670f565b46c",
+                          "name": "parameter validation error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:id/shipping_contacts/:shipping_contacts_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":id",
+                                "shipping_contacts",
+                                ":shipping_contacts_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "shipping_contacts_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:30.000Z",
+                          "updatedAt": "2026-10-21T20:31:30.000Z",
+                          "uid": "35240-4eac35cc-8ba9-4d8e-a00c-b670f565b46c"
+                        },
+                        {
+                          "id": "29d2bc52-850d-4bcc-af7d-e99c0dc7ef81",
+                          "name": "internal server error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Use for knowing which language to use",
+                                "key": "Accept-Language",
+                                "value": "es"
+                              },
+                              {
+                                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                                "key": "X-Child-Company-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.conekta-v2.2.0+json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/customers/:id/shipping_contacts/:shipping_contacts_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "customers",
+                                ":id",
+                                "shipping_contacts",
+                                ":shipping_contacts_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                },
+                                {
+                                  "key": "shipping_contacts_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.conekta-v2.2.0+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                          "createdAt": "2026-10-21T20:31:30.000Z",
+                          "updatedAt": "2026-10-21T20:31:30.000Z",
+                          "uid": "35240-29d2bc52-850d-4bcc-af7d-e99c0dc7ef81"
+                        }
+                      ],
+                      "createdAt": "2026-10-21T20:31:30.000Z",
+                      "updatedAt": "2026-10-21T20:31:30.000Z",
+                      "uid": "35240-781c0b67-94d1-4687-8d1c-eac55813c184"
                     }
-                  ]
+                  ],
+                  "id": "d3fb332a-7ac6-40d4-a206-56fbca3bd47f",
+                  "createdAt": "2026-10-21T20:31:30.000Z",
+                  "updatedAt": "2026-10-21T20:31:30.000Z",
+                  "uid": "35240-d3fb332a-7ac6-40d4-a206-56fbca3bd47f"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"address\": {\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": false,\n    \"key_1\": 6890,\n    \"key_2\": 6452.752769671355,\n    \"key_3\": 6095,\n    \"key_4\": 4727,\n    \"key_5\": 8313.372987010844,\n    \"key_6\": false,\n    \"key_7\": true,\n    \"key_8\": 911.3858968043031,\n    \"key_9\": false,\n    \"key_10\": false,\n    \"key_11\": \"string\",\n    \"key_12\": \"string\",\n    \"key_13\": \"string\",\n    \"key_14\": false,\n    \"key_15\": \"string\",\n    \"key_16\": 9399,\n    \"key_17\": true,\n    \"key_18\": false,\n    \"key_19\": 1887.7541286642497,\n    \"key_20\": 6353,\n    \"key_21\": \"string\",\n    \"key_22\": true,\n    \"key_23\": 4466.210640587295,\n    \"key_24\": 8088,\n    \"key_25\": false,\n    \"key_26\": \"string\",\n    \"key_27\": false,\n    \"key_28\": 9961,\n    \"key_29\": \"string\",\n    \"key_30\": 6702,\n    \"key_31\": \"string\",\n    \"key_32\": 4072,\n    \"key_33\": true,\n    \"key_34\": 5275.541973235325,\n    \"key_35\": 2075.4243846426266,\n    \"key_36\": \"string\",\n    \"key_37\": 729,\n    \"key_38\": false,\n    \"key_39\": 1250,\n    \"key_40\": \"string\",\n    \"key_41\": 4911,\n    \"key_42\": 41.205771030879966,\n    \"key_43\": false,\n    \"key_44\": 665,\n    \"key_45\": 3325.7926932171335,\n    \"key_46\": 4480,\n    \"key_47\": 2067.2885556414576,\n    \"key_48\": \"string\",\n    \"key_49\": \"string\",\n    \"key_50\": \"string\",\n    \"key_51\": 8373,\n    \"key_52\": \"string\",\n    \"key_53\": \"string\",\n    \"key_54\": 1562.8020279968357,\n    \"key_55\": \"string\",\n    \"key_56\": false,\n    \"key_57\": true,\n    \"key_58\": 5927.281341928719,\n    \"key_59\": \"string\",\n    \"key_60\": \"string\",\n    \"key_61\": 5377.039805011807,\n    \"key_62\": \"string\",\n    \"key_63\": 8800.222566048024,\n    \"key_64\": 2398,\n    \"key_65\": 1594.7668842863527,\n    \"key_66\": 1490.066868707901,\n    \"key_67\": 3726,\n    \"key_68\": \"string\",\n    \"key_69\": 8132.093285973877,\n    \"key_70\": 8265,\n    \"key_71\": \"string\",\n    \"key_72\": 9603,\n    \"key_73\": 8395.692847177592,\n    \"key_74\": 950.9327109850618,\n    \"key_75\": 2169.1918410517865,\n    \"key_76\": 7994.8136903484055,\n    \"key_77\": true,\n    \"key_78\": 2993.8771180184776,\n    \"key_79\": true,\n    \"key_80\": 6427,\n    \"key_81\": \"string\",\n    \"key_82\": 3170.6791241064147,\n    \"key_83\": \"string\",\n    \"key_84\": 4250.962502310746\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
+                  "name": "Create a shipping contacts",
+                  "id": "03f299fb-683f-4e71-b073-769a214f7c59",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                        "key": "X-Child-Company-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\",\n  \"metadata\": {\n    \"occaecat0d\": 96437322.25645652,\n    \"quis_a\": false,\n    \"irure_b68\": \"ex eu Excepteur\",\n    \"id1\": \"volupt\",\n    \"anim6\": \"velit commodo ea\",\n    \"pariaturb4\": \"voluptate nisi\",\n    \"ipsum__\": false,\n    \"incididunt1\": false,\n    \"nostrud_ce\": 51697748,\n    \"sed52\": -67624683.92967956,\n    \"amet205\": true,\n    \"dolore_d\": 82735055.15727201,\n    \"Duis_42b\": -74755265.37710287,\n    \"sit9\": -34759393,\n    \"elit_75\": 92347096,\n    \"inbee\": \"Excepteur culpa mollit enim cillum\",\n    \"incididunt_cae\": -37453833,\n    \"anim_8\": \"deserunt sed laboris\",\n    \"Lorem_a56\": 3104349.9495708793,\n    \"et_e\": 48131483,\n    \"reprehenderit_648\": 14674148.831452653,\n    \"dolor59b\": false,\n    \"nostrud35\": 84319572.10802796,\n    \"etc\": false,\n    \"reprehenderit4\": -74695899,\n    \"fugiat_2\": true,\n    \"pariaturb18\": -45164057,\n    \"velit_58\": -13527852,\n    \"fugiatbc\": false,\n    \"auteeb8\": true,\n    \"nullaa_5\": \"proident in ipsum\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:id/shipping_contacts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":id",
+                        "shipping_contacts"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9caa1bae-135d-41a0-a3fb-e1fa82747b24",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the resource"
+                        }
+                      ]
+                    },
+                    "description": "Create a shipping contacts for a customer."
+                  },
+                  "response": [
+                    {
+                      "id": "cdfcd387-71fd-437a-a27e-d4cf43e1b22f",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\",\n  \"metadata\": {\n    \"occaecat0d\": 96437322.25645652,\n    \"quis_a\": false,\n    \"irure_b68\": \"ex eu Excepteur\",\n    \"id1\": \"volupt\",\n    \"anim6\": \"velit commodo ea\",\n    \"pariaturb4\": \"voluptate nisi\",\n    \"ipsum__\": false,\n    \"incididunt1\": false,\n    \"nostrud_ce\": 51697748,\n    \"sed52\": -67624683.92967956,\n    \"amet205\": true,\n    \"dolore_d\": 82735055.15727201,\n    \"Duis_42b\": -74755265.37710287,\n    \"sit9\": -34759393,\n    \"elit_75\": 92347096,\n    \"inbee\": \"Excepteur culpa mollit enim cillum\",\n    \"incididunt_cae\": -37453833,\n    \"anim_8\": \"deserunt sed laboris\",\n    \"Lorem_a56\": 3104349.9495708793,\n    \"et_e\": 48131483,\n    \"reprehenderit_648\": 14674148.831452653,\n    \"dolor59b\": false,\n    \"nostrud35\": 84319572.10802796,\n    \"etc\": false,\n    \"reprehenderit4\": -74695899,\n    \"fugiat_2\": true,\n    \"pariaturb18\": -45164057,\n    \"velit_58\": -13527852,\n    \"fugiatbc\": false,\n    \"auteeb8\": true,\n    \"nullaa_5\": \"proident in ipsum\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/shipping_contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "shipping_contacts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"address\": {\n    \"object\": \"<string>\",\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<long>\",\n  \"metadata\": {\n    \"ut_216\": false,\n    \"amet_81e\": \"qui aliqua\",\n    \"minim4\": -92074712.87365708,\n    \"nulla_bc\": \"aute enim quis proident incididunt\",\n    \"enim_2_\": -48587305.35490157,\n    \"Duis1\": -17748025,\n    \"dolore_1ef\": \"amet esse aliqua voluptate nisi\",\n    \"laborum_7b\": -19500538,\n    \"amet4\": false,\n    \"eiusmodb8\": -30338342,\n    \"nostrud7_9\": -22422128.319907263,\n    \"esse4\": true,\n    \"ipsum96\": 88747876.96122533,\n    \"non1e\": \"dolore ut proident pariatur sint\",\n    \"in3f\": -79738561.8342851,\n    \"consequat8c3\": \"ipsum\",\n    \"minim_566\": \"consectetur\",\n    \"anim_a94\": -82439030,\n    \"incididunt779\": 71008292,\n    \"Duis0_d\": \"sint irure aliquip enim\",\n    \"magna_e\": -45309165,\n    \"consequat_2df\": \"aliqua cupidatat\",\n    \"veniam5\": -45297478,\n    \"dolor_2_\": true,\n    \"eu9\": -94992038.70054771,\n    \"non_af\": 12372456,\n    \"dolore79b\": 14216178,\n    \"sintba6\": -22893768.717186853,\n    \"et8\": 5912245,\n    \"id_f11\": -72676030,\n    \"laborum6\": true,\n    \"nostrud44\": \"Lorem aliquip dolore Ut Duis\",\n    \"ullamco_7d\": -4106776,\n    \"labore_6\": 57013682,\n    \"velitad\": 13735940,\n    \"enim_6bf\": true,\n    \"laborumf7\": -10646615,\n    \"deseruntf\": -20434949,\n    \"nostrud_e\": 12869170,\n    \"cupidatatdf\": -68022736,\n    \"velit_71\": false,\n    \"occaecat_f7b\": 38895681,\n    \"magnad3\": -93685629,\n    \"dolore_39\": \"oc\",\n    \"reprehenderit13\": 9224521,\n    \"eaa5\": -7663194,\n    \"dolore4\": \"laborum consequat tempor\",\n    \"est3\": true,\n    \"fugiat_481\": -61575055.9299785,\n    \"commodo0\": 288067,\n    \"irure_a4\": -4042489.581029281,\n    \"nisi6\": -19155386,\n    \"Duis_4\": -44759561.792345434,\n    \"ut728\": 30682981,\n    \"consequat_061\": false,\n    \"officiae\": 61260981,\n    \"iruref\": true,\n    \"ad_364\": \"occaecat Lorem adipisicing in\",\n    \"dolore1\": -86648716.94040781,\n    \"sed3\": -39859560,\n    \"tempor6f\": \"quis pariatur ipsum labore\",\n    \"Ut_fcc\": \"eni\",\n    \"ullamco_6\": -31057481,\n    \"incididunt20\": 43488760,\n    \"commodo7a\": true,\n    \"officia_37\": false,\n    \"dolor1\": \"Excepteur proident commodo\",\n    \"eiusmod_d_\": true,\n    \"velit__2\": true,\n    \"voluptatee2\": \"ullamco anim ea Excepteur do\",\n    \"labore__6b\": \"dolor esse\",\n    \"minimbc5\": 12584344,\n    \"do_73\": false,\n    \"tempor_dd0\": false,\n    \"anim75\": false,\n    \"nisie\": false,\n    \"sit_d8\": -78046354.70362777,\n    \"reprehenderit_51\": \"consequat ullamco culpa laboris et\",\n    \"eub1\": \"in in ut consectetur mollit\",\n    \"aliquaf79\": true,\n    \"eud0\": 9467935.095955178,\n    \"culpa_49\": \"in voluptate Duis\",\n    \"proident03_\": -53736302.1889874,\n    \"mollite\": \"occaecat\",\n    \"culpa_188\": false,\n    \"none\": \"fugiat qui eu nos\",\n    \"cillum_9f\": \"magna occaecat dolor qui\",\n    \"Excepteur6\": true,\n    \"reprehenderitd0\": -37022886.79698382,\n    \"autece6\": false,\n    \"eu6\": -9072147.7264283,\n    \"animbee\": true,\n    \"ut79f\": \"non anim qui officia\"\n  },\n  \"object\": \"<string>\",\n  \"deleted\": \"<boolean>\"\n}",
+                      "createdAt": "2026-10-21T20:31:30.000Z",
+                      "updatedAt": "2026-10-21T20:31:30.000Z",
+                      "uid": "35240-cdfcd387-71fd-437a-a27e-d4cf43e1b22f"
+                    },
+                    {
+                      "id": "02e772b1-88e4-436c-ab09-8921906505fd",
+                      "name": "authentication error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\",\n  \"metadata\": {\n    \"occaecat0d\": 96437322.25645652,\n    \"quis_a\": false,\n    \"irure_b68\": \"ex eu Excepteur\",\n    \"id1\": \"volupt\",\n    \"anim6\": \"velit commodo ea\",\n    \"pariaturb4\": \"voluptate nisi\",\n    \"ipsum__\": false,\n    \"incididunt1\": false,\n    \"nostrud_ce\": 51697748,\n    \"sed52\": -67624683.92967956,\n    \"amet205\": true,\n    \"dolore_d\": 82735055.15727201,\n    \"Duis_42b\": -74755265.37710287,\n    \"sit9\": -34759393,\n    \"elit_75\": 92347096,\n    \"inbee\": \"Excepteur culpa mollit enim cillum\",\n    \"incididunt_cae\": -37453833,\n    \"anim_8\": \"deserunt sed laboris\",\n    \"Lorem_a56\": 3104349.9495708793,\n    \"et_e\": 48131483,\n    \"reprehenderit_648\": 14674148.831452653,\n    \"dolor59b\": false,\n    \"nostrud35\": 84319572.10802796,\n    \"etc\": false,\n    \"reprehenderit4\": -74695899,\n    \"fugiat_2\": true,\n    \"pariaturb18\": -45164057,\n    \"velit_58\": -13527852,\n    \"fugiatbc\": false,\n    \"auteeb8\": true,\n    \"nullaa_5\": \"proident in ipsum\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/shipping_contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "shipping_contacts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:31:30.000Z",
+                      "updatedAt": "2026-10-21T20:31:30.000Z",
+                      "uid": "35240-02e772b1-88e4-436c-ab09-8921906505fd"
+                    },
+                    {
+                      "id": "10d32490-ba41-4e59-b8dc-ade8620b59a8",
+                      "name": "not found entity",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\",\n  \"metadata\": {\n    \"occaecat0d\": 96437322.25645652,\n    \"quis_a\": false,\n    \"irure_b68\": \"ex eu Excepteur\",\n    \"id1\": \"volupt\",\n    \"anim6\": \"velit commodo ea\",\n    \"pariaturb4\": \"voluptate nisi\",\n    \"ipsum__\": false,\n    \"incididunt1\": false,\n    \"nostrud_ce\": 51697748,\n    \"sed52\": -67624683.92967956,\n    \"amet205\": true,\n    \"dolore_d\": 82735055.15727201,\n    \"Duis_42b\": -74755265.37710287,\n    \"sit9\": -34759393,\n    \"elit_75\": 92347096,\n    \"inbee\": \"Excepteur culpa mollit enim cillum\",\n    \"incididunt_cae\": -37453833,\n    \"anim_8\": \"deserunt sed laboris\",\n    \"Lorem_a56\": 3104349.9495708793,\n    \"et_e\": 48131483,\n    \"reprehenderit_648\": 14674148.831452653,\n    \"dolor59b\": false,\n    \"nostrud35\": 84319572.10802796,\n    \"etc\": false,\n    \"reprehenderit4\": -74695899,\n    \"fugiat_2\": true,\n    \"pariaturb18\": -45164057,\n    \"velit_58\": -13527852,\n    \"fugiatbc\": false,\n    \"auteeb8\": true,\n    \"nullaa_5\": \"proident in ipsum\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/shipping_contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "shipping_contacts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:31:30.000Z",
+                      "updatedAt": "2026-10-21T20:31:30.000Z",
+                      "uid": "35240-10d32490-ba41-4e59-b8dc-ade8620b59a8"
+                    },
+                    {
+                      "id": "d9bb47c3-c937-4117-9b11-8a2b6a572333",
+                      "name": "parameter validation error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\",\n  \"metadata\": {\n    \"occaecat0d\": 96437322.25645652,\n    \"quis_a\": false,\n    \"irure_b68\": \"ex eu Excepteur\",\n    \"id1\": \"volupt\",\n    \"anim6\": \"velit commodo ea\",\n    \"pariaturb4\": \"voluptate nisi\",\n    \"ipsum__\": false,\n    \"incididunt1\": false,\n    \"nostrud_ce\": 51697748,\n    \"sed52\": -67624683.92967956,\n    \"amet205\": true,\n    \"dolore_d\": 82735055.15727201,\n    \"Duis_42b\": -74755265.37710287,\n    \"sit9\": -34759393,\n    \"elit_75\": 92347096,\n    \"inbee\": \"Excepteur culpa mollit enim cillum\",\n    \"incididunt_cae\": -37453833,\n    \"anim_8\": \"deserunt sed laboris\",\n    \"Lorem_a56\": 3104349.9495708793,\n    \"et_e\": 48131483,\n    \"reprehenderit_648\": 14674148.831452653,\n    \"dolor59b\": false,\n    \"nostrud35\": 84319572.10802796,\n    \"etc\": false,\n    \"reprehenderit4\": -74695899,\n    \"fugiat_2\": true,\n    \"pariaturb18\": -45164057,\n    \"velit_58\": -13527852,\n    \"fugiatbc\": false,\n    \"auteeb8\": true,\n    \"nullaa_5\": \"proident in ipsum\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/shipping_contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "shipping_contacts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:31:30.000Z",
+                      "updatedAt": "2026-10-21T20:31:30.000Z",
+                      "uid": "35240-d9bb47c3-c937-4117-9b11-8a2b6a572333"
+                    },
+                    {
+                      "id": "7f58e0ab-3082-4ab5-8c50-7dd123265e5d",
+                      "name": "internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                            "key": "X-Child-Company-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\",\n  \"metadata\": {\n    \"occaecat0d\": 96437322.25645652,\n    \"quis_a\": false,\n    \"irure_b68\": \"ex eu Excepteur\",\n    \"id1\": \"volupt\",\n    \"anim6\": \"velit commodo ea\",\n    \"pariaturb4\": \"voluptate nisi\",\n    \"ipsum__\": false,\n    \"incididunt1\": false,\n    \"nostrud_ce\": 51697748,\n    \"sed52\": -67624683.92967956,\n    \"amet205\": true,\n    \"dolore_d\": 82735055.15727201,\n    \"Duis_42b\": -74755265.37710287,\n    \"sit9\": -34759393,\n    \"elit_75\": 92347096,\n    \"inbee\": \"Excepteur culpa mollit enim cillum\",\n    \"incididunt_cae\": -37453833,\n    \"anim_8\": \"deserunt sed laboris\",\n    \"Lorem_a56\": 3104349.9495708793,\n    \"et_e\": 48131483,\n    \"reprehenderit_648\": 14674148.831452653,\n    \"dolor59b\": false,\n    \"nostrud35\": 84319572.10802796,\n    \"etc\": false,\n    \"reprehenderit4\": -74695899,\n    \"fugiat_2\": true,\n    \"pariaturb18\": -45164057,\n    \"velit_58\": -13527852,\n    \"fugiatbc\": false,\n    \"auteeb8\": true,\n    \"nullaa_5\": \"proident in ipsum\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:id/shipping_contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":id",
+                            "shipping_contacts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:31:30.000Z",
+                      "updatedAt": "2026-10-21T20:31:30.000Z",
+                      "uid": "35240-7f58e0ab-3082-4ab5-8c50-7dd123265e5d"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:31:30.000Z",
+                  "updatedAt": "2026-10-21T20:31:30.000Z",
+                  "uid": "35240-03f299fb-683f-4e71-b073-769a214f7c59"
                 }
               ],
-              "body": "{\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"address\": {\n    \"object\": \"shipping_address\",\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"parent_id\": \"string\",\n  \"default\": false,\n  \"id\": \"adr_1234567890\",\n  \"created_at\": 1675715413,\n  \"metadata\": {\n    \"key_0\": false,\n    \"key_1\": 1227,\n    \"key_2\": 4231.451192843601,\n    \"key_3\": 9460,\n    \"key_4\": 6490,\n    \"key_5\": 2994,\n    \"key_6\": 8753.959207447728,\n    \"key_7\": 9553,\n    \"key_8\": \"string\",\n    \"key_9\": 2017.2146761524446,\n    \"key_10\": \"string\",\n    \"key_11\": \"string\"\n  },\n  \"object\": \"shipping_contact\",\n  \"deleted\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c0402e30-e5b1-4bab-be62-4aae61b1af45",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"address\": {\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": false,\n    \"key_1\": 6890,\n    \"key_2\": 6452.752769671355,\n    \"key_3\": 6095,\n    \"key_4\": 4727,\n    \"key_5\": 8313.372987010844,\n    \"key_6\": false,\n    \"key_7\": true,\n    \"key_8\": 911.3858968043031,\n    \"key_9\": false,\n    \"key_10\": false,\n    \"key_11\": \"string\",\n    \"key_12\": \"string\",\n    \"key_13\": \"string\",\n    \"key_14\": false,\n    \"key_15\": \"string\",\n    \"key_16\": 9399,\n    \"key_17\": true,\n    \"key_18\": false,\n    \"key_19\": 1887.7541286642497,\n    \"key_20\": 6353,\n    \"key_21\": \"string\",\n    \"key_22\": true,\n    \"key_23\": 4466.210640587295,\n    \"key_24\": 8088,\n    \"key_25\": false,\n    \"key_26\": \"string\",\n    \"key_27\": false,\n    \"key_28\": 9961,\n    \"key_29\": \"string\",\n    \"key_30\": 6702,\n    \"key_31\": \"string\",\n    \"key_32\": 4072,\n    \"key_33\": true,\n    \"key_34\": 5275.541973235325,\n    \"key_35\": 2075.4243846426266,\n    \"key_36\": \"string\",\n    \"key_37\": 729,\n    \"key_38\": false,\n    \"key_39\": 1250,\n    \"key_40\": \"string\",\n    \"key_41\": 4911,\n    \"key_42\": 41.205771030879966,\n    \"key_43\": false,\n    \"key_44\": 665,\n    \"key_45\": 3325.7926932171335,\n    \"key_46\": 4480,\n    \"key_47\": 2067.2885556414576,\n    \"key_48\": \"string\",\n    \"key_49\": \"string\",\n    \"key_50\": \"string\",\n    \"key_51\": 8373,\n    \"key_52\": \"string\",\n    \"key_53\": \"string\",\n    \"key_54\": 1562.8020279968357,\n    \"key_55\": \"string\",\n    \"key_56\": false,\n    \"key_57\": true,\n    \"key_58\": 5927.281341928719,\n    \"key_59\": \"string\",\n    \"key_60\": \"string\",\n    \"key_61\": 5377.039805011807,\n    \"key_62\": \"string\",\n    \"key_63\": 8800.222566048024,\n    \"key_64\": 2398,\n    \"key_65\": 1594.7668842863527,\n    \"key_66\": 1490.066868707901,\n    \"key_67\": 3726,\n    \"key_68\": \"string\",\n    \"key_69\": 8132.093285973877,\n    \"key_70\": 8265,\n    \"key_71\": \"string\",\n    \"key_72\": 9603,\n    \"key_73\": 8395.692847177592,\n    \"key_74\": 950.9327109850618,\n    \"key_75\": 2169.1918410517865,\n    \"key_76\": 7994.8136903484055,\n    \"key_77\": true,\n    \"key_78\": 2993.8771180184776,\n    \"key_79\": true,\n    \"key_80\": 6427,\n    \"key_81\": \"string\",\n    \"key_82\": 3170.6791241064147,\n    \"key_83\": \"string\",\n    \"key_84\": 4250.962502310746\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6ffeae37-067d-4c41-96de-69473a906a6b",
-              "name": "not found entity",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"address\": {\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": false,\n    \"key_1\": 6890,\n    \"key_2\": 6452.752769671355,\n    \"key_3\": 6095,\n    \"key_4\": 4727,\n    \"key_5\": 8313.372987010844,\n    \"key_6\": false,\n    \"key_7\": true,\n    \"key_8\": 911.3858968043031,\n    \"key_9\": false,\n    \"key_10\": false,\n    \"key_11\": \"string\",\n    \"key_12\": \"string\",\n    \"key_13\": \"string\",\n    \"key_14\": false,\n    \"key_15\": \"string\",\n    \"key_16\": 9399,\n    \"key_17\": true,\n    \"key_18\": false,\n    \"key_19\": 1887.7541286642497,\n    \"key_20\": 6353,\n    \"key_21\": \"string\",\n    \"key_22\": true,\n    \"key_23\": 4466.210640587295,\n    \"key_24\": 8088,\n    \"key_25\": false,\n    \"key_26\": \"string\",\n    \"key_27\": false,\n    \"key_28\": 9961,\n    \"key_29\": \"string\",\n    \"key_30\": 6702,\n    \"key_31\": \"string\",\n    \"key_32\": 4072,\n    \"key_33\": true,\n    \"key_34\": 5275.541973235325,\n    \"key_35\": 2075.4243846426266,\n    \"key_36\": \"string\",\n    \"key_37\": 729,\n    \"key_38\": false,\n    \"key_39\": 1250,\n    \"key_40\": \"string\",\n    \"key_41\": 4911,\n    \"key_42\": 41.205771030879966,\n    \"key_43\": false,\n    \"key_44\": 665,\n    \"key_45\": 3325.7926932171335,\n    \"key_46\": 4480,\n    \"key_47\": 2067.2885556414576,\n    \"key_48\": \"string\",\n    \"key_49\": \"string\",\n    \"key_50\": \"string\",\n    \"key_51\": 8373,\n    \"key_52\": \"string\",\n    \"key_53\": \"string\",\n    \"key_54\": 1562.8020279968357,\n    \"key_55\": \"string\",\n    \"key_56\": false,\n    \"key_57\": true,\n    \"key_58\": 5927.281341928719,\n    \"key_59\": \"string\",\n    \"key_60\": \"string\",\n    \"key_61\": 5377.039805011807,\n    \"key_62\": \"string\",\n    \"key_63\": 8800.222566048024,\n    \"key_64\": 2398,\n    \"key_65\": 1594.7668842863527,\n    \"key_66\": 1490.066868707901,\n    \"key_67\": 3726,\n    \"key_68\": \"string\",\n    \"key_69\": 8132.093285973877,\n    \"key_70\": 8265,\n    \"key_71\": \"string\",\n    \"key_72\": 9603,\n    \"key_73\": 8395.692847177592,\n    \"key_74\": 950.9327109850618,\n    \"key_75\": 2169.1918410517865,\n    \"key_76\": 7994.8136903484055,\n    \"key_77\": true,\n    \"key_78\": 2993.8771180184776,\n    \"key_79\": true,\n    \"key_80\": 6427,\n    \"key_81\": \"string\",\n    \"key_82\": 3170.6791241064147,\n    \"key_83\": \"string\",\n    \"key_84\": 4250.962502310746\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b71e3805-2a5a-4140-b92d-2da61e5512a3",
-              "name": "parameter validation error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"address\": {\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": false,\n    \"key_1\": 6890,\n    \"key_2\": 6452.752769671355,\n    \"key_3\": 6095,\n    \"key_4\": 4727,\n    \"key_5\": 8313.372987010844,\n    \"key_6\": false,\n    \"key_7\": true,\n    \"key_8\": 911.3858968043031,\n    \"key_9\": false,\n    \"key_10\": false,\n    \"key_11\": \"string\",\n    \"key_12\": \"string\",\n    \"key_13\": \"string\",\n    \"key_14\": false,\n    \"key_15\": \"string\",\n    \"key_16\": 9399,\n    \"key_17\": true,\n    \"key_18\": false,\n    \"key_19\": 1887.7541286642497,\n    \"key_20\": 6353,\n    \"key_21\": \"string\",\n    \"key_22\": true,\n    \"key_23\": 4466.210640587295,\n    \"key_24\": 8088,\n    \"key_25\": false,\n    \"key_26\": \"string\",\n    \"key_27\": false,\n    \"key_28\": 9961,\n    \"key_29\": \"string\",\n    \"key_30\": 6702,\n    \"key_31\": \"string\",\n    \"key_32\": 4072,\n    \"key_33\": true,\n    \"key_34\": 5275.541973235325,\n    \"key_35\": 2075.4243846426266,\n    \"key_36\": \"string\",\n    \"key_37\": 729,\n    \"key_38\": false,\n    \"key_39\": 1250,\n    \"key_40\": \"string\",\n    \"key_41\": 4911,\n    \"key_42\": 41.205771030879966,\n    \"key_43\": false,\n    \"key_44\": 665,\n    \"key_45\": 3325.7926932171335,\n    \"key_46\": 4480,\n    \"key_47\": 2067.2885556414576,\n    \"key_48\": \"string\",\n    \"key_49\": \"string\",\n    \"key_50\": \"string\",\n    \"key_51\": 8373,\n    \"key_52\": \"string\",\n    \"key_53\": \"string\",\n    \"key_54\": 1562.8020279968357,\n    \"key_55\": \"string\",\n    \"key_56\": false,\n    \"key_57\": true,\n    \"key_58\": 5927.281341928719,\n    \"key_59\": \"string\",\n    \"key_60\": \"string\",\n    \"key_61\": 5377.039805011807,\n    \"key_62\": \"string\",\n    \"key_63\": 8800.222566048024,\n    \"key_64\": 2398,\n    \"key_65\": 1594.7668842863527,\n    \"key_66\": 1490.066868707901,\n    \"key_67\": 3726,\n    \"key_68\": \"string\",\n    \"key_69\": 8132.093285973877,\n    \"key_70\": 8265,\n    \"key_71\": \"string\",\n    \"key_72\": 9603,\n    \"key_73\": 8395.692847177592,\n    \"key_74\": 950.9327109850618,\n    \"key_75\": 2169.1918410517865,\n    \"key_76\": 7994.8136903484055,\n    \"key_77\": true,\n    \"key_78\": 2993.8771180184776,\n    \"key_79\": true,\n    \"key_80\": 6427,\n    \"key_81\": \"string\",\n    \"key_82\": 3170.6791241064147,\n    \"key_83\": \"string\",\n    \"key_84\": 4250.962502310746\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The token does not exist.\",\n      \"param\": \"payment_method.token_id\",\n      \"code\": \"conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token\",\n      \"debug_message\": \"The token does not exist.\"\n    }\n  ],\n  \"log_id\": \"641b6d813cd9a50001515017\",\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "9a17dd73-f64d-4be6-bbe5-d4c88113a5c2",
-              "name": "internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"address\": {\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\",\n  \"metadata\": {\n    \"key_0\": false,\n    \"key_1\": 6890,\n    \"key_2\": 6452.752769671355,\n    \"key_3\": 6095,\n    \"key_4\": 4727,\n    \"key_5\": 8313.372987010844,\n    \"key_6\": false,\n    \"key_7\": true,\n    \"key_8\": 911.3858968043031,\n    \"key_9\": false,\n    \"key_10\": false,\n    \"key_11\": \"string\",\n    \"key_12\": \"string\",\n    \"key_13\": \"string\",\n    \"key_14\": false,\n    \"key_15\": \"string\",\n    \"key_16\": 9399,\n    \"key_17\": true,\n    \"key_18\": false,\n    \"key_19\": 1887.7541286642497,\n    \"key_20\": 6353,\n    \"key_21\": \"string\",\n    \"key_22\": true,\n    \"key_23\": 4466.210640587295,\n    \"key_24\": 8088,\n    \"key_25\": false,\n    \"key_26\": \"string\",\n    \"key_27\": false,\n    \"key_28\": 9961,\n    \"key_29\": \"string\",\n    \"key_30\": 6702,\n    \"key_31\": \"string\",\n    \"key_32\": 4072,\n    \"key_33\": true,\n    \"key_34\": 5275.541973235325,\n    \"key_35\": 2075.4243846426266,\n    \"key_36\": \"string\",\n    \"key_37\": 729,\n    \"key_38\": false,\n    \"key_39\": 1250,\n    \"key_40\": \"string\",\n    \"key_41\": 4911,\n    \"key_42\": 41.205771030879966,\n    \"key_43\": false,\n    \"key_44\": 665,\n    \"key_45\": 3325.7926932171335,\n    \"key_46\": 4480,\n    \"key_47\": 2067.2885556414576,\n    \"key_48\": \"string\",\n    \"key_49\": \"string\",\n    \"key_50\": \"string\",\n    \"key_51\": 8373,\n    \"key_52\": \"string\",\n    \"key_53\": \"string\",\n    \"key_54\": 1562.8020279968357,\n    \"key_55\": \"string\",\n    \"key_56\": false,\n    \"key_57\": true,\n    \"key_58\": 5927.281341928719,\n    \"key_59\": \"string\",\n    \"key_60\": \"string\",\n    \"key_61\": 5377.039805011807,\n    \"key_62\": \"string\",\n    \"key_63\": 8800.222566048024,\n    \"key_64\": 2398,\n    \"key_65\": 1594.7668842863527,\n    \"key_66\": 1490.066868707901,\n    \"key_67\": 3726,\n    \"key_68\": \"string\",\n    \"key_69\": 8132.093285973877,\n    \"key_70\": 8265,\n    \"key_71\": \"string\",\n    \"key_72\": 9603,\n    \"key_73\": 8395.692847177592,\n    \"key_74\": 950.9327109850618,\n    \"key_75\": 2169.1918410517865,\n    \"key_76\": 7994.8136903484055,\n    \"key_77\": true,\n    \"key_78\": 2993.8771180184776,\n    \"key_79\": true,\n    \"key_80\": 6427,\n    \"key_81\": \"string\",\n    \"key_82\": 3170.6791241064147,\n    \"key_83\": \"string\",\n    \"key_84\": 4250.962502310746\n  }\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "16d37e30-0188-4d14-b59f-109701094980",
-          "name": "Delete shipping contacts",
-          "request": {
-            "name": "Delete shipping contacts",
-            "description": {
-              "content": "Delete shipping contact that corresponds to a customer ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customers",
-                ":id",
-                "shipping_contacts",
-                ":shipping_contacts_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "shipping_contacts_id",
-                  "description": "(Required) identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "disabled": false,
-                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                "key": "X-Child-Company-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "ba0aac2a-fd7c-4caa-9e7f-4f5ca5a95c9e",
-              "name": "successful operation",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts",
-                    ":shipping_contacts_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "shipping_contacts_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"address\": {\n    \"object\": \"shipping_address\",\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"parent_id\": \"string\",\n  \"default\": false,\n  \"id\": \"adr_1234567890\",\n  \"created_at\": 1675715413,\n  \"metadata\": {\n    \"key_0\": false,\n    \"key_1\": 1227,\n    \"key_2\": 4231.451192843601,\n    \"key_3\": 9460,\n    \"key_4\": 6490,\n    \"key_5\": 2994,\n    \"key_6\": 8753.959207447728,\n    \"key_7\": 9553,\n    \"key_8\": \"string\",\n    \"key_9\": 2017.2146761524446,\n    \"key_10\": \"string\",\n    \"key_11\": \"string\"\n  },\n  \"object\": \"shipping_contact\",\n  \"deleted\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6e5c9124-26e3-4bd5-a6eb-7a4fef6766c3",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts",
-                    ":shipping_contacts_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "shipping_contacts_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "aafc6d4e-a9af-4c9b-8c98-31f5923891bc",
-              "name": "not found entity",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts",
-                    ":shipping_contacts_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "shipping_contacts_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2a9cb9c0-ce8f-4d39-9421-1452bbba435d",
-              "name": "parameter validation error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts",
-                    ":shipping_contacts_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "shipping_contacts_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The token does not exist.\",\n      \"param\": \"payment_method.token_id\",\n      \"code\": \"conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token\",\n      \"debug_message\": \"The token does not exist.\"\n    }\n  ],\n  \"log_id\": \"641b6d813cd9a50001515017\",\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8415f6c1-5197-4417-a079-ad593f39ccf6",
-              "name": "internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts",
-                    ":shipping_contacts_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "shipping_contacts_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a7d14eac-8182-437a-9dd9-e55d8baae88b",
-          "name": "Update shipping contacts",
-          "request": {
-            "name": "Update shipping contacts",
-            "description": {
-              "content": "Update shipping contact that corresponds to a customer ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "customers",
-                ":id",
-                "shipping_contacts",
-                ":shipping_contacts_id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "shipping_contacts_id",
-                  "description": "(Required) identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "disabled": false,
-                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                "key": "X-Child-Company-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"phone\": \"<string>\",\n  \"receiver\": \"<string>\",\n  \"between_streets\": \"<string>\",\n  \"address\": {\n    \"street1\": \"<string>\",\n    \"street2\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"country\": \"<string>\",\n    \"residential\": \"<boolean>\"\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "3f645b16-d951-4bb3-b44b-61948fa2ecb7",
-              "name": "successful operation",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts",
-                    ":shipping_contacts_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "shipping_contacts_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"address\": {\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"address\": {\n    \"object\": \"shipping_address\",\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"parent_id\": \"string\",\n  \"default\": false,\n  \"id\": \"adr_1234567890\",\n  \"created_at\": 1675715413,\n  \"metadata\": {\n    \"key_0\": false,\n    \"key_1\": 1227,\n    \"key_2\": 4231.451192843601,\n    \"key_3\": 9460,\n    \"key_4\": 6490,\n    \"key_5\": 2994,\n    \"key_6\": 8753.959207447728,\n    \"key_7\": 9553,\n    \"key_8\": \"string\",\n    \"key_9\": 2017.2146761524446,\n    \"key_10\": \"string\",\n    \"key_11\": \"string\"\n  },\n  \"object\": \"shipping_contact\",\n  \"deleted\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6afac786-0287-450f-ba22-2619959c5fcd",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts",
-                    ":shipping_contacts_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "shipping_contacts_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"address\": {\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "82d412e4-d15b-4231-887c-45676f8b40ee",
-              "name": "not found entity",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts",
-                    ":shipping_contacts_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "shipping_contacts_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"address\": {\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "490897b6-a340-4403-a78d-e690942c1aef",
-              "name": "parameter validation error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts",
-                    ":shipping_contacts_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "shipping_contacts_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"address\": {\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The token does not exist.\",\n      \"param\": \"payment_method.token_id\",\n      \"code\": \"conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token\",\n      \"debug_message\": \"The token does not exist.\"\n    }\n  ],\n  \"log_id\": \"641b6d813cd9a50001515017\",\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "940fcb6c-0cd8-4815-a21d-b76637be3c18",
-              "name": "internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "customers",
-                    ":id",
-                    "shipping_contacts",
-                    ":shipping_contacts_id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "shipping_contacts_id",
-                      "description": "(Required) identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"phone\": \"+525511223344\",\n  \"receiver\": \"Marvin Fuller\",\n  \"between_streets\": \"Ackerman Crescent\",\n  \"address\": {\n    \"street1\": \"Nuevo Leon 254\",\n    \"street2\": \"Departamento 404\",\n    \"postal_code\": \"06100\",\n    \"city\": \"Ciudad de Mexico\",\n    \"state\": \"Ciudad de Mexico\",\n    \"country\": \"MX\",\n    \"residential\": true\n  },\n  \"parent_id\": \"<string>\",\n  \"default\": \"<boolean>\",\n  \"deleted\": \"<boolean>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "269ef24b-5d55-41f2-a7e8-82ed31e34f0e",
+              "createdAt": "2026-10-21T20:31:30.000Z",
+              "updatedAt": "2026-10-21T20:31:30.000Z",
+              "uid": "35240-269ef24b-5d55-41f2-a7e8-82ed31e34f0e"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "1d7ab742-9718-4ed1-b300-56cf60d4600b",
+          "createdAt": "2026-10-21T20:31:30.000Z",
+          "updatedAt": "2026-10-21T20:31:30.000Z",
+          "uid": "35240-1d7ab742-9718-4ed1-b300-56cf60d4600b"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.conekta.io",
-      "key": "baseUrl"
+      "id": "e4005386-8e9e-4902-89cf-dc1117c6f4bf",
+      "createdAt": "2026-10-21T20:31:30.000Z",
+      "updatedAt": "2026-10-21T20:31:30.000Z",
+      "uid": "35240-e4005386-8e9e-4902-89cf-dc1117c6f4bf"
     }
   ],
   "auth": {
@@ -1397,17 +1342,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "a58846af-3231-462a-8f8c-5fa6764992bc",
-    "name": "Conekta Antifraud Shipping Contacts API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.conekta.io"
     }
-  }
+  ]
 }

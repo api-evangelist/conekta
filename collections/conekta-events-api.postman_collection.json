@@ -1,1024 +1,1068 @@
 {
+  "info": {
+    "_postman_id": "467c9ea6-b155-48d0-ba61-24f0fdd5e22a",
+    "name": "Conekta Events API",
+    "description": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:28:50.000Z",
+    "updatedAt": "2026-10-21T20:28:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-467c9ea6-b155-48d0-ba61-24f0fdd5e22a"
+  },
   "item": [
     {
-      "id": "eae149a8-2044-4e3d-9c72-cfa8160b4388",
-      "name": "Events",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "events",
       "item": [
         {
-          "id": "df6f0e4a-f249-4ab8-9a0f-d935b50d9259",
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get Event",
+              "id": "c657ea6b-0b5e-485c-a39c-6ffc7df1e17c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/events/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c1507302-5d30-4734-99ce-e6357aa3b9da",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "description": "Returns a single event"
+              },
+              "response": [
+                {
+                  "id": "8c639f21-5593-40d8-9ea0-e7ae3785e670",
+                  "name": "successful",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                        "key": "X-Child-Company-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The date and time that the response was sent",
+                        "type": "text/plain"
+                      },
+                      "key": "Date",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The format of the response body",
+                        "type": "text/plain"
+                      },
+                      "key": "Content-Type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The length of the response body in bytes",
+                        "type": "text/plain"
+                      },
+                      "key": "Content-Length",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The type of connection used to transfer the response",
+                        "type": "text/plain"
+                      },
+                      "key": "Connection",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Conekta-Media-Type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"created_at\": \"<long>\",\n  \"data\": {\n    \"magna_b5\": -14400611.752914563,\n    \"Ut269\": -94234692.37098195,\n    \"eiusmod2\": 63988933.887791574,\n    \"adipisicing05e\": \"Ut consectetur exercitation irure non\",\n    \"dolor013\": 63071428.846802086,\n    \"eiusmod_bda\": 15823334,\n    \"minim_69\": -45559711.35924177,\n    \"elit_0c6\": true,\n    \"velit_\": \"cillum\",\n    \"nisi_60e\": -75742367,\n    \"consequatb3\": -17152781.82149826,\n    \"aliqua_245\": -3891851.414622009,\n    \"eab\": true,\n    \"voluptate__ad\": \"voluptate Lorem in eiusmod\",\n    \"incididunt98\": true,\n    \"esse4fc\": -89535263.78408943,\n    \"consequatf6f\": \"sed eiusmod\",\n    \"sed_9\": 9340147.787366733,\n    \"nulla2\": 52888352,\n    \"tempor_f91\": true,\n    \"anim_90\": -96364225.71262039,\n    \"officia_47\": \"cupidatat\",\n    \"dolore_4\": 6174909.720174864,\n    \"quis_53\": 48216602,\n    \"nulladd\": -51824850,\n    \"eu_163\": \"voluptate id\",\n    \"dolore20\": 35828852.16534281,\n    \"infd\": 7531505,\n    \"commodo_5\": -21506781.839505777,\n    \"nostrude\": true,\n    \"sint_bd_\": \"dolore culpa velit\",\n    \"occaecata\": \"Lorem in aliquip sint cillum\",\n    \"laboris_8\": -24858427.95946996,\n    \"sunt_299\": -8278006,\n    \"esse4\": 27703335.548119992,\n    \"do_49f\": -66211562.65368336,\n    \"cupidatat94\": 99746377.77492234,\n    \"ullamco_\": 50586833.02031657,\n    \"in99\": \"fugiat qui\",\n    \"minim52\": -48897349,\n    \"ullamco8f\": \"nisi\",\n    \"sunt_0b\": true,\n    \"consectetur3\": \"aliquip\",\n    \"labore_29\": \"Lorem consectetur laborum sit sint\",\n    \"minim8\": true,\n    \"dolorec\": 46203936,\n    \"mollit_1c0\": false,\n    \"velitc8b\": 97308364.29171017,\n    \"adipisicing3b7\": false,\n    \"sed_b3\": 75796405,\n    \"dof\": 90519897.34536964,\n    \"eu57\": \"veniam mollit dolore\",\n    \"ullamcoc\": false,\n    \"mollit_292\": \"reprehenderit dolor nulla proident\",\n    \"enim6a8\": true,\n    \"quis3f2\": false,\n    \"quis63\": \"quis\",\n    \"cupidatat_d\": 89813498,\n    \"et_3c_\": -86649343.63224597,\n    \"voluptate4\": \"irure pariatur\",\n    \"incididunt61\": \"dolor sed Ut proident eiusmod\",\n    \"eiusmod_a1\": false,\n    \"tempora\": -75549102,\n    \"deserunt8\": 79410489.23310125,\n    \"dolor0_5\": -83481452.85590602,\n    \"Lorem_b\": -49969958.165809646,\n    \"laboris__0\": -68083746.03911206,\n    \"utb_\": true,\n    \"velit_50f\": -56115377.35323906,\n    \"eiusmod648\": 4800585,\n    \"aliquip8cb\": -8761200.154967114,\n    \"do_4c2\": false,\n    \"ut3\": 65458130.34133282,\n    \"aute_d\": 85370124.47115934,\n    \"ea_ffd\": \"dolore dolor\",\n    \"quis9b0\": \"mollit nisi\",\n    \"enim_07\": \"dolor adipisicing cupidatat mollit\",\n    \"labore_37\": false,\n    \"pariatur820\": -1660456,\n    \"eiusmod_c7\": 36202659,\n    \"nullaed\": 96418744,\n    \"Duis2f\": \"dolor sint dolor velit\",\n    \"tempor1\": \"Excepteur dolor\",\n    \"irure_693\": \"voluptate sit dolor\",\n    \"dolorf52\": 24558122,\n    \"eiusmod_69\": \"labore\"\n  },\n  \"id\": \"<string>\",\n  \"livemode\": \"<boolean>\",\n  \"object\": \"<string>\",\n  \"type\": \"<string>\",\n  \"webhook_logs\": [\n    {\n      \"failed_attempts\": \"<integer>\",\n      \"id\": \"<string>\",\n      \"last_attempted_at\": \"<integer>\",\n      \"last_http_response_status\": \"<integer>\",\n      \"object\": \"<string>\",\n      \"response_data\": {\n        \"nisi_6a\": false,\n        \"elit1\": true,\n        \"culpaf80\": 54100124,\n        \"officia0\": false,\n        \"ut__\": false,\n        \"veniam_f3e\": 96513662,\n        \"Ut23\": \"voluptate\",\n        \"pariatur1\": 81046170,\n        \"officia6\": \"Ut qu\",\n        \"dolor_f00\": false,\n        \"utf\": -51155059.66943186,\n        \"occaecat70\": \"mollit dolor minim deserunt\",\n        \"dolor7\": \"ut non\",\n        \"est_c8\": true,\n        \"ut_b\": \"occaecat dolor eu\",\n        \"aute_2\": false,\n        \"laborum___\": \"ut occ\",\n        \"dolora_\": -87815010.5751573,\n        \"velit_\": -757683.3910499066,\n        \"ea_ca\": -48449854.56784814,\n        \"ut_ef\": -65071137,\n        \"in_8\": true,\n        \"sit0a\": -44183801,\n        \"suntc5c\": -54602141.12975441,\n        \"nostrud_161\": \"amet sunt aute adipisicing\",\n        \"ada\": 53138173.0865888,\n        \"proidentcf6\": -61435417.79458252,\n        \"consectetur07f\": false,\n        \"aute_c2\": false,\n        \"ad7\": 78039390.67219439,\n        \"nisi_f4d\": \"nulla sit ut dolore\",\n        \"aliqua_03e\": false,\n        \"dolore_9c\": true,\n        \"in_99\": true,\n        \"Duis50\": true,\n        \"animb\": \"non in ullamco elit\",\n        \"Duisd2\": 96119635.06393108,\n        \"deserunt_88c\": 17620375.31044118,\n        \"consectetur_91b\": 6509952,\n        \"enim50\": true,\n        \"cupidatat1\": 49323925,\n        \"labore6ec\": -33448983,\n        \"sit0\": 21375281.444896117,\n        \"utd2\": false,\n        \"commodod\": true,\n        \"proident_7d\": 97382369.57835159,\n        \"id_ab\": 60445528\n      },\n      \"url\": \"<uri>\"\n    },\n    {\n      \"failed_attempts\": \"<integer>\",\n      \"id\": \"<string>\",\n      \"last_attempted_at\": \"<integer>\",\n      \"last_http_response_status\": \"<integer>\",\n      \"object\": \"<string>\",\n      \"response_data\": {\n        \"velit_f\": \"laboris ullamco proident Duis sit\",\n        \"consectetur_4\": -40225711.65586588,\n        \"minim_b\": -90713979,\n        \"Duis__94\": 24884065,\n        \"ipsum_4\": false,\n        \"in_2\": 21975251,\n        \"in_8a9\": 17857867.94846271,\n        \"anim_58e\": 84559323.7336812,\n        \"sint_27\": -57038468.55088712,\n        \"est_6\": -52149617.942374386,\n        \"eu_5\": true,\n        \"est0\": 54863163.00415996,\n        \"reprehenderited\": true,\n        \"culpa_34c\": 81833355.03251693,\n        \"esse_d\": \"tempor Duis\",\n        \"inad\": \"voluptate in exercitation e\",\n        \"eu_7f4\": 50508804,\n        \"elit_b\": 20809843,\n        \"sunt2\": 21359950,\n        \"ut__\": \"officia\",\n        \"minim_1ff\": false,\n        \"velitb\": -16740252.357303828,\n        \"in_ba\": -74656203,\n        \"ea59\": 21242156.6145577,\n        \"non_00\": false,\n        \"esse_1a\": 42686794,\n        \"exercitation_e4\": true,\n        \"velit1\": \"reprehenderit enim\",\n        \"eiusmod6\": false,\n        \"velitc2\": false,\n        \"sed__2\": -1076510,\n        \"dolore__a\": -86519590,\n        \"esse_b\": -22660331.5974724,\n        \"veniam_2\": -80191655,\n        \"sed5b\": -12069907,\n        \"culpa_a\": 3640300.899163857,\n        \"dolore_ed6\": -84415476,\n        \"enim03\": 15708056.966369092,\n        \"adipisicingb0\": -57568199.06402639,\n        \"culpa53\": true,\n        \"eae2\": false,\n        \"proident_47\": -29750729,\n        \"magna_62a\": false,\n        \"in_6\": 13305915.280986413,\n        \"velit19b\": false,\n        \"labore8\": 95313911,\n        \"Ut_0\": \"et\",\n        \"exercitation_2\": false,\n        \"amet22e\": \"est in minim\",\n        \"nostruda\": \"sunt voluptate commodo culpa consequat\",\n        \"cupidatat28f\": \"magna eu\",\n        \"temporc\": true,\n        \"doa7d\": false,\n        \"enim2\": 49907929.603075504,\n        \"nostrud_61\": true,\n        \"ea_60\": -83823384.22122885,\n        \"qui__b\": \"reprehenderit\",\n        \"sint_063\": \"ut Ut\",\n        \"ullamco6d\": -50958805,\n        \"et_a\": 78323081.51915285,\n        \"dolore0\": -85336648.39677413,\n        \"Lorem1b9\": true,\n        \"quis_abe\": \"deserunt est ut velit\",\n        \"in__a4\": true,\n        \"nulla846\": -55961411.01740706,\n        \"ipsum6f\": -7571183,\n        \"occaecat_ce\": \"nostrud Ut aliqua ut Duis\",\n        \"non_cae\": -12047271.629969105,\n        \"nulla_6\": -24637828.155536473,\n        \"cillum_4\": true,\n        \"enim3\": true,\n        \"consequat2_3\": 44291702.157714576\n      },\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"webhook_status\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:28:50.000Z",
+                  "updatedAt": "2026-10-21T20:28:50.000Z",
+                  "uid": "35240-8c639f21-5593-40d8-9ea0-e7ae3785e670"
+                },
+                {
+                  "id": "168c42cc-c733-4747-baeb-f0dc63b3ec01",
+                  "name": "authentication error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                        "key": "X-Child-Company-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:28:50.000Z",
+                  "updatedAt": "2026-10-21T20:28:50.000Z",
+                  "uid": "35240-168c42cc-c733-4747-baeb-f0dc63b3ec01"
+                },
+                {
+                  "id": "10ac2657-4eca-4ac2-9779-15e06e88521c",
+                  "name": "not found entity",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                        "key": "X-Child-Company-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:28:50.000Z",
+                  "updatedAt": "2026-10-21T20:28:50.000Z",
+                  "uid": "35240-10ac2657-4eca-4ac2-9779-15e06e88521c"
+                },
+                {
+                  "id": "3e0afcfa-f423-47dd-ad26-893a4a51228c",
+                  "name": "internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                        "key": "X-Child-Company-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:28:50.000Z",
+                  "updatedAt": "2026-10-21T20:28:50.000Z",
+                  "uid": "35240-3e0afcfa-f423-47dd-ad26-893a4a51228c"
+                }
+              ],
+              "createdAt": "2026-10-21T20:28:50.000Z",
+              "updatedAt": "2026-10-21T20:28:50.000Z",
+              "uid": "35240-c657ea6b-0b5e-485c-a39c-6ffc7df1e17c"
+            }
+          ],
+          "id": "47a73106-b799-4468-9448-ab5e1fcefa41",
+          "createdAt": "2026-10-21T20:28:50.000Z",
+          "updatedAt": "2026-10-21T20:28:50.000Z",
+          "uid": "35240-47a73106-b799-4468-9448-ab5e1fcefa41"
+        },
+        {
+          "name": "{event_id}",
+          "item": [
+            {
+              "name": "resend",
+              "item": [
+                {
+                  "name": "Resend Event",
+                  "id": "00213556-434d-46f9-9a3f-b66459a2f96f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"webhooks_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/events/:event_id/resend",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "events",
+                        ":event_id",
+                        "resend"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3a867ccb-6804-42b8-a7bf-9f585d939eb7",
+                          "key": "event_id",
+                          "value": "<string>",
+                          "description": "(Required) event identifier"
+                        }
+                      ]
+                    },
+                    "description": "Resend event to selected webhooks"
+                  },
+                  "response": [
+                    {
+                      "id": "9300c1f8-a0e1-423c-ad61-3347bca9721e",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"webhooks_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/events/:event_id/resend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            ":event_id",
+                            "resend"
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"failed_attempts\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"last_attempted_at\": \"<integer>\",\n  \"last_http_response_status\": \"<integer>\",\n  \"response_data\": {\n    \"dolor0ec\": 53148464.90383339,\n    \"commodo_04\": -59755827,\n    \"minim5\": -68641839.39317372,\n    \"minim23\": 24424006,\n    \"ex_10\": -83697034,\n    \"incididunt_6fb\": 97684696,\n    \"incididunt_8\": 3706239.5543958694,\n    \"ullamco_0a\": true,\n    \"etdaa\": true,\n    \"doc6\": 43962310.0496763,\n    \"sit_7d2\": false,\n    \"cillum_3c3\": false,\n    \"dolore81\": -4201086,\n    \"Excepteur_d7\": false,\n    \"dolor15\": \"veniam consectetur officia est\",\n    \"quis1_6\": false,\n    \"laborum8a\": \"deserunt elit\",\n    \"consectetur_2\": false,\n    \"dolore_d\": \"ut irure veniam\",\n    \"dolore_6f2\": false,\n    \"cupidatat_f8\": 19073845.003579006,\n    \"fugiat_a9\": \"aliquip occaecat eu Excepteur\",\n    \"Excepteur_249\": \"esse\",\n    \"incididunt_c0\": -45884071.747334376\n  },\n  \"url\": \"<uri>\"\n}",
+                      "createdAt": "2026-10-21T20:28:50.000Z",
+                      "updatedAt": "2026-10-21T20:28:50.000Z",
+                      "uid": "35240-9300c1f8-a0e1-423c-ad61-3347bca9721e"
+                    },
+                    {
+                      "id": "770a88b1-15fc-43a6-b9a2-9927a6985ee6",
+                      "name": "authentication error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"webhooks_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/events/:event_id/resend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            ":event_id",
+                            "resend"
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:28:50.000Z",
+                      "updatedAt": "2026-10-21T20:28:50.000Z",
+                      "uid": "35240-770a88b1-15fc-43a6-b9a2-9927a6985ee6"
+                    },
+                    {
+                      "id": "c4b479a4-9ce7-4592-8b48-673938929d97",
+                      "name": "not found entity",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"webhooks_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/events/:event_id/resend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            ":event_id",
+                            "resend"
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:28:50.000Z",
+                      "updatedAt": "2026-10-21T20:28:50.000Z",
+                      "uid": "35240-c4b479a4-9ce7-4592-8b48-673938929d97"
+                    },
+                    {
+                      "id": "80a33a80-6530-4e8a-b679-fd57242c32b6",
+                      "name": "internal server error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"webhooks_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/events/:event_id/resend",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "events",
+                            ":event_id",
+                            "resend"
+                          ],
+                          "variable": [
+                            {
+                              "key": "event_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:28:50.000Z",
+                      "updatedAt": "2026-10-21T20:28:50.000Z",
+                      "uid": "35240-80a33a80-6530-4e8a-b679-fd57242c32b6"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:28:50.000Z",
+                  "updatedAt": "2026-10-21T20:28:50.000Z",
+                  "uid": "35240-00213556-434d-46f9-9a3f-b66459a2f96f"
+                }
+              ],
+              "id": "ebcbcb24-0f7f-4572-addd-0ed7e8ed6358",
+              "createdAt": "2026-10-21T20:28:50.000Z",
+              "updatedAt": "2026-10-21T20:28:50.000Z",
+              "uid": "35240-ebcbcb24-0f7f-4572-addd-0ed7e8ed6358"
+            }
+          ],
+          "id": "6a6cd934-7dd3-44ab-bd0b-0b18775560a3",
+          "createdAt": "2026-10-21T20:28:50.000Z",
+          "updatedAt": "2026-10-21T20:28:50.000Z",
+          "uid": "35240-6a6cd934-7dd3-44ab-bd0b-0b18775560a3"
+        },
+        {
           "name": "Get list of Events",
+          "id": "6d6ee404-ae2d-4f27-8176-f59aac37fb64",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Get list of Events",
-            "description": {},
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "description": "Use for knowing which language to use",
+                "key": "Accept-Language",
+                "value": "es"
+              },
+              {
+                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                "key": "X-Child-Company-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.conekta-v2.2.0+json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/events?limit=20&search=<string>&next=<string>&previous=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "events"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
+                  "description": "The numbers of items to return, the maximum value is 250",
                   "key": "limit",
-                  "value": "20",
-                  "description": "The numbers of items to return, the maximum value is 250"
+                  "value": "20"
                 },
                 {
-                  "disabled": false,
+                  "description": "General order search, e.g. by mail, reference etc.",
                   "key": "search",
-                  "value": "<string>",
-                  "description": "General order search, e.g. by mail, reference etc."
+                  "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "next page",
                   "key": "next",
-                  "value": "<string>",
-                  "description": "next page"
+                  "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "previous page",
                   "key": "previous",
-                  "value": "<string>",
-                  "description": "previous page"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "disabled": false,
-                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                "key": "X-Child-Company-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
+                  "value": "<string>"
                 }
               ]
             }
           },
           "response": [
             {
-              "id": "36efe7ee-a1f8-4aa5-90bf-43f5d1c9116b",
+              "id": "f9b7436c-742c-414b-8a52-18bb7e823157",
               "name": "successful",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "events"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    },
-                    {
-                      "key": "search",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "previous",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Use for knowing which language to use",
                     "key": "Accept-Language",
                     "value": "es"
                   },
                   {
-                    "disabled": false,
                     "description": "In the case of a holding company, the company id of the child company to which will process the request.",
                     "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
+                    "value": "<string>"
                   },
                   {
                     "key": "Accept",
                     "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/events?limit=20&search=<string>&next=<string>&previous=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "events"
+                  ],
+                  "query": [
+                    {
+                      "description": "The numbers of items to return, the maximum value is 250",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "General order search, e.g. by mail, reference etc.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "next page",
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "previous page",
+                      "key": "previous",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                },
+                {
                   "disabled": false,
-                  "description": "The date and time that the response was sent",
+                  "description": {
+                    "content": "The date and time that the response was sent",
+                    "type": "text/plain"
+                  },
                   "key": "Date",
-                  "value": "Fri, 03 Feb 2023 16:57:48 GMT"
+                  "value": "<string>"
                 },
                 {
                   "disabled": false,
-                  "description": "The length of the response body in bytes",
-                  "key": "Content-Length",
-                  "value": "2737"
-                },
-                {
-                  "disabled": false,
-                  "description": "The type of connection used to transfer the response",
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "disabled": false,
-                  "key": "Conekta-Media-Type",
-                  "value": "conekta-v2.2.0; format=application/json",
-                  "description": ""
-                },
-                {
+                  "description": {
+                    "content": "The format of the response body",
+                    "type": "text/plain"
+                  },
                   "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The length of the response body in bytes",
+                    "type": "text/plain"
+                  },
+                  "key": "Content-Length",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "The type of connection used to transfer the response",
+                    "type": "text/plain"
+                  },
+                  "key": "Connection",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "Conekta-Media-Type",
+                  "value": "<string>"
                 }
               ],
-              "body": "{\n  \"has_more\": false,\n  \"object\": \"list\",\n  \"next_page_url\": \"https://api.conekta.io/resources?limit=10&next=chrg_1\",\n  \"previous_page_url\": \"https://api.conekta.io/resources?limit=10&previous=chrg_1\",\n  \"data\": [\n    {\n      \"created_at\": 1661445644,\n      \"data\": {\n        \"action\": \"ping\",\n        \"livemode\": true\n      },\n      \"id\": \"6307a60c41de27127515a575\",\n      \"livemode\": true,\n      \"object\": \"event\",\n      \"type\": \"webhook_ping\",\n      \"webhook_logs\": [\n        {\n          \"failed_attempts\": 10,\n          \"id\": \"webhl_2svd2sh6GbqzyWBNZ\",\n          \"last_attempted_at\": 1669651274,\n          \"last_http_response_status\": 200,\n          \"object\": \"webhook_log\",\n          \"response_data\": {\n            \"amount\": 3000,\n            \"payable\": true\n          },\n          \"url\": \"https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval\"\n        },\n        {\n          \"failed_attempts\": 10,\n          \"id\": \"webhl_2svd2sh6GbqzyWBNZ\",\n          \"last_attempted_at\": 1669651274,\n          \"last_http_response_status\": 200,\n          \"object\": \"webhook_log\",\n          \"response_data\": {\n            \"amount\": 3000,\n            \"payable\": true\n          },\n          \"url\": \"https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval\"\n        }\n      ],\n      \"webhook_status\": \"successful\"\n    },\n    {\n      \"created_at\": 1661445644,\n      \"data\": {\n        \"action\": \"ping\",\n        \"livemode\": true\n      },\n      \"id\": \"6307a60c41de27127515a575\",\n      \"livemode\": true,\n      \"object\": \"event\",\n      \"type\": \"webhook_ping\",\n      \"webhook_logs\": [\n        {\n          \"failed_attempts\": 10,\n          \"id\": \"webhl_2svd2sh6GbqzyWBNZ\",\n          \"last_attempted_at\": 1669651274,\n          \"last_http_response_status\": 200,\n          \"object\": \"webhook_log\",\n          \"response_data\": {\n            \"amount\": 3000,\n            \"payable\": true\n          },\n          \"url\": \"https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval\"\n        },\n        {\n          \"failed_attempts\": 10,\n          \"id\": \"webhl_2svd2sh6GbqzyWBNZ\",\n          \"last_attempted_at\": 1669651274,\n          \"last_http_response_status\": 200,\n          \"object\": \"webhook_log\",\n          \"response_data\": {\n            \"amount\": 3000,\n            \"payable\": true\n          },\n          \"url\": \"https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval\"\n        }\n      ],\n      \"webhook_status\": \"successful\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"has_more\": \"<boolean>\",\n  \"object\": \"<string>\",\n  \"next_page_url\": \"<string>\",\n  \"previous_page_url\": \"<string>\",\n  \"data\": [\n    {\n      \"created_at\": \"<long>\",\n      \"data\": {\n        \"utacf\": false,\n        \"reprehenderit_ec\": -47728485.00933353,\n        \"ut_a\": -4570637,\n        \"aute_48d\": 52727842.92674708,\n        \"in5_0\": false\n      },\n      \"id\": \"<string>\",\n      \"livemode\": \"<boolean>\",\n      \"object\": \"<string>\",\n      \"type\": \"<string>\",\n      \"webhook_logs\": [\n        {\n          \"failed_attempts\": \"<integer>\",\n          \"id\": \"<string>\",\n          \"last_attempted_at\": \"<integer>\",\n          \"last_http_response_status\": \"<integer>\",\n          \"object\": \"<string>\",\n          \"response_data\": {\n            \"consequat_ba\": \"q\",\n            \"enim_151\": 87337310,\n            \"in8f\": false,\n            \"nisi2e\": -80547740,\n            \"none_\": 59178643,\n            \"anim_959\": true,\n            \"ex_6e\": 51098127,\n            \"elitef\": \"voluptate do ipsum nisi Ut\",\n            \"magna1\": \"proident dolor\",\n            \"sedbf4\": 48888851.93799588,\n            \"nullaf9\": \"Excepteur ad sunt\",\n            \"adipisicing_66_\": true,\n            \"est_cc\": 92492529,\n            \"consecteturd51\": true,\n            \"adipisicinge21\": 98423648.44324228,\n            \"ad_52b\": 74111881,\n            \"sed_30\": -96625916.0740146,\n            \"ind_\": false,\n            \"quis8\": -98007059.41321452,\n            \"amet_8\": 91072199.02984193,\n            \"incididunt_e\": 78653153,\n            \"voluptate_0\": -93203420,\n            \"et_d6\": \"eu consectetur quis et culpa\",\n            \"sint_a\": false,\n            \"pariatur_0\": -58439433.60912238,\n            \"ut2a2\": true,\n            \"proidentc\": -14560041,\n            \"Utce\": 28481645.13497688,\n            \"qui_9\": true,\n            \"in7\": \"Excepteur ad\",\n            \"nullaf3\": 90002185,\n            \"veniam_7\": false,\n            \"quis_6\": false,\n            \"dolor_dda\": 33216547.58226487,\n            \"dolor2\": \"nulla officia aliqua minim sunt\",\n            \"cupidatat_6\": 78415479,\n            \"do_e8\": false,\n            \"mollit9b1\": false,\n            \"ad651\": 54180295,\n            \"adipisicing__c7\": -34189986,\n            \"dolor_3\": true,\n            \"incididunt_3\": -27553270,\n            \"occaecat_ba8\": false,\n            \"quis3\": 6507730.287569836,\n            \"dolor8b2\": 93126056.00127655,\n            \"dolor_0_6\": \"ea amet ad laborum\",\n            \"qui_f\": false,\n            \"mollit_e4\": -98225361.11730567,\n            \"laboris9\": \"ad cillum do\",\n            \"labore_d8a\": true,\n            \"minim_e2\": \"irure do occaecat ut\",\n            \"commodo4cf\": 63500498,\n            \"nostrud_6\": false,\n            \"enim2\": \"fugiat non exercitation\",\n            \"Excepteur_88e\": \"incididunt reprehenderit\",\n            \"officia_1d\": 18134316.65937659,\n            \"proident7\": 93729405,\n            \"sit_5\": true,\n            \"proident97\": -32870773.65002662,\n            \"nulla_f3f\": 6849445,\n            \"ea50\": \"esse veniam cillum\",\n            \"deserunt_8f\": -98255754,\n            \"et_e_\": true,\n            \"sede98\": true,\n            \"labore_e5_\": \"sunt consectetur veniam Ut proident\",\n            \"inc\": 82128680.78124586,\n            \"Ut_4\": 54111727.552633435,\n            \"sit_e6\": 32531606,\n            \"dolor_e\": 29704217,\n            \"velit1ad\": 3427561,\n            \"aute_7\": false,\n            \"veniam_13\": \"dolor do e\",\n            \"commodo2\": -82175895.57099286,\n            \"estc\": -91543178.25622953,\n            \"nisibc7\": false,\n            \"nostrud7\": -18144352,\n            \"consequat103\": true,\n            \"veniame\": -34868432,\n            \"non__9b\": 24400825.766935557\n          },\n          \"url\": \"<uri>\"\n        },\n        {\n          \"failed_attempts\": \"<integer>\",\n          \"id\": \"<string>\",\n          \"last_attempted_at\": \"<integer>\",\n          \"last_http_response_status\": \"<integer>\",\n          \"object\": \"<string>\",\n          \"response_data\": {\n            \"mollita\": 92948640.65913063,\n            \"occaecat_3\": 41017892.95925516,\n            \"tempor_b\": \"Ut\",\n            \"laborise2\": 43472127,\n            \"aute_28_\": 4932724.640005052,\n            \"Utb40\": true,\n            \"fugiat720\": -53311784.42281806,\n            \"ut_e\": false,\n            \"eu0_\": false,\n            \"dolore_ee\": -98902643,\n            \"consequat_684\": 2438859.3013359457,\n            \"ullamco_c3f\": -43050829.07909301,\n            \"anim0_\": -97658740.0145763,\n            \"sed_7c\": true,\n            \"velit8d\": true,\n            \"culpa784\": -69563539,\n            \"nond0\": false,\n            \"dolore_412\": -67917350,\n            \"veniam_a\": true,\n            \"et_5\": true,\n            \"esse_b11\": 91151175,\n            \"in3\": true,\n            \"proident5cf\": 98338955.90676197,\n            \"commodo_37\": 75911035.23138058,\n            \"sunte8e\": 70110859,\n            \"labore__7\": false,\n            \"deserunt1\": false,\n            \"enim50\": 25470262,\n            \"qui_8a\": \"ipsum deserunt cillum\",\n            \"culpa_74\": true,\n            \"commodo5\": \"culpa consequat ut id esse\",\n            \"quic8e\": false,\n            \"enima0\": -93122933,\n            \"elit2dc\": true,\n            \"nisi_8ff\": -47514390.15141941,\n            \"enim_2b\": 76471729,\n            \"consequat_edb\": -90300545.43444112,\n            \"eu_083\": 63377874,\n            \"non_e\": -46984983.464800134,\n            \"non9\": -36836685.70792298,\n            \"do__c4\": \"magna pariatur labore v\",\n            \"nulla_02\": \"Excepteur sit sunt commodo\",\n            \"nonf8\": -19392435.659110814,\n            \"quid6\": \"nisi ea sed dolor Ut\",\n            \"nulla33\": 91200546,\n            \"sedbee\": \"voluptate aliquip labore\",\n            \"non_5d\": -34977154.71819647,\n            \"reprehenderit44\": 68808290,\n            \"ad_50\": \"commodo\",\n            \"ipsumb8_\": 58459948,\n            \"esse3_\": 92599407.49650508,\n            \"eaa\": 11821285,\n            \"laborumd\": -61375901.51682159,\n            \"dolor_06\": true,\n            \"pariatur_f9\": -33106368.491825536\n          },\n          \"url\": \"<uri>\"\n        }\n      ],\n      \"webhook_status\": \"<string>\"\n    },\n    {\n      \"created_at\": \"<long>\",\n      \"data\": {\n        \"ut_8a\": -98359702.06904738,\n        \"ea_f7\": true,\n        \"fugiata4\": -98368290,\n        \"non4a\": \"quis tempor cillum qui\",\n        \"sunt_b\": \"qui deserunt pariatur\",\n        \"est_01\": -92480318.76887009,\n        \"exercitation_160\": true,\n        \"magnad79\": 95372714,\n        \"reprehenderit_1\": \"est ut elit minim\",\n        \"mollit9e8\": \"labore est adipisicing\",\n        \"velit_63\": 58818541,\n        \"enimb1\": 33068501,\n        \"dolore_2\": -43994397.712683275,\n        \"nostrud197\": \"ut laborum\",\n        \"incididunt_7e2\": true,\n        \"cillum_28a\": -92627727.72410429\n      },\n      \"id\": \"<string>\",\n      \"livemode\": \"<boolean>\",\n      \"object\": \"<string>\",\n      \"type\": \"<string>\",\n      \"webhook_logs\": [\n        {\n          \"failed_attempts\": \"<integer>\",\n          \"id\": \"<string>\",\n          \"last_attempted_at\": \"<integer>\",\n          \"last_http_response_status\": \"<integer>\",\n          \"object\": \"<string>\",\n          \"response_data\": {\n            \"irure71\": 37523471,\n            \"labore_4\": \"enim\",\n            \"eiusmod8\": \"velit id exercitation qui\",\n            \"veniamc6a\": -69248563,\n            \"sunt18\": false,\n            \"dolore_f0\": 6478266.335538089,\n            \"reprehenderit_2c\": 14937404,\n            \"magna_701\": -61235122.667098455,\n            \"dolor0b7\": \"pariatur ipsum fugiat sunt Ut\",\n            \"minim28_\": -60824722.754377805,\n            \"enim683\": true,\n            \"reprehenderit_8\": 13101545.32058014,\n            \"pariatur_d\": 41514356,\n            \"nostrud_e\": -96839690.55136509,\n            \"id_c\": 83071399.00612155,\n            \"exc\": -22833918.329778686,\n            \"autec6\": \"proident nisi\",\n            \"reprehenderit56\": true,\n            \"Duis5\": 29683042.775887176,\n            \"none\": -37834436,\n            \"ipsum_27\": -20773421,\n            \"dolorec43\": -77118738.5311876,\n            \"cillum4\": false,\n            \"enim_ba\": -92815563.11706218,\n            \"fugiat84\": -92613989,\n            \"utd\": -81596149.94202498,\n            \"fugiat_63e\": false,\n            \"sint7d3\": 91000438.19556937,\n            \"in5\": \"est\",\n            \"ut5\": -49405378.253685005,\n            \"dolore6\": -1725801.4508488625,\n            \"eud\": \"reprehenderit proident aliqua consectetur\",\n            \"ipsum_b\": \"ad\",\n            \"Duis_0\": \"cillum veniam\",\n            \"est74b\": -68357783,\n            \"ut_cc9\": false,\n            \"aliquip5bb\": 52547246.89170006,\n            \"cupidatatb\": true,\n            \"dolore_d1\": \"proident dolore et id\",\n            \"qui1b\": -87611039,\n            \"Excepteurae0\": false,\n            \"et_4f\": true,\n            \"veniam490\": \"sed laborum adipisicing\",\n            \"veniamb\": -17518629.784660295,\n            \"eu8c7\": true,\n            \"nisi3fe\": 48186540.82817036,\n            \"enim_c3\": false,\n            \"adipisicing_55\": 90683283,\n            \"incididunt_f\": true,\n            \"est03\": \"in ea culpa\",\n            \"consectetur09d\": 4151349,\n            \"amet9d7\": \"anim aliqua ut\",\n            \"voluptate7\": true,\n            \"velit_4\": false,\n            \"non4c\": false,\n            \"tempor_1\": 11601761.322049022,\n            \"enim81\": true,\n            \"exd\": \"anim aute\",\n            \"voluptate_7d\": -4357551.935253933,\n            \"ut_42\": 70022865,\n            \"incididunt7f\": 8805607.857457519,\n            \"officia_8\": \"aute fugiat esse\",\n            \"euda\": -87768518,\n            \"consequat_b7\": \"d\"\n          },\n          \"url\": \"<uri>\"\n        },\n        {\n          \"failed_attempts\": \"<integer>\",\n          \"id\": \"<string>\",\n          \"last_attempted_at\": \"<integer>\",\n          \"last_http_response_status\": \"<integer>\",\n          \"object\": \"<string>\",\n          \"response_data\": {\n            \"in_0\": 65580818,\n            \"inae\": 70234217.06766394,\n            \"dolore8\": -74087388.12447152,\n            \"veniamb_4\": \"ex Duis\",\n            \"est7f1\": \"Duis ullamco\",\n            \"dolor_760\": false,\n            \"commodo_73\": 17950026.84690395,\n            \"cupidatat_\": \"consectetur enim tempor\",\n            \"Duis365\": false,\n            \"fugiat6\": 34409079.78132367,\n            \"esse_913\": true,\n            \"eiusmod_ad2\": -35037279.67010333,\n            \"ut3c\": true,\n            \"cillum4c\": -38260813,\n            \"ipsuma2\": \"ea ut quis\",\n            \"ead2\": -21595088,\n            \"aliquip__7e\": \"irure ad ut id\",\n            \"dolore3\": \"nisi sint fug\",\n            \"nisi8\": \"adipisicing\",\n            \"qui1\": -21058637,\n            \"minim5\": \"dolor i\",\n            \"Duisd9\": -80806913.03045425,\n            \"sint_f33\": -11858016.588011548,\n            \"pariatur_5\": -84743792.64838338\n          },\n          \"url\": \"<uri>\"\n        }\n      ],\n      \"webhook_status\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-21T20:28:50.000Z",
+              "updatedAt": "2026-10-21T20:28:50.000Z",
+              "uid": "35240-f9b7436c-742c-414b-8a52-18bb7e823157"
             },
             {
-              "id": "bf01e184-f290-4ab2-8fee-900c108c7c3c",
+              "id": "f0e69a58-8660-47f5-972b-d53a8d97d8f1",
               "name": "authentication error",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "events"
-                  ],
+                  "raw": "{{baseUrl}}/events?limit=20&search=<string>&next=<string>&previous=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "events"
+                  ],
                   "query": [
                     {
+                      "description": "The numbers of items to return, the maximum value is 250",
                       "key": "limit",
                       "value": "20"
                     },
                     {
+                      "description": "General order search, e.g. by mail, reference etc.",
                       "key": "search",
                       "value": "<string>"
                     },
                     {
+                      "description": "next page",
                       "key": "next",
                       "value": "<string>"
                     },
                     {
+                      "description": "previous page",
                       "key": "previous",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/vnd.conekta-v2.2.0+json"
                 }
               ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:28:50.000Z",
+              "updatedAt": "2026-10-21T20:28:50.000Z",
+              "uid": "35240-f0e69a58-8660-47f5-972b-d53a8d97d8f1"
             },
             {
-              "id": "287954d9-5f12-4fa8-8cda-af5cfe7101e9",
+              "id": "e173166a-5e4c-44d2-b28f-b6bdb1cbcc87",
               "name": "internal server error",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
+                    "key": "X-Child-Company-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "events"
-                  ],
+                  "raw": "{{baseUrl}}/events?limit=20&search=<string>&next=<string>&previous=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
+                  "path": [
+                    "events"
+                  ],
                   "query": [
                     {
+                      "description": "The numbers of items to return, the maximum value is 250",
                       "key": "limit",
                       "value": "20"
                     },
                     {
+                      "description": "General order search, e.g. by mail, reference etc.",
                       "key": "search",
                       "value": "<string>"
                     },
                     {
+                      "description": "next page",
                       "key": "next",
                       "value": "<string>"
                     },
                     {
+                      "description": "previous page",
                       "key": "previous",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "31ab1f97-6ef1-48bb-9a60-4e9c6319e4ed",
-          "name": "Get Event",
-          "request": {
-            "name": "Get Event",
-            "description": {
-              "content": "Returns a single event",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "events",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "disabled": false,
-                "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                "key": "X-Child-Company-Id",
-                "value": "<string>"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "c5cb1a55-b1aa-46c2-9493-220fa6e595c4",
-              "name": "successful",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "events",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
                   ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "disabled": false,
-                  "description": "The date and time that the response was sent",
-                  "key": "Date",
-                  "value": "Fri, 03 Feb 2023 16:57:48 GMT"
-                },
-                {
-                  "disabled": false,
-                  "description": "The length of the response body in bytes",
-                  "key": "Content-Length",
-                  "value": "2737"
-                },
-                {
-                  "disabled": false,
-                  "description": "The type of connection used to transfer the response",
-                  "key": "Connection",
-                  "value": "keep-alive"
-                },
-                {
-                  "disabled": false,
-                  "key": "Conekta-Media-Type",
-                  "value": "conekta-v2.2.0; format=application/json",
-                  "description": ""
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"created_at\": 1661445644,\n  \"data\": {\n    \"action\": \"ping\",\n    \"livemode\": true\n  },\n  \"id\": \"6307a60c41de27127515a575\",\n  \"livemode\": true,\n  \"object\": \"event\",\n  \"type\": \"webhook_ping\",\n  \"webhook_logs\": [\n    {\n      \"failed_attempts\": 10,\n      \"id\": \"webhl_2svd2sh6GbqzyWBNZ\",\n      \"last_attempted_at\": 1669651274,\n      \"last_http_response_status\": 200,\n      \"object\": \"webhook_log\",\n      \"response_data\": {\n        \"amount\": 3000,\n        \"payable\": true\n      },\n      \"url\": \"https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval\"\n    },\n    {\n      \"failed_attempts\": 10,\n      \"id\": \"webhl_2svd2sh6GbqzyWBNZ\",\n      \"last_attempted_at\": 1669651274,\n      \"last_http_response_status\": 200,\n      \"object\": \"webhook_log\",\n      \"response_data\": {\n        \"amount\": 3000,\n        \"payable\": true\n      },\n      \"url\": \"https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval\"\n    }\n  ],\n  \"webhook_status\": \"successful\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "596a6133-0e76-4cbf-bb0a-d349bc9fd72e",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "events",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "6f6e390f-b7bb-409d-9a76-d2ece1783364",
-              "name": "not found entity",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "events",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "f18f1670-6350-4425-b7c9-db337f0456ae",
-              "name": "internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "events",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "In the case of a holding company, the company id of the child company to which will process the request.",
-                    "key": "X-Child-Company-Id",
-                    "value": "6441b6376b60c3a638da80af"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "250d9a2f-ffaf-48cd-9ba5-ef69f5d78784",
-          "name": "Resend Event",
-          "request": {
-            "name": "Resend Event",
-            "description": {
-              "content": "Resend event to selected webhooks",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "events",
-                ":event_id",
-                "resend"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "event_id",
-                  "description": "(Required) event identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"webhooks_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "331beb4d-e62b-4ace-b788-32b212f9ea73",
-              "name": "successful operation",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "events",
-                    ":event_id",
-                    "resend"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "event_id",
-                      "description": "(Required) event identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"webhooks_ids\": [\n    \"6307a60c41de27127515a575\",\n    \"6307a60c41de27127515a571\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"failed_attempts\": 6,\n  \"id\": \"webhl_2svd2sh6GbqzyWBNZ\",\n  \"last_attempted_at\": 1684265970,\n  \"last_http_response_status\": 405,\n  \"response_data\": {},\n  \"url\": \"https://username:password@mockoon.conekta.io/payments-api/cash/merchant_approval\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1de6eae7-1ce9-45f9-9163-ad0b6c79892c",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "events",
-                    ":event_id",
-                    "resend"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "event_id",
-                      "description": "(Required) event identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"webhooks_ids\": [\n    \"6307a60c41de27127515a575\",\n    \"6307a60c41de27127515a571\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d4a2d510-3804-4479-b187-e0770cdd322a",
-              "name": "not found entity",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "events",
-                    ":event_id",
-                    "resend"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "event_id",
-                      "description": "(Required) event identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"webhooks_ids\": [\n    \"6307a60c41de27127515a575\",\n    \"6307a60c41de27127515a571\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "755cddcc-c308-40d2-bbef-981f9b6f0e77",
-              "name": "internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "events",
-                    ":event_id",
-                    "resend"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "event_id",
-                      "description": "(Required) event identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"webhooks_ids\": [\n    \"6307a60c41de27127515a575\",\n    \"6307a60c41de27127515a571\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
                 }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/vnd.conekta-v2.2.0+json"
                 }
               ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:28:50.000Z",
+              "updatedAt": "2026-10-21T20:28:50.000Z",
+              "uid": "35240-e173166a-5e4c-44d2-b28f-b6bdb1cbcc87"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T20:28:50.000Z",
+          "updatedAt": "2026-10-21T20:28:50.000Z",
+          "uid": "35240-6d6ee404-ae2d-4f27-8176-f59aac37fb64"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.conekta.io",
-      "key": "baseUrl"
+      "id": "88c28d77-7a12-40d5-838e-990ea0e82536",
+      "createdAt": "2026-10-21T20:28:50.000Z",
+      "updatedAt": "2026-10-21T20:28:50.000Z",
+      "uid": "35240-88c28d77-7a12-40d5-838e-990ea0e82536"
     }
   ],
   "auth": {
@@ -1026,17 +1070,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "92c966c9-036b-4290-94bb-73a76a0bac9e",
-    "name": "Conekta Antifraud Events API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.conekta.io"
     }
-  }
+  ]
 }

@@ -1,60 +1,595 @@
 {
+  "info": {
+    "_postman_id": "06aa9669-0078-4ce8-a3b9-87062c2b062a",
+    "name": "Conekta Payout Orders API",
+    "description": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T20:29:30.000Z",
+    "updatedAt": "2026-10-21T20:29:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-06aa9669-0078-4ce8-a3b9-87062c2b062a"
+  },
   "item": [
     {
-      "id": "d43cb4ad-66f4-4bbe-b61b-1967c43cfd8e",
-      "name": "Payout Orders",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "payout_orders",
       "item": [
         {
-          "id": "4db57d13-d868-456e-9547-f41bfbf20bff",
-          "name": "Get a list of Payout Orders",
-          "request": {
-            "name": "Get a list of Payout Orders",
-            "description": {
-              "content": "Get Payout order details in the form of a list",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "payout_orders"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{id}",
+          "item": [
+            {
+              "name": "cancel",
+              "item": [
                 {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "20",
-                  "description": "The numbers of items to return, the maximum value is 250"
-                },
-                {
-                  "disabled": false,
-                  "key": "search",
-                  "value": "<string>",
-                  "description": "General order search, e.g. by mail, reference etc."
-                },
-                {
-                  "disabled": false,
-                  "key": "next",
-                  "value": "<string>",
-                  "description": "next page"
-                },
-                {
-                  "disabled": false,
-                  "key": "previous",
-                  "value": "<string>",
-                  "description": "previous page"
+                  "name": "Cancel Payout Order",
+                  "id": "f10f38d7-3c78-4130-a454-2291823c6017",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payout_orders/:id/cancel",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payout_orders",
+                        ":id",
+                        "cancel"
+                      ],
+                      "variable": [
+                        {
+                          "id": "78e7b73f-fe0f-4016-b728-61795cef98ae",
+                          "key": "id",
+                          "value": "<string>",
+                          "description": "(Required) Identifier of the resource"
+                        }
+                      ]
+                    },
+                    "description": "Cancel a payout Order resource that corresponds to a payout order ID."
+                  },
+                  "response": [
+                    {
+                      "id": "fb22b8e5-53dc-4030-ae0c-4fd22692b2d4",
+                      "name": "successful operation",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/payout_orders/:id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "payout_orders",
+                            ":id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"allowed_payout_methods\": [\n    \"<string>\"\n  ],\n  \"amount\": \"<long>\",\n  \"created_at\": \"<long>\",\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"id\": \"<string>\",\n    \"customer_custom_reference\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"corporate\": false,\n    \"object\": \"<string>\"\n  },\n  \"expires_at\": \"<long>\",\n  \"id\": \"<string>\",\n  \"livemode\": \"<boolean>\",\n  \"object\": \"<string>\",\n  \"payouts\": [\n    {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\",\n      \"id\": \"<string>\",\n      \"livemode\": \"<boolean>\",\n      \"object\": \"<string>\",\n      \"expires_at\": \"<long>\",\n      \"payout_order_id\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\",\n      \"id\": \"<string>\",\n      \"livemode\": \"<boolean>\",\n      \"object\": \"<string>\",\n      \"expires_at\": \"<long>\",\n      \"payout_order_id\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"reason\": \"<string>\",\n  \"status\": \"<string>\",\n  \"updated_at\": \"<long>\",\n  \"metadata\": {\n    \"aliqua9\": \"elit aliqua voluptate\",\n    \"eu_4_\": \"veniam aute\",\n    \"essed\": 56456100,\n    \"ut_e\": 84945803,\n    \"aute3\": 78659007.6397084,\n    \"in__\": \"Excepteur do voluptate\",\n    \"commodo_3f5\": \"esse e\",\n    \"pariatur_92\": -32278477.586299866,\n    \"anime3\": 59419937,\n    \"proident124\": -53913800.615775555,\n    \"voluptate5b\": -26774434,\n    \"adipisicing_89\": -89458406,\n    \"Lorem_4a1\": 43994905.3819395,\n    \"sintd7\": true,\n    \"minim_6a\": \"veniam adipisicing do\",\n    \"et550\": true,\n    \"labore_1a2\": -41289148.21905498,\n    \"anim_8\": true,\n    \"sunt_de\": \"sunt officia\",\n    \"tempor_c4d\": 71636218,\n    \"sint010\": 91964519,\n    \"labore2\": 84238037.10422337,\n    \"minim_2a8\": -63136460.34684339,\n    \"laboris_5_4\": true,\n    \"officiaa8\": -63180455,\n    \"auteb5\": -57813774.56039047,\n    \"eiusmod_c\": -58724198.642896794,\n    \"ipsum_f3d\": -44497622,\n    \"ad3\": \"consectetur non\",\n    \"ut_eb\": \"esse proident Duis\",\n    \"veniam_39c\": -89179381.98273271,\n    \"etfd4\": -63381071,\n    \"minim4_1\": true,\n    \"dolor0\": true,\n    \"minimc\": true,\n    \"incididunta\": false,\n    \"ex9e1\": 77376220.47697198,\n    \"ad_347\": -31154200,\n    \"occaecatc93\": -47622878.87547716,\n    \"ex6f7\": false,\n    \"sede0f\": -64241839.54667333,\n    \"nisi_8\": 38813040.18994442,\n    \"aliqua__a1\": true,\n    \"cupidatat3\": \"sed nostrud est ea\",\n    \"consectetur_5\": \"consequat\",\n    \"dolore_ea\": 67086615.414844036,\n    \"essea\": 68613697.4168745,\n    \"ad_d\": true,\n    \"sit_549\": -97029474.05755973,\n    \"quis_ba4\": 32088929.72011763,\n    \"et_5_6\": \"nulla\",\n    \"aliquipb\": \"ad minim\",\n    \"laborum_1_d\": true,\n    \"laboris_8\": -7446590,\n    \"commodo_9a3\": 23298042.92986028,\n    \"laborum_f\": -79479038,\n    \"deserunt0\": -75778837.97157857,\n    \"laboris_a\": true,\n    \"mollitb_\": 61536850.26270655,\n    \"in_c\": 2899825,\n    \"proidented\": -28697226.32050094,\n    \"consequat9\": \"Excepteur esse qui culpa in\"\n  }\n}",
+                      "createdAt": "2026-10-21T20:29:30.000Z",
+                      "updatedAt": "2026-10-21T20:29:30.000Z",
+                      "uid": "35240-fb22b8e5-53dc-4030-ae0c-4fd22692b2d4"
+                    },
+                    {
+                      "id": "d25e6863-e261-4fc9-a3c2-2c60849ed06d",
+                      "name": "authentication error",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/payout_orders/:id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "payout_orders",
+                            ":id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:29:30.000Z",
+                      "updatedAt": "2026-10-21T20:29:30.000Z",
+                      "uid": "35240-d25e6863-e261-4fc9-a3c2-2c60849ed06d"
+                    },
+                    {
+                      "id": "9f204842-7de7-4373-b94e-e6e246f48345",
+                      "name": "not found entity",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/payout_orders/:id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "payout_orders",
+                            ":id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:29:30.000Z",
+                      "updatedAt": "2026-10-21T20:29:30.000Z",
+                      "uid": "35240-9f204842-7de7-4373-b94e-e6e246f48345"
+                    },
+                    {
+                      "id": "4221b02f-4a45-422b-b96a-fb4bf2d2ee68",
+                      "name": "internal server error",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Use for knowing which language to use",
+                            "key": "Accept-Language",
+                            "value": "es"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.conekta-v2.2.0+json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/payout_orders/:id/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "payout_orders",
+                            ":id",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "key": "id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/vnd.conekta-v2.2.0+json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                      "createdAt": "2026-10-21T20:29:30.000Z",
+                      "updatedAt": "2026-10-21T20:29:30.000Z",
+                      "uid": "35240-4221b02f-4a45-422b-b96a-fb4bf2d2ee68"
+                    }
+                  ],
+                  "createdAt": "2026-10-21T20:29:30.000Z",
+                  "updatedAt": "2026-10-21T20:29:30.000Z",
+                  "uid": "35240-f10f38d7-3c78-4130-a454-2291823c6017"
                 }
               ],
-              "variable": []
+              "id": "14ac1e63-edce-42c2-a28d-37aeb27a906f",
+              "createdAt": "2026-10-21T20:29:30.000Z",
+              "updatedAt": "2026-10-21T20:29:30.000Z",
+              "uid": "35240-14ac1e63-edce-42c2-a28d-37aeb27a906f"
             },
+            {
+              "name": "Get Payout Order",
+              "id": "4547ffdc-ecb2-4cc7-bf6e-a31cc19c220f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payout_orders/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout_orders",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e0f7e79f-e0b8-4aca-94e2-30eb8e63aa09",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Identifier of the resource"
+                    }
+                  ]
+                },
+                "description": "Gets a payout Order resource that corresponds to a payout order ID."
+              },
+              "response": [
+                {
+                  "id": "81413599-0d77-4418-9c04-953c453ed950",
+                  "name": "successful operation",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payout_orders/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payout_orders",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"allowed_payout_methods\": [\n    \"<string>\"\n  ],\n  \"amount\": \"<long>\",\n  \"created_at\": \"<long>\",\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"id\": \"<string>\",\n    \"customer_custom_reference\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"corporate\": false,\n    \"object\": \"<string>\"\n  },\n  \"expires_at\": \"<long>\",\n  \"id\": \"<string>\",\n  \"livemode\": \"<boolean>\",\n  \"object\": \"<string>\",\n  \"payouts\": [\n    {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\",\n      \"id\": \"<string>\",\n      \"livemode\": \"<boolean>\",\n      \"object\": \"<string>\",\n      \"expires_at\": \"<long>\",\n      \"payout_order_id\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\",\n      \"id\": \"<string>\",\n      \"livemode\": \"<boolean>\",\n      \"object\": \"<string>\",\n      \"expires_at\": \"<long>\",\n      \"payout_order_id\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"reason\": \"<string>\",\n  \"status\": \"<string>\",\n  \"updated_at\": \"<long>\",\n  \"metadata\": {\n    \"aliqua9\": \"elit aliqua voluptate\",\n    \"eu_4_\": \"veniam aute\",\n    \"essed\": 56456100,\n    \"ut_e\": 84945803,\n    \"aute3\": 78659007.6397084,\n    \"in__\": \"Excepteur do voluptate\",\n    \"commodo_3f5\": \"esse e\",\n    \"pariatur_92\": -32278477.586299866,\n    \"anime3\": 59419937,\n    \"proident124\": -53913800.615775555,\n    \"voluptate5b\": -26774434,\n    \"adipisicing_89\": -89458406,\n    \"Lorem_4a1\": 43994905.3819395,\n    \"sintd7\": true,\n    \"minim_6a\": \"veniam adipisicing do\",\n    \"et550\": true,\n    \"labore_1a2\": -41289148.21905498,\n    \"anim_8\": true,\n    \"sunt_de\": \"sunt officia\",\n    \"tempor_c4d\": 71636218,\n    \"sint010\": 91964519,\n    \"labore2\": 84238037.10422337,\n    \"minim_2a8\": -63136460.34684339,\n    \"laboris_5_4\": true,\n    \"officiaa8\": -63180455,\n    \"auteb5\": -57813774.56039047,\n    \"eiusmod_c\": -58724198.642896794,\n    \"ipsum_f3d\": -44497622,\n    \"ad3\": \"consectetur non\",\n    \"ut_eb\": \"esse proident Duis\",\n    \"veniam_39c\": -89179381.98273271,\n    \"etfd4\": -63381071,\n    \"minim4_1\": true,\n    \"dolor0\": true,\n    \"minimc\": true,\n    \"incididunta\": false,\n    \"ex9e1\": 77376220.47697198,\n    \"ad_347\": -31154200,\n    \"occaecatc93\": -47622878.87547716,\n    \"ex6f7\": false,\n    \"sede0f\": -64241839.54667333,\n    \"nisi_8\": 38813040.18994442,\n    \"aliqua__a1\": true,\n    \"cupidatat3\": \"sed nostrud est ea\",\n    \"consectetur_5\": \"consequat\",\n    \"dolore_ea\": 67086615.414844036,\n    \"essea\": 68613697.4168745,\n    \"ad_d\": true,\n    \"sit_549\": -97029474.05755973,\n    \"quis_ba4\": 32088929.72011763,\n    \"et_5_6\": \"nulla\",\n    \"aliquipb\": \"ad minim\",\n    \"laborum_1_d\": true,\n    \"laboris_8\": -7446590,\n    \"commodo_9a3\": 23298042.92986028,\n    \"laborum_f\": -79479038,\n    \"deserunt0\": -75778837.97157857,\n    \"laboris_a\": true,\n    \"mollitb_\": 61536850.26270655,\n    \"in_c\": 2899825,\n    \"proidented\": -28697226.32050094,\n    \"consequat9\": \"Excepteur esse qui culpa in\"\n  }\n}",
+                  "createdAt": "2026-10-21T20:29:30.000Z",
+                  "updatedAt": "2026-10-21T20:29:30.000Z",
+                  "uid": "35240-81413599-0d77-4418-9c04-953c453ed950"
+                },
+                {
+                  "id": "8f24cac5-3bde-45e8-98e9-3ce46f7dea9c",
+                  "name": "authentication error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payout_orders/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payout_orders",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:29:30.000Z",
+                  "updatedAt": "2026-10-21T20:29:30.000Z",
+                  "uid": "35240-8f24cac5-3bde-45e8-98e9-3ce46f7dea9c"
+                },
+                {
+                  "id": "453c69b5-137f-4ccb-a3f0-ebce1bdc8b0a",
+                  "name": "not found entity",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payout_orders/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payout_orders",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:29:30.000Z",
+                  "updatedAt": "2026-10-21T20:29:30.000Z",
+                  "uid": "35240-453c69b5-137f-4ccb-a3f0-ebce1bdc8b0a"
+                },
+                {
+                  "id": "54e786c0-06cc-4f7d-9af3-33a7b394d2a7",
+                  "name": "internal server error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Use for knowing which language to use",
+                        "key": "Accept-Language",
+                        "value": "es"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.conekta-v2.2.0+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/payout_orders/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "payout_orders",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.conekta-v2.2.0+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+                  "createdAt": "2026-10-21T20:29:30.000Z",
+                  "updatedAt": "2026-10-21T20:29:30.000Z",
+                  "uid": "35240-54e786c0-06cc-4f7d-9af3-33a7b394d2a7"
+                }
+              ],
+              "createdAt": "2026-10-21T20:29:30.000Z",
+              "updatedAt": "2026-10-21T20:29:30.000Z",
+              "uid": "35240-4547ffdc-ecb2-4cc7-bf6e-a31cc19c220f"
+            }
+          ],
+          "id": "18b974e9-683a-4fbf-8330-7fff4f05d1e7",
+          "createdAt": "2026-10-21T20:29:30.000Z",
+          "updatedAt": "2026-10-21T20:29:30.000Z",
+          "uid": "35240-18b974e9-683a-4fbf-8330-7fff4f05d1e7"
+        },
+        {
+          "name": "Get a list of Payout Orders",
+          "id": "75f76f95-05dc-4ab1-9735-e8e9d8deb68a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
             "header": [
               {
-                "disabled": false,
                 "description": "Use for knowing which language to use",
                 "key": "Accept-Language",
                 "value": "es"
@@ -64,244 +599,272 @@
                 "value": "application/vnd.conekta-v2.2.0+json"
               }
             ],
-            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/payout_orders?limit=20&search=<string>&next=<string>&previous=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout_orders"
+              ],
+              "query": [
+                {
+                  "description": "The numbers of items to return, the maximum value is 250",
+                  "key": "limit",
+                  "value": "20"
+                },
+                {
+                  "description": "General order search, e.g. by mail, reference etc.",
+                  "key": "search",
+                  "value": "<string>"
+                },
+                {
+                  "description": "next page",
+                  "key": "next",
+                  "value": "<string>"
+                },
+                {
+                  "description": "previous page",
+                  "key": "previous",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Get Payout order details in the form of a list"
+          },
+          "response": [
+            {
+              "id": "957389da-aaec-4810-a283-ef44f0a30ede",
+              "name": "successful operation",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payout_orders?limit=20&search=<string>&next=<string>&previous=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout_orders"
+                  ],
+                  "query": [
+                    {
+                      "description": "The numbers of items to return, the maximum value is 250",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "General order search, e.g. by mail, reference etc.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "next page",
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "previous page",
+                      "key": "previous",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"has_more\": \"<boolean>\",\n  \"object\": \"<string>\",\n  \"data\": [\n    {\n      \"allowed_payout_methods\": [\n        \"<string>\"\n      ],\n      \"amount\": \"<long>\",\n      \"created_at\": \"<long>\",\n      \"currency\": \"MXN\",\n      \"customer_info\": {\n        \"id\": \"<string>\",\n        \"customer_custom_reference\": \"<string>\",\n        \"name\": \"<string>\",\n        \"email\": \"<email>\",\n        \"phone\": \"<string>\",\n        \"corporate\": false,\n        \"object\": \"<string>\"\n      },\n      \"expires_at\": \"<long>\",\n      \"id\": \"<string>\",\n      \"livemode\": \"<boolean>\",\n      \"object\": \"<string>\",\n      \"payouts\": [\n        {\n          \"amount\": \"<integer>\",\n          \"currency\": \"<string>\",\n          \"id\": \"<string>\",\n          \"livemode\": \"<boolean>\",\n          \"object\": \"<string>\",\n          \"expires_at\": \"<long>\",\n          \"payout_order_id\": \"<string>\",\n          \"status\": \"<string>\"\n        },\n        {\n          \"amount\": \"<integer>\",\n          \"currency\": \"<string>\",\n          \"id\": \"<string>\",\n          \"livemode\": \"<boolean>\",\n          \"object\": \"<string>\",\n          \"expires_at\": \"<long>\",\n          \"payout_order_id\": \"<string>\",\n          \"status\": \"<string>\"\n        }\n      ],\n      \"reason\": \"<string>\",\n      \"status\": \"<string>\",\n      \"updated_at\": \"<long>\",\n      \"metadata\": {\n        \"elit_37\": \"ut in ea ad\",\n        \"deserunt_1e\": 39926564.38848728,\n        \"ut__\": -43330888.13875698,\n        \"cupidatat_5e\": -83419228,\n        \"exercitation__a6\": 9351805,\n        \"veniam_b_1\": false,\n        \"aute_c_\": 89359070.20395648,\n        \"estd\": -54364312,\n        \"commodo_0\": -89206839,\n        \"fugiat_b\": \"non ad\",\n        \"essef8f\": 76803446.7487162,\n        \"ad_9\": 21713538,\n        \"magna_c\": 94255280,\n        \"in_22\": 13455498.045759246,\n        \"occaecat_87e\": \"ea pariatur\",\n        \"esse_82\": -83897441,\n        \"veniamd\": false,\n        \"eiusmod188\": 66452506,\n        \"velit_d87\": \"pariatur ut\",\n        \"nulla__c\": -78106118,\n        \"seda0a\": 83133122.78456664,\n        \"ex_53\": true,\n        \"est05\": -60730906.30595255,\n        \"Excepteur8\": \"fugiat oc\",\n        \"ipsum_ee_\": \"s\",\n        \"enim_bd\": -55789134,\n        \"exercitation_86e\": \"in ea est voluptate\",\n        \"cillum_80\": \"in\",\n        \"amet_c78\": false,\n        \"fugiat_3_\": -78959576,\n        \"aute56\": -45255299.906735934,\n        \"adipisicing1c\": 15825275,\n        \"elit_f7\": false,\n        \"incididunt_3\": -31853541,\n        \"nulla6\": -61375015,\n        \"cillum_9\": -75452082.18527573,\n        \"minim_fd0\": true,\n        \"in_4\": true\n      }\n    },\n    {\n      \"allowed_payout_methods\": [\n        \"<string>\"\n      ],\n      \"amount\": \"<long>\",\n      \"created_at\": \"<long>\",\n      \"currency\": \"MXN\",\n      \"customer_info\": {\n        \"id\": \"<string>\",\n        \"customer_custom_reference\": \"<string>\",\n        \"name\": \"<string>\",\n        \"email\": \"<email>\",\n        \"phone\": \"<string>\",\n        \"corporate\": false,\n        \"object\": \"<string>\"\n      },\n      \"expires_at\": \"<long>\",\n      \"id\": \"<string>\",\n      \"livemode\": \"<boolean>\",\n      \"object\": \"<string>\",\n      \"payouts\": [\n        {\n          \"amount\": \"<integer>\",\n          \"currency\": \"<string>\",\n          \"id\": \"<string>\",\n          \"livemode\": \"<boolean>\",\n          \"object\": \"<string>\",\n          \"expires_at\": \"<long>\",\n          \"payout_order_id\": \"<string>\",\n          \"status\": \"<string>\"\n        },\n        {\n          \"amount\": \"<integer>\",\n          \"currency\": \"<string>\",\n          \"id\": \"<string>\",\n          \"livemode\": \"<boolean>\",\n          \"object\": \"<string>\",\n          \"expires_at\": \"<long>\",\n          \"payout_order_id\": \"<string>\",\n          \"status\": \"<string>\"\n        }\n      ],\n      \"reason\": \"<string>\",\n      \"status\": \"<string>\",\n      \"updated_at\": \"<long>\",\n      \"metadata\": {\n        \"enim_a2_\": -34570820,\n        \"veniam44\": 73526646,\n        \"doloreb\": 88490238.17540297,\n        \"animb46\": true,\n        \"ullamco_c\": 32046738.161190107,\n        \"in_03\": false,\n        \"fugiatdf1\": \"qui enim nulla\",\n        \"nulla79\": \"nisi exercitation qui culpa\",\n        \"Excepteur_0a3\": -97326017,\n        \"dolor9e5\": 94976035.465754,\n        \"eiusmod0_0\": false,\n        \"nostrud_c\": true,\n        \"ullamco_7b\": 96280003.30977193,\n        \"eufa\": \"elit Excepteur laboris\",\n        \"irure_7b\": \"quis culpa\",\n        \"irureb\": false,\n        \"ea_5ba\": -32272416,\n        \"magna0_0\": \"dolor dolore mollit fugiat ea\",\n        \"Loremc\": true,\n        \"exb\": \"velit consectetur\",\n        \"Duisee\": \"ipsum incididunt E\",\n        \"irure_183\": 70802919,\n        \"eu_3d\": \"sit velit proident\",\n        \"anime\": -74271072,\n        \"irure22b\": \"id\",\n        \"quis_5\": \"ut in non\",\n        \"pariatur__58\": false,\n        \"sed_21\": -16061167.35397154,\n        \"consequat1d\": -12228820.499070019,\n        \"magnaf3\": 69879046,\n        \"commodo_4\": 47983617.773534924,\n        \"in134\": true,\n        \"enim67a\": -91241372.46233523,\n        \"irure_71b\": false,\n        \"labore4f\": 13008624.248110577,\n        \"dolorc31\": 11824277,\n        \"mollit_d09\": 91597921.76301703,\n        \"animfc\": \"in\",\n        \"laboris11\": \"ad ea do laborum\",\n        \"adipisicing_fd\": \"culpa enim Excep\",\n        \"dolore13\": -98016734.01066089,\n        \"sit_ce\": \"magna\",\n        \"proident_29d\": 97418494.01155078\n      }\n    }\n  ],\n  \"next_page_url\": \"<string>\",\n  \"previous_page_url\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:29:30.000Z",
+              "updatedAt": "2026-10-21T20:29:30.000Z",
+              "uid": "35240-957389da-aaec-4810-a283-ef44f0a30ede"
+            },
+            {
+              "id": "b3cf6ae8-2c52-4b6c-a093-3dbefadf9b50",
+              "name": "authentication error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payout_orders?limit=20&search=<string>&next=<string>&previous=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout_orders"
+                  ],
+                  "query": [
+                    {
+                      "description": "The numbers of items to return, the maximum value is 250",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "General order search, e.g. by mail, reference etc.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "next page",
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "previous page",
+                      "key": "previous",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:29:30.000Z",
+              "updatedAt": "2026-10-21T20:29:30.000Z",
+              "uid": "35240-b3cf6ae8-2c52-4b6c-a093-3dbefadf9b50"
+            },
+            {
+              "id": "7b6090aa-db00-40bd-99a1-2517b641706c",
+              "name": "internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Use for knowing which language to use",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/payout_orders?limit=20&search=<string>&next=<string>&previous=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout_orders"
+                  ],
+                  "query": [
+                    {
+                      "description": "The numbers of items to return, the maximum value is 250",
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "description": "General order search, e.g. by mail, reference etc.",
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "next page",
+                      "key": "next",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "previous page",
+                      "key": "previous",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.conekta-v2.2.0+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:29:30.000Z",
+              "updatedAt": "2026-10-21T20:29:30.000Z",
+              "uid": "35240-7b6090aa-db00-40bd-99a1-2517b641706c"
+            }
+          ],
+          "createdAt": "2026-10-21T20:29:30.000Z",
+          "updatedAt": "2026-10-21T20:29:30.000Z",
+          "uid": "35240-75f76f95-05dc-4ab1-9735-e8e9d8deb68a"
+        },
+        {
+          "name": "Create payout order",
+          "id": "b94e4613-7762-4878-a557-7fdec3306651",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
             "auth": {
               "type": "bearer",
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{bearerToken}}"
+                  "value": "{{bearerToken}}",
+                  "type": "string"
                 }
               ]
-            }
-          },
-          "response": [
-            {
-              "id": "07c1833c-6c68-476e-a093-db7c3d232800",
-              "name": "successful operation",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    },
-                    {
-                      "key": "search",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "previous",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"has_more\": false,\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"allowed_payout_methods\": [\n        \"cashout\"\n      ],\n      \"amount\": 100,\n      \"created_at\": 1677626837,\n      \"currency\": \"MXN\",\n      \"customer_info\": {\n        \"id\": \"cus_23874283647\",\n        \"customer_custom_reference\": \"custom_reference\",\n        \"name\": \"DevTest\",\n        \"email\": \"test@conekta.com\",\n        \"phone\": \"5522997233\",\n        \"corporate\": false,\n        \"object\": \"customer_info\"\n      },\n      \"expires_at\": 1677626837,\n      \"id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n      \"livemode\": true,\n      \"object\": \"payout_order\",\n      \"payouts\": [\n        {\n          \"amount\": 3000,\n          \"currency\": \"MXN\",\n          \"id\": \"payout_2vZwsRAhhGp2dFDJx\",\n          \"livemode\": true,\n          \"object\": \"payout\",\n          \"expires_at\": 1677626837,\n          \"payout_order_id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n          \"status\": \"open\"\n        },\n        {\n          \"amount\": 3000,\n          \"currency\": \"MXN\",\n          \"id\": \"payout_2vZwsRAhhGp2dFDJx\",\n          \"livemode\": true,\n          \"object\": \"payout\",\n          \"expires_at\": 1677626837,\n          \"payout_order_id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n          \"status\": \"open\"\n        }\n      ],\n      \"reason\": \"Payout order for the customer\",\n      \"status\": \"open\",\n      \"updated_at\": 1677626837,\n      \"metadata\": {\n        \"custom_client_id\": \"12345\"\n      }\n    },\n    {\n      \"allowed_payout_methods\": [\n        \"cashout\"\n      ],\n      \"amount\": 100,\n      \"created_at\": 1677626837,\n      \"currency\": \"MXN\",\n      \"customer_info\": {\n        \"id\": \"cus_23874283647\",\n        \"customer_custom_reference\": \"custom_reference\",\n        \"name\": \"DevTest\",\n        \"email\": \"test@conekta.com\",\n        \"phone\": \"5522997233\",\n        \"corporate\": false,\n        \"object\": \"customer_info\"\n      },\n      \"expires_at\": 1677626837,\n      \"id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n      \"livemode\": true,\n      \"object\": \"payout_order\",\n      \"payouts\": [\n        {\n          \"amount\": 3000,\n          \"currency\": \"MXN\",\n          \"id\": \"payout_2vZwsRAhhGp2dFDJx\",\n          \"livemode\": true,\n          \"object\": \"payout\",\n          \"expires_at\": 1677626837,\n          \"payout_order_id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n          \"status\": \"open\"\n        },\n        {\n          \"amount\": 3000,\n          \"currency\": \"MXN\",\n          \"id\": \"payout_2vZwsRAhhGp2dFDJx\",\n          \"livemode\": true,\n          \"object\": \"payout\",\n          \"expires_at\": 1677626837,\n          \"payout_order_id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n          \"status\": \"open\"\n        }\n      ],\n      \"reason\": \"Payout order for the customer\",\n      \"status\": \"open\",\n      \"updated_at\": 1677626837,\n      \"metadata\": {\n        \"custom_client_id\": \"12345\"\n      }\n    }\n  ],\n  \"next_page_url\": \"https://api.conekta.io/resources?limit=10&next=chrg_1\",\n  \"previous_page_url\": \"https://api.conekta.io/resources?limit=10&previous=chrg_1\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
             },
-            {
-              "id": "eb9d992c-1c2f-48f6-9203-91cded5d2485",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    },
-                    {
-                      "key": "search",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "previous",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d3f31b9f-4bc3-4928-8356-1fe3f6d35745",
-              "name": "internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "20"
-                    },
-                    {
-                      "key": "search",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "next",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "previous",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e29033ea-58ef-4411-b376-567e06ae2a11",
-          "name": "Create payout order",
-          "request": {
-            "name": "Create payout order",
-            "description": {
-              "content": "Create a new payout order.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "payout_orders"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
-                "disabled": false,
                 "description": "Use for knowing which language to use",
                 "key": "Accept-Language",
                 "value": "es"
@@ -315,970 +878,404 @@
                 "value": "application/vnd.conekta-v2.2.0+json"
               }
             ],
-            "method": "POST",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"allowed_payout_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"amount\": \"<long>\",\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"<string>\"\n  },\n  \"expires_at\": \"<long>\",\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"<string>\"\n    }\n  },\n  \"reason\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": true,\n    \"key_2\": false,\n    \"key_3\": 7948.69021866495,\n    \"key_4\": true,\n    \"key_5\": false,\n    \"key_6\": \"string\",\n    \"key_7\": \"string\",\n    \"key_8\": \"string\",\n    \"key_9\": \"string\",\n    \"key_10\": \"string\",\n    \"key_11\": \"string\",\n    \"key_12\": 7053,\n    \"key_13\": 43,\n    \"key_14\": 8960,\n    \"key_15\": 3276.218672762633,\n    \"key_16\": 7739.4865137341885,\n    \"key_17\": true,\n    \"key_18\": false,\n    \"key_19\": false,\n    \"key_20\": false,\n    \"key_21\": \"string\",\n    \"key_22\": 9611.74917150822,\n    \"key_23\": true,\n    \"key_24\": 5748,\n    \"key_25\": 6105,\n    \"key_26\": true,\n    \"key_27\": \"string\",\n    \"key_28\": \"string\",\n    \"key_29\": 8683,\n    \"key_30\": \"string\",\n    \"key_31\": true,\n    \"key_32\": \"string\",\n    \"key_33\": 2661.45216109225,\n    \"key_34\": 4347,\n    \"key_35\": 4744.700553499186,\n    \"key_36\": false,\n    \"key_37\": \"string\",\n    \"key_38\": \"string\",\n    \"key_39\": true,\n    \"key_40\": 1551,\n    \"key_41\": 775.25217886244,\n    \"key_42\": 365.4609174350409,\n    \"key_43\": \"string\",\n    \"key_44\": \"string\",\n    \"key_45\": 9680.26834353785,\n    \"key_46\": 490.9159024742682,\n    \"key_47\": \"string\",\n    \"key_48\": true,\n    \"key_49\": 4587.880391238627,\n    \"key_50\": 1069,\n    \"key_51\": \"string\",\n    \"key_52\": 8361,\n    \"key_53\": \"string\",\n    \"key_54\": false,\n    \"key_55\": \"string\",\n    \"key_56\": \"string\",\n    \"key_57\": 2432,\n    \"key_58\": 6950.202117935116,\n    \"key_59\": 1386,\n    \"key_60\": 2492,\n    \"key_61\": \"string\",\n    \"key_62\": 1427,\n    \"key_63\": \"string\",\n    \"key_64\": \"string\",\n    \"key_65\": 2946.107808807484,\n    \"key_66\": 4348.02091070021,\n    \"key_67\": false,\n    \"key_68\": 1481.3826637085158,\n    \"key_69\": 1895.6393389644454,\n    \"key_70\": false,\n    \"key_71\": 6127,\n    \"key_72\": 3311,\n    \"key_73\": false,\n    \"key_74\": 9587,\n    \"key_75\": 4391.892247542512,\n    \"key_76\": true,\n    \"key_77\": \"string\",\n    \"key_78\": 3373.6006308008837,\n    \"key_79\": 2346,\n    \"key_80\": 7057\n  }\n}",
+              "raw": "{\n  \"allowed_payout_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"amount\": \"<long>\",\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"<string>\"\n  },\n  \"expires_at\": \"<long>\",\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"<string>\"\n    }\n  },\n  \"reason\": \"<string>\",\n  \"metadata\": {\n    \"mollit_2\": 41503101,\n    \"in39_\": false,\n    \"eiusmod1\": 86314062.9378233,\n    \"dob\": -75713225.87632751,\n    \"dolor_1\": -16175461.327879995,\n    \"magna8b\": \"id elit eiusmod cillum proident\",\n    \"enim_4ff\": true,\n    \"nostrud_d\": \"ea qui minim in\",\n    \"enim_17\": -37409751,\n    \"et_8\": -3124060,\n    \"aliqua25d\": false,\n    \"elit_4f4\": 23750698,\n    \"sed17\": false,\n    \"laborum0e\": \"in qui cupidatat\",\n    \"fugiat2a\": true,\n    \"nisi_7d\": 90761695.80745259,\n    \"minim_f6\": 76071101.81043035,\n    \"laboris62\": -26884321,\n    \"fugiat_08\": -59338837,\n    \"cupidatat6f_\": 80097193,\n    \"dolore_2\": \"elit ea aliquip amet\",\n    \"velit6\": \"et nisi\",\n    \"pariatur_d2a\": -96749241,\n    \"enimec7\": -79936105,\n    \"do00f\": -22434246.228273615,\n    \"incididunt_e9\": \"Excepteur reprehenderit cillum ame\",\n    \"consequatec\": 22401460.056517035,\n    \"in_ca1\": false,\n    \"ut_4d8\": \"eu\",\n    \"adipisicing_07\": -65690295.170381315,\n    \"mollit18b\": false,\n    \"ea1ba\": 51811125.23175523,\n    \"culpa0\": -22895588,\n    \"aliquaa\": false,\n    \"fugiat_181\": \"ea sunt\",\n    \"sint3a5\": -29342761.607214436,\n    \"incididunt7\": true,\n    \"sunt_fc6\": -13058779.486835182,\n    \"sintb4e\": 4108295.5477404594,\n    \"tempor_14\": true,\n    \"quifb\": -77891109,\n    \"fugiat_f\": 30013469,\n    \"magna_721\": true,\n    \"do7_2\": true,\n    \"in_67\": \"id aute occaecat\",\n    \"sint_2\": 62758786.047023684,\n    \"nulla6__\": 3915525,\n    \"nisi_a_0\": false,\n    \"id_99_\": 72531321.55398515,\n    \"irure2_\": \"in voluptate occaecat nulla\",\n    \"non_3f8\": true,\n    \"adipisicingf1\": \"incididunt sunt\",\n    \"sunt31\": -48281837,\n    \"et_9\": true,\n    \"et_9c7\": false,\n    \"deserunt1f\": \"deserunt dolore esse ipsum do\",\n    \"est70\": true,\n    \"nisi_2a8\": -59534901.35528026,\n    \"in_e19\": \"esse enim mollit consequat aliquip\",\n    \"in56\": false,\n    \"ad_6\": -36025270.951117694,\n    \"Excepteur__1\": false,\n    \"dolor204\": -79501547.65888628,\n    \"consequat2\": -11130718,\n    \"esse_ae\": 36392632.40966663,\n    \"reprehenderit_36\": 23031552.618004665,\n    \"adipisicingcf\": \"sed et anim \",\n    \"velit_\": 92960982.79393527,\n    \"labore35\": true,\n    \"mollit_89\": \"proident ea eu\",\n    \"velitb3\": \"ut in\",\n    \"commodo9\": 46303333,\n    \"cillum86e\": false,\n    \"eiusmod_b\": 88988339,\n    \"deserunta\": false,\n    \"cupidatat996\": \"laboris officia aliqua magna\",\n    \"non2f\": -6179780,\n    \"esse38\": false,\n    \"quisca7\": -39974887.41426598,\n    \"doloree7\": 50041210,\n    \"enimb\": 51707948,\n    \"eiusmod4\": true,\n    \"velit3\": -33619346,\n    \"ullamcoac\": true,\n    \"culpa_c_\": \"Excepteur ut pariatur\",\n    \"incc3\": false\n  }\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payout_orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "payout_orders"
+              ]
+            },
+            "description": "Create a new payout order."
           },
           "response": [
             {
-              "id": "8794b158-54de-4821-9609-e8f152248f2b",
+              "id": "b8fe8718-0fb2-431a-856b-a5090c018b29",
               "name": "successful operation",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Use for knowing which language to use",
                     "key": "Accept-Language",
                     "value": "es"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"allowed_payout_methods\": [\n    \"cashout\"\n  ],\n  \"amount\": 100,\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"cus_23874283647\"\n  },\n  \"expires_at\": 1700000000,\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"cashout\"\n    }\n  },\n  \"reason\": \"Payout order for the customer\",\n  \"metadata\": {\n    \"custom_client_id\": \"12345\"\n  }\n}",
+                  "raw": "{\n  \"allowed_payout_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"amount\": \"<long>\",\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"<string>\"\n  },\n  \"expires_at\": \"<long>\",\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"<string>\"\n    }\n  },\n  \"reason\": \"<string>\",\n  \"metadata\": {\n    \"mollit_2\": 41503101,\n    \"in39_\": false,\n    \"eiusmod1\": 86314062.9378233,\n    \"dob\": -75713225.87632751,\n    \"dolor_1\": -16175461.327879995,\n    \"magna8b\": \"id elit eiusmod cillum proident\",\n    \"enim_4ff\": true,\n    \"nostrud_d\": \"ea qui minim in\",\n    \"enim_17\": -37409751,\n    \"et_8\": -3124060,\n    \"aliqua25d\": false,\n    \"elit_4f4\": 23750698,\n    \"sed17\": false,\n    \"laborum0e\": \"in qui cupidatat\",\n    \"fugiat2a\": true,\n    \"nisi_7d\": 90761695.80745259,\n    \"minim_f6\": 76071101.81043035,\n    \"laboris62\": -26884321,\n    \"fugiat_08\": -59338837,\n    \"cupidatat6f_\": 80097193,\n    \"dolore_2\": \"elit ea aliquip amet\",\n    \"velit6\": \"et nisi\",\n    \"pariatur_d2a\": -96749241,\n    \"enimec7\": -79936105,\n    \"do00f\": -22434246.228273615,\n    \"incididunt_e9\": \"Excepteur reprehenderit cillum ame\",\n    \"consequatec\": 22401460.056517035,\n    \"in_ca1\": false,\n    \"ut_4d8\": \"eu\",\n    \"adipisicing_07\": -65690295.170381315,\n    \"mollit18b\": false,\n    \"ea1ba\": 51811125.23175523,\n    \"culpa0\": -22895588,\n    \"aliquaa\": false,\n    \"fugiat_181\": \"ea sunt\",\n    \"sint3a5\": -29342761.607214436,\n    \"incididunt7\": true,\n    \"sunt_fc6\": -13058779.486835182,\n    \"sintb4e\": 4108295.5477404594,\n    \"tempor_14\": true,\n    \"quifb\": -77891109,\n    \"fugiat_f\": 30013469,\n    \"magna_721\": true,\n    \"do7_2\": true,\n    \"in_67\": \"id aute occaecat\",\n    \"sint_2\": 62758786.047023684,\n    \"nulla6__\": 3915525,\n    \"nisi_a_0\": false,\n    \"id_99_\": 72531321.55398515,\n    \"irure2_\": \"in voluptate occaecat nulla\",\n    \"non_3f8\": true,\n    \"adipisicingf1\": \"incididunt sunt\",\n    \"sunt31\": -48281837,\n    \"et_9\": true,\n    \"et_9c7\": false,\n    \"deserunt1f\": \"deserunt dolore esse ipsum do\",\n    \"est70\": true,\n    \"nisi_2a8\": -59534901.35528026,\n    \"in_e19\": \"esse enim mollit consequat aliquip\",\n    \"in56\": false,\n    \"ad_6\": -36025270.951117694,\n    \"Excepteur__1\": false,\n    \"dolor204\": -79501547.65888628,\n    \"consequat2\": -11130718,\n    \"esse_ae\": 36392632.40966663,\n    \"reprehenderit_36\": 23031552.618004665,\n    \"adipisicingcf\": \"sed et anim \",\n    \"velit_\": 92960982.79393527,\n    \"labore35\": true,\n    \"mollit_89\": \"proident ea eu\",\n    \"velitb3\": \"ut in\",\n    \"commodo9\": 46303333,\n    \"cillum86e\": false,\n    \"eiusmod_b\": 88988339,\n    \"deserunta\": false,\n    \"cupidatat996\": \"laboris officia aliqua magna\",\n    \"non2f\": -6179780,\n    \"esse38\": false,\n    \"quisca7\": -39974887.41426598,\n    \"doloree7\": 50041210,\n    \"enimb\": 51707948,\n    \"eiusmod4\": true,\n    \"velit3\": -33619346,\n    \"ullamcoac\": true,\n    \"culpa_c_\": \"Excepteur ut pariatur\",\n    \"incc3\": false\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/payout_orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout_orders"
+                  ]
                 }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/vnd.conekta-v2.2.0+json"
                 }
               ],
-              "body": "{\n  \"allowed_payout_methods\": [\n    \"cashout\"\n  ],\n  \"amount\": 100,\n  \"created_at\": 1677626837,\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"id\": \"cus_23874283647\",\n    \"customer_custom_reference\": \"custom_reference\",\n    \"name\": \"DevTest\",\n    \"email\": \"test@conekta.com\",\n    \"phone\": \"5522997233\",\n    \"corporate\": false,\n    \"object\": \"customer_info\"\n  },\n  \"expires_at\": 1677626837,\n  \"id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n  \"livemode\": true,\n  \"object\": \"payout_order\",\n  \"payouts\": [\n    {\n      \"amount\": 3000,\n      \"currency\": \"MXN\",\n      \"id\": \"payout_2vZwsRAhhGp2dFDJx\",\n      \"livemode\": true,\n      \"object\": \"payout\",\n      \"expires_at\": 1677626837,\n      \"payout_order_id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n      \"status\": \"open\"\n    },\n    {\n      \"amount\": 3000,\n      \"currency\": \"MXN\",\n      \"id\": \"payout_2vZwsRAhhGp2dFDJx\",\n      \"livemode\": true,\n      \"object\": \"payout\",\n      \"expires_at\": 1677626837,\n      \"payout_order_id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n      \"status\": \"open\"\n    }\n  ],\n  \"reason\": \"Payout order for the customer\",\n  \"status\": \"open\",\n  \"updated_at\": 1677626837,\n  \"metadata\": {\n    \"custom_client_id\": \"12345\"\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"allowed_payout_methods\": [\n    \"<string>\"\n  ],\n  \"amount\": \"<long>\",\n  \"created_at\": \"<long>\",\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"id\": \"<string>\",\n    \"customer_custom_reference\": \"<string>\",\n    \"name\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"corporate\": false,\n    \"object\": \"<string>\"\n  },\n  \"expires_at\": \"<long>\",\n  \"id\": \"<string>\",\n  \"livemode\": \"<boolean>\",\n  \"object\": \"<string>\",\n  \"payouts\": [\n    {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\",\n      \"id\": \"<string>\",\n      \"livemode\": \"<boolean>\",\n      \"object\": \"<string>\",\n      \"expires_at\": \"<long>\",\n      \"payout_order_id\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\",\n      \"id\": \"<string>\",\n      \"livemode\": \"<boolean>\",\n      \"object\": \"<string>\",\n      \"expires_at\": \"<long>\",\n      \"payout_order_id\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"reason\": \"<string>\",\n  \"status\": \"<string>\",\n  \"updated_at\": \"<long>\",\n  \"metadata\": {\n    \"aliqua9\": \"elit aliqua voluptate\",\n    \"eu_4_\": \"veniam aute\",\n    \"essed\": 56456100,\n    \"ut_e\": 84945803,\n    \"aute3\": 78659007.6397084,\n    \"in__\": \"Excepteur do voluptate\",\n    \"commodo_3f5\": \"esse e\",\n    \"pariatur_92\": -32278477.586299866,\n    \"anime3\": 59419937,\n    \"proident124\": -53913800.615775555,\n    \"voluptate5b\": -26774434,\n    \"adipisicing_89\": -89458406,\n    \"Lorem_4a1\": 43994905.3819395,\n    \"sintd7\": true,\n    \"minim_6a\": \"veniam adipisicing do\",\n    \"et550\": true,\n    \"labore_1a2\": -41289148.21905498,\n    \"anim_8\": true,\n    \"sunt_de\": \"sunt officia\",\n    \"tempor_c4d\": 71636218,\n    \"sint010\": 91964519,\n    \"labore2\": 84238037.10422337,\n    \"minim_2a8\": -63136460.34684339,\n    \"laboris_5_4\": true,\n    \"officiaa8\": -63180455,\n    \"auteb5\": -57813774.56039047,\n    \"eiusmod_c\": -58724198.642896794,\n    \"ipsum_f3d\": -44497622,\n    \"ad3\": \"consectetur non\",\n    \"ut_eb\": \"esse proident Duis\",\n    \"veniam_39c\": -89179381.98273271,\n    \"etfd4\": -63381071,\n    \"minim4_1\": true,\n    \"dolor0\": true,\n    \"minimc\": true,\n    \"incididunta\": false,\n    \"ex9e1\": 77376220.47697198,\n    \"ad_347\": -31154200,\n    \"occaecatc93\": -47622878.87547716,\n    \"ex6f7\": false,\n    \"sede0f\": -64241839.54667333,\n    \"nisi_8\": 38813040.18994442,\n    \"aliqua__a1\": true,\n    \"cupidatat3\": \"sed nostrud est ea\",\n    \"consectetur_5\": \"consequat\",\n    \"dolore_ea\": 67086615.414844036,\n    \"essea\": 68613697.4168745,\n    \"ad_d\": true,\n    \"sit_549\": -97029474.05755973,\n    \"quis_ba4\": 32088929.72011763,\n    \"et_5_6\": \"nulla\",\n    \"aliquipb\": \"ad minim\",\n    \"laborum_1_d\": true,\n    \"laboris_8\": -7446590,\n    \"commodo_9a3\": 23298042.92986028,\n    \"laborum_f\": -79479038,\n    \"deserunt0\": -75778837.97157857,\n    \"laboris_a\": true,\n    \"mollitb_\": 61536850.26270655,\n    \"in_c\": 2899825,\n    \"proidented\": -28697226.32050094,\n    \"consequat9\": \"Excepteur esse qui culpa in\"\n  }\n}",
+              "createdAt": "2026-10-21T20:29:30.000Z",
+              "updatedAt": "2026-10-21T20:29:30.000Z",
+              "uid": "35240-b8fe8718-0fb2-431a-856b-a5090c018b29"
             },
             {
-              "id": "a54493a1-f90d-49e8-9569-72cd903d7d0d",
+              "id": "4ef7cbfe-f389-4222-bb70-da8681a1d228",
               "name": "authentication error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Use for knowing which language to use",
                     "key": "Accept-Language",
                     "value": "es"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"allowed_payout_methods\": [\n    \"cashout\"\n  ],\n  \"amount\": 100,\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"cus_23874283647\"\n  },\n  \"expires_at\": 1700000000,\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"cashout\"\n    }\n  },\n  \"reason\": \"Payout order for the customer\",\n  \"metadata\": {\n    \"custom_client_id\": \"12345\"\n  }\n}",
+                  "raw": "{\n  \"allowed_payout_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"amount\": \"<long>\",\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"<string>\"\n  },\n  \"expires_at\": \"<long>\",\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"<string>\"\n    }\n  },\n  \"reason\": \"<string>\",\n  \"metadata\": {\n    \"mollit_2\": 41503101,\n    \"in39_\": false,\n    \"eiusmod1\": 86314062.9378233,\n    \"dob\": -75713225.87632751,\n    \"dolor_1\": -16175461.327879995,\n    \"magna8b\": \"id elit eiusmod cillum proident\",\n    \"enim_4ff\": true,\n    \"nostrud_d\": \"ea qui minim in\",\n    \"enim_17\": -37409751,\n    \"et_8\": -3124060,\n    \"aliqua25d\": false,\n    \"elit_4f4\": 23750698,\n    \"sed17\": false,\n    \"laborum0e\": \"in qui cupidatat\",\n    \"fugiat2a\": true,\n    \"nisi_7d\": 90761695.80745259,\n    \"minim_f6\": 76071101.81043035,\n    \"laboris62\": -26884321,\n    \"fugiat_08\": -59338837,\n    \"cupidatat6f_\": 80097193,\n    \"dolore_2\": \"elit ea aliquip amet\",\n    \"velit6\": \"et nisi\",\n    \"pariatur_d2a\": -96749241,\n    \"enimec7\": -79936105,\n    \"do00f\": -22434246.228273615,\n    \"incididunt_e9\": \"Excepteur reprehenderit cillum ame\",\n    \"consequatec\": 22401460.056517035,\n    \"in_ca1\": false,\n    \"ut_4d8\": \"eu\",\n    \"adipisicing_07\": -65690295.170381315,\n    \"mollit18b\": false,\n    \"ea1ba\": 51811125.23175523,\n    \"culpa0\": -22895588,\n    \"aliquaa\": false,\n    \"fugiat_181\": \"ea sunt\",\n    \"sint3a5\": -29342761.607214436,\n    \"incididunt7\": true,\n    \"sunt_fc6\": -13058779.486835182,\n    \"sintb4e\": 4108295.5477404594,\n    \"tempor_14\": true,\n    \"quifb\": -77891109,\n    \"fugiat_f\": 30013469,\n    \"magna_721\": true,\n    \"do7_2\": true,\n    \"in_67\": \"id aute occaecat\",\n    \"sint_2\": 62758786.047023684,\n    \"nulla6__\": 3915525,\n    \"nisi_a_0\": false,\n    \"id_99_\": 72531321.55398515,\n    \"irure2_\": \"in voluptate occaecat nulla\",\n    \"non_3f8\": true,\n    \"adipisicingf1\": \"incididunt sunt\",\n    \"sunt31\": -48281837,\n    \"et_9\": true,\n    \"et_9c7\": false,\n    \"deserunt1f\": \"deserunt dolore esse ipsum do\",\n    \"est70\": true,\n    \"nisi_2a8\": -59534901.35528026,\n    \"in_e19\": \"esse enim mollit consequat aliquip\",\n    \"in56\": false,\n    \"ad_6\": -36025270.951117694,\n    \"Excepteur__1\": false,\n    \"dolor204\": -79501547.65888628,\n    \"consequat2\": -11130718,\n    \"esse_ae\": 36392632.40966663,\n    \"reprehenderit_36\": 23031552.618004665,\n    \"adipisicingcf\": \"sed et anim \",\n    \"velit_\": 92960982.79393527,\n    \"labore35\": true,\n    \"mollit_89\": \"proident ea eu\",\n    \"velitb3\": \"ut in\",\n    \"commodo9\": 46303333,\n    \"cillum86e\": false,\n    \"eiusmod_b\": 88988339,\n    \"deserunta\": false,\n    \"cupidatat996\": \"laboris officia aliqua magna\",\n    \"non2f\": -6179780,\n    \"esse38\": false,\n    \"quisca7\": -39974887.41426598,\n    \"doloree7\": 50041210,\n    \"enimb\": 51707948,\n    \"eiusmod4\": true,\n    \"velit3\": -33619346,\n    \"ullamcoac\": true,\n    \"culpa_c_\": \"Excepteur ut pariatur\",\n    \"incc3\": false\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/payout_orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout_orders"
+                  ]
                 }
               },
               "status": "Unauthorized",
               "code": 401,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/vnd.conekta-v2.2.0+json"
                 }
               ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:29:30.000Z",
+              "updatedAt": "2026-10-21T20:29:30.000Z",
+              "uid": "35240-4ef7cbfe-f389-4222-bb70-da8681a1d228"
             },
             {
-              "id": "f94448a4-2e52-4a1f-8c06-8d0ec7af1711",
+              "id": "cb333e1f-436c-449d-83d6-bc4789becb12",
               "name": "payment required error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Use for knowing which language to use",
                     "key": "Accept-Language",
                     "value": "es"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"allowed_payout_methods\": [\n    \"cashout\"\n  ],\n  \"amount\": 100,\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"cus_23874283647\"\n  },\n  \"expires_at\": 1700000000,\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"cashout\"\n    }\n  },\n  \"reason\": \"Payout order for the customer\",\n  \"metadata\": {\n    \"custom_client_id\": \"12345\"\n  }\n}",
+                  "raw": "{\n  \"allowed_payout_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"amount\": \"<long>\",\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"<string>\"\n  },\n  \"expires_at\": \"<long>\",\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"<string>\"\n    }\n  },\n  \"reason\": \"<string>\",\n  \"metadata\": {\n    \"mollit_2\": 41503101,\n    \"in39_\": false,\n    \"eiusmod1\": 86314062.9378233,\n    \"dob\": -75713225.87632751,\n    \"dolor_1\": -16175461.327879995,\n    \"magna8b\": \"id elit eiusmod cillum proident\",\n    \"enim_4ff\": true,\n    \"nostrud_d\": \"ea qui minim in\",\n    \"enim_17\": -37409751,\n    \"et_8\": -3124060,\n    \"aliqua25d\": false,\n    \"elit_4f4\": 23750698,\n    \"sed17\": false,\n    \"laborum0e\": \"in qui cupidatat\",\n    \"fugiat2a\": true,\n    \"nisi_7d\": 90761695.80745259,\n    \"minim_f6\": 76071101.81043035,\n    \"laboris62\": -26884321,\n    \"fugiat_08\": -59338837,\n    \"cupidatat6f_\": 80097193,\n    \"dolore_2\": \"elit ea aliquip amet\",\n    \"velit6\": \"et nisi\",\n    \"pariatur_d2a\": -96749241,\n    \"enimec7\": -79936105,\n    \"do00f\": -22434246.228273615,\n    \"incididunt_e9\": \"Excepteur reprehenderit cillum ame\",\n    \"consequatec\": 22401460.056517035,\n    \"in_ca1\": false,\n    \"ut_4d8\": \"eu\",\n    \"adipisicing_07\": -65690295.170381315,\n    \"mollit18b\": false,\n    \"ea1ba\": 51811125.23175523,\n    \"culpa0\": -22895588,\n    \"aliquaa\": false,\n    \"fugiat_181\": \"ea sunt\",\n    \"sint3a5\": -29342761.607214436,\n    \"incididunt7\": true,\n    \"sunt_fc6\": -13058779.486835182,\n    \"sintb4e\": 4108295.5477404594,\n    \"tempor_14\": true,\n    \"quifb\": -77891109,\n    \"fugiat_f\": 30013469,\n    \"magna_721\": true,\n    \"do7_2\": true,\n    \"in_67\": \"id aute occaecat\",\n    \"sint_2\": 62758786.047023684,\n    \"nulla6__\": 3915525,\n    \"nisi_a_0\": false,\n    \"id_99_\": 72531321.55398515,\n    \"irure2_\": \"in voluptate occaecat nulla\",\n    \"non_3f8\": true,\n    \"adipisicingf1\": \"incididunt sunt\",\n    \"sunt31\": -48281837,\n    \"et_9\": true,\n    \"et_9c7\": false,\n    \"deserunt1f\": \"deserunt dolore esse ipsum do\",\n    \"est70\": true,\n    \"nisi_2a8\": -59534901.35528026,\n    \"in_e19\": \"esse enim mollit consequat aliquip\",\n    \"in56\": false,\n    \"ad_6\": -36025270.951117694,\n    \"Excepteur__1\": false,\n    \"dolor204\": -79501547.65888628,\n    \"consequat2\": -11130718,\n    \"esse_ae\": 36392632.40966663,\n    \"reprehenderit_36\": 23031552.618004665,\n    \"adipisicingcf\": \"sed et anim \",\n    \"velit_\": 92960982.79393527,\n    \"labore35\": true,\n    \"mollit_89\": \"proident ea eu\",\n    \"velitb3\": \"ut in\",\n    \"commodo9\": 46303333,\n    \"cillum86e\": false,\n    \"eiusmod_b\": 88988339,\n    \"deserunta\": false,\n    \"cupidatat996\": \"laboris officia aliqua magna\",\n    \"non2f\": -6179780,\n    \"esse38\": false,\n    \"quisca7\": -39974887.41426598,\n    \"doloree7\": 50041210,\n    \"enimb\": 51707948,\n    \"eiusmod4\": true,\n    \"velit3\": -33619346,\n    \"ullamcoac\": true,\n    \"culpa_c_\": \"Excepteur ut pariatur\",\n    \"incc3\": false\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/payout_orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout_orders"
+                  ]
                 }
               },
               "status": "Payment Required",
               "code": 402,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/vnd.conekta-v2.2.0+json"
                 }
               ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The card could not be processed.\",\n      \"code\": \"conekta.errors.processing.tokenization.used\",\n      \"debug_message\": \"The token has already been used.\"\n    }\n  ],\n  \"log_id\": \"641b6d073cd9a50001515007\",\n  \"object\": \"error\",\n  \"type\": \"processing_error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:29:30.000Z",
+              "updatedAt": "2026-10-21T20:29:30.000Z",
+              "uid": "35240-cb333e1f-436c-449d-83d6-bc4789becb12"
             },
             {
-              "id": "704b512a-514e-4a39-afd9-69e08854a642",
+              "id": "6106f048-4474-45b7-9a32-cd74c4231343",
               "name": "not found entity",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Use for knowing which language to use",
                     "key": "Accept-Language",
                     "value": "es"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"allowed_payout_methods\": [\n    \"cashout\"\n  ],\n  \"amount\": 100,\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"cus_23874283647\"\n  },\n  \"expires_at\": 1700000000,\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"cashout\"\n    }\n  },\n  \"reason\": \"Payout order for the customer\",\n  \"metadata\": {\n    \"custom_client_id\": \"12345\"\n  }\n}",
+                  "raw": "{\n  \"allowed_payout_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"amount\": \"<long>\",\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"<string>\"\n  },\n  \"expires_at\": \"<long>\",\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"<string>\"\n    }\n  },\n  \"reason\": \"<string>\",\n  \"metadata\": {\n    \"mollit_2\": 41503101,\n    \"in39_\": false,\n    \"eiusmod1\": 86314062.9378233,\n    \"dob\": -75713225.87632751,\n    \"dolor_1\": -16175461.327879995,\n    \"magna8b\": \"id elit eiusmod cillum proident\",\n    \"enim_4ff\": true,\n    \"nostrud_d\": \"ea qui minim in\",\n    \"enim_17\": -37409751,\n    \"et_8\": -3124060,\n    \"aliqua25d\": false,\n    \"elit_4f4\": 23750698,\n    \"sed17\": false,\n    \"laborum0e\": \"in qui cupidatat\",\n    \"fugiat2a\": true,\n    \"nisi_7d\": 90761695.80745259,\n    \"minim_f6\": 76071101.81043035,\n    \"laboris62\": -26884321,\n    \"fugiat_08\": -59338837,\n    \"cupidatat6f_\": 80097193,\n    \"dolore_2\": \"elit ea aliquip amet\",\n    \"velit6\": \"et nisi\",\n    \"pariatur_d2a\": -96749241,\n    \"enimec7\": -79936105,\n    \"do00f\": -22434246.228273615,\n    \"incididunt_e9\": \"Excepteur reprehenderit cillum ame\",\n    \"consequatec\": 22401460.056517035,\n    \"in_ca1\": false,\n    \"ut_4d8\": \"eu\",\n    \"adipisicing_07\": -65690295.170381315,\n    \"mollit18b\": false,\n    \"ea1ba\": 51811125.23175523,\n    \"culpa0\": -22895588,\n    \"aliquaa\": false,\n    \"fugiat_181\": \"ea sunt\",\n    \"sint3a5\": -29342761.607214436,\n    \"incididunt7\": true,\n    \"sunt_fc6\": -13058779.486835182,\n    \"sintb4e\": 4108295.5477404594,\n    \"tempor_14\": true,\n    \"quifb\": -77891109,\n    \"fugiat_f\": 30013469,\n    \"magna_721\": true,\n    \"do7_2\": true,\n    \"in_67\": \"id aute occaecat\",\n    \"sint_2\": 62758786.047023684,\n    \"nulla6__\": 3915525,\n    \"nisi_a_0\": false,\n    \"id_99_\": 72531321.55398515,\n    \"irure2_\": \"in voluptate occaecat nulla\",\n    \"non_3f8\": true,\n    \"adipisicingf1\": \"incididunt sunt\",\n    \"sunt31\": -48281837,\n    \"et_9\": true,\n    \"et_9c7\": false,\n    \"deserunt1f\": \"deserunt dolore esse ipsum do\",\n    \"est70\": true,\n    \"nisi_2a8\": -59534901.35528026,\n    \"in_e19\": \"esse enim mollit consequat aliquip\",\n    \"in56\": false,\n    \"ad_6\": -36025270.951117694,\n    \"Excepteur__1\": false,\n    \"dolor204\": -79501547.65888628,\n    \"consequat2\": -11130718,\n    \"esse_ae\": 36392632.40966663,\n    \"reprehenderit_36\": 23031552.618004665,\n    \"adipisicingcf\": \"sed et anim \",\n    \"velit_\": 92960982.79393527,\n    \"labore35\": true,\n    \"mollit_89\": \"proident ea eu\",\n    \"velitb3\": \"ut in\",\n    \"commodo9\": 46303333,\n    \"cillum86e\": false,\n    \"eiusmod_b\": 88988339,\n    \"deserunta\": false,\n    \"cupidatat996\": \"laboris officia aliqua magna\",\n    \"non2f\": -6179780,\n    \"esse38\": false,\n    \"quisca7\": -39974887.41426598,\n    \"doloree7\": 50041210,\n    \"enimb\": 51707948,\n    \"eiusmod4\": true,\n    \"velit3\": -33619346,\n    \"ullamcoac\": true,\n    \"culpa_c_\": \"Excepteur ut pariatur\",\n    \"incc3\": false\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/payout_orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout_orders"
+                  ]
                 }
               },
               "status": "Not Found",
               "code": 404,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/vnd.conekta-v2.2.0+json"
                 }
               ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:29:30.000Z",
+              "updatedAt": "2026-10-21T20:29:30.000Z",
+              "uid": "35240-6106f048-4474-45b7-9a32-cd74c4231343"
             },
             {
-              "id": "8cbdd9b7-7738-4c9f-8049-991304d552ca",
+              "id": "5fa84961-9156-4824-ae25-4404849f902e",
               "name": "parameter validation error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Use for knowing which language to use",
                     "key": "Accept-Language",
                     "value": "es"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"allowed_payout_methods\": [\n    \"cashout\"\n  ],\n  \"amount\": 100,\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"cus_23874283647\"\n  },\n  \"expires_at\": 1700000000,\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"cashout\"\n    }\n  },\n  \"reason\": \"Payout order for the customer\",\n  \"metadata\": {\n    \"custom_client_id\": \"12345\"\n  }\n}",
+                  "raw": "{\n  \"allowed_payout_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"amount\": \"<long>\",\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"<string>\"\n  },\n  \"expires_at\": \"<long>\",\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"<string>\"\n    }\n  },\n  \"reason\": \"<string>\",\n  \"metadata\": {\n    \"mollit_2\": 41503101,\n    \"in39_\": false,\n    \"eiusmod1\": 86314062.9378233,\n    \"dob\": -75713225.87632751,\n    \"dolor_1\": -16175461.327879995,\n    \"magna8b\": \"id elit eiusmod cillum proident\",\n    \"enim_4ff\": true,\n    \"nostrud_d\": \"ea qui minim in\",\n    \"enim_17\": -37409751,\n    \"et_8\": -3124060,\n    \"aliqua25d\": false,\n    \"elit_4f4\": 23750698,\n    \"sed17\": false,\n    \"laborum0e\": \"in qui cupidatat\",\n    \"fugiat2a\": true,\n    \"nisi_7d\": 90761695.80745259,\n    \"minim_f6\": 76071101.81043035,\n    \"laboris62\": -26884321,\n    \"fugiat_08\": -59338837,\n    \"cupidatat6f_\": 80097193,\n    \"dolore_2\": \"elit ea aliquip amet\",\n    \"velit6\": \"et nisi\",\n    \"pariatur_d2a\": -96749241,\n    \"enimec7\": -79936105,\n    \"do00f\": -22434246.228273615,\n    \"incididunt_e9\": \"Excepteur reprehenderit cillum ame\",\n    \"consequatec\": 22401460.056517035,\n    \"in_ca1\": false,\n    \"ut_4d8\": \"eu\",\n    \"adipisicing_07\": -65690295.170381315,\n    \"mollit18b\": false,\n    \"ea1ba\": 51811125.23175523,\n    \"culpa0\": -22895588,\n    \"aliquaa\": false,\n    \"fugiat_181\": \"ea sunt\",\n    \"sint3a5\": -29342761.607214436,\n    \"incididunt7\": true,\n    \"sunt_fc6\": -13058779.486835182,\n    \"sintb4e\": 4108295.5477404594,\n    \"tempor_14\": true,\n    \"quifb\": -77891109,\n    \"fugiat_f\": 30013469,\n    \"magna_721\": true,\n    \"do7_2\": true,\n    \"in_67\": \"id aute occaecat\",\n    \"sint_2\": 62758786.047023684,\n    \"nulla6__\": 3915525,\n    \"nisi_a_0\": false,\n    \"id_99_\": 72531321.55398515,\n    \"irure2_\": \"in voluptate occaecat nulla\",\n    \"non_3f8\": true,\n    \"adipisicingf1\": \"incididunt sunt\",\n    \"sunt31\": -48281837,\n    \"et_9\": true,\n    \"et_9c7\": false,\n    \"deserunt1f\": \"deserunt dolore esse ipsum do\",\n    \"est70\": true,\n    \"nisi_2a8\": -59534901.35528026,\n    \"in_e19\": \"esse enim mollit consequat aliquip\",\n    \"in56\": false,\n    \"ad_6\": -36025270.951117694,\n    \"Excepteur__1\": false,\n    \"dolor204\": -79501547.65888628,\n    \"consequat2\": -11130718,\n    \"esse_ae\": 36392632.40966663,\n    \"reprehenderit_36\": 23031552.618004665,\n    \"adipisicingcf\": \"sed et anim \",\n    \"velit_\": 92960982.79393527,\n    \"labore35\": true,\n    \"mollit_89\": \"proident ea eu\",\n    \"velitb3\": \"ut in\",\n    \"commodo9\": 46303333,\n    \"cillum86e\": false,\n    \"eiusmod_b\": 88988339,\n    \"deserunta\": false,\n    \"cupidatat996\": \"laboris officia aliqua magna\",\n    \"non2f\": -6179780,\n    \"esse38\": false,\n    \"quisca7\": -39974887.41426598,\n    \"doloree7\": 50041210,\n    \"enimb\": 51707948,\n    \"eiusmod4\": true,\n    \"velit3\": -33619346,\n    \"ullamcoac\": true,\n    \"culpa_c_\": \"Excepteur ut pariatur\",\n    \"incc3\": false\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/payout_orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout_orders"
+                  ]
                 }
               },
               "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
               "code": 422,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/vnd.conekta-v2.2.0+json"
                 }
               ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The token does not exist.\",\n      \"param\": \"payment_method.token_id\",\n      \"code\": \"conekta.errors.parameter_validation.payment_method.token_id.nonexistent_token\",\n      \"debug_message\": \"The token does not exist.\"\n    }\n  ],\n  \"log_id\": \"641b6d813cd9a50001515017\",\n  \"object\": \"error\",\n  \"type\": \"parameter_validation_error\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:29:30.000Z",
+              "updatedAt": "2026-10-21T20:29:30.000Z",
+              "uid": "35240-5fa84961-9156-4824-ae25-4404849f902e"
             },
             {
-              "id": "21c1aa97-78c8-433c-9813-04d481ef8427",
+              "id": "489db3a2-5fa9-4f6e-b3ef-c4181367001f",
               "name": "internal server error",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
                     "description": "Use for knowing which language to use",
                     "key": "Accept-Language",
                     "value": "es"
                   },
                   {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
                     "key": "Accept",
                     "value": "application/vnd.conekta-v2.2.0+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"allowed_payout_methods\": [\n    \"cashout\"\n  ],\n  \"amount\": 100,\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"cus_23874283647\"\n  },\n  \"expires_at\": 1700000000,\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"cashout\"\n    }\n  },\n  \"reason\": \"Payout order for the customer\",\n  \"metadata\": {\n    \"custom_client_id\": \"12345\"\n  }\n}",
+                  "raw": "{\n  \"allowed_payout_methods\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"amount\": \"<long>\",\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"customer_id\": \"<string>\"\n  },\n  \"expires_at\": \"<long>\",\n  \"payout\": {\n    \"payout_method\": {\n      \"type\": \"<string>\"\n    }\n  },\n  \"reason\": \"<string>\",\n  \"metadata\": {\n    \"mollit_2\": 41503101,\n    \"in39_\": false,\n    \"eiusmod1\": 86314062.9378233,\n    \"dob\": -75713225.87632751,\n    \"dolor_1\": -16175461.327879995,\n    \"magna8b\": \"id elit eiusmod cillum proident\",\n    \"enim_4ff\": true,\n    \"nostrud_d\": \"ea qui minim in\",\n    \"enim_17\": -37409751,\n    \"et_8\": -3124060,\n    \"aliqua25d\": false,\n    \"elit_4f4\": 23750698,\n    \"sed17\": false,\n    \"laborum0e\": \"in qui cupidatat\",\n    \"fugiat2a\": true,\n    \"nisi_7d\": 90761695.80745259,\n    \"minim_f6\": 76071101.81043035,\n    \"laboris62\": -26884321,\n    \"fugiat_08\": -59338837,\n    \"cupidatat6f_\": 80097193,\n    \"dolore_2\": \"elit ea aliquip amet\",\n    \"velit6\": \"et nisi\",\n    \"pariatur_d2a\": -96749241,\n    \"enimec7\": -79936105,\n    \"do00f\": -22434246.228273615,\n    \"incididunt_e9\": \"Excepteur reprehenderit cillum ame\",\n    \"consequatec\": 22401460.056517035,\n    \"in_ca1\": false,\n    \"ut_4d8\": \"eu\",\n    \"adipisicing_07\": -65690295.170381315,\n    \"mollit18b\": false,\n    \"ea1ba\": 51811125.23175523,\n    \"culpa0\": -22895588,\n    \"aliquaa\": false,\n    \"fugiat_181\": \"ea sunt\",\n    \"sint3a5\": -29342761.607214436,\n    \"incididunt7\": true,\n    \"sunt_fc6\": -13058779.486835182,\n    \"sintb4e\": 4108295.5477404594,\n    \"tempor_14\": true,\n    \"quifb\": -77891109,\n    \"fugiat_f\": 30013469,\n    \"magna_721\": true,\n    \"do7_2\": true,\n    \"in_67\": \"id aute occaecat\",\n    \"sint_2\": 62758786.047023684,\n    \"nulla6__\": 3915525,\n    \"nisi_a_0\": false,\n    \"id_99_\": 72531321.55398515,\n    \"irure2_\": \"in voluptate occaecat nulla\",\n    \"non_3f8\": true,\n    \"adipisicingf1\": \"incididunt sunt\",\n    \"sunt31\": -48281837,\n    \"et_9\": true,\n    \"et_9c7\": false,\n    \"deserunt1f\": \"deserunt dolore esse ipsum do\",\n    \"est70\": true,\n    \"nisi_2a8\": -59534901.35528026,\n    \"in_e19\": \"esse enim mollit consequat aliquip\",\n    \"in56\": false,\n    \"ad_6\": -36025270.951117694,\n    \"Excepteur__1\": false,\n    \"dolor204\": -79501547.65888628,\n    \"consequat2\": -11130718,\n    \"esse_ae\": 36392632.40966663,\n    \"reprehenderit_36\": 23031552.618004665,\n    \"adipisicingcf\": \"sed et anim \",\n    \"velit_\": 92960982.79393527,\n    \"labore35\": true,\n    \"mollit_89\": \"proident ea eu\",\n    \"velitb3\": \"ut in\",\n    \"commodo9\": 46303333,\n    \"cillum86e\": false,\n    \"eiusmod_b\": 88988339,\n    \"deserunta\": false,\n    \"cupidatat996\": \"laboris officia aliqua magna\",\n    \"non2f\": -6179780,\n    \"esse38\": false,\n    \"quisca7\": -39974887.41426598,\n    \"doloree7\": 50041210,\n    \"enimb\": 51707948,\n    \"eiusmod4\": true,\n    \"velit3\": -33619346,\n    \"ullamcoac\": true,\n    \"culpa_c_\": \"Excepteur ut pariatur\",\n    \"incc3\": false\n  }\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/payout_orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "payout_orders"
+                  ]
                 }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/vnd.conekta-v2.2.0+json"
                 }
               ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"details\": [\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"param\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_message\": \"<string>\"\n    }\n  ],\n  \"log_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"object\": \"<string>\"\n}",
+              "createdAt": "2026-10-21T20:29:30.000Z",
+              "updatedAt": "2026-10-21T20:29:30.000Z",
+              "uid": "35240-489db3a2-5fa9-4f6e-b3ef-c4181367001f"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8d4a78f5-b59a-473b-ab78-8ac932b863ce",
-          "name": "Get Payout Order",
-          "request": {
-            "name": "Get Payout Order",
-            "description": {
-              "content": "Gets a payout Order resource that corresponds to a payout order ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "payout_orders",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "GET",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "8b69089d-9c44-47d3-b87e-55011c02d94a",
-              "name": "successful operation",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"allowed_payout_methods\": [\n    \"cashout\"\n  ],\n  \"amount\": 100,\n  \"created_at\": 1677626837,\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"id\": \"cus_23874283647\",\n    \"customer_custom_reference\": \"custom_reference\",\n    \"name\": \"DevTest\",\n    \"email\": \"test@conekta.com\",\n    \"phone\": \"5522997233\",\n    \"corporate\": false,\n    \"object\": \"customer_info\"\n  },\n  \"expires_at\": 1677626837,\n  \"id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n  \"livemode\": true,\n  \"object\": \"payout_order\",\n  \"payouts\": [\n    {\n      \"amount\": 3000,\n      \"currency\": \"MXN\",\n      \"id\": \"payout_2vZwsRAhhGp2dFDJx\",\n      \"livemode\": true,\n      \"object\": \"payout\",\n      \"expires_at\": 1677626837,\n      \"payout_order_id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n      \"status\": \"open\"\n    },\n    {\n      \"amount\": 3000,\n      \"currency\": \"MXN\",\n      \"id\": \"payout_2vZwsRAhhGp2dFDJx\",\n      \"livemode\": true,\n      \"object\": \"payout\",\n      \"expires_at\": 1677626837,\n      \"payout_order_id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n      \"status\": \"open\"\n    }\n  ],\n  \"reason\": \"Payout order for the customer\",\n  \"status\": \"open\",\n  \"updated_at\": 1677626837,\n  \"metadata\": {\n    \"custom_client_id\": \"12345\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "4bdc43fb-e6f1-4f65-9895-3008d8df6c83",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "44eac3b9-665b-495b-9dcf-6de96bc32d6a",
-              "name": "not found entity",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "157cdbcb-be4d-433e-a0c1-68fdafa8cf72",
-              "name": "internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "e258f440-728b-404f-97ee-ce6e0c7c1887",
-          "name": "Cancel Payout Order",
-          "request": {
-            "name": "Cancel Payout Order",
-            "description": {
-              "content": "Cancel a payout Order resource that corresponds to a payout order ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "payout_orders",
-                ":id",
-                "cancel"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Identifier of the resource"
-                }
-              ]
-            },
-            "header": [
-              {
-                "disabled": false,
-                "description": "Use for knowing which language to use",
-                "key": "Accept-Language",
-                "value": "es"
-              },
-              {
-                "key": "Accept",
-                "value": "application/vnd.conekta-v2.2.0+json"
-              }
-            ],
-            "method": "PUT",
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{bearerToken}}"
-                }
-              ]
-            }
-          },
-          "response": [
-            {
-              "id": "889f2a21-0541-4010-be80-95360c3ebbcf",
-              "name": "successful operation",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders",
-                    ":id",
-                    "cancel"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"allowed_payout_methods\": [\n    \"cashout\"\n  ],\n  \"amount\": 100,\n  \"created_at\": 1677626837,\n  \"currency\": \"MXN\",\n  \"customer_info\": {\n    \"id\": \"cus_23874283647\",\n    \"customer_custom_reference\": \"custom_reference\",\n    \"name\": \"DevTest\",\n    \"email\": \"test@conekta.com\",\n    \"phone\": \"5522997233\",\n    \"corporate\": false,\n    \"object\": \"customer_info\"\n  },\n  \"expires_at\": 1677626837,\n  \"id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n  \"livemode\": true,\n  \"object\": \"payout_order\",\n  \"payouts\": [\n    {\n      \"amount\": 3000,\n      \"currency\": \"MXN\",\n      \"id\": \"payout_2vZwsRAhhGp2dFDJx\",\n      \"livemode\": true,\n      \"object\": \"payout\",\n      \"expires_at\": 1677626837,\n      \"payout_order_id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n      \"status\": \"open\"\n    },\n    {\n      \"amount\": 3000,\n      \"currency\": \"MXN\",\n      \"id\": \"payout_2vZwsRAhhGp2dFDJx\",\n      \"livemode\": true,\n      \"object\": \"payout\",\n      \"expires_at\": 1677626837,\n      \"payout_order_id\": \"f2654d66-d740-457a-9a8c-f96b5196f44e\",\n      \"status\": \"open\"\n    }\n  ],\n  \"reason\": \"Payout order for the customer\",\n  \"status\": \"open\",\n  \"updated_at\": 1677626837,\n  \"metadata\": {\n    \"custom_client_id\": \"12345\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "41c13133-6ebc-4f50-b578-fd2d59ba1e7c",
-              "name": "authentication error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders",
-                    ":id",
-                    "cancel"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"Please include your access key in your request.\",\n      \"code\": \"conekta.errors.authentication.missing_key\"\n    }\n  ],\n  \"log_id\": \"507f1f77bcf86cd799439011\",\n  \"object\": \"error\",\n  \"type\": \"authentication_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "470b451f-ad76-4c91-a83d-658e32d8cbda",
-              "name": "not found entity",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders",
-                    ":id",
-                    "cancel"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"message\": \"The resource was not found.\",\n      \"code\": \"conekta.errors.resource_not_found.entity\",\n      \"debug_message\": \"The object Webhook \\\"641b1d5662d7e00001eaa46b\\\" could not be found.\"\n    }\n  ],\n  \"log_id\": \"641b6c253cd9a50001514fae\",\n  \"object\": \"error\",\n  \"type\": \"resource_not_found_error\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "1f889bdd-bc59-4322-b74c-c72be8d33dae",
-              "name": "internal server error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "payout_orders",
-                    ":id",
-                    "cancel"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Identifier of the resource"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "disabled": false,
-                    "description": "Use for knowing which language to use",
-                    "key": "Accept-Language",
-                    "value": "es"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/vnd.conekta-v2.2.0+json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/vnd.conekta-v2.2.0+json"
-                }
-              ],
-              "body": "{\n  \"details\": [\n    {\n      \"debug_message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"message\": \"There was a runtime error and Conekta engineers have been notified.\",\n      \"code\": \"conekta.errors.api.system.general_failure\"\n    }\n  ],\n  \"object\": \"error\",\n  \"type\": \"api_error\",\n  \"log_id\": \"641b6f2b3cd9a50001515098\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T20:29:30.000Z",
+          "updatedAt": "2026-10-21T20:29:30.000Z",
+          "uid": "35240-b94e4613-7762-4878-a557-7fdec3306651"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.conekta.io",
-      "key": "baseUrl"
+      "id": "6f58144f-3346-493c-9abf-bebde8248ff7",
+      "createdAt": "2026-10-21T20:29:30.000Z",
+      "updatedAt": "2026-10-21T20:29:30.000Z",
+      "uid": "35240-6f58144f-3346-493c-9abf-bebde8248ff7"
     }
   ],
   "auth": {
@@ -1286,17 +1283,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "e1558634-3490-4505-bbbd-088fb2a0812a",
-    "name": "Conekta Antifraud Payout Orders API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Conekta sdk\n\nContact Support:\n Name: Engineering Conekta\n Email: engineering@conekta.com",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.conekta.io"
     }
-  }
+  ]
 }
